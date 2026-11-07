@@ -1,0 +1,1307 @@
+{
+  "kind": "panel",
+  "name": "MainMenu",
+  "params": [
+    {
+      "name": "player",
+      "type": "Player"
+    },
+    {
+      "name": "cfg",
+      "type": "Settings"
+    }
+  ],
+  "root": {
+    "anim": {
+      "enter": {
+        "duration": 0.3,
+        "preset": "FadeSlideUp",
+        "stagger": 0.04
+      },
+      "exit": {
+        "duration": 0.15,
+        "preset": "Fade"
+      }
+    },
+    "bind": {
+      "open": "state.open"
+    },
+    "children": [
+      {
+        "children": [
+          {
+            "font": "Title",
+            "id": "title_text",
+            "name": "Title",
+            "props": {
+              "color": "#3d8bfdff",
+              "text": "{icon:fa-crosshairs} CheatMenu"
+            },
+            "type": "Text"
+          },
+          {
+            "font": "Bold",
+            "id": "player_name",
+            "props": {
+              "text": "{player.name}"
+            },
+            "tooltip": "Local player name",
+            "type": "Text"
+          },
+          {
+            "id": "fps_text",
+            "props": {
+              "text": "FPS {state.fps:%.0f}"
+            },
+            "style": {
+              "classes": [
+                "muted"
+              ]
+            },
+            "type": "Text"
+          },
+          {
+            "id": "header_spacer",
+            "props": {
+              "size": {
+                "h": 1,
+                "w": "fill"
+              }
+            },
+            "type": "Dummy"
+          },
+          {
+            "anim": {
+              "transitions": [
+                {
+                  "duration": 0.15,
+                  "ease": "OutCubic",
+                  "on": "hover",
+                  "prop": "color.Button",
+                  "to": "#3d8bfdff"
+                },
+                {
+                  "duration": 0.08,
+                  "ease": "OutQuad",
+                  "on": "active",
+                  "prop": "scale",
+                  "to": 0.96
+                }
+              ]
+            },
+            "events": {
+              "onClick": {
+                "actions": [
+                  {
+                    "target": "state.showAdvanced",
+                    "type": "toggle"
+                  }
+                ],
+                "handler": true
+              }
+            },
+            "id": "btn_advanced",
+            "props": {
+              "label": "{icon:fa-sliders} Advanced",
+              "size": {
+                "h": "auto",
+                "w": 120
+              }
+            },
+            "tooltip": "Show advanced sections in every tab",
+            "type": "Button"
+          },
+          {
+            "anim": {
+              "transitions": [
+                {
+                  "duration": 0.15,
+                  "ease": "OutCubic",
+                  "on": "hover",
+                  "prop": "color.Button",
+                  "to": "#ff6b5bff"
+                },
+                {
+                  "duration": 0.08,
+                  "ease": "OutQuad",
+                  "on": "active",
+                  "prop": "scale",
+                  "to": 0.96
+                }
+              ]
+            },
+            "events": {
+              "onClick": {
+                "actions": [
+                  {
+                    "target": "cfg.esp.enabled",
+                    "type": "set",
+                    "value": false
+                  },
+                  {
+                    "target": "cfg.aim.enabled",
+                    "type": "set",
+                    "value": false
+                  },
+                  {
+                    "target": "cfg.misc.bhop",
+                    "type": "set",
+                    "value": false
+                  },
+                  {
+                    "target": "state.status",
+                    "type": "set",
+                    "value": "Panic: all features disabled"
+                  }
+                ],
+                "handler": true
+              }
+            },
+            "id": "btn_panic",
+            "props": {
+              "label": "{icon:fa-power-off} Panic",
+              "size": {
+                "h": "auto",
+                "w": 100
+              }
+            },
+            "style": {
+              "classes": [
+                "danger"
+              ]
+            },
+            "tooltip": "Disable every feature at once",
+            "type": "Button"
+          }
+        ],
+        "id": "header",
+        "props": {
+          "align": "Center",
+          "spacing": 12
+        },
+        "type": "HStack"
+      },
+      {
+        "id": "header_sep",
+        "type": "Separator"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "anim": {
+                  "enter": {
+                    "duration": 0.25,
+                    "preset": "FadeSlideUp",
+                    "stagger": 0.04
+                  }
+                },
+                "children": [
+                  {
+                    "component": "Card",
+                    "id": "aim_card",
+                    "props": {
+                      "accent": "#e74c3cff",
+                      "title": "Aimbot"
+                    },
+                    "slots": {
+                      "content": [
+                        {
+                          "bind": {
+                            "value": "cfg.aim.enabled"
+                          },
+                          "events": {
+                            "onChange": {
+                              "handler": true
+                            }
+                          },
+                          "id": "aim_enabled",
+                          "props": {
+                            "label": "Enable aimbot"
+                          },
+                          "type": "Checkbox"
+                        },
+                        {
+                          "component": "LabeledSlider",
+                          "enabledIf": "cfg.aim.enabled",
+                          "id": "aim_fov",
+                          "props": {
+                            "format": "%.0f deg",
+                            "label": "FOV",
+                            "max": 180,
+                            "min": 1,
+                            "value": "cfg.aim.fov"
+                          },
+                          "type": "Component"
+                        },
+                        {
+                          "component": "LabeledSlider",
+                          "enabledIf": "cfg.aim.enabled",
+                          "id": "aim_smooth",
+                          "props": {
+                            "format": "%.1f",
+                            "label": "Smooth",
+                            "max": 20,
+                            "min": 1,
+                            "value": "cfg.aim.smooth"
+                          },
+                          "type": "Component"
+                        },
+                        {
+                          "bind": {
+                            "value": "cfg.aim.bone"
+                          },
+                          "enabledIf": "cfg.aim.enabled",
+                          "id": "aim_bone",
+                          "props": {
+                            "items": [
+                              "Head",
+                              "Neck",
+                              "Chest",
+                              "Pelvis",
+                              "Nearest"
+                            ],
+                            "label": "Bone"
+                          },
+                          "type": "Combo"
+                        },
+                        {
+                          "bind": {
+                            "value": "cfg.aim.key"
+                          },
+                          "enabledIf": "cfg.aim.enabled",
+                          "id": "aim_key",
+                          "props": {
+                            "flags": [
+                              "HeightLarge"
+                            ],
+                            "items": [
+                              "Mouse 4",
+                              "Mouse 5",
+                              "Left Alt",
+                              "Left Shift",
+                              "Caps Lock"
+                            ],
+                            "label": "Key"
+                          },
+                          "type": "Combo"
+                        }
+                      ]
+                    },
+                    "type": "Component"
+                  },
+                  {
+                    "component": "Card",
+                    "id": "aim_adv_card",
+                    "props": {
+                      "accent": "#f39c12ff",
+                      "title": "Advanced"
+                    },
+                    "slots": {
+                      "content": [
+                        {
+                          "bind": {
+                            "value": "player.mode"
+                          },
+                          "id": "aim_mode",
+                          "props": {
+                            "label": "Mode"
+                          },
+                          "tooltip": "Bound to an enum: items come from the reflected Mode names",
+                          "type": "Combo"
+                        },
+                        {
+                          "id": "aim_mode_hint",
+                          "props": {
+                            "text": "Rage mode ignores smoothing",
+                            "wrapped": true
+                          },
+                          "style": {
+                            "colors": {
+                              "Text": "#f39c12ff"
+                            }
+                          },
+                          "type": "Text",
+                          "visibleIf": "player.mode == Mode::Rage"
+                        },
+                        {
+                          "id": "aim_fov_preview",
+                          "props": {
+                            "fraction": {
+                              "expr": "cfg.aim.fov / 180"
+                            },
+                            "overlay": "FOV {cfg.aim.fov:%.0f}",
+                            "size": {
+                              "h": 16,
+                              "w": "fill"
+                            }
+                          },
+                          "type": "ProgressBar"
+                        }
+                      ]
+                    },
+                    "type": "Component",
+                    "visibleIf": "state.showAdvanced"
+                  }
+                ],
+                "id": "aim_row",
+                "props": {
+                  "align": "Start",
+                  "spacing": 10
+                },
+                "type": "HStack"
+              }
+            ],
+            "id": "tab_aimbot",
+            "props": {
+              "label": "{icon:fa-crosshairs} Aimbot"
+            },
+            "type": "Tab"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "enter": {
+                    "duration": 0.25,
+                    "preset": "FadeSlideUp",
+                    "stagger": 0.05
+                  }
+                },
+                "children": [
+                  {
+                    "component": "Card",
+                    "id": "esp_card",
+                    "props": {
+                      "accent": "#2ecc71ff",
+                      "title": "ESP"
+                    },
+                    "slots": {
+                      "content": [
+                        {
+                          "bind": {
+                            "value": "cfg.esp.enabled"
+                          },
+                          "events": {
+                            "onChange": {
+                              "handler": true
+                            }
+                          },
+                          "id": "esp_enabled",
+                          "props": {
+                            "label": "Enable ESP"
+                          },
+                          "type": "Checkbox"
+                        },
+                        {
+                          "bind": {
+                            "value": "cfg.esp.box_type"
+                          },
+                          "enabledIf": "cfg.esp.enabled",
+                          "id": "esp_box",
+                          "props": {
+                            "items": [
+                              "2D",
+                              "Corner",
+                              "3D"
+                            ],
+                            "label": "Box"
+                          },
+                          "type": "Combo"
+                        },
+                        {
+                          "bind": {
+                            "value": "cfg.esp.color"
+                          },
+                          "enabledIf": "cfg.esp.enabled",
+                          "id": "esp_color",
+                          "props": {
+                            "alpha": true,
+                            "flags": [
+                              "NoInputs",
+                              "AlphaBar"
+                            ],
+                            "label": "Color"
+                          },
+                          "type": "ColorEdit"
+                        },
+                        {
+                          "component": "LabeledSlider",
+                          "enabledIf": "cfg.esp.enabled",
+                          "id": "esp_dist",
+                          "props": {
+                            "format": "%.0f m",
+                            "label": "Max distance",
+                            "max": 1000,
+                            "min": 50,
+                            "value": "cfg.esp.max_distance"
+                          },
+                          "type": "Component"
+                        }
+                      ]
+                    },
+                    "type": "Component"
+                  },
+                  {
+                    "component": "Card",
+                    "id": "fov_card",
+                    "props": {
+                      "accent": "#9b59b6ff",
+                      "title": "Field of view"
+                    },
+                    "slots": {
+                      "content": [
+                        {
+                          "bind": {
+                            "value": "cfg.misc.fov_changer"
+                          },
+                          "id": "fov_enabled",
+                          "props": {
+                            "label": "Override FOV"
+                          },
+                          "type": "Checkbox"
+                        },
+                        {
+                          "bind": {
+                            "value": "cfg.misc.fov"
+                          },
+                          "enabledIf": "cfg.misc.fov_changer",
+                          "id": "fov_value",
+                          "props": {
+                            "flags": [
+                              "AlwaysClamp"
+                            ],
+                            "format": "%.0f",
+                            "label": "##fov",
+                            "max": 140,
+                            "min": 60
+                          },
+                          "type": "SliderFloat"
+                        }
+                      ]
+                    },
+                    "type": "Component"
+                  },
+                  {
+                    "component": "Card",
+                    "id": "wm_card",
+                    "props": {
+                      "accent": "#1abc9cff",
+                      "title": "Watermark"
+                    },
+                    "slots": {
+                      "content": [
+                        {
+                          "bind": {
+                            "value": "cfg.misc.watermark"
+                          },
+                          "id": "wm_enabled",
+                          "props": {
+                            "label": "Show watermark"
+                          },
+                          "type": "Checkbox"
+                        },
+                        {
+                          "id": "wm_preview",
+                          "props": {
+                            "disabled": true,
+                            "text": "CheatMenu | {player.name} | {state.fps:%.0f} fps"
+                          },
+                          "type": "Text",
+                          "visibleIf": "cfg.misc.watermark"
+                        }
+                      ]
+                    },
+                    "type": "Component"
+                  },
+                  {
+                    "component": "Card",
+                    "id": "vis_adv_card",
+                    "props": {
+                      "accent": "#f39c12ff",
+                      "title": "Advanced"
+                    },
+                    "slots": {
+                      "content": [
+                        {
+                          "bind": {
+                            "value": "cfg.esp.color"
+                          },
+                          "id": "esp_color_pick",
+                          "props": {
+                            "alpha": true,
+                            "flags": [
+                              "PickerHueWheel",
+                              "NoSidePreview"
+                            ],
+                            "label": "##esp_picker"
+                          },
+                          "type": "ColorPicker"
+                        }
+                      ]
+                    },
+                    "type": "Component",
+                    "visibleIf": "state.showAdvanced && cfg.esp.enabled"
+                  }
+                ],
+                "id": "vis_grid",
+                "props": {
+                  "columns": 2,
+                  "flags": [
+                    "SizingStretchSame",
+                    "PadOuterX"
+                  ]
+                },
+                "type": "Grid"
+              }
+            ],
+            "id": "tab_visuals",
+            "props": {
+              "label": "{icon:fa-eye} Visuals"
+            },
+            "type": "Tab"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "enter": {
+                    "duration": 0.25,
+                    "preset": "FadeSlideUp",
+                    "stagger": 0.04
+                  }
+                },
+                "children": [
+                  {
+                    "component": "Card",
+                    "id": "move_card",
+                    "props": {
+                      "accent": "#3498dbff",
+                      "title": "Movement"
+                    },
+                    "slots": {
+                      "content": [
+                        {
+                          "bind": {
+                            "value": "cfg.misc.bhop"
+                          },
+                          "id": "bhop",
+                          "props": {
+                            "label": "Bunny hop"
+                          },
+                          "type": "Checkbox"
+                        },
+                        {
+                          "component": "LabeledSlider",
+                          "enabledIf": "cfg.misc.bhop",
+                          "id": "speed",
+                          "props": {
+                            "format": "%.2fx",
+                            "label": "Speed",
+                            "max": 3,
+                            "min": 1,
+                            "value": "cfg.misc.speed"
+                          },
+                          "type": "Component"
+                        }
+                      ]
+                    },
+                    "type": "Component"
+                  },
+                  {
+                    "component": "Card",
+                    "id": "info_card",
+                    "props": {
+                      "accent": "#95a5a6ff",
+                      "title": "Player"
+                    },
+                    "slots": {
+                      "content": [
+                        {
+                          "id": "hp_text",
+                          "props": {
+                            "text": "Health {player.health:%.0f} / {player.max_hp:%.0f}"
+                          },
+                          "type": "Text"
+                        },
+                        {
+                          "anim": {
+                            "transitions": [
+                              {
+                                "duration": 0.3,
+                                "ease": "InOutQuad",
+                                "on": "visible",
+                                "prop": "color.PlotHistogram",
+                                "to": "#e74c3cff"
+                              }
+                            ]
+                          },
+                          "id": "hp_bar",
+                          "props": {
+                            "fraction": {
+                              "expr": "player.health / player.max_hp"
+                            },
+                            "overlay": "{player.health:%.0f} HP",
+                            "size": {
+                              "h": 14,
+                              "w": "fill"
+                            }
+                          },
+                          "style": {
+                            "colors": {
+                              "PlotHistogram": "#2ecc71ff"
+                            }
+                          },
+                          "type": "ProgressBar"
+                        },
+                        {
+                          "id": "ammo_text",
+                          "props": {
+                            "bullet": true,
+                            "text": "Ammo {player.ammo}"
+                          },
+                          "type": "Text"
+                        },
+                        {
+                          "id": "pos_text",
+                          "props": {
+                            "bullet": true,
+                            "text": "Position {player.pos.x:%.1f}, {player.pos.y:%.1f}"
+                          },
+                          "type": "Text"
+                        },
+                        {
+                          "anim": {
+                            "enter": {
+                              "duration": 0.2,
+                              "preset": "ScalePop"
+                            }
+                          },
+                          "id": "low_hp_warn",
+                          "props": {
+                            "color": "#e74c3cff",
+                            "text": "{icon:fa-triangle-exclamation} Low health"
+                          },
+                          "type": "Text",
+                          "visibleIf": "player.health < player.max_hp * 0.25"
+                        },
+                        {
+                          "id": "ping_block",
+                          "name": "Ping (hand-written)",
+                          "props": {
+                            "code": "ImGui::Text(\"Ping %d ms\", GetPing());\nImGui::SameLine();\nImGui::TextDisabled(\"(%s)\", GetServerName());",
+                            "preview": "Placeholder"
+                          },
+                          "type": "Code"
+                        }
+                      ]
+                    },
+                    "type": "Component"
+                  }
+                ],
+                "id": "misc_row",
+                "props": {
+                  "spacing": 10
+                },
+                "type": "HStack"
+              }
+            ],
+            "id": "tab_misc",
+            "props": {
+              "label": "{icon:fa-toolbox} Misc"
+            },
+            "type": "Tab"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "enter": {
+                    "duration": 0.25,
+                    "preset": "FadeSlideUp",
+                    "stagger": 0.03
+                  }
+                },
+                "children": [
+                  {
+                    "id": "sep_menu",
+                    "props": {
+                      "text": "Menu"
+                    },
+                    "type": "SeparatorText"
+                  },
+                  {
+                    "bind": {
+                      "value": "cfg.misc.menu_key"
+                    },
+                    "id": "menu_key",
+                    "props": {
+                      "items": [
+                        "Insert",
+                        "Home",
+                        "Delete",
+                        "F1",
+                        "F2"
+                      ],
+                      "label": "Menu key"
+                    },
+                    "type": "Combo"
+                  },
+                  {
+                    "children": [
+                      {
+                        "id": "theme_label",
+                        "props": {
+                          "text": "Theme"
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "bind": {
+                          "value": "state.themeIndex"
+                        },
+                        "events": {
+                          "onChange": {
+                            "handler": true
+                          }
+                        },
+                        "id": "theme_dark",
+                        "props": {
+                          "label": "Dark",
+                          "value": 0
+                        },
+                        "type": "RadioButton"
+                      },
+                      {
+                        "bind": {
+                          "value": "state.themeIndex"
+                        },
+                        "events": {
+                          "onChange": {
+                            "handler": true
+                          }
+                        },
+                        "id": "theme_neon",
+                        "props": {
+                          "label": "Neon",
+                          "value": 1
+                        },
+                        "type": "RadioButton"
+                      }
+                    ],
+                    "id": "theme_row",
+                    "props": {
+                      "align": "Center",
+                      "spacing": 6
+                    },
+                    "type": "HStack"
+                  },
+                  {
+                    "bind": {
+                      "value": "state.showAdvanced"
+                    },
+                    "id": "show_adv",
+                    "props": {
+                      "label": "Show advanced sections"
+                    },
+                    "type": "Checkbox"
+                  },
+                  {
+                    "id": "sep_config",
+                    "props": {
+                      "text": "Config"
+                    },
+                    "type": "SeparatorText"
+                  },
+                  {
+                    "bind": {
+                      "value": "state.configName"
+                    },
+                    "events": {
+                      "onEnter": {
+                        "handler": true
+                      }
+                    },
+                    "id": "config_name",
+                    "props": {
+                      "flags": [
+                        "AutoSelectAll"
+                      ],
+                      "hint": "config name",
+                      "label": "Name",
+                      "maxLength": 64
+                    },
+                    "type": "InputText"
+                  },
+                  {
+                    "children": [
+                      {
+                        "anim": {
+                          "transitions": [
+                            {
+                              "duration": 0.15,
+                              "ease": "OutCubic",
+                              "on": "hover",
+                              "prop": "color.Button",
+                              "to": "#5a9dffff"
+                            },
+                            {
+                              "duration": 0.08,
+                              "ease": "OutQuad",
+                              "on": "active",
+                              "prop": "scale",
+                              "to": 0.96
+                            }
+                          ]
+                        },
+                        "enabledIf": "state.configName != \"\"",
+                        "events": {
+                          "onClick": {
+                            "actions": [
+                              {
+                                "target": "state.status",
+                                "type": "set",
+                                "value": {
+                                  "expr": "\"Saved \" + state.configName"
+                                }
+                              }
+                            ],
+                            "handler": true
+                          }
+                        },
+                        "id": "btn_save",
+                        "props": {
+                          "label": "{icon:fa-floppy-disk} Save",
+                          "size": {
+                            "h": "auto",
+                            "w": "fill"
+                          }
+                        },
+                        "style": {
+                          "classes": [
+                            "accent"
+                          ]
+                        },
+                        "type": "Button"
+                      },
+                      {
+                        "anim": {
+                          "transitions": [
+                            {
+                              "duration": 0.15,
+                              "ease": "OutCubic",
+                              "on": "hover",
+                              "prop": "color.Button",
+                              "to": "#324056ff"
+                            },
+                            {
+                              "duration": 0.08,
+                              "ease": "OutQuad",
+                              "on": "active",
+                              "prop": "scale",
+                              "to": 0.96
+                            }
+                          ]
+                        },
+                        "enabledIf": "state.configName != \"\"",
+                        "events": {
+                          "onClick": {
+                            "handler": true
+                          }
+                        },
+                        "id": "btn_load",
+                        "props": {
+                          "label": "{icon:fa-folder-open} Load",
+                          "size": {
+                            "h": "auto",
+                            "w": "fill"
+                          }
+                        },
+                        "type": "Button"
+                      },
+                      {
+                        "anim": {
+                          "transitions": [
+                            {
+                              "duration": 0.15,
+                              "ease": "OutCubic",
+                              "on": "hover",
+                              "prop": "color.Button",
+                              "to": "#324056ff"
+                            },
+                            {
+                              "duration": 0.08,
+                              "ease": "OutQuad",
+                              "on": "active",
+                              "prop": "scale",
+                              "to": 0.96
+                            }
+                          ]
+                        },
+                        "events": {
+                          "onClick": {
+                            "actions": [
+                              {
+                                "type": "copyClipboard",
+                                "value": "cheatmenu://cfg/{state.configName}"
+                              },
+                              {
+                                "target": "state.status",
+                                "type": "set",
+                                "value": "Share code copied"
+                              }
+                            ]
+                          }
+                        },
+                        "id": "btn_copy",
+                        "props": {
+                          "label": "{icon:fa-copy} Copy share code",
+                          "size": {
+                            "h": "auto",
+                            "w": "fill"
+                          }
+                        },
+                        "type": "Button"
+                      }
+                    ],
+                    "id": "config_row",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "HStack"
+                  },
+                  {
+                    "id": "sep_about",
+                    "props": {
+                      "text": "About"
+                    },
+                    "type": "SeparatorText"
+                  },
+                  {
+                    "children": [
+                      {
+                        "events": {
+                          "onClick": {
+                            "actions": [
+                              {
+                                "target": "about_modal",
+                                "type": "openPopup"
+                              }
+                            ]
+                          }
+                        },
+                        "id": "btn_about",
+                        "props": {
+                          "label": "About",
+                          "size": {
+                            "h": "auto",
+                            "w": 100
+                          }
+                        },
+                        "type": "Button"
+                      },
+                      {
+                        "events": {
+                          "onClick": {
+                            "actions": [
+                              {
+                                "target": "tabs",
+                                "type": "setTab",
+                                "value": "tab_visuals"
+                              }
+                            ]
+                          }
+                        },
+                        "id": "btn_goto_visuals",
+                        "props": {
+                          "label": "Jump to Visuals"
+                        },
+                        "type": "SmallButton"
+                      },
+                      {
+                        "events": {
+                          "onClick": {
+                            "actions": [
+                              {
+                                "target": "state.status",
+                                "type": "set",
+                                "value": ""
+                              }
+                            ]
+                          }
+                        },
+                        "id": "btn_reset_status",
+                        "props": {
+                          "dir": "Left"
+                        },
+                        "tooltip": "Clear status",
+                        "type": "ArrowButton"
+                      }
+                    ],
+                    "id": "about_row",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "HStack"
+                  },
+                  {
+                    "anim": {
+                      "enter": {
+                        "duration": 0.2,
+                        "preset": "ScalePop"
+                      }
+                    },
+                    "bind": {
+                      "open": "state.aboutOpen"
+                    },
+                    "children": [
+                      {
+                        "id": "about_text",
+                        "props": {
+                          "text": "CheatMenu sample built with ImForge.\nPanels: MainMenu, Overlay. Types: Player, Settings.",
+                          "wrapped": true
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "id": "about_sep",
+                        "type": "Separator"
+                      },
+                      {
+                        "events": {
+                          "onClick": {
+                            "actions": [
+                              {
+                                "type": "closePopup"
+                              }
+                            ]
+                          }
+                        },
+                        "id": "about_close",
+                        "props": {
+                          "label": "Close",
+                          "size": {
+                            "h": "auto",
+                            "w": 120
+                          }
+                        },
+                        "type": "Button"
+                      }
+                    ],
+                    "fx": [
+                      {
+                        "color": "#00000099",
+                        "rounding": 8,
+                        "size": 24,
+                        "type": "shadow"
+                      }
+                    ],
+                    "id": "about_modal",
+                    "props": {
+                      "closable": true,
+                      "flags": [
+                        "AlwaysAutoResize"
+                      ],
+                      "title": "About CheatMenu"
+                    },
+                    "type": "Modal"
+                  }
+                ],
+                "id": "settings_stack",
+                "props": {
+                  "spacing": 8
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "tab_settings",
+            "props": {
+              "label": "{icon:fa-gear} Settings"
+            },
+            "type": "Tab"
+          }
+        ],
+        "events": {
+          "onChange": {
+            "handler": true
+          }
+        },
+        "id": "tabs",
+        "props": {
+          "flags": [
+            "Reorderable",
+            "DrawSelectedOverline"
+          ]
+        },
+        "type": "TabBar"
+      },
+      {
+        "children": [
+          {
+            "anim": {
+              "enter": {
+                "duration": 0.2,
+                "preset": "FadeSlideUp"
+              },
+              "exit": {
+                "duration": 0.15,
+                "preset": "Fade"
+              }
+            },
+            "id": "status_text",
+            "layout": {
+              "anchor": "Left",
+              "offset": {
+                "x": 4,
+                "y": 0
+              }
+            },
+            "props": {
+              "disabled": true,
+              "text": "{state.status}"
+            },
+            "type": "Text",
+            "visibleIf": "state.status != \"\""
+          },
+          {
+            "font": "Small",
+            "fx": [
+              {
+                "color": "#3d8bfd40",
+                "rounding": 4,
+                "size": 6,
+                "type": "glow"
+              }
+            ],
+            "id": "watermark",
+            "layout": {
+              "anchor": "TopRight",
+              "offset": {
+                "x": -6,
+                "y": 2
+              }
+            },
+            "props": {
+              "color": "#ffffff66",
+              "text": "CheatMenu 1.0 | {player.name}"
+            },
+            "type": "Text"
+          }
+        ],
+        "id": "footer",
+        "props": {
+          "border": false,
+          "size": {
+            "h": 22,
+            "w": "fill"
+          }
+        },
+        "type": "Canvas"
+      }
+    ],
+    "events": {
+      "onClose": {
+        "handler": true
+      }
+    },
+    "fx": [
+      {
+        "radius": 12,
+        "rounding": 10,
+        "tint": "#ffffffe6",
+        "type": "blur"
+      },
+      {
+        "color": "#000000a0",
+        "offset": {
+          "x": 0,
+          "y": 6
+        },
+        "rounding": 10,
+        "size": 28,
+        "type": "shadow"
+      },
+      {
+        "color": "#3d8bfdaa",
+        "rounding": 10,
+        "speed": 0.5,
+        "style": "Sweep",
+        "thickness": 1.5,
+        "type": "border"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoCollapse",
+        "NoScrollbar",
+        "NoScrollWithMouse"
+      ],
+      "initialPos": {
+        "x": 80,
+        "y": 80
+      },
+      "initialSize": {
+        "x": 760,
+        "y": 520
+      },
+      "menuBar": false,
+      "sizeCond": "FirstUseEver",
+      "title": "CheatMenu"
+    },
+    "style": {
+      "vars": {
+        "WindowPadding": {
+          "x": 14,
+          "y": 14
+        },
+        "WindowRounding": 10
+      }
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": true,
+      "name": "open",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "name": "selectedTab",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "name": "fps",
+      "type": "float"
+    },
+    {
+      "default": false,
+      "name": "showAdvanced",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "name": "themeIndex",
+      "type": "int"
+    },
+    {
+      "default": "default",
+      "name": "configName",
+      "type": "string"
+    },
+    {
+      "default": "",
+      "name": "status",
+      "type": "string"
+    },
+    {
+      "default": true,
+      "name": "aboutOpen",
+      "type": "bool"
+    }
+  ]
+}

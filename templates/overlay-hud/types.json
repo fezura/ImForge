@@ -1,0 +1,33 @@
+{
+  "enums": {},
+  "kind": "types",
+  "schemaVersion": 1,
+  "structs": {
+    "Player": {
+      "fields": [
+        {
+          "count": 32,
+          "ctype": "CharArray",
+          "name": "name",
+          "type": "char[32]"
+        },
+        {
+          "ctype": "Float",
+          "name": "health",
+          "type": "float"
+        },
+        {
+          "ctype": "Float",
+          "name": "max_hp",
+          "type": "float"
+        },
+        {
+          "ctype": "I32",
+          "name": "ammo",
+          "type": "int"
+        }
+      ],
+      "header": "player.h"
+    }
+  }
+}

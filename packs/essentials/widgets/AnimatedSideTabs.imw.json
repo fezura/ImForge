@@ -1,0 +1,95 @@
+{
+  "bindings": [
+    {
+      "name": "index",
+      "required": true,
+      "types": [
+        "int"
+      ]
+    }
+  ],
+  "call": "imb::ess::AnimatedSideTabs({label}, {labels}, {icons}, {index})",
+  "category": "Essentials",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-bars",
+  "include": "imb_essentials.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "AnimatedSideTabs",
+  "preview": [
+    {
+      "fill": "#00000000",
+      "h": 96,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 140,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#2d3340ff",
+      "h": 28,
+      "rounding": 6,
+      "shape": "rect",
+      "w": 136,
+      "x": 2,
+      "y": 2
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 28,
+      "rounding": 1,
+      "shape": "rect",
+      "w": 3,
+      "x": 0,
+      "y": 2
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Aimbot",
+      "x": 14,
+      "y": 9
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Visuals",
+      "x": 14,
+      "y": 41
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Misc",
+      "x": 14,
+      "y": 73
+    }
+  ],
+  "props": [
+    {
+      "default": "##side",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": [
+        "Aimbot",
+        "Visuals",
+        "Misc"
+      ],
+      "name": "labels",
+      "type": "stringList"
+    },
+    {
+      "default": [],
+      "name": "icons",
+      "type": "stringList"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

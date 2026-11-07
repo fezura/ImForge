@@ -1,0 +1,91 @@
+{
+  "bindings": [
+    {
+      "name": "colors",
+      "required": true,
+      "types": [
+        "vec4[N]"
+      ]
+    },
+    {
+      "name": "selected",
+      "required": false,
+      "types": [
+        "int"
+      ]
+    }
+  ],
+  "call": "imb::ess::ColorSwatchRow({label}, {colors}, {count}, {selected})",
+  "category": "Essentials",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-palette",
+  "include": "imb_essentials.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "ColorSwatchRow",
+  "preview": [
+    {
+      "fill": "#e74c3cff",
+      "h": 22,
+      "rounding": 5,
+      "shape": "rect",
+      "stroke": "#ffffffff",
+      "w": 22,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 22,
+      "rounding": 5,
+      "shape": "rect",
+      "w": 22,
+      "x": 26,
+      "y": 0
+    },
+    {
+      "fill": "#3498dbff",
+      "h": 22,
+      "rounding": 5,
+      "shape": "rect",
+      "w": 22,
+      "x": 52,
+      "y": 0
+    },
+    {
+      "fill": "#f1c40fff",
+      "h": 22,
+      "rounding": 5,
+      "shape": "rect",
+      "w": 22,
+      "x": 78,
+      "y": 0
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 108,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "Colors",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": 4,
+      "max": 64,
+      "min": 1,
+      "name": "count",
+      "type": "int"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

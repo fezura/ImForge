@@ -1,0 +1,42 @@
+# build output
+build/
+out/
+cmake-build-*/
+_deps/
+dist/
+CMakeUserPresets.json
+CMakeCache.txt
+CMakeFiles/
+compile_commands.json
+
+# IDE / editors
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.swp
+*~
+.cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# python
+__pycache__/
+*.pyc
+
+# generated code from the example projects
+examples/projects/*/generated/
+
+# local tool state
+imgui.ini
+*.log
+
+# internal working notes
+docs/dev/
+*.pair
+automation.log
+imforge_selfcheck.txt
+/live_demo_*.png

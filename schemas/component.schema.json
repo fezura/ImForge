@@ -1,0 +1,230 @@
+{
+  "$id": "https://raw.githubusercontent.com/fezura/ImForge/main/schemas/component.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "components/<Name>.imc.json: reusable sub-tree with typed params and named slots.",
+  "properties": {
+    "kind": {
+      "const": "component",
+      "description": "File kind discriminator."
+    },
+    "name": {
+      "description": "Component name used by Component instance nodes.",
+      "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+      "type": "string"
+    },
+    "params": {
+      "description": "Component parameters; referenced inside the tree with {\"param\": name}.",
+      "items": {
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "bool"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "default": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "int"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "default": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "enum": [
+                    "float",
+                    "double"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "default": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "string"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "default": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "vec2"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "default": {
+                  "$ref": "node.schema.json#/$defs/Vec2"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "vec4"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "default": {
+                  "$ref": "node.schema.json#/$defs/Vec4"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "color"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "default": {
+                  "$ref": "node.schema.json#/$defs/Color"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "pattern": "^enum:"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "default": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "pattern": "^binding<"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "default": {
+                  "$ref": "node.schema.json#/$defs/BindingPath"
+                }
+              }
+            }
+          }
+        ],
+        "description": "Component parameter.",
+        "properties": {
+          "default": {
+            "description": "Default value; instances may omit params that have one. Binding params take a path string."
+          },
+          "name": {
+            "$ref": "node.schema.json#/$defs/Identifier",
+            "description": "Parameter name."
+          },
+          "type": {
+            "description": "string|int|float|bool|color|vec2|vec4|enum:<A,B,C>|binding<T> with T in bool|int|float|string|vec2|vec4|color|any.",
+            "pattern": "^(string|int|float|bool|color|vec2|vec4|enum:[A-Za-z_][A-Za-z0-9_]*(,[A-Za-z_][A-Za-z0-9_]*)*|binding<(bool|int|float|string|vec2|vec4|color|any)>)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "root": {
+      "allOf": [
+        {
+          "$ref": "node.schema.json#/$defs/Node"
+        },
+        {
+          "properties": {
+            "type": {
+              "not": {
+                "const": "Window"
+              }
+            }
+          }
+        }
+      ],
+      "description": "Root node of the component; any container except Window."
+    },
+    "schemaVersion": {
+      "const": 1,
+      "description": "File format version; always 1."
+    },
+    "slots": {
+      "description": "Slot names that instances may fill; each must appear as a Slot node in the tree.",
+      "items": {
+        "$ref": "node.schema.json#/$defs/Identifier"
+      },
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "kind",
+    "name",
+    "root"
+  ],
+  "title": "ImForge component",
+  "type": "object"
+}

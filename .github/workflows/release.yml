@@ -1,0 +1,172 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  check-version:
+    name: Check version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: CMakeLists.txt, imforge_version.h and tag must agree
+        run: |
+          set -euo pipefail
+          cmake_ver=$(sed -nE 's/^project\(ImForge VERSION ([0-9]+\.[0-9]+\.[0-9]+).*/\1/p' CMakeLists.txt)
+          header_ver=$(sed -nE 's/^#define IMFORGE_VERSION "([^"]+)"/\1/p' include/imforge/imforge_version.h)
+          echo "CMakeLists.txt: $cmake_ver  imforge_version.h: $header_ver  ref: $GITHUB_REF_NAME"
+          [ -n "$cmake_ver" ] && [ "$cmake_ver" = "$header_ver" ] || { echo "::error::version mismatch between CMakeLists.txt and include/imforge/imforge_version.h"; exit 1; }
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+            tag_ver="${GITHUB_REF_NAME#v}"
+            tag_ver="${tag_ver%%-*}"
+            [ "$tag_ver" = "$cmake_ver" ] || { echo "::error::tag $GITHUB_REF_NAME does not match project version $cmake_ver"; exit 1; }
+          fi
+
+  package:
+    name: package / ${{ matrix.os }}
+    needs: check-version
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            preset: windows-msvc
+          - os: ubuntu-latest
+            preset: wsl-gcc-release
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install Linux dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            ninja-build pkg-config \
+            libgl-dev libgl1-mesa-dev libegl1-mesa-dev \
+            libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxi-dev libxfixes-dev libxss-dev libxkbcommon-dev \
+            libwayland-dev wayland-protocols libdecor-0-dev \
+            libasound2-dev libpulse-dev libdbus-1-dev libudev-dev libibus-1.0-dev \
+            libclang-dev
+
+      - name: Cache FetchContent sources and downloads
+        uses: actions/cache@v4
+        with:
+          path: |
+            build/${{ matrix.preset }}/_deps
+            build/${{ matrix.preset }}/_downloads
+          key: release-deps-${{ runner.os }}-${{ hashFiles('cmake/Dependencies.cmake', 'cmake/Fonts.cmake') }}
+          restore-keys: |
+            release-deps-${{ runner.os }}-
+
+      - name: Configure, build, test, install, archive
+        run: python tools/package_release.py --preset ${{ matrix.preset }} --config Release --out dist
+
+      - name: Upload package
+        uses: actions/upload-artifact@v4
+        with:
+          name: package-${{ runner.os }}
+          path: |
+            dist/*.zip
+            dist/*.tar.gz
+            dist/*.h
+            dist/SHA256SUMS
+          if-no-files-found: error
+
+  headers-only:
+    name: headers-only (amalgamated single headers)
+    needs: check-version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch Dear ImGui for the compile check
+        run: |
+          git clone --depth 1 --branch v1.85 https://github.com/ocornut/imgui.git imgui-v1.85
+          git clone --depth 1 --branch v1.91.9b https://github.com/ocornut/imgui.git imgui-v1.91.9b
+
+      - name: Amalgamate and compile-check
+        run: python3 tools/amalgamate.py --out-dir dist --check --imgui-dirs imgui-v1.85 imgui-v1.91.9b
+
+      - name: Checksums
+        run: cd dist && sha256sum *.h > SHA256SUMS && cat SHA256SUMS
+
+      - name: Upload single headers
+        uses: actions/upload-artifact@v4
+        with:
+          name: headers-only
+          path: |
+            dist/*.h
+            dist/SHA256SUMS
+          if-no-files-found: error
+
+  release:
+    name: GitHub Release
+    needs: [package, headers-only]
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Verify the checksums written by each job
+        run: |
+          set -euo pipefail
+          for sums in artifacts/*/SHA256SUMS; do
+            echo "== $sums"
+            (cd "$(dirname "$sums")" && sha256sum -c SHA256SUMS)
+          done
+
+      - name: Assemble release assets
+        run: |
+          set -euo pipefail
+          mkdir -p release
+          find artifacts/package-* -maxdepth 1 \( -name '*.zip' -o -name '*.tar.gz' \) -exec cp {} release/ \;
+          cp artifacts/headers-only/*.h release/
+          (cd release && sha256sum * > SHA256SUMS)
+          ls -l release
+          cat release/SHA256SUMS
+
+      - name: Release notes from CHANGELOG.md
+        run: |
+          set -euo pipefail
+          ver="${GITHUB_REF_NAME#v}"
+          awk -v ver="$ver" '/^## /{p = ($2 == ver)} p' CHANGELOG.md > notes.md
+          if [ ! -s notes.md ]; then
+            printf 'ImForge %s. See CHANGELOG.md for details.\n' "$GITHUB_REF_NAME" > notes.md
+          fi
+          printf '\n---\nAssets: `ImForge-<version>-<os>-<arch>.zip` / `.tar.gz` contain the builder, `imforge-reflect`, headers, packs, templates, schemas and example projects (see docs/RELEASING.md). The `*_single.h` files are the amalgamated single headers for client applications. Verify downloads with `sha256sum -c SHA256SUMS`.\n' >> notes.md
+          cat notes.md
+
+      - name: Create or update the GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag="$GITHUB_REF_NAME"
+          prerelease=""
+          case "$tag" in *-*) prerelease="--prerelease";; esac
+          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$tag" release/* --repo "$GITHUB_REPOSITORY" --clobber
+          else
+            gh release create "$tag" release/* --repo "$GITHUB_REPOSITORY" --verify-tag --title "ImForge $tag" --notes-file notes.md $prerelease
+          fi

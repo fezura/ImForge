@@ -1,0 +1,94 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: ${{ matrix.os }} / imgui ${{ matrix.imgui_tag }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        imgui_tag: [v1.85, v1.87, v1.89.9, v1.90.9, v1.91.9b-docking, v1.92.1, v1.93.0, v1.93.0-docking, master]
+    env:
+      BUILD_BUILDER: ${{ matrix.imgui_tag == 'v1.91.9b-docking' && 'ON' || 'OFF' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Linux dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            ninja-build pkg-config \
+            libgl-dev libgl1-mesa-dev libegl1-mesa-dev \
+            libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxi-dev libxfixes-dev libxss-dev libxkbcommon-dev \
+            libwayland-dev wayland-protocols libdecor-0-dev \
+            libasound2-dev libpulse-dev libdbus-1-dev libudev-dev libibus-1.0-dev \
+            libclang-dev
+
+      - name: Cache FetchContent sources and downloads
+        uses: actions/cache@v4
+        with:
+          path: |
+            build/_deps
+            build/_downloads
+          key: deps-${{ runner.os }}-${{ matrix.imgui_tag }}-${{ hashFiles('cmake/Dependencies.cmake', 'cmake/Fonts.cmake') }}
+          restore-keys: |
+            deps-${{ runner.os }}-${{ matrix.imgui_tag }}-
+
+      - name: Configure (Linux)
+        if: runner.os == 'Linux'
+        run: >
+          cmake -S . -B build -G Ninja
+          -DCMAKE_BUILD_TYPE=Release
+          -DIMFORGE_IMGUI_TAG=${{ matrix.imgui_tag }}
+          -DIMFORGE_BUILD_BUILDER=${{ env.BUILD_BUILDER }}
+          -DIMFORGE_BUILD_TESTS=ON
+          -DIMFORGE_BUILD_EXAMPLES=ON
+
+      - name: Configure (Windows)
+        if: runner.os == 'Windows'
+        run: >
+          cmake -S . -B build -G "Visual Studio 17 2022" -A x64
+          -DIMFORGE_IMGUI_TAG=${{ matrix.imgui_tag }}
+          -DIMFORGE_BUILD_BUILDER=${{ env.BUILD_BUILDER }}
+          -DIMFORGE_BUILD_TESTS=ON
+          -DIMFORGE_BUILD_EXAMPLES=ON
+
+      - name: Build
+        run: cmake --build build --config Release --parallel
+
+      - name: Test
+        run: ctest --test-dir build -C Release --output-on-failure --timeout 600
+
+      - name: Header version matrix (standalone header compile)
+        if: runner.os == 'Linux'
+        run: python3 tools/check_version_matrix.py --imgui-dirs build/_deps/imgui-src --compiler g++
+
+      - name: Header version matrix (IMGUI_DISABLE_OBSOLETE_FUNCTIONS)
+        if: runner.os == 'Linux'
+        run: python3 tools/check_version_matrix.py --imgui-dirs build/_deps/imgui-src --compiler g++ -D IMGUI_DISABLE_OBSOLETE_FUNCTIONS
+
+      - name: Amalgamated headers
+        if: runner.os == 'Linux'
+        run: python3 tools/amalgamate.py --check --imgui-dirs build/_deps/imgui-src
+
+      - name: Upload builder artifacts
+        if: matrix.imgui_tag == 'v1.91.9b-docking'
+        uses: actions/upload-artifact@v4
+        with:
+          name: imforge_builder-${{ runner.os }}
+          path: |
+            build/builder/**
+            build/THIRD_PARTY.txt
+          if-no-files-found: warn

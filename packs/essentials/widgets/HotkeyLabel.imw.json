@@ -1,0 +1,53 @@
+{
+  "bindings": [],
+  "call": "imb::ess::HotkeyLabel({text}, {key})",
+  "category": "Essentials",
+  "container": false,
+  "events": [],
+  "icon": "fa-tag",
+  "include": "imb_essentials.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "HotkeyLabel",
+  "preview": [
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{text}",
+      "x": 0,
+      "y": 4
+    },
+    {
+      "fill": "#3a4150ff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "stroke": "#5a6478ff",
+      "w": 34,
+      "x": 90,
+      "y": 0
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "INS",
+      "x": 99,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "Toggle menu",
+      "name": "text",
+      "type": "string"
+    },
+    {
+      "default": "0",
+      "hint": "int key code or binding",
+      "name": "key",
+      "type": "expr"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

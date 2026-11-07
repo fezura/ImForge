@@ -1,0 +1,90 @@
+{
+  "bindings": [
+    {
+      "name": "index",
+      "required": true,
+      "types": [
+        "int"
+      ]
+    }
+  ],
+  "call": "imb::ess::AnimatedTabBar({label}, {labels}, {index})",
+  "category": "Essentials",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-folder-tree",
+  "include": "imb_essentials.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "AnimatedTabBar",
+  "preview": [
+    {
+      "fill": "#00000000",
+      "h": 28,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 210,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Aimbot",
+      "x": 14,
+      "y": 7
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Visuals",
+      "x": 84,
+      "y": 7
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Misc",
+      "x": 160,
+      "y": 7
+    },
+    {
+      "fill": "#5a6478ff",
+      "h": 1,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 210,
+      "x": 0,
+      "y": 27
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 3,
+      "rounding": 1,
+      "shape": "rect",
+      "w": 70,
+      "x": 0,
+      "y": 25
+    }
+  ],
+  "props": [
+    {
+      "default": "##tabs",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": [
+        "Aimbot",
+        "Visuals",
+        "Misc"
+      ],
+      "name": "labels",
+      "type": "stringList"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

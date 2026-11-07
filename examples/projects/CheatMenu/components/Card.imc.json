@@ -1,0 +1,126 @@
+{
+  "kind": "component",
+  "name": "Card",
+  "params": [
+    {
+      "default": "Card",
+      "name": "title",
+      "type": "string"
+    },
+    {
+      "default": "#3d8bfdff",
+      "name": "accent",
+      "type": "color"
+    }
+  ],
+  "root": {
+    "anim": {
+      "enter": {
+        "duration": 0.25,
+        "preset": "FadeSlideUp"
+      },
+      "transitions": [
+        {
+          "duration": 0.2,
+          "ease": "OutCubic",
+          "on": "hover",
+          "prop": "color.Border",
+          "to": "#3d8bfd80"
+        }
+      ]
+    },
+    "children": [
+      {
+        "children": [
+          {
+            "id": "card_dot",
+            "props": {
+              "color": {
+                "param": "accent"
+              },
+              "text": "{icon:fa-circle}"
+            },
+            "type": "Text"
+          },
+          {
+            "font": "Bold",
+            "id": "card_title",
+            "props": {
+              "text": {
+                "param": "title"
+              }
+            },
+            "type": "Text"
+          }
+        ],
+        "id": "card_header",
+        "props": {
+          "align": "Center",
+          "spacing": 6
+        },
+        "type": "HStack"
+      },
+      {
+        "id": "card_sep",
+        "type": "Separator"
+      },
+      {
+        "children": [
+          {
+            "id": "slot_content",
+            "props": {
+              "name": "content"
+            },
+            "type": "Slot"
+          }
+        ],
+        "id": "card_body",
+        "props": {
+          "spacing": 6
+        },
+        "type": "VStack"
+      }
+    ],
+    "fx": [
+      {
+        "color": "#00000066",
+        "offset": {
+          "x": 0,
+          "y": 3
+        },
+        "rounding": 8,
+        "size": 10,
+        "type": "shadow"
+      }
+    ],
+    "id": "card",
+    "props": {
+      "border": true,
+      "childFlags": [
+        "AutoResizeY",
+        "AlwaysUseWindowPadding"
+      ],
+      "size": {
+        "h": "auto",
+        "w": "fill"
+      }
+    },
+    "style": {
+      "colors": {
+        "ChildBg": "#1c2027ff"
+      },
+      "vars": {
+        "ChildRounding": 8,
+        "WindowPadding": {
+          "x": 12,
+          "y": 10
+        }
+      }
+    },
+    "type": "Child"
+  },
+  "schemaVersion": 1,
+  "slots": [
+    "content"
+  ]
+}

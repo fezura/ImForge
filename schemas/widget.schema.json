@@ -1,0 +1,383 @@
+{
+  "$id": "https://raw.githubusercontent.com/fezura/ImForge/main/schemas/widget.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "*.imw.json: describes a custom widget (Widget SDK) so builder, interpreter and codegen can use it.",
+  "properties": {
+    "bindings": {
+      "description": "Binding slot definitions.",
+      "items": {
+        "additionalProperties": false,
+        "description": "Binding slot.",
+        "properties": {
+          "name": {
+            "$ref": "node.schema.json#/$defs/Identifier",
+            "description": "Slot name."
+          },
+          "required": {
+            "description": "Instances must bind this slot. Default false.",
+            "type": "boolean"
+          },
+          "types": {
+            "description": "Accepted CTypes, e.g. bool, int, float, float[N], vec2, vec4, string, char[N], texture, any.",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "name",
+          "types"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "call": {
+      "description": "C++ call template; {prop} placeholders are replaced by prop expressions and {binding} by pointer expressions. For containers it is the Begin call whose bool result guards the children.",
+      "type": "string"
+    },
+    "callEnd": {
+      "description": "Containers only: the End call emitted after the children (e.g. imb::ess::EndSectionCard()).",
+      "type": "string"
+    },
+    "category": {
+      "description": "Palette category.",
+      "type": "string"
+    },
+    "container": {
+      "description": "Accepts children (call wraps them between Begin/End). Default false.",
+      "type": "boolean"
+    },
+    "events": {
+      "description": "Event names the widget can fire.",
+      "items": {
+        "pattern": "^on[A-Z][A-Za-z0-9]*$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "icon": {
+      "description": "Palette icon name (Font Awesome 6 name such as fa-toggle-on).",
+      "type": "string"
+    },
+    "include": {
+      "description": "Header the generated code includes for this widget.",
+      "type": "string"
+    },
+    "kind": {
+      "const": "widget",
+      "description": "File kind discriminator."
+    },
+    "minImGuiVersion": {
+      "description": "Minimum IMGUI_VERSION_NUM (e.g. 18500 for 1.85).",
+      "minimum": 18500,
+      "type": "integer"
+    },
+    "name": {
+      "description": "Widget type name used by nodes.",
+      "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+      "type": "string"
+    },
+    "preview": {
+      "description": "DrawList shapes used by the builder canvas when not live-attached.",
+      "items": {
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "shape": {
+                  "const": "text"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "text"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "shape": {
+                  "const": "circle"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "r"
+              ]
+            }
+          }
+        ],
+        "description": "Preview shape in px relative to the item origin.",
+        "properties": {
+          "color": {
+            "anyOf": [
+              {
+                "$ref": "node.schema.json#/$defs/Color"
+              },
+              {
+                "pattern": "^\\{[A-Za-z_][A-Za-z0-9_]*\\}$",
+                "type": "string"
+              }
+            ],
+            "description": "Color literal #rrggbbaa or a {prop} placeholder resolved from the node's props."
+          },
+          "fill": {
+            "anyOf": [
+              {
+                "$ref": "node.schema.json#/$defs/Color"
+              },
+              {
+                "pattern": "^\\{[A-Za-z_][A-Za-z0-9_]*\\}$",
+                "type": "string"
+              }
+            ],
+            "description": "Color literal #rrggbbaa or a {prop} placeholder resolved from the node's props."
+          },
+          "h": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "pattern": "^\\{[A-Za-z_][A-Za-z0-9_]*\\}$",
+                "type": "string"
+              }
+            ],
+            "description": "Number or a {prop} placeholder."
+          },
+          "r": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "pattern": "^\\{[A-Za-z_][A-Za-z0-9_]*\\}$",
+                "type": "string"
+              }
+            ],
+            "description": "Number or a {prop} placeholder."
+          },
+          "rounding": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "pattern": "^\\{[A-Za-z_][A-Za-z0-9_]*\\}$",
+                "type": "string"
+              }
+            ],
+            "description": "Number or a {prop} placeholder."
+          },
+          "shape": {
+            "description": "Shape kind.",
+            "enum": [
+              "rect",
+              "circle",
+              "line",
+              "text"
+            ],
+            "type": "string"
+          },
+          "stroke": {
+            "anyOf": [
+              {
+                "$ref": "node.schema.json#/$defs/Color"
+              },
+              {
+                "pattern": "^\\{[A-Za-z_][A-Za-z0-9_]*\\}$",
+                "type": "string"
+              }
+            ],
+            "description": "Color literal #rrggbbaa or a {prop} placeholder resolved from the node's props."
+          },
+          "text": {
+            "description": "Text to draw (shape text); {prop} placeholders allowed.",
+            "type": "string"
+          },
+          "thickness": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "pattern": "^\\{[A-Za-z_][A-Za-z0-9_]*\\}$",
+                "type": "string"
+              }
+            ],
+            "description": "Number or a {prop} placeholder."
+          },
+          "w": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "pattern": "^\\{[A-Za-z_][A-Za-z0-9_]*\\}$",
+                "type": "string"
+              }
+            ],
+            "description": "Number or a {prop} placeholder."
+          },
+          "x": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "pattern": "^\\{[A-Za-z_][A-Za-z0-9_]*\\}$",
+                "type": "string"
+              }
+            ],
+            "description": "Number or a {prop} placeholder."
+          },
+          "x2": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "pattern": "^\\{[A-Za-z_][A-Za-z0-9_]*\\}$",
+                "type": "string"
+              }
+            ],
+            "description": "Number or a {prop} placeholder."
+          },
+          "y": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "pattern": "^\\{[A-Za-z_][A-Za-z0-9_]*\\}$",
+                "type": "string"
+              }
+            ],
+            "description": "Number or a {prop} placeholder."
+          },
+          "y2": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "pattern": "^\\{[A-Za-z_][A-Za-z0-9_]*\\}$",
+                "type": "string"
+              }
+            ],
+            "description": "Number or a {prop} placeholder."
+          }
+        },
+        "required": [
+          "shape"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "props": {
+      "description": "Prop definitions.",
+      "items": {
+        "additionalProperties": false,
+        "description": "Prop definition.",
+        "properties": {
+          "default": {
+            "description": "Default value matching type."
+          },
+          "hint": {
+            "description": "Tooltip shown in the properties panel.",
+            "type": "string"
+          },
+          "max": {
+            "description": "Maximum for numeric props.",
+            "type": "number"
+          },
+          "min": {
+            "description": "Minimum for numeric props.",
+            "type": "number"
+          },
+          "minImGuiVersion": {
+            "description": "IMGUI_VERSION_NUM where this prop became available.",
+            "type": "integer"
+          },
+          "name": {
+            "$ref": "node.schema.json#/$defs/Identifier",
+            "description": "Prop name."
+          },
+          "type": {
+            "description": "Prop type (imforge::PropType).",
+            "enum": [
+              "bool",
+              "int",
+              "float",
+              "string",
+              "color",
+              "vec2",
+              "vec4",
+              "size",
+              "enum",
+              "flags",
+              "stringList",
+              "sizeList",
+              "expr",
+              "code"
+            ],
+            "type": "string"
+          },
+          "values": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "enum: list of value names; flags: the ImGui flags enum name as a string (e.g. WindowFlags)."
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "returns": {
+      "description": "Meaning of the call's return value.",
+      "enum": [
+        "changed",
+        "clicked",
+        "open",
+        "void"
+      ],
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1,
+      "description": "File format version; always 1."
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "kind",
+    "name",
+    "call"
+  ],
+  "title": "ImForge custom widget manifest",
+  "type": "object"
+}

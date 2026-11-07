@@ -1,0 +1,105 @@
+cmake_minimum_required(VERSION 3.21)
+
+project(ImForge VERSION 0.1.0 LANGUAGES C CXX)
+
+if(POLICY CMP0135)
+    cmake_policy(SET CMP0135 NEW)
+endif()
+
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+
+option(IMFORGE_BUILD_BUILDER "Build the ImForge editor executable (imforge_builder)" ON)
+option(IMFORGE_BUILD_TESTS "Build the doctest unit tests" ON)
+option(IMFORGE_BUILD_EXAMPLES "Build the example client applications" OFF)
+option(IMFORGE_WITH_FX "Enable the shader fx backends (imb::fx)" ON)
+option(IMFORGE_WERROR "Treat compiler warnings as errors" OFF)
+option(IMFORGE_PACKAGING "Add install rules, the imforge_amalgamate target and CPack configuration" ON)
+set(IMFORGE_WITH_LIBCLANG "AUTO" CACHE STRING "Use libclang in imforge_binding (AUTO|ON|OFF)")
+set_property(CACHE IMFORGE_WITH_LIBCLANG PROPERTY STRINGS AUTO ON OFF)
+set(IMFORGE_IMGUI_TAG "v1.91.9b-docking" CACHE STRING "Dear ImGui git tag fetched with FetchContent")
+set(IMFORGE_IMGUI_DIR "" CACHE PATH "Local Dear ImGui checkout to use instead of fetching IMFORGE_IMGUI_TAG")
+set(IMFORGE_BUILDER_BACKEND "SDL3_GL3" CACHE STRING "Builder platform backend (SDL3_GL3|WIN32_DX11)")
+set_property(CACHE IMFORGE_BUILDER_BACKEND PROPERTY STRINGS SDL3_GL3 WIN32_DX11)
+set(IMFORGE_FONTS_DIR "" CACHE PATH "Directory with pre-downloaded builder fonts (skips the configure-time download)")
+
+string(TOUPPER "${IMFORGE_WITH_LIBCLANG}" IMFORGE_WITH_LIBCLANG)
+if(NOT IMFORGE_WITH_LIBCLANG MATCHES "^(AUTO|ON|OFF)$")
+    message(FATAL_ERROR "IMFORGE_WITH_LIBCLANG must be AUTO, ON or OFF (got '${IMFORGE_WITH_LIBCLANG}')")
+endif()
+if(NOT IMFORGE_BUILDER_BACKEND MATCHES "^(SDL3_GL3|WIN32_DX11)$")
+    message(FATAL_ERROR "IMFORGE_BUILDER_BACKEND must be SDL3_GL3 or WIN32_DX11 (got '${IMFORGE_BUILDER_BACKEND}')")
+endif()
+if(IMFORGE_BUILD_BUILDER AND IMFORGE_BUILDER_BACKEND STREQUAL "WIN32_DX11" AND NOT WIN32)
+    message(FATAL_ERROR "IMFORGE_BUILDER_BACKEND=WIN32_DX11 is only available on Windows")
+endif()
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(FETCHCONTENT_QUIET OFF)
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+    set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
+    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS Debug Release RelWithDebInfo MinSizeRel)
+endif()
+
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
+add_compile_definitions("IMGUI_DEFINE_MATH_OPERATORS=")
+if(MSVC)
+    add_compile_options(/utf-8 /bigobj)
+    if(CMAKE_GENERATOR MATCHES "Visual Studio")
+        add_compile_options(/MP)
+    endif()
+    add_compile_definitions("_CRT_SECURE_NO_WARNINGS=" "_CRT_NONSTDC_NO_WARNINGS=")
+    # std::mutex crashes when the installed msvcp140.dll is older than the toolset, see docs/LIVE_ATTACH.md
+    add_compile_definitions("_DISABLE_CONSTEXPR_MUTEX_CONSTRUCTOR=")
+endif()
+
+include(CompilerWarnings)
+
+add_library(imforge_headers INTERFACE)
+add_library(imforge::headers ALIAS imforge_headers)
+target_include_directories(imforge_headers INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_compile_features(imforge_headers INTERFACE cxx_std_17)
+if(WIN32)
+    # BCryptGenRandom for imforge_pairing.h. MSVC gets it via #pragma comment, MinGW needs the explicit link
+    target_link_libraries(imforge_headers INTERFACE bcrypt)
+endif()
+if(IMFORGE_WITH_FX)
+    target_compile_definitions(imforge_headers INTERFACE IMFORGE_WITH_FX=1)
+endif()
+
+include(Dependencies)
+
+add_subdirectory(packs)
+add_subdirectory(src/codegen)
+add_subdirectory(src/roundtrip)
+add_subdirectory(src/binding)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/tools/CMakeLists.txt")
+    add_subdirectory(tools)
+endif()
+
+if(IMFORGE_BUILD_BUILDER)
+    include(Fonts)
+    add_subdirectory(src/builder)
+endif()
+
+if(IMFORGE_BUILD_EXAMPLES)
+    add_subdirectory(examples)
+endif()
+
+if(IMFORGE_BUILD_TESTS)
+    enable_testing()
+    include(ImForgeTest)
+    add_subdirectory(tests)
+endif()
+
+if(IMFORGE_PACKAGING)
+    include(cmake/Packaging.cmake)
+endif()
+
+message(STATUS "ImForge ${PROJECT_VERSION}: builder=${IMFORGE_BUILD_BUILDER} (${IMFORGE_BUILDER_BACKEND}) tests=${IMFORGE_BUILD_TESTS} examples=${IMFORGE_BUILD_EXAMPLES} fx=${IMFORGE_WITH_FX} libclang=${IMFORGE_WITH_LIBCLANG} imgui=${IMFORGE_IMGUI_TAG}")

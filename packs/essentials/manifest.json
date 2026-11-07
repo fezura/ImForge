@@ -1,0 +1,31 @@
+{
+  "components": [],
+  "dependencies": [],
+  "description": "ImForge essentials: modern cheat-menu / tool widgets (toggle, keybind picker, swatches, tabs, toasts, cards).",
+  "headers": [
+    "imb_essentials.h",
+    "imb_ess_core.h",
+    "imb_ess_controls.h",
+    "imb_ess_layout.h",
+    "imb_ess_toast.h"
+  ],
+  "kind": "imblib",
+  "license": "MIT",
+  "minImGuiVersion": 18500,
+  "name": "essentials",
+  "schemaVersion": 1,
+  "version": "1.0.0",
+  "widgets": [
+    "widgets/Toggle.imw.json",
+    "widgets/KeybindPicker.imw.json",
+    "widgets/ColorSwatchRow.imw.json",
+    "widgets/HotkeyLabel.imw.json",
+    "widgets/Spinner.imw.json",
+    "widgets/GradientHeader.imw.json",
+    "widgets/AnimatedTabBar.imw.json",
+    "widgets/AnimatedSideTabs.imw.json",
+    "widgets/GlowButton.imw.json",
+    "widgets/SectionCard.imw.json",
+    "widgets/ToastHost.imw.json"
+  ]
+}

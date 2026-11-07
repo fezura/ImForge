@@ -1,0 +1,3668 @@
+{
+  "$defs": {
+    "ContainerType": {
+      "description": "Stock types that accept children.",
+      "enum": [
+        "Window",
+        "VStack",
+        "HStack",
+        "Group",
+        "Child",
+        "Grid",
+        "TabBar",
+        "Tab",
+        "CollapsingHeader",
+        "TreeNode",
+        "Popup",
+        "Modal",
+        "MenuBar",
+        "Menu",
+        "Canvas"
+      ],
+      "type": "string"
+    },
+    "SizableType": {
+      "description": "Stock types with a size prop.",
+      "enum": [
+        "Child",
+        "Canvas",
+        "Dummy",
+        "Button",
+        "VSliderFloat",
+        "VSliderInt",
+        "InputTextMultiline",
+        "ColorButton",
+        "ProgressBar",
+        "Image",
+        "ImageButton",
+        "Selectable",
+        "PlotLines",
+        "PlotHistogram"
+      ],
+      "type": "string"
+    },
+    "StockWidgetType": {
+      "description": "Stock widget types.",
+      "enum": [
+        "Window",
+        "VStack",
+        "HStack",
+        "Group",
+        "Child",
+        "Grid",
+        "TabBar",
+        "Tab",
+        "CollapsingHeader",
+        "TreeNode",
+        "Popup",
+        "Modal",
+        "MenuBar",
+        "Menu",
+        "Canvas",
+        "Component",
+        "Slot",
+        "Code",
+        "Text",
+        "SeparatorText",
+        "Separator",
+        "Spacing",
+        "NewLine",
+        "Dummy",
+        "Button",
+        "SmallButton",
+        "ArrowButton",
+        "Checkbox",
+        "RadioButton",
+        "Combo",
+        "ListBox",
+        "SliderFloat",
+        "SliderInt",
+        "VSliderFloat",
+        "VSliderInt",
+        "DragFloat",
+        "DragInt",
+        "InputText",
+        "InputTextMultiline",
+        "InputInt",
+        "InputFloat",
+        "ColorEdit",
+        "ColorPicker",
+        "ColorButton",
+        "ProgressBar",
+        "Image",
+        "ImageButton",
+        "Selectable",
+        "MenuItem",
+        "PlotLines",
+        "PlotHistogram"
+      ],
+      "type": "string"
+    }
+  },
+  "$id": "https://raw.githubusercontent.com/fezura/ImForge/main/schemas/stock-widgets.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Window"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Top-level ImGui window (Begin/End). Only valid as a panel root; the builder canvas draws it as a child region.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "Window binding slots.",
+            "properties": {
+              "open": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "Optional bool: p_open passed to Begin (adds the close button)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "items": {
+              "properties": {
+                "type": {
+                  "description": "Tab only under TabBar; Window only as root.",
+                  "not": {
+                    "enum": [
+                      "Tab",
+                      "Window"
+                    ]
+                  }
+                }
+              }
+            },
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "Window events.",
+            "properties": {
+              "onClose": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onClose event."
+              },
+              "onOpen": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onOpen event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "Window props.",
+            "properties": {
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/WindowFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "Window flags. Names of WindowFlags without the ImGui prefix; see node.schema.json#/$defs/WindowFlags."
+              },
+              "initialPos": {
+                "$ref": "node.schema.json#/$defs/Vec2Prop",
+                "description": "Initial position in px (DPI scaled), applied with SetNextWindowPos using sizeCond."
+              },
+              "initialSize": {
+                "$ref": "node.schema.json#/$defs/Vec2Prop",
+                "description": "Initial size in px (DPI scaled), applied with SetNextWindowSize using sizeCond."
+              },
+              "menuBar": {
+                "$ref": "node.schema.json#/$defs/BoolProp",
+                "description": "Adds ImGuiWindowFlags_MenuBar; a MenuBar child may then be placed directly under the window."
+              },
+              "sizeCond": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "Always",
+                      "Once",
+                      "FirstUseEver",
+                      "Appearing"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiCond used for initialSize/initialPos. Default FirstUseEver."
+              },
+              "title": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Window title passed to ImGui::Begin."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "VStack"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Vertical flow container: children are laid out top to bottom (ImGui default flow).",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "VStack has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "items": {
+              "properties": {
+                "type": {
+                  "description": "Tab only under TabBar; MenuBar only under Window; Window only as root.",
+                  "not": {
+                    "enum": [
+                      "Tab",
+                      "Window",
+                      "MenuBar"
+                    ]
+                  }
+                }
+              }
+            },
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "VStack has no events.",
+            "properties": {},
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "VStack props.",
+            "properties": {
+              "indent": {
+                "$ref": "node.schema.json#/$defs/FloatProp",
+                "description": "Indent applied to all children in px. Default 0."
+              },
+              "spacing": {
+                "$ref": "node.schema.json#/$defs/NullableFloatProp",
+                "description": "Vertical spacing between children in px; null or omitted keeps the style's ItemSpacing.y."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "HStack"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Horizontal container: SameLine between children; children with width fill share the remaining width equally.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "HStack has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "items": {
+              "properties": {
+                "type": {
+                  "description": "Tab only under TabBar; MenuBar only under Window; Window only as root.",
+                  "not": {
+                    "enum": [
+                      "Tab",
+                      "Window",
+                      "MenuBar"
+                    ]
+                  }
+                }
+              }
+            },
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "HStack has no events.",
+            "properties": {},
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "HStack props.",
+            "properties": {
+              "align": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "Start",
+                      "Center",
+                      "End"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "Vertical alignment of children within the row. Default Start."
+              },
+              "spacing": {
+                "$ref": "node.schema.json#/$defs/NullableFloatProp",
+                "description": "Horizontal spacing between children in px; null or omitted keeps the style's ItemSpacing.x."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Group"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "BeginGroup/EndGroup: children act as one item for layout and hover queries.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "Group has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "items": {
+              "properties": {
+                "type": {
+                  "description": "Tab only under TabBar; MenuBar only under Window; Window only as root.",
+                  "not": {
+                    "enum": [
+                      "Tab",
+                      "Window",
+                      "MenuBar"
+                    ]
+                  }
+                }
+              }
+            },
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "Group has no events.",
+            "properties": {},
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "Group props.",
+            "properties": {},
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Child"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Child region (BeginChild/EndChild). Default size fill/fill.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "Child has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "items": {
+              "properties": {
+                "type": {
+                  "description": "Tab only under TabBar; MenuBar only under Window; Window only as root.",
+                  "not": {
+                    "enum": [
+                      "Tab",
+                      "Window",
+                      "MenuBar"
+                    ]
+                  }
+                }
+              }
+            },
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "Child has no events.",
+            "properties": {},
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "Child props.",
+            "properties": {
+              "border": {
+                "$ref": "node.schema.json#/$defs/BoolProp",
+                "description": "Draw a border around the child. Default false."
+              },
+              "childFlags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/ChildFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiChildFlags (ImGui >= 1.90); ignored by older versions. Names of ChildFlags without the ImGui prefix; see node.schema.json#/$defs/ChildFlags."
+              },
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/WindowFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "Window flags. Names of WindowFlags without the ImGui prefix; see node.schema.json#/$defs/WindowFlags."
+              },
+              "size": {
+                "$ref": "node.schema.json#/$defs/SizeProp",
+                "description": "Item size as {w, h} SizeSpecs (auto, px, fill, N%, fill-N). Default auto/auto; Child and Canvas default to fill/fill."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Grid"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Table-based grid (BeginTable). Each child occupies one cell, row-major.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "Grid has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "items": {
+              "properties": {
+                "type": {
+                  "description": "Tab only under TabBar; MenuBar only under Window; Window only as root.",
+                  "not": {
+                    "enum": [
+                      "Tab",
+                      "Window",
+                      "MenuBar"
+                    ]
+                  }
+                }
+              }
+            },
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "Grid has no events.",
+            "properties": {},
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "Grid props.",
+            "properties": {
+              "columnWidths": {
+                "$ref": "node.schema.json#/$defs/SizeListProp",
+                "description": "Optional per-column widths as SizeSpecs (number px, fill, N%)."
+              },
+              "columns": {
+                "anyOf": [
+                  {
+                    "maximum": 64,
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ExprRef"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "Number of columns. Default 2."
+              },
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/TableFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiTableFlags. Names of TableFlags without the ImGui prefix; see node.schema.json#/$defs/TableFlags."
+              },
+              "headers": {
+                "$ref": "node.schema.json#/$defs/StringListProp",
+                "description": "Optional header labels, one per column; enables a header row."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "TabBar"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Tab bar (BeginTabBar). Children must be Tab nodes.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "TabBar has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "items": {
+              "properties": {
+                "type": {
+                  "const": "Tab",
+                  "description": "TabBar children must be Tab nodes."
+                }
+              }
+            },
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "TabBar events.",
+            "properties": {
+              "onChange": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onChange event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "TabBar props.",
+            "properties": {
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/TabBarFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiTabBarFlags. Names of TabBarFlags without the ImGui prefix; see node.schema.json#/$defs/TabBarFlags."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Tab"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "One tab item (BeginTabItem). Must be a direct child of a TabBar.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "Tab binding slots.",
+            "properties": {
+              "open": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "bool: p_open of the tab item (used when closable)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "items": {
+              "properties": {
+                "type": {
+                  "description": "Tab only under TabBar; MenuBar only under Window; Window only as root.",
+                  "not": {
+                    "enum": [
+                      "Tab",
+                      "Window",
+                      "MenuBar"
+                    ]
+                  }
+                }
+              }
+            },
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "Tab events.",
+            "properties": {
+              "onClose": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onClose event."
+              },
+              "onOpen": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onOpen event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "Tab props.",
+            "properties": {
+              "closable": {
+                "$ref": "node.schema.json#/$defs/BoolProp",
+                "description": "Show a close button; requires the open binding to persist the state. Default false."
+              },
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/TabItemFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiTabItemFlags. Names of TabItemFlags without the ImGui prefix; see node.schema.json#/$defs/TabItemFlags."
+              },
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Tab label."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "CollapsingHeader"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "CollapsingHeader with its children drawn while open.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "CollapsingHeader has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "items": {
+              "properties": {
+                "type": {
+                  "description": "Tab only under TabBar; MenuBar only under Window; Window only as root.",
+                  "not": {
+                    "enum": [
+                      "Tab",
+                      "Window",
+                      "MenuBar"
+                    ]
+                  }
+                }
+              }
+            },
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "CollapsingHeader events.",
+            "properties": {
+              "onClose": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onClose event."
+              },
+              "onOpen": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onOpen event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "CollapsingHeader props.",
+            "properties": {
+              "defaultOpen": {
+                "$ref": "node.schema.json#/$defs/BoolProp",
+                "description": "Start expanded. Default false."
+              },
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/TreeNodeFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiTreeNodeFlags. Names of TreeNodeFlags without the ImGui prefix; see node.schema.json#/$defs/TreeNodeFlags."
+              },
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Header label."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "TreeNode"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "TreeNodeEx/TreePop with its children drawn while open.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "TreeNode has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "items": {
+              "properties": {
+                "type": {
+                  "description": "Tab only under TabBar; MenuBar only under Window; Window only as root.",
+                  "not": {
+                    "enum": [
+                      "Tab",
+                      "Window",
+                      "MenuBar"
+                    ]
+                  }
+                }
+              }
+            },
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "TreeNode events.",
+            "properties": {
+              "onClose": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onClose event."
+              },
+              "onOpen": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onOpen event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "TreeNode props.",
+            "properties": {
+              "defaultOpen": {
+                "$ref": "node.schema.json#/$defs/BoolProp",
+                "description": "Start expanded. Default false."
+              },
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/TreeNodeFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiTreeNodeFlags. Names of TreeNodeFlags without the ImGui prefix; see node.schema.json#/$defs/TreeNodeFlags."
+              },
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Node label."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Popup"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "BeginPopup; opened by an openPopup action targeting this node's id.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "Popup has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "items": {
+              "properties": {
+                "type": {
+                  "description": "Tab only under TabBar; MenuBar only under Window; Window only as root.",
+                  "not": {
+                    "enum": [
+                      "Tab",
+                      "Window",
+                      "MenuBar"
+                    ]
+                  }
+                }
+              }
+            },
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "Popup events.",
+            "properties": {
+              "onClose": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onClose event."
+              },
+              "onOpen": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onOpen event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "Popup props.",
+            "properties": {
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/WindowFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "Window flags. Names of WindowFlags without the ImGui prefix; see node.schema.json#/$defs/WindowFlags."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Modal"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "BeginPopupModal; opened by an openPopup action targeting this node's id.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "Modal binding slots.",
+            "properties": {
+              "open": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "bool: p_open of the modal."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "items": {
+              "properties": {
+                "type": {
+                  "description": "Tab only under TabBar; MenuBar only under Window; Window only as root.",
+                  "not": {
+                    "enum": [
+                      "Tab",
+                      "Window",
+                      "MenuBar"
+                    ]
+                  }
+                }
+              }
+            },
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "Modal events.",
+            "properties": {
+              "onClose": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onClose event."
+              },
+              "onOpen": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onOpen event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "Modal props.",
+            "properties": {
+              "closable": {
+                "$ref": "node.schema.json#/$defs/BoolProp",
+                "description": "Pass p_open so the modal shows a close button (needs the open binding). Default false."
+              },
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/WindowFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "Window flags. Names of WindowFlags without the ImGui prefix; see node.schema.json#/$defs/WindowFlags."
+              },
+              "title": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Modal title (popup name)."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "MenuBar"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "BeginMenuBar; direct child of a Window with menuBar = true.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "MenuBar has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "items": {
+              "properties": {
+                "type": {
+                  "description": "Tab only under TabBar; MenuBar only under Window; Window only as root.",
+                  "not": {
+                    "enum": [
+                      "Tab",
+                      "Window",
+                      "MenuBar"
+                    ]
+                  }
+                }
+              }
+            },
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "MenuBar has no events.",
+            "properties": {},
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "MenuBar props.",
+            "properties": {},
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Menu"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "BeginMenu; children are MenuItem, Menu or Separator nodes.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "Menu has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "items": {
+              "properties": {
+                "type": {
+                  "description": "Menu accepts only MenuItem/Menu/Separator children.",
+                  "enum": [
+                    "MenuItem",
+                    "Menu",
+                    "Separator"
+                  ]
+                }
+              }
+            },
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "Menu has no events.",
+            "properties": {},
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "Menu props.",
+            "properties": {
+              "enabled": {
+                "$ref": "node.schema.json#/$defs/BoolProp",
+                "description": "Enabled flag passed to BeginMenu. Default true."
+              },
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Menu label."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Canvas"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Free-placement region: children are positioned by their layout.anchor/offset. Default size fill/fill.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "Canvas has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "items": {
+              "properties": {
+                "type": {
+                  "description": "Tab only under TabBar; MenuBar only under Window; Window only as root.",
+                  "not": {
+                    "enum": [
+                      "Tab",
+                      "Window",
+                      "MenuBar"
+                    ]
+                  }
+                }
+              }
+            },
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "Canvas has no events.",
+            "properties": {},
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "Canvas props.",
+            "properties": {
+              "border": {
+                "$ref": "node.schema.json#/$defs/BoolProp",
+                "description": "Draw a border around the canvas. Default false."
+              },
+              "size": {
+                "$ref": "node.schema.json#/$defs/SizeProp",
+                "description": "Item size as {w, h} SizeSpecs (auto, px, fill, N%, fill-N). Default auto/auto; Child and Canvas default to fill/fill."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Component"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Instance of a component definition. props holds the parameter values; slots holds the nodes for each slot.",
+        "properties": {
+          "children": {
+            "description": "Component instances take content through slots, not children.",
+            "maxItems": 0,
+            "type": "array"
+          }
+        },
+        "required": [
+          "component"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Slot"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Placeholder inside a component definition where the instance's slot content is inserted. No children.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "Slot has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "description": "Slot cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "Slot has no events.",
+            "properties": {},
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "Slot props.",
+            "properties": {
+              "name": {
+                "description": "Slot name; must be declared in the component's slots list.",
+                "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "props"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Code"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Hand-written C++ block emitted as a locked function; previewed as a placeholder unless live-attached.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "Code has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "description": "Code cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "Code has no events.",
+            "properties": {},
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "Code props.",
+            "properties": {
+              "code": {
+                "description": "C++ source of the block body.",
+                "type": "string"
+              },
+              "preview": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "Placeholder",
+                      "Live"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "How the builder canvas previews the block. Default Placeholder."
+              }
+            },
+            "required": [
+              "code"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "props"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Text"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Text with {path[:fmt]} interpolation and {icon:fa-name} icons.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "Text has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "description": "Text cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "Text has no events.",
+            "properties": {},
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "Text props.",
+            "properties": {
+              "bullet": {
+                "$ref": "node.schema.json#/$defs/BoolProp",
+                "description": "Use BulletText. Default false."
+              },
+              "color": {
+                "$ref": "node.schema.json#/$defs/NullableColorProp",
+                "description": "Optional text color (TextColored). Omit or null for the theme's Text color."
+              },
+              "disabled": {
+                "$ref": "node.schema.json#/$defs/BoolProp",
+                "description": "Use TextDisabled. Default false."
+              },
+              "text": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Text to display; supports interpolation."
+              },
+              "wrapped": {
+                "$ref": "node.schema.json#/$defs/BoolProp",
+                "description": "Use TextWrapped. Default false."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "SeparatorText"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "SeparatorText (ImGui >= 1.89.5; falls back to Separator + Text).",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "SeparatorText has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "description": "SeparatorText cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "SeparatorText has no events.",
+            "properties": {},
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "SeparatorText props.",
+            "properties": {
+              "text": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Label drawn inside the separator."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Separator"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Horizontal separator.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "Separator has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "description": "Separator cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "Separator has no events.",
+            "properties": {},
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "Separator props.",
+            "properties": {},
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Spacing"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "One or more ImGui::Spacing calls.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "Spacing has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "description": "Spacing cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "Spacing has no events.",
+            "properties": {},
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "Spacing props.",
+            "properties": {
+              "count": {
+                "anyOf": [
+                  {
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ExprRef"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "Number of Spacing calls. Default 1."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "NewLine"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "ImGui::NewLine.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "NewLine has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "description": "NewLine cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "NewLine has no events.",
+            "properties": {},
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "NewLine props.",
+            "properties": {},
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Dummy"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Invisible item of the given size.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "Dummy has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "description": "Dummy cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "Dummy has no events.",
+            "properties": {},
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "Dummy props.",
+            "properties": {
+              "size": {
+                "$ref": "node.schema.json#/$defs/SizeProp",
+                "description": "Item size as {w, h} SizeSpecs (auto, px, fill, N%, fill-N). Default auto/auto; Child and Canvas default to fill/fill."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Button"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Push button.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "Button has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "description": "Button cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "Button events.",
+            "properties": {
+              "onClick": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onClick event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "Button props.",
+            "properties": {
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Button label."
+              },
+              "repeat": {
+                "$ref": "node.schema.json#/$defs/BoolProp",
+                "description": "Wrap in PushButtonRepeat so onClick fires while held. Default false."
+              },
+              "size": {
+                "$ref": "node.schema.json#/$defs/SizeProp",
+                "description": "Item size as {w, h} SizeSpecs (auto, px, fill, N%, fill-N). Default auto/auto; Child and Canvas default to fill/fill."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "SmallButton"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "SmallButton (no frame padding).",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "SmallButton has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "description": "SmallButton cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "SmallButton events.",
+            "properties": {
+              "onClick": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onClick event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "SmallButton props.",
+            "properties": {
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Button label."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "ArrowButton"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "ArrowButton.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "ArrowButton has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "description": "ArrowButton cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "ArrowButton events.",
+            "properties": {
+              "onClick": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onClick event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "ArrowButton props.",
+            "properties": {
+              "dir": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "Left",
+                      "Right",
+                      "Up",
+                      "Down"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "Arrow direction. Default Right."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Checkbox"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Checkbox bound to a bool.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "Checkbox binding slots.",
+            "properties": {
+              "value": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "bool (required)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "Checkbox cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "Checkbox events.",
+            "properties": {
+              "onChange": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onChange event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "Checkbox props.",
+            "properties": {
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Checkbox label."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "RadioButton"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "RadioButton that sets the bound int to value when clicked.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "RadioButton binding slots.",
+            "properties": {
+              "value": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "int (required)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "RadioButton cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "RadioButton events.",
+            "properties": {
+              "onChange": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onChange event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "RadioButton props.",
+            "properties": {
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Radio label."
+              },
+              "value": {
+                "$ref": "node.schema.json#/$defs/IntProp",
+                "description": "Value written to the binding when this button is selected."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Combo"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Combo box. Bound to an enum with no items, the enum's value names are used.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "Combo binding slots.",
+            "properties": {
+              "value": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "int or enum (required)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "Combo cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "Combo events.",
+            "properties": {
+              "onChange": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onChange event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "Combo props.",
+            "properties": {
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/ComboFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiComboFlags. Names of ComboFlags without the ImGui prefix; see node.schema.json#/$defs/ComboFlags."
+              },
+              "items": {
+                "$ref": "node.schema.json#/$defs/StringListProp",
+                "description": "Item labels; index is written to the binding."
+              },
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Combo label."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "ListBox"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "ListBox.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "ListBox binding slots.",
+            "properties": {
+              "value": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "int or enum (required)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "ListBox cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "ListBox events.",
+            "properties": {
+              "onChange": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onChange event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "ListBox props.",
+            "properties": {
+              "heightItems": {
+                "$ref": "node.schema.json#/$defs/IntProp",
+                "description": "Visible item count; -1 uses ImGui's default. Default -1."
+              },
+              "items": {
+                "$ref": "node.schema.json#/$defs/StringListProp",
+                "description": "Item labels; index is written to the binding."
+              },
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "ListBox label."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "SliderFloat"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "SliderFloat / SliderFloat2/3/4 depending on components.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "SliderFloat binding slots.",
+            "properties": {
+              "value": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "float, float[N], vec2 (N=2) or vec4 (N=4) (required)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "SliderFloat cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "SliderFloat events.",
+            "properties": {
+              "onChange": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onChange event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "SliderFloat props.",
+            "properties": {
+              "components": {
+                "anyOf": [
+                  {
+                    "maximum": 4,
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ExprRef"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "1..4; chooses SliderFloatN. Default 1."
+              },
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/SliderFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiSliderFlags. Names of SliderFlags without the ImGui prefix; see node.schema.json#/$defs/SliderFlags."
+              },
+              "format": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "printf format. Default \"%.3f\"."
+              },
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Slider label."
+              },
+              "max": {
+                "$ref": "node.schema.json#/$defs/FloatProp",
+                "description": "Maximum value. Default 1."
+              },
+              "min": {
+                "$ref": "node.schema.json#/$defs/FloatProp",
+                "description": "Minimum value. Default 0."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "SliderInt"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "SliderInt / SliderIntN.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "SliderInt binding slots.",
+            "properties": {
+              "value": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "int or int[N] (required)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "SliderInt cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "SliderInt events.",
+            "properties": {
+              "onChange": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onChange event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "SliderInt props.",
+            "properties": {
+              "components": {
+                "anyOf": [
+                  {
+                    "maximum": 4,
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ExprRef"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "1..4; chooses SliderIntN. Default 1."
+              },
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/SliderFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiSliderFlags. Names of SliderFlags without the ImGui prefix; see node.schema.json#/$defs/SliderFlags."
+              },
+              "format": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "printf format. Default \"%d\"."
+              },
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Slider label."
+              },
+              "max": {
+                "$ref": "node.schema.json#/$defs/IntProp",
+                "description": "Maximum value. Default 100."
+              },
+              "min": {
+                "$ref": "node.schema.json#/$defs/IntProp",
+                "description": "Minimum value. Default 0."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "VSliderFloat"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Vertical float slider.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "VSliderFloat binding slots.",
+            "properties": {
+              "value": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "float (required)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "VSliderFloat cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "VSliderFloat events.",
+            "properties": {
+              "onChange": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onChange event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "VSliderFloat props.",
+            "properties": {
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/SliderFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiSliderFlags. Names of SliderFlags without the ImGui prefix; see node.schema.json#/$defs/SliderFlags."
+              },
+              "format": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "printf format. Default \"%.3f\"."
+              },
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Slider label."
+              },
+              "max": {
+                "$ref": "node.schema.json#/$defs/FloatProp",
+                "description": "Maximum value. Default 1."
+              },
+              "min": {
+                "$ref": "node.schema.json#/$defs/FloatProp",
+                "description": "Minimum value. Default 0."
+              },
+              "size": {
+                "$ref": "node.schema.json#/$defs/SizeProp",
+                "description": "Item size as {w, h} SizeSpecs (auto, px, fill, N%, fill-N). Default auto/auto; Child and Canvas default to fill/fill."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "VSliderInt"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Vertical int slider.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "VSliderInt binding slots.",
+            "properties": {
+              "value": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "int (required)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "VSliderInt cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "VSliderInt events.",
+            "properties": {
+              "onChange": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onChange event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "VSliderInt props.",
+            "properties": {
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/SliderFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiSliderFlags. Names of SliderFlags without the ImGui prefix; see node.schema.json#/$defs/SliderFlags."
+              },
+              "format": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "printf format. Default \"%d\"."
+              },
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Slider label."
+              },
+              "max": {
+                "$ref": "node.schema.json#/$defs/IntProp",
+                "description": "Maximum value. Default 100."
+              },
+              "min": {
+                "$ref": "node.schema.json#/$defs/IntProp",
+                "description": "Minimum value. Default 0."
+              },
+              "size": {
+                "$ref": "node.schema.json#/$defs/SizeProp",
+                "description": "Item size as {w, h} SizeSpecs (auto, px, fill, N%, fill-N). Default auto/auto; Child and Canvas default to fill/fill."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "DragFloat"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "DragFloat / DragFloatN.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "DragFloat binding slots.",
+            "properties": {
+              "value": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "float, float[N], vec2 or vec4 (required)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "DragFloat cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "DragFloat events.",
+            "properties": {
+              "onChange": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onChange event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "DragFloat props.",
+            "properties": {
+              "components": {
+                "anyOf": [
+                  {
+                    "maximum": 4,
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ExprRef"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "1..4; chooses DragFloatN. Default 1."
+              },
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/SliderFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiSliderFlags. Names of SliderFlags without the ImGui prefix; see node.schema.json#/$defs/SliderFlags."
+              },
+              "format": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "printf format. Default \"%.3f\"."
+              },
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Drag label."
+              },
+              "max": {
+                "$ref": "node.schema.json#/$defs/FloatProp",
+                "description": "Maximum. Default 0."
+              },
+              "min": {
+                "$ref": "node.schema.json#/$defs/FloatProp",
+                "description": "Minimum; 0 with max 0 means unbounded. Default 0."
+              },
+              "speed": {
+                "$ref": "node.schema.json#/$defs/FloatProp",
+                "description": "Drag speed. Default 1."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "DragInt"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "DragInt / DragIntN.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "DragInt binding slots.",
+            "properties": {
+              "value": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "int or int[N] (required)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "DragInt cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "DragInt events.",
+            "properties": {
+              "onChange": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onChange event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "DragInt props.",
+            "properties": {
+              "components": {
+                "anyOf": [
+                  {
+                    "maximum": 4,
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ExprRef"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "1..4; chooses DragIntN. Default 1."
+              },
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/SliderFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiSliderFlags. Names of SliderFlags without the ImGui prefix; see node.schema.json#/$defs/SliderFlags."
+              },
+              "format": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "printf format. Default \"%d\"."
+              },
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Drag label."
+              },
+              "max": {
+                "$ref": "node.schema.json#/$defs/IntProp",
+                "description": "Maximum. Default 0."
+              },
+              "min": {
+                "$ref": "node.schema.json#/$defs/IntProp",
+                "description": "Minimum. Default 0."
+              },
+              "speed": {
+                "$ref": "node.schema.json#/$defs/FloatProp",
+                "description": "Drag speed. Default 1."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "InputText"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Single-line text input. std::string bindings use imgui_stdlib when codegen.stdString is true.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "InputText binding slots.",
+            "properties": {
+              "value": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "string or char[N] (required)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "InputText cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "InputText events.",
+            "properties": {
+              "onChange": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onChange event."
+              },
+              "onEnter": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onEnter event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "InputText props.",
+            "properties": {
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/InputTextFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiInputTextFlags. Names of InputTextFlags without the ImGui prefix; see node.schema.json#/$defs/InputTextFlags."
+              },
+              "hint": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Placeholder shown while empty (InputTextWithHint)."
+              },
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Input label."
+              },
+              "maxLength": {
+                "anyOf": [
+                  {
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ExprRef"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "Buffer capacity for char[] bindings. Default 256."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "InputTextMultiline"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Multi-line text input.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "InputTextMultiline binding slots.",
+            "properties": {
+              "value": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "string or char[N] (required)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "InputTextMultiline cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "InputTextMultiline events.",
+            "properties": {
+              "onChange": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onChange event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "InputTextMultiline props.",
+            "properties": {
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/InputTextFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiInputTextFlags. Names of InputTextFlags without the ImGui prefix; see node.schema.json#/$defs/InputTextFlags."
+              },
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Input label."
+              },
+              "maxLength": {
+                "anyOf": [
+                  {
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ExprRef"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "Buffer capacity for char[] bindings. Default 256."
+              },
+              "size": {
+                "$ref": "node.schema.json#/$defs/SizeProp",
+                "description": "Item size as {w, h} SizeSpecs (auto, px, fill, N%, fill-N). Default auto/auto; Child and Canvas default to fill/fill."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "InputInt"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "InputInt / InputIntN.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "InputInt binding slots.",
+            "properties": {
+              "value": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "int or int[N] (required)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "InputInt cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "InputInt events.",
+            "properties": {
+              "onChange": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onChange event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "InputInt props.",
+            "properties": {
+              "components": {
+                "anyOf": [
+                  {
+                    "maximum": 4,
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ExprRef"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "1..4; chooses InputIntN. Default 1."
+              },
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/InputTextFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiInputTextFlags. Names of InputTextFlags without the ImGui prefix; see node.schema.json#/$defs/InputTextFlags."
+              },
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Input label."
+              },
+              "step": {
+                "$ref": "node.schema.json#/$defs/IntProp",
+                "description": "Step for the +/- buttons. Default 1."
+              },
+              "stepFast": {
+                "$ref": "node.schema.json#/$defs/IntProp",
+                "description": "Step while holding Ctrl. Default 100."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "InputFloat"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "InputFloat / InputFloatN.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "InputFloat binding slots.",
+            "properties": {
+              "value": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "float or float[N] (required)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "InputFloat cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "InputFloat events.",
+            "properties": {
+              "onChange": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onChange event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "InputFloat props.",
+            "properties": {
+              "components": {
+                "anyOf": [
+                  {
+                    "maximum": 4,
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ExprRef"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "1..4; chooses InputFloatN. Default 1."
+              },
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/InputTextFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiInputTextFlags. Names of InputTextFlags without the ImGui prefix; see node.schema.json#/$defs/InputTextFlags."
+              },
+              "format": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "printf format. Default \"%.3f\"."
+              },
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Input label."
+              },
+              "step": {
+                "$ref": "node.schema.json#/$defs/FloatProp",
+                "description": "Step for the +/- buttons; 0 hides them. Default 0."
+              },
+              "stepFast": {
+                "$ref": "node.schema.json#/$defs/FloatProp",
+                "description": "Step while holding Ctrl. Default 0."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "ColorEdit"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "ColorEdit3/4.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "ColorEdit binding slots.",
+            "properties": {
+              "value": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "vec4, float[4] or float[3] (required)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "ColorEdit cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "ColorEdit events.",
+            "properties": {
+              "onChange": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onChange event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "ColorEdit props.",
+            "properties": {
+              "alpha": {
+                "$ref": "node.schema.json#/$defs/BoolProp",
+                "description": "Edit the alpha channel (ColorEdit4). Default true."
+              },
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/ColorEditFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiColorEditFlags. Names of ColorEditFlags without the ImGui prefix; see node.schema.json#/$defs/ColorEditFlags."
+              },
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Edit label."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "ColorPicker"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "ColorPicker3/4.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "ColorPicker binding slots.",
+            "properties": {
+              "value": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "vec4, float[4] or float[3] (required)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "ColorPicker cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "ColorPicker events.",
+            "properties": {
+              "onChange": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onChange event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "ColorPicker props.",
+            "properties": {
+              "alpha": {
+                "$ref": "node.schema.json#/$defs/BoolProp",
+                "description": "Edit the alpha channel (ColorPicker4). Default true."
+              },
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/ColorEditFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiColorEditFlags. Names of ColorEditFlags without the ImGui prefix; see node.schema.json#/$defs/ColorEditFlags."
+              },
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Picker label."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "ColorButton"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "ColorButton swatch.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "ColorButton has no binding slots.",
+            "properties": {},
+            "type": "object"
+          },
+          "children": {
+            "description": "ColorButton cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "ColorButton events.",
+            "properties": {
+              "onClick": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onClick event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "ColorButton props.",
+            "properties": {
+              "color": {
+                "$ref": "node.schema.json#/$defs/ColorProp",
+                "description": "Swatch color."
+              },
+              "desc": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Description id / tooltip text."
+              },
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/ColorEditFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiColorEditFlags. Names of ColorEditFlags without the ImGui prefix; see node.schema.json#/$defs/ColorEditFlags."
+              },
+              "size": {
+                "$ref": "node.schema.json#/$defs/SizeProp",
+                "description": "Item size as {w, h} SizeSpecs (auto, px, fill, N%, fill-N). Default auto/auto; Child and Canvas default to fill/fill."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "ProgressBar"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "ProgressBar.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "ProgressBar binding slots.",
+            "properties": {
+              "value": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "Optional float 0..1 that overrides fraction."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "ProgressBar cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "ProgressBar has no events.",
+            "properties": {},
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "ProgressBar props.",
+            "properties": {
+              "fraction": {
+                "$ref": "node.schema.json#/$defs/FloatProp",
+                "description": "Fill fraction 0..1; usually an expression. Ignored when the value binding is set."
+              },
+              "overlay": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Overlay text; supports interpolation. Omit for ImGui's percentage."
+              },
+              "size": {
+                "$ref": "node.schema.json#/$defs/SizeProp",
+                "description": "Item size as {w, h} SizeSpecs (auto, px, fill, N%, fill-N). Default auto/auto; Child and Canvas default to fill/fill."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Image"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Image drawn from a named texture.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "Image binding slots.",
+            "properties": {
+              "texture": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "texture: name registered with RegisterTexture or an ImTextureID member (required)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "Image cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "Image has no events.",
+            "properties": {},
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "Image props.",
+            "properties": {
+              "border": {
+                "$ref": "node.schema.json#/$defs/ColorProp",
+                "description": "Border color. Default transparent."
+              },
+              "size": {
+                "$ref": "node.schema.json#/$defs/SizeProp",
+                "description": "Item size as {w, h} SizeSpecs (auto, px, fill, N%, fill-N). Default auto/auto; Child and Canvas default to fill/fill."
+              },
+              "tint": {
+                "$ref": "node.schema.json#/$defs/ColorProp",
+                "description": "Tint color. Default white."
+              },
+              "uv0": {
+                "$ref": "node.schema.json#/$defs/Vec2Prop",
+                "description": "Top-left UV. Default {0,0}."
+              },
+              "uv1": {
+                "$ref": "node.schema.json#/$defs/Vec2Prop",
+                "description": "Bottom-right UV. Default {1,1}."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "ImageButton"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "ImageButton drawn from a named texture.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "ImageButton binding slots.",
+            "properties": {
+              "texture": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "texture (required)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "ImageButton cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "ImageButton events.",
+            "properties": {
+              "onClick": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onClick event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "ImageButton props.",
+            "properties": {
+              "bg": {
+                "$ref": "node.schema.json#/$defs/ColorProp",
+                "description": "Background color. Default transparent."
+              },
+              "size": {
+                "$ref": "node.schema.json#/$defs/SizeProp",
+                "description": "Item size as {w, h} SizeSpecs (auto, px, fill, N%, fill-N). Default auto/auto; Child and Canvas default to fill/fill."
+              },
+              "tint": {
+                "$ref": "node.schema.json#/$defs/ColorProp",
+                "description": "Tint color. Default white."
+              },
+              "uv0": {
+                "$ref": "node.schema.json#/$defs/Vec2Prop",
+                "description": "Top-left UV. Default {0,0}."
+              },
+              "uv1": {
+                "$ref": "node.schema.json#/$defs/Vec2Prop",
+                "description": "Bottom-right UV. Default {1,1}."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Selectable"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "Selectable row.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "Selectable binding slots.",
+            "properties": {
+              "selected": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "Optional bool toggled by clicks."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "Selectable cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "Selectable events.",
+            "properties": {
+              "onClick": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onClick event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "Selectable props.",
+            "properties": {
+              "flags": {
+                "anyOf": [
+                  {
+                    "$ref": "node.schema.json#/$defs/SelectableFlags"
+                  },
+                  {
+                    "$ref": "node.schema.json#/$defs/ParamRef"
+                  }
+                ],
+                "description": "ImGuiSelectableFlags. Names of SelectableFlags without the ImGui prefix; see node.schema.json#/$defs/SelectableFlags."
+              },
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Row label."
+              },
+              "size": {
+                "$ref": "node.schema.json#/$defs/SizeProp",
+                "description": "Item size as {w, h} SizeSpecs (auto, px, fill, N%, fill-N). Default auto/auto; Child and Canvas default to fill/fill."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "MenuItem"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "MenuItem inside a Menu or MenuBar.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "MenuItem binding slots.",
+            "properties": {
+              "selected": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "Optional bool drawn as a check mark and toggled by clicks."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "MenuItem cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "MenuItem events.",
+            "properties": {
+              "onClick": {
+                "$ref": "node.schema.json#/$defs/EventSpec",
+                "description": "onClick event."
+              }
+            },
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "MenuItem props.",
+            "properties": {
+              "enabled": {
+                "$ref": "node.schema.json#/$defs/BoolProp",
+                "description": "Enabled flag. Default true."
+              },
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Item label."
+              },
+              "shortcut": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Shortcut hint drawn right-aligned."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "PlotLines"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "PlotLines over a float array or vector.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "PlotLines binding slots.",
+            "properties": {
+              "values": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "float[] or std::vector<float> (required)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "PlotLines cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "PlotLines has no events.",
+            "properties": {},
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "PlotLines props.",
+            "properties": {
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Plot label."
+              },
+              "overlay": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Overlay text; supports interpolation."
+              },
+              "scaleMax": {
+                "$ref": "node.schema.json#/$defs/FloatProp",
+                "description": "Maximum of the value axis; omit for auto."
+              },
+              "scaleMin": {
+                "$ref": "node.schema.json#/$defs/FloatProp",
+                "description": "Minimum of the value axis; omit for auto."
+              },
+              "size": {
+                "$ref": "node.schema.json#/$defs/SizeProp",
+                "description": "Item size as {w, h} SizeSpecs (auto, px, fill, N%, fill-N). Default auto/auto; Child and Canvas default to fill/fill."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "PlotHistogram"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "description": "PlotHistogram over a float array or vector.",
+        "properties": {
+          "bind": {
+            "additionalProperties": false,
+            "description": "PlotHistogram binding slots.",
+            "properties": {
+              "values": {
+                "$ref": "node.schema.json#/$defs/BindValue",
+                "description": "float[] or std::vector<float> (required)."
+              }
+            },
+            "type": "object"
+          },
+          "children": {
+            "description": "PlotHistogram cannot have children.",
+            "maxItems": 0,
+            "type": "array"
+          },
+          "events": {
+            "additionalProperties": false,
+            "description": "PlotHistogram has no events.",
+            "properties": {},
+            "type": "object"
+          },
+          "props": {
+            "additionalProperties": false,
+            "description": "PlotHistogram props.",
+            "properties": {
+              "label": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Plot label."
+              },
+              "overlay": {
+                "$ref": "node.schema.json#/$defs/StringProp",
+                "description": "Overlay text; supports interpolation."
+              },
+              "scaleMax": {
+                "$ref": "node.schema.json#/$defs/FloatProp",
+                "description": "Maximum of the value axis; omit for auto."
+              },
+              "scaleMin": {
+                "$ref": "node.schema.json#/$defs/FloatProp",
+                "description": "Minimum of the value axis; omit for auto."
+              },
+              "size": {
+                "$ref": "node.schema.json#/$defs/SizeProp",
+                "description": "Item size as {w, h} SizeSpecs (auto, px, fill, N%, fill-N). Default auto/auto; Child and Canvas default to fill/fill."
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "not": {
+          "properties": {
+            "type": {
+              "const": "Component"
+            }
+          },
+          "required": [
+            "type"
+          ]
+        }
+      },
+      "then": {
+        "description": "Only Component instances carry component and slots.",
+        "not": {
+          "required": [
+            "component"
+          ]
+        },
+        "properties": {
+          "slots": {
+            "maxProperties": 0,
+            "type": "object"
+          }
+        }
+      }
+    }
+  ],
+  "description": "Per-type constraints (props, binding slots, events, children) for the stock widgets. Applied to every Node by node.schema.json; custom widget types are unconstrained here.",
+  "title": "ImForge stock widget catalog"
+}

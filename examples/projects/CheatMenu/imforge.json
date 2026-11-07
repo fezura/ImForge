@@ -1,0 +1,130 @@
+{
+  "activeTheme": "Dark",
+  "binding": {
+    "compileCommands": "build/compile_commands.json",
+    "includePaths": [
+      "src"
+    ],
+    "types": [
+      "Player",
+      "Settings"
+    ],
+    "typesJson": "types.json"
+  },
+  "codegen": {
+    "baseFontSize": 16,
+    "cppStandard": 17,
+    "dpiMode": "fontSize",
+    "functionCase": "pascal",
+    "indent": 4,
+    "markers": true,
+    "namespace": "menu",
+    "outputDir": "generated",
+    "runtimeHeader": "imb_runtime.h",
+    "splitHeader": true,
+    "stdString": true,
+    "useTabs": false,
+    "variableCase": "snake"
+  },
+  "components": [
+    "components/LabeledSlider.imc.json",
+    "components/Card.imc.json"
+  ],
+  "features": {
+    "animations": true,
+    "docking": true,
+    "dpiScaling": true,
+    "drawlistFx": true,
+    "iconFonts": true,
+    "shaderFx": true
+  },
+  "fonts": [
+    {
+      "file": "fonts/Inter-Regular.ttf",
+      "mergeIcons": "fontawesome6",
+      "name": "Default",
+      "ranges": "default",
+      "size": 16
+    },
+    {
+      "file": "fonts/Inter-Bold.ttf",
+      "mergeIcons": "fontawesome6",
+      "name": "Bold",
+      "ranges": "default",
+      "size": 16
+    },
+    {
+      "file": "fonts/Inter-Bold.ttf",
+      "mergeIcons": "fontawesome6",
+      "name": "Title",
+      "ranges": "default",
+      "size": 22
+    },
+    {
+      "file": "fonts/Inter-Regular.ttf",
+      "mergeIcons": "none",
+      "name": "Small",
+      "ranges": "default",
+      "size": 12
+    }
+  ],
+  "imgui": {
+    "branch": "docking",
+    "version": "1.91.9"
+  },
+  "kind": "project",
+  "libraries": [],
+  "live": {
+    "enabled": true,
+    "pipeName": "ImForge",
+    "shmName": "ImForge",
+    "tcpPort": 7777,
+    "transport": "tcp"
+  },
+  "name": "CheatMenu",
+  "panels": [
+    "panels/MainMenu.imb.json",
+    "panels/Overlay.imb.json"
+  ],
+  "platform": {
+    "renderer": "dx11",
+    "window": "win32"
+  },
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent": {
+      "colors": {
+        "Button": "#3d8bfdff",
+        "ButtonActive": "#2f74d8ff",
+        "ButtonHovered": "#5a9dffff",
+        "Text": "#ffffffff"
+      },
+      "vars": {
+        "FramePadding": {
+          "x": 12,
+          "y": 6
+        },
+        "FrameRounding": 6
+      }
+    },
+    "danger": {
+      "colors": {
+        "Button": "#c0392bff",
+        "ButtonActive": "#a93226ff",
+        "ButtonHovered": "#e74c3cff"
+      },
+      "vars": {
+        "FrameRounding": 6
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#8a93a2ff"
+      }
+    }
+  },
+  "themes": [
+    "themes/Dark.theme.json",
+    "themes/Neon.theme.json"
+  ]
+}

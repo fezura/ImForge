@@ -1,0 +1,68 @@
+{
+  "activeTheme": "Dark",
+  "binding": {
+    "compileCommands": "",
+    "includePaths": [],
+    "types": [],
+    "typesJson": ""
+  },
+  "codegen": {
+    "baseFontSize": 16,
+    "cppStandard": 17,
+    "dpiMode": "fontSize",
+    "functionCase": "pascal",
+    "indent": 4,
+    "markers": true,
+    "namespace": "ui",
+    "outputDir": "generated",
+    "runtimeHeader": "imb_runtime.h",
+    "splitHeader": true,
+    "stdString": true,
+    "useTabs": false,
+    "variableCase": "snake"
+  },
+  "components": [],
+  "features": {
+    "animations": false,
+    "docking": false,
+    "dpiScaling": true,
+    "drawlistFx": false,
+    "iconFonts": false,
+    "shaderFx": false
+  },
+  "fonts": [
+    {
+      "file": "fonts/Inter-Regular.ttf",
+      "mergeIcons": "none",
+      "name": "Default",
+      "ranges": "default",
+      "size": 16
+    }
+  ],
+  "imgui": {
+    "branch": "master",
+    "version": "1.91.9"
+  },
+  "kind": "project",
+  "libraries": [],
+  "live": {
+    "enabled": true,
+    "pipeName": "ImForge",
+    "shmName": "ImForge",
+    "tcpPort": 7777,
+    "transport": "tcp"
+  },
+  "name": "{{PROJECT_NAME}}",
+  "panels": [
+    "panels/Main.imb.json"
+  ],
+  "platform": {
+    "renderer": "gl3",
+    "window": "sdl3"
+  },
+  "schemaVersion": 1,
+  "styleClasses": {},
+  "themes": [
+    "themes/Dark.theme.json"
+  ]
+}

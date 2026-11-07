@@ -1,0 +1,71 @@
+{
+  "bindings": [],
+  "call": "imb::ess::DrawToasts(imb::ess::ToastCorner::{corner})",
+  "category": "Essentials",
+  "container": false,
+  "events": [],
+  "icon": "fa-bell",
+  "include": "imb_essentials.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "ToastHost",
+  "preview": [
+    {
+      "fill": "#1e2129ff",
+      "h": 40,
+      "rounding": 6,
+      "shape": "rect",
+      "stroke": "#3a4150ff",
+      "w": 180,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 40,
+      "rounding": 2,
+      "shape": "rect",
+      "w": 5,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#2ecc71ff",
+      "r": 5,
+      "shape": "circle",
+      "x": 18,
+      "y": 14
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Toast",
+      "x": 30,
+      "y": 6
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 4,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 120,
+      "x": 0,
+      "y": 36
+    }
+  ],
+  "props": [
+    {
+      "default": "BottomRight",
+      "name": "corner",
+      "type": "enum",
+      "values": [
+        "TopLeft",
+        "TopRight",
+        "BottomLeft",
+        "BottomRight"
+      ]
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

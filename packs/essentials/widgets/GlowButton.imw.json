@@ -1,0 +1,55 @@
+{
+  "bindings": [],
+  "call": "imb::ess::GlowButton({label}, {size}, {color})",
+  "category": "Essentials",
+  "container": false,
+  "events": [
+    "onClick"
+  ],
+  "icon": "fa-sun",
+  "include": "imb_essentials.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "GlowButton",
+  "preview": [
+    {
+      "fill": "{color}",
+      "h": 28,
+      "rounding": 6,
+      "shape": "rect",
+      "stroke": "#ffffff40",
+      "w": 100,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 34,
+      "y": 7
+    }
+  ],
+  "props": [
+    {
+      "default": "Button",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": {
+        "h": "auto",
+        "w": "auto"
+      },
+      "name": "size",
+      "type": "size"
+    },
+    {
+      "default": "#00000000",
+      "name": "color",
+      "type": "color"
+    }
+  ],
+  "returns": "clicked",
+  "schemaVersion": 1
+}

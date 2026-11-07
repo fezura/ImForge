@@ -1,0 +1,194 @@
+{
+  "$id": "https://raw.githubusercontent.com/fezura/ImForge/main/schemas/types.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "types.json produced by imforge-reflect or written by hand: structs and enums the builder can bind to.",
+  "properties": {
+    "enums": {
+      "additionalProperties": {
+        "additionalProperties": false,
+        "description": "Enum definition.",
+        "properties": {
+          "header": {
+            "description": "Header that declares the enum.",
+            "type": "string"
+          },
+          "scoped": {
+            "description": "enum class (true) or plain enum (false). Default true.",
+            "type": "boolean"
+          },
+          "values": {
+            "description": "[name, value] pairs in declaration order.",
+            "items": {
+              "items": false,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "description": "Enumerator name.",
+                  "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+                  "type": "string"
+                },
+                {
+                  "description": "Enumerator value.",
+                  "type": "integer"
+                }
+              ],
+              "type": "array"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "values"
+        ],
+        "type": "object"
+      },
+      "description": "Enum name -> definition.",
+      "propertyNames": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+      },
+      "type": "object"
+    },
+    "kind": {
+      "const": "types",
+      "description": "File kind discriminator."
+    },
+    "schemaVersion": {
+      "const": 1,
+      "description": "File format version; always 1."
+    },
+    "structs": {
+      "additionalProperties": {
+        "additionalProperties": false,
+        "description": "Struct definition.",
+        "properties": {
+          "fields": {
+            "description": "Fields in declaration order.",
+            "items": {
+              "additionalProperties": false,
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "ctype": {
+                        "enum": [
+                          "CharArray",
+                          "FloatArray",
+                          "IntArray",
+                          "Array"
+                        ]
+                      }
+                    }
+                  },
+                  "then": {
+                    "required": [
+                      "count"
+                    ]
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "ctype": {
+                        "enum": [
+                          "Vector",
+                          "Array"
+                        ]
+                      }
+                    }
+                  },
+                  "then": {
+                    "required": [
+                      "elem"
+                    ]
+                  }
+                }
+              ],
+              "description": "Field.",
+              "properties": {
+                "count": {
+                  "description": "Length for CharArray/FloatArray/IntArray/Array.",
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "ctype": {
+                  "description": "imforge::CKind classification.",
+                  "enum": [
+                    "Bool",
+                    "I8",
+                    "U8",
+                    "I16",
+                    "U16",
+                    "I32",
+                    "U32",
+                    "I64",
+                    "U64",
+                    "Float",
+                    "Double",
+                    "StdString",
+                    "CharArray",
+                    "Vec2",
+                    "Vec4",
+                    "FloatArray",
+                    "IntArray",
+                    "Enum",
+                    "Struct",
+                    "Vector",
+                    "Array",
+                    "TexID",
+                    "Unknown"
+                  ],
+                  "type": "string"
+                },
+                "elem": {
+                  "description": "Element type name for Vector/Array.",
+                  "type": "string"
+                },
+                "name": {
+                  "$ref": "node.schema.json#/$defs/Identifier",
+                  "description": "Member name."
+                },
+                "type": {
+                  "description": "C++ spelling, e.g. float, char[32], ImVec2, std::vector<Item>, Mode.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "type",
+                "ctype"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "header": {
+            "description": "Header that declares the struct (included by generated code when known).",
+            "type": "string"
+          },
+          "size": {
+            "description": "sizeof the struct when known.",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "fields"
+        ],
+        "type": "object"
+      },
+      "description": "Struct name -> definition.",
+      "propertyNames": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "kind",
+    "structs"
+  ],
+  "title": "ImForge reflected types",
+  "type": "object"
+}

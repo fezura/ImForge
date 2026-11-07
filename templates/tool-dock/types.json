@@ -1,0 +1,32 @@
+{
+  "enums": {},
+  "kind": "types",
+  "schemaVersion": 1,
+  "structs": {
+    "Object": {
+      "fields": [
+        {
+          "ctype": "StdString",
+          "name": "name",
+          "type": "std::string"
+        },
+        {
+          "ctype": "Vec2",
+          "name": "position",
+          "type": "ImVec2"
+        },
+        {
+          "ctype": "Vec4",
+          "name": "color",
+          "type": "ImVec4"
+        },
+        {
+          "ctype": "Bool",
+          "name": "visible",
+          "type": "bool"
+        }
+      ],
+      "header": "object.h"
+    }
+  }
+}

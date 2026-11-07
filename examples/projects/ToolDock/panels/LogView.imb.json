@@ -1,0 +1,481 @@
+{
+  "kind": "panel",
+  "name": "LogView",
+  "params": [
+    {
+      "name": "stats",
+      "type": "Stats"
+    },
+    {
+      "name": "log",
+      "type": "LogBuffer"
+    }
+  ],
+  "root": {
+    "bind": {
+      "open": "state.open"
+    },
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "bind": {
+                  "selected": "state.autoScroll"
+                },
+                "id": "mi_autoscroll",
+                "props": {
+                  "label": "Auto-scroll",
+                  "shortcut": "Ctrl+End"
+                },
+                "type": "MenuItem"
+              },
+              {
+                "bind": {
+                  "selected": "state.paused"
+                },
+                "id": "mi_pause",
+                "props": {
+                  "label": "Pause",
+                  "shortcut": "Space"
+                },
+                "type": "MenuItem"
+              },
+              {
+                "bind": {
+                  "selected": "state.showStats"
+                },
+                "id": "mi_stats",
+                "props": {
+                  "label": "Show frame graph"
+                },
+                "type": "MenuItem"
+              },
+              {
+                "id": "mi_sep",
+                "type": "Separator"
+              },
+              {
+                "events": {
+                  "onClick": {
+                    "handler": true
+                  }
+                },
+                "id": "mi_clear",
+                "props": {
+                  "label": "Clear",
+                  "shortcut": "Ctrl+L"
+                },
+                "type": "MenuItem"
+              }
+            ],
+            "id": "view_menu",
+            "props": {
+              "enabled": true,
+              "label": "View"
+            },
+            "type": "Menu"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "onClick": {
+                    "actions": [
+                      {
+                        "target": "state.minLevel",
+                        "type": "set",
+                        "value": 0
+                      }
+                    ]
+                  }
+                },
+                "id": "lvl_all",
+                "props": {
+                  "label": "All"
+                },
+                "type": "MenuItem"
+              },
+              {
+                "events": {
+                  "onClick": {
+                    "actions": [
+                      {
+                        "target": "state.minLevel",
+                        "type": "set",
+                        "value": 1
+                      }
+                    ]
+                  }
+                },
+                "id": "lvl_warn",
+                "props": {
+                  "label": "Warnings and errors"
+                },
+                "type": "MenuItem"
+              },
+              {
+                "events": {
+                  "onClick": {
+                    "actions": [
+                      {
+                        "target": "state.minLevel",
+                        "type": "set",
+                        "value": 2
+                      }
+                    ]
+                  }
+                },
+                "id": "lvl_err",
+                "props": {
+                  "label": "Errors only"
+                },
+                "type": "MenuItem"
+              }
+            ],
+            "id": "level_menu",
+            "props": {
+              "enabled": true,
+              "label": "Level"
+            },
+            "type": "Menu"
+          }
+        ],
+        "id": "menubar",
+        "type": "MenuBar"
+      },
+      {
+        "anim": {
+          "enter": {
+            "duration": 0.2,
+            "preset": "FadeSlideDown"
+          },
+          "exit": {
+            "duration": 0.12,
+            "preset": "Fade"
+          }
+        },
+        "children": [
+          {
+            "bind": {
+              "values": "stats.frame_times"
+            },
+            "id": "frame_plot",
+            "props": {
+              "label": "##frametimes",
+              "overlay": "{stats.frame_time_ms:%.2f} ms",
+              "scaleMax": 33.3,
+              "scaleMin": 0,
+              "size": {
+                "h": 64,
+                "w": "fill"
+              }
+            },
+            "style": {
+              "colors": {
+                "FrameBg": "#1e1e1eff",
+                "PlotLines": "#f0883eff"
+              }
+            },
+            "type": "PlotLines"
+          },
+          {
+            "children": [
+              {
+                "font": "Bold",
+                "id": "fps_text",
+                "props": {
+                  "text": "{stats.fps:%.0f} fps"
+                },
+                "type": "Text"
+              },
+              {
+                "id": "draw_text",
+                "props": {
+                  "text": "{stats.draw_calls} draw calls"
+                },
+                "style": {
+                  "classes": [
+                    "label"
+                  ]
+                },
+                "type": "Text"
+              },
+              {
+                "id": "tri_text",
+                "props": {
+                  "text": "{stats.triangles} tris"
+                },
+                "style": {
+                  "classes": [
+                    "label"
+                  ]
+                },
+                "type": "Text"
+              },
+              {
+                "id": "mem_text",
+                "props": {
+                  "text": "{stats.memory_mb:%.1f} MB"
+                },
+                "style": {
+                  "classes": [
+                    "label"
+                  ]
+                },
+                "type": "Text"
+              },
+              {
+                "anim": {
+                  "enter": {
+                    "duration": 0.1,
+                    "preset": "Fade"
+                  },
+                  "exit": {
+                    "duration": 0.4,
+                    "preset": "Fade"
+                  }
+                },
+                "id": "slow_text",
+                "props": {
+                  "text": "{icon:fa-triangle-exclamation} slow frame"
+                },
+                "style": {
+                  "classes": [
+                    "warning"
+                  ]
+                },
+                "type": "Text",
+                "visibleIf": "stats.frame_time_ms > 16.7"
+              },
+              {
+                "bind": {
+                  "values": "stats.frame_times"
+                },
+                "id": "hist",
+                "props": {
+                  "label": "##hist",
+                  "scaleMax": 33.3,
+                  "scaleMin": 0,
+                  "size": {
+                    "h": 20,
+                    "w": 120
+                  }
+                },
+                "type": "PlotHistogram"
+              }
+            ],
+            "id": "stats_row",
+            "props": {
+              "spacing": 18
+            },
+            "type": "HStack"
+          }
+        ],
+        "id": "stats_child",
+        "props": {
+          "border": true,
+          "childFlags": [
+            "AutoResizeY",
+            "AlwaysUseWindowPadding"
+          ],
+          "size": {
+            "h": "auto",
+            "w": "fill"
+          }
+        },
+        "type": "Child",
+        "visibleIf": "state.showStats"
+      },
+      {
+        "children": [
+          {
+            "bind": {
+              "value": "state.filter"
+            },
+            "events": {
+              "onChange": {
+                "handler": true
+              }
+            },
+            "id": "filter_input",
+            "props": {
+              "flags": [
+                "EscapeClearsAll"
+              ],
+              "hint": "Filter (incl,-excl)",
+              "label": "##filter",
+              "maxLength": 128
+            },
+            "type": "InputText"
+          },
+          {
+            "events": {
+              "onClick": {
+                "actions": [
+                  {
+                    "target": "state.filter",
+                    "type": "set",
+                    "value": ""
+                  }
+                ],
+                "handler": true
+              }
+            },
+            "id": "filter_clear",
+            "props": {
+              "label": "{icon:fa-xmark}",
+              "size": {
+                "h": "auto",
+                "w": 26
+              }
+            },
+            "type": "Button",
+            "visibleIf": "state.filter != \"\""
+          },
+          {
+            "bind": {
+              "value": "state.paused"
+            },
+            "id": "pause_cb",
+            "props": {
+              "label": "Pause"
+            },
+            "type": "Checkbox"
+          },
+          {
+            "id": "count_text",
+            "props": {
+              "disabled": true,
+              "text": "{stats.log_count} lines"
+            },
+            "type": "Text"
+          },
+          {
+            "events": {
+              "onClick": {
+                "handler": true
+              }
+            },
+            "id": "clear_btn",
+            "props": {
+              "label": "Clear",
+              "size": {
+                "h": "auto",
+                "w": 60
+              }
+            },
+            "type": "Button"
+          }
+        ],
+        "id": "filter_row",
+        "props": {
+          "align": "Center",
+          "spacing": 6
+        },
+        "type": "HStack"
+      },
+      {
+        "children": [
+          {
+            "id": "log_lines",
+            "name": "Log lines (hand-written)",
+            "props": {
+              "code": "for (const LogLine& line : log.Filtered(state.filter.c_str(), state.min_level)) {\n    ImGui::PushStyleColor(ImGuiCol_Text, LevelColor(line.level));\n    ImGui::TextUnformatted(line.text.c_str());\n    ImGui::PopStyleColor();\n}\nif (state.auto_scroll && !state.paused && ImGui::GetScrollY() >= ImGui::GetScrollMaxY()) ImGui::SetScrollHereY(1.0f);",
+              "preview": "Placeholder"
+            },
+            "type": "Code"
+          },
+          {
+            "id": "last_line",
+            "props": {
+              "text": "{stats.last_log}",
+              "wrapped": true
+            },
+            "style": {
+              "classes": [
+                "warning"
+              ]
+            },
+            "type": "Text",
+            "visibleIf": "state.paused"
+          }
+        ],
+        "font": "Mono",
+        "id": "log_child",
+        "props": {
+          "border": true,
+          "flags": [
+            "HorizontalScrollbar",
+            "AlwaysVerticalScrollbar"
+          ],
+          "size": {
+            "h": "fill",
+            "w": "fill"
+          }
+        },
+        "style": {
+          "vars": {
+            "ItemSpacing": {
+              "x": 4,
+              "y": 2
+            }
+          }
+        },
+        "type": "Child"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoCollapse"
+      ],
+      "initialPos": {
+        "x": 420,
+        "y": 40
+      },
+      "initialSize": {
+        "x": 720,
+        "y": 360
+      },
+      "menuBar": true,
+      "sizeCond": "FirstUseEver",
+      "title": "{icon:fa-terminal} Log"
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": true,
+      "name": "open",
+      "type": "bool"
+    },
+    {
+      "default": "",
+      "name": "filter",
+      "type": "string"
+    },
+    {
+      "default": true,
+      "name": "autoScroll",
+      "type": "bool"
+    },
+    {
+      "default": false,
+      "name": "paused",
+      "type": "bool"
+    },
+    {
+      "default": true,
+      "name": "showStats",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "name": "minLevel",
+      "type": "int"
+    }
+  ]
+}

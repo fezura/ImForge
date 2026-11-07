@@ -1,0 +1,371 @@
+{
+  "$id": "https://raw.githubusercontent.com/fezura/ImForge/main/schemas/project.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "imforge.json: project root file listing panels, components, themes and all settings.",
+  "properties": {
+    "activeTheme": {
+      "description": "Name of the theme applied by default.",
+      "type": "string"
+    },
+    "binding": {
+      "additionalProperties": false,
+      "description": "Reflection / binding tool settings.",
+      "properties": {
+        "compileCommands": {
+          "description": "Path to compile_commands.json for imforge-reflect (may be empty).",
+          "type": "string"
+        },
+        "includePaths": {
+          "description": "Extra include directories for imforge-reflect.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "types": {
+          "description": "C++ struct names to reflect; panel param types should be listed here.",
+          "items": {
+            "$ref": "node.schema.json#/$defs/Identifier"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "typesJson": {
+          "description": "Path of the types.json produced by imforge-reflect or written by hand.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "codegen": {
+      "additionalProperties": false,
+      "description": "Code generation settings.",
+      "properties": {
+        "baseFontSize": {
+          "description": "Font size at which px values are authored. Default 13.",
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "cppStandard": {
+          "description": "C++ standard of the generated code. Default 17.",
+          "enum": [
+            17,
+            20,
+            23
+          ],
+          "type": "integer"
+        },
+        "dpiMode": {
+          "description": "none: S=1; fontSize: S=GetFontSize()/baseFontSize; variable: float imb_scale parameter. Default fontSize.",
+          "enum": [
+            "none",
+            "fontSize",
+            "variable"
+          ],
+          "type": "string"
+        },
+        "functionCase": {
+          "description": "Naming of generated functions. Default pascal.",
+          "enum": [
+            "pascal",
+            "camel",
+            "snake"
+          ],
+          "type": "string"
+        },
+        "indent": {
+          "description": "Indent width. Default 4.",
+          "maximum": 8,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "markers": {
+          "description": "Emit @imb markers for round-trip. Default true.",
+          "type": "boolean"
+        },
+        "namespace": {
+          "description": "Namespace of generated functions. Default ui.",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_]*(::[A-Za-z_][A-Za-z0-9_]*)*$",
+          "type": "string"
+        },
+        "outputDir": {
+          "description": "Output directory relative to the project. Default generated.",
+          "type": "string"
+        },
+        "runtimeHeader": {
+          "description": "Include path of the runtime header. Default imb_runtime.h.",
+          "type": "string"
+        },
+        "splitHeader": {
+          "description": "Emit <Panel>.h + <Panel>.cpp (true) or a single header with inline functions (false). Default true.",
+          "type": "boolean"
+        },
+        "stdString": {
+          "description": "Use imgui_stdlib.h for std::string InputText bindings. Default true.",
+          "type": "boolean"
+        },
+        "useTabs": {
+          "description": "Indent with tabs. Default false.",
+          "type": "boolean"
+        },
+        "variableCase": {
+          "description": "Naming of generated variables and state members. Default snake.",
+          "enum": [
+            "snake",
+            "camel",
+            "pascal"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "components": {
+      "description": "Component file paths relative to the project.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "features": {
+      "additionalProperties": false,
+      "description": "Feature toggles.",
+      "properties": {
+        "animations": {
+          "description": "Enable anim transitions/presets (imb_runtime.h).",
+          "type": "boolean"
+        },
+        "docking": {
+          "description": "Project targets the docking branch and may use docking API.",
+          "type": "boolean"
+        },
+        "dpiScaling": {
+          "description": "Multiply px values by the DPI scale expression (codegen.dpiMode).",
+          "type": "boolean"
+        },
+        "drawlistFx": {
+          "description": "Enable DrawList effects (gradient, shadow, glow, border, particles, noise, cursorHighlight).",
+          "type": "boolean"
+        },
+        "iconFonts": {
+          "description": "Merge an icon font and resolve {icon:...} to ICON_* macros.",
+          "type": "boolean"
+        },
+        "shaderFx": {
+          "description": "Enable shader blur (imb::fx backend headers).",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "fonts": {
+      "description": "Fonts loaded by the generated LoadFonts; referenced by node.font.",
+      "items": {
+        "additionalProperties": false,
+        "description": "Font entry.",
+        "properties": {
+          "file": {
+            "description": "TTF/OTF path relative to the project.",
+            "type": "string"
+          },
+          "mergeIcons": {
+            "description": "Icon font merged into this font. Default none.",
+            "enum": [
+              "none",
+              "fontawesome6"
+            ],
+            "type": "string"
+          },
+          "name": {
+            "$ref": "node.schema.json#/$defs/Identifier",
+            "description": "Font name used by node.font."
+          },
+          "ranges": {
+            "description": "Glyph range set (ImFontAtlas::GetGlyphRanges*). Default default.",
+            "enum": [
+              "default",
+              "greek",
+              "korean",
+              "japanese",
+              "chineseFull",
+              "chineseSimplifiedCommon",
+              "cyrillic",
+              "thai",
+              "vietnamese"
+            ],
+            "type": "string"
+          },
+          "size": {
+            "description": "Pixel size at base DPI.",
+            "exclusiveMinimum": 0,
+            "type": "number"
+          }
+        },
+        "required": [
+          "name",
+          "file",
+          "size"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "imgui": {
+      "additionalProperties": false,
+      "description": "Target Dear ImGui version.",
+      "properties": {
+        "branch": {
+          "description": "ImGui branch.",
+          "enum": [
+            "master",
+            "docking"
+          ],
+          "type": "string"
+        },
+        "version": {
+          "description": "Version string, e.g. \"1.91.9\" (minimum 1.85).",
+          "pattern": "^[0-9]+\\.[0-9]+(\\.[0-9]+)?[a-z]?$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "branch"
+      ],
+      "type": "object"
+    },
+    "kind": {
+      "const": "project",
+      "description": "File kind discriminator."
+    },
+    "libraries": {
+      "description": ".imblib library paths relative to the project.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "live": {
+      "additionalProperties": false,
+      "description": "Live-attach settings.",
+      "properties": {
+        "enabled": {
+          "description": "Start the live server when the project opens. Default true.",
+          "type": "boolean"
+        },
+        "pipeName": {
+          "description": "Named pipe / unix socket name. Default ImForge.",
+          "type": "string"
+        },
+        "shmName": {
+          "description": "Shared memory name. Default ImForge.",
+          "type": "string"
+        },
+        "tcpPort": {
+          "description": "TCP port. Default 7777.",
+          "maximum": 65535,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "transport": {
+          "description": "Transport kind. Default tcp.",
+          "enum": [
+            "tcp",
+            "pipe",
+            "shm"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "name": {
+      "description": "Project name shown in the builder.",
+      "minLength": 1,
+      "type": "string"
+    },
+    "panels": {
+      "description": "Panel file paths relative to the project.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "platform": {
+      "additionalProperties": false,
+      "description": "Windowing and rendering backend of the user's app (selects example client and fx header).",
+      "properties": {
+        "renderer": {
+          "description": "Renderer backend.",
+          "enum": [
+            "dx9",
+            "dx11",
+            "dx12",
+            "gl3",
+            "vulkan"
+          ],
+          "type": "string"
+        },
+        "window": {
+          "description": "Window/platform backend.",
+          "enum": [
+            "win32",
+            "sdl2",
+            "sdl3",
+            "glfw"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "window",
+        "renderer"
+      ],
+      "type": "object"
+    },
+    "schemaVersion": {
+      "const": 1,
+      "description": "File format version; always 1."
+    },
+    "styleClasses": {
+      "additionalProperties": {
+        "additionalProperties": false,
+        "description": "Style class.",
+        "properties": {
+          "colors": {
+            "$ref": "node.schema.json#/$defs/ColorMap",
+            "description": "PushStyleColor overrides."
+          },
+          "vars": {
+            "$ref": "node.schema.json#/$defs/StyleVarMap",
+            "description": "PushStyleVar overrides."
+          }
+        },
+        "type": "object"
+      },
+      "description": "Named style overrides referenced by node.style.classes.",
+      "propertyNames": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+      },
+      "type": "object"
+    },
+    "themes": {
+      "description": "Theme file paths relative to the project.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "kind",
+    "name",
+    "imgui",
+    "platform",
+    "panels"
+  ],
+  "title": "ImForge project",
+  "type": "object"
+}

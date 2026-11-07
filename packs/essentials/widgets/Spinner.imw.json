@@ -1,0 +1,51 @@
+{
+  "bindings": [],
+  "call": "imb::ess::Spinner({label}, {radius}, {thickness}, {color})",
+  "category": "Essentials",
+  "container": false,
+  "events": [],
+  "icon": "fa-spinner",
+  "include": "imb_essentials.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "Spinner",
+  "preview": [
+    {
+      "fill": "#00000000",
+      "r": 7,
+      "shape": "circle",
+      "stroke": "#2ecc71ff",
+      "thickness": 2,
+      "x": 8,
+      "y": 8
+    }
+  ],
+  "props": [
+    {
+      "default": "##spinner",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": 8,
+      "max": 64,
+      "min": 2,
+      "name": "radius",
+      "type": "float"
+    },
+    {
+      "default": 2,
+      "max": 16,
+      "min": 1,
+      "name": "thickness",
+      "type": "float"
+    },
+    {
+      "default": "#00000000",
+      "name": "color",
+      "type": "color"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

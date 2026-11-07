@@ -1,0 +1,79 @@
+{
+  "$id": "https://raw.githubusercontent.com/fezura/ImForge/main/schemas/imblib-manifest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "manifest.json inside an .imblib zip: lists the bundled components, widget manifests and headers.",
+  "properties": {
+    "author": {
+      "description": "Author or organisation.",
+      "type": "string"
+    },
+    "components": {
+      "description": "Paths of .imc.json files inside the archive.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "dependencies": {
+      "description": "Names of other libraries that must be imported first.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "description": {
+      "description": "Short description shown in the library browser.",
+      "type": "string"
+    },
+    "headers": {
+      "description": "Paths of C++ headers inside the archive, copied next to the generated code.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "kind": {
+      "const": "imblib",
+      "description": "File kind discriminator."
+    },
+    "license": {
+      "description": "SPDX license id.",
+      "type": "string"
+    },
+    "minImGuiVersion": {
+      "description": "Minimum IMGUI_VERSION_NUM.",
+      "minimum": 18500,
+      "type": "integer"
+    },
+    "name": {
+      "description": "Library name.",
+      "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1,
+      "description": "File format version; always 1."
+    },
+    "version": {
+      "description": "Semantic version.",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+([-+][0-9A-Za-z.-]+)?$",
+      "type": "string"
+    },
+    "widgets": {
+      "description": "Paths of .imw.json files inside the archive.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "kind",
+    "name",
+    "version"
+  ],
+  "title": "ImForge .imblib manifest",
+  "type": "object"
+}

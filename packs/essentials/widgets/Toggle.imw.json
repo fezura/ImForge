@@ -1,0 +1,67 @@
+{
+  "bindings": [
+    {
+      "name": "value",
+      "required": true,
+      "types": [
+        "bool"
+      ]
+    }
+  ],
+  "call": "imb::ess::Toggle({label}, {value}, {onColor}, {offColor})",
+  "category": "Essentials",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-toggle-on",
+  "include": "imb_essentials.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "Toggle",
+  "preview": [
+    {
+      "fill": "{onColor}",
+      "h": 20,
+      "rounding": 10,
+      "shape": "rect",
+      "w": 40,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#ffffffff",
+      "r": 8,
+      "shape": "circle",
+      "x": 30,
+      "y": 10
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 48,
+      "y": 3
+    }
+  ],
+  "props": [
+    {
+      "default": "Toggle",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": "#2ecc71ff",
+      "name": "onColor",
+      "type": "color"
+    },
+    {
+      "default": "#00000000",
+      "hint": "#00000000 = ImGui FrameBg",
+      "name": "offColor",
+      "type": "color"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

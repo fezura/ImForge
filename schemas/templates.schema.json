@@ -1,0 +1,65 @@
+{
+  "$id": "https://raw.githubusercontent.com/fezura/ImForge/main/schemas/templates.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "templates/templates.json: list of project skeletons offered by the new-project wizard.",
+  "properties": {
+    "kind": {
+      "const": "templates",
+      "description": "File kind discriminator."
+    },
+    "schemaVersion": {
+      "const": 1,
+      "description": "File format version; always 1."
+    },
+    "templates": {
+      "description": "Available templates.",
+      "items": {
+        "additionalProperties": false,
+        "description": "Template entry.",
+        "properties": {
+          "description": {
+            "description": "One-line description shown in the wizard.",
+            "type": "string"
+          },
+          "dir": {
+            "description": "Template folder relative to templates/; files are copied with {{PROJECT_NAME}} substituted.",
+            "type": "string"
+          },
+          "features": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "description": "Feature defaults preselected by the wizard.",
+            "type": "object"
+          },
+          "id": {
+            "description": "Stable id.",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "type": "string"
+          },
+          "name": {
+            "description": "Display name.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "dir",
+          "features"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "kind",
+    "templates"
+  ],
+  "title": "ImForge wizard template index",
+  "type": "object"
+}

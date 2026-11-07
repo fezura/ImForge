@@ -1,0 +1,167 @@
+{
+  "kind": "panel",
+  "name": "Inspector",
+  "params": [
+    {
+      "name": "obj",
+      "type": "Object"
+    }
+  ],
+  "root": {
+    "bind": {
+      "open": "state.open"
+    },
+    "children": [
+      {
+        "bind": {
+          "value": "state.filter"
+        },
+        "id": "filter",
+        "props": {
+          "hint": "Filter",
+          "label": "##filter",
+          "maxLength": 64
+        },
+        "type": "InputText"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "id": "name_lbl",
+                "props": {
+                  "disabled": true,
+                  "text": "Name"
+                },
+                "type": "Text"
+              },
+              {
+                "bind": {
+                  "value": "obj.name"
+                },
+                "id": "name_input",
+                "props": {
+                  "label": "##name",
+                  "maxLength": 64
+                },
+                "type": "InputText"
+              },
+              {
+                "id": "pos_lbl",
+                "props": {
+                  "disabled": true,
+                  "text": "Position"
+                },
+                "type": "Text"
+              },
+              {
+                "bind": {
+                  "value": "obj.position"
+                },
+                "id": "pos_drag",
+                "props": {
+                  "components": 2,
+                  "format": "%.2f",
+                  "label": "##pos",
+                  "speed": 0.1
+                },
+                "type": "DragFloat"
+              },
+              {
+                "id": "color_lbl",
+                "props": {
+                  "disabled": true,
+                  "text": "Color"
+                },
+                "type": "Text"
+              },
+              {
+                "bind": {
+                  "value": "obj.color"
+                },
+                "id": "color_edit",
+                "props": {
+                  "alpha": true,
+                  "label": "##color"
+                },
+                "type": "ColorEdit"
+              },
+              {
+                "id": "visible_lbl",
+                "props": {
+                  "disabled": true,
+                  "text": "Visible"
+                },
+                "type": "Text"
+              },
+              {
+                "bind": {
+                  "value": "obj.visible"
+                },
+                "id": "visible_cb",
+                "props": {
+                  "label": "##visible"
+                },
+                "type": "Checkbox"
+              }
+            ],
+            "id": "grid",
+            "props": {
+              "columnWidths": [
+                100,
+                "fill"
+              ],
+              "columns": 2,
+              "flags": [
+                "SizingStretchProp",
+                "BordersInnerH"
+              ]
+            },
+            "type": "Grid"
+          }
+        ],
+        "id": "props_header",
+        "props": {
+          "defaultOpen": true,
+          "flags": [
+            "SpanAvailWidth"
+          ],
+          "label": "Properties"
+        },
+        "type": "CollapsingHeader"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoCollapse"
+      ],
+      "initialPos": {
+        "x": 60,
+        "y": 60
+      },
+      "initialSize": {
+        "x": 340,
+        "y": 480
+      },
+      "menuBar": false,
+      "sizeCond": "FirstUseEver",
+      "title": "Inspector"
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": true,
+      "name": "open",
+      "type": "bool"
+    },
+    {
+      "default": "",
+      "name": "filter",
+      "type": "string"
+    }
+  ]
+}

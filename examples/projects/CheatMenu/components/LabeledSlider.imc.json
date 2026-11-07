@@ -1,0 +1,102 @@
+{
+  "kind": "component",
+  "name": "LabeledSlider",
+  "params": [
+    {
+      "default": "Value",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "name": "value",
+      "type": "binding<float>"
+    },
+    {
+      "default": 0,
+      "name": "min",
+      "type": "float"
+    },
+    {
+      "default": 1,
+      "name": "max",
+      "type": "float"
+    },
+    {
+      "default": "%.2f",
+      "name": "format",
+      "type": "string"
+    }
+  ],
+  "root": {
+    "children": [
+      {
+        "id": "lbl",
+        "props": {
+          "text": {
+            "param": "label"
+          }
+        },
+        "type": "Text"
+      },
+      {
+        "anim": {
+          "transitions": [
+            {
+              "duration": 0.12,
+              "ease": "OutQuad",
+              "on": "hover",
+              "prop": "color.SliderGrab",
+              "to": "#74adffff"
+            },
+            {
+              "duration": 0.1,
+              "ease": "OutQuad",
+              "on": "active",
+              "prop": "color.FrameBg",
+              "to": "#323947ff"
+            }
+          ]
+        },
+        "bind": {
+          "value": {
+            "param": "value"
+          }
+        },
+        "id": "sl",
+        "props": {
+          "flags": [
+            "AlwaysClamp"
+          ],
+          "format": {
+            "param": "format"
+          },
+          "label": "##v",
+          "max": {
+            "param": "max"
+          },
+          "min": {
+            "param": "min"
+          }
+        },
+        "type": "SliderFloat"
+      },
+      {
+        "id": "slot_content",
+        "props": {
+          "name": "content"
+        },
+        "type": "Slot"
+      }
+    ],
+    "id": "row",
+    "props": {
+      "align": "Start",
+      "spacing": 8
+    },
+    "type": "HStack"
+  },
+  "schemaVersion": 1,
+  "slots": [
+    "content"
+  ]
+}

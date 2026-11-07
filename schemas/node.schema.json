@@ -1,0 +1,1739 @@
+{
+  "$defs": {
+    "Action": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "set",
+                  "toggle",
+                  "openPopup",
+                  "setTab"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "target"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "set",
+                  "setTab",
+                  "copyClipboard"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "set",
+                  "toggle"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "$ref": "#/$defs/BindingPath"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "openPopup",
+                  "setTab"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "$ref": "#/$defs/NodeId"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "setTab"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "$ref": "#/$defs/NodeId"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "copyClipboard"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/$defs/ExprRef"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "description": "No-code action executed when an event fires.",
+      "properties": {
+        "target": {
+          "description": "set/toggle: binding path; openPopup: id of a Popup or Modal node; setTab: id of a TabBar node.",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/ActionType",
+          "description": "Action kind."
+        },
+        "value": {
+          "description": "set: literal or {\"expr\": ...}; setTab: Tab node id; copyClipboard: string (interpolated) or {\"expr\": ...}."
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    },
+    "ActionType": {
+      "description": "set: assign value to target; toggle: flip a bool target; openPopup: ImGui::OpenPopup(target node id); closePopup: ImGui::CloseCurrentPopup; setTab: select tab value in TabBar target; copyClipboard: SetClipboardText(value); handler: call the generated handler.",
+      "enum": [
+        "set",
+        "toggle",
+        "openPopup",
+        "closePopup",
+        "setTab",
+        "copyClipboard",
+        "handler"
+      ],
+      "type": "string"
+    },
+    "Anchor": {
+      "description": "Anchor point of the Canvas rect the child is attached to; the same fraction of the child's explicit size is subtracted.",
+      "enum": [
+        "TopLeft",
+        "Top",
+        "TopRight",
+        "Left",
+        "Center",
+        "Right",
+        "BottomLeft",
+        "Bottom",
+        "BottomRight"
+      ],
+      "type": "string"
+    },
+    "AnimSpec": {
+      "additionalProperties": false,
+      "description": "Animation settings of a node.",
+      "properties": {
+        "enter": {
+          "$ref": "#/$defs/EnterSpec",
+          "description": "Enter animation."
+        },
+        "exit": {
+          "$ref": "#/$defs/ExitSpec",
+          "description": "Exit animation."
+        },
+        "transitions": {
+          "description": "State-driven transitions.",
+          "items": {
+            "$ref": "#/$defs/Transition"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BindValue": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/BindingPath"
+        },
+        {
+          "$ref": "#/$defs/ParamRef"
+        }
+      ],
+      "description": "Binding slot value: a binding path, or {\"param\": ...} inside a component definition."
+    },
+    "BindingPath": {
+      "description": "Binding path root(.field|[index])* where root is a panel param name or state, e.g. player.health, cfg.esp.enabled, state.selectedTab, inv.items[2].name, items.size.",
+      "pattern": "^[A-Za-z_][A-Za-z0-9_]*(\\.[A-Za-z_][A-Za-z0-9_]*|\\[[^\\]]+\\])*$",
+      "type": "string"
+    },
+    "BoolProp": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "$ref": "#/$defs/ExprRef"
+        },
+        {
+          "$ref": "#/$defs/ParamRef"
+        }
+      ],
+      "description": "Bool prop; literal, expression or param reference."
+    },
+    "ChildFlags": {
+      "description": "ImGuiChildFlags names without the prefix. Known names: Borders, AlwaysUseWindowPadding, ResizeX, ResizeY, AutoResizeX, AutoResizeY, AlwaysAutoResize, FrameStyle, NavFlattened. Other identifiers are accepted for newer ImGui versions.",
+      "items": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "Color": {
+      "description": "Color as #RRGGBBAA (always 8 hex digits).",
+      "pattern": "^#[0-9a-fA-F]{8}$",
+      "type": "string"
+    },
+    "ColorEditFlags": {
+      "description": "ImGuiColorEditFlags names without the prefix. Known names: NoAlpha, NoPicker, NoOptions, NoSmallPreview, NoInputs, NoTooltip, NoLabel, NoSidePreview, NoDragDrop, NoBorder, AlphaOpaque, AlphaNoBg, AlphaPreviewHalf, AlphaPreview, AlphaBar, HDR, DisplayRGB, DisplayHSV, DisplayHex, Uint8, Float, PickerHueBar, PickerHueWheel, InputRGB, InputHSV. Other identifiers are accepted for newer ImGui versions.",
+      "items": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "ColorMap": {
+      "additionalProperties": {
+        "$ref": "#/$defs/Color",
+        "description": "ImGuiCol unknown to this schema (newer ImGui or legacy alias); still a #rrggbbaa color."
+      },
+      "description": "ImGuiCol name -> #rrggbbaa.",
+      "properties": {
+        "Border": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_Border."
+        },
+        "BorderShadow": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_BorderShadow."
+        },
+        "Button": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_Button."
+        },
+        "ButtonActive": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_ButtonActive."
+        },
+        "ButtonHovered": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_ButtonHovered."
+        },
+        "CheckMark": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_CheckMark."
+        },
+        "ChildBg": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_ChildBg."
+        },
+        "DockingEmptyBg": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_DockingEmptyBg."
+        },
+        "DockingPreview": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_DockingPreview."
+        },
+        "DragDropTarget": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_DragDropTarget."
+        },
+        "FrameBg": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_FrameBg."
+        },
+        "FrameBgActive": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_FrameBgActive."
+        },
+        "FrameBgHovered": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_FrameBgHovered."
+        },
+        "Header": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_Header."
+        },
+        "HeaderActive": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_HeaderActive."
+        },
+        "HeaderHovered": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_HeaderHovered."
+        },
+        "InputTextCursor": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_InputTextCursor."
+        },
+        "MenuBarBg": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_MenuBarBg."
+        },
+        "ModalWindowDimBg": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_ModalWindowDimBg."
+        },
+        "NavCursor": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_NavCursor."
+        },
+        "NavWindowingDimBg": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_NavWindowingDimBg."
+        },
+        "NavWindowingHighlight": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_NavWindowingHighlight."
+        },
+        "PlotHistogram": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_PlotHistogram."
+        },
+        "PlotHistogramHovered": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_PlotHistogramHovered."
+        },
+        "PlotLines": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_PlotLines."
+        },
+        "PlotLinesHovered": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_PlotLinesHovered."
+        },
+        "PopupBg": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_PopupBg."
+        },
+        "ResizeGrip": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_ResizeGrip."
+        },
+        "ResizeGripActive": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_ResizeGripActive."
+        },
+        "ResizeGripHovered": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_ResizeGripHovered."
+        },
+        "ScrollbarBg": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_ScrollbarBg."
+        },
+        "ScrollbarGrab": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_ScrollbarGrab."
+        },
+        "ScrollbarGrabActive": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_ScrollbarGrabActive."
+        },
+        "ScrollbarGrabHovered": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_ScrollbarGrabHovered."
+        },
+        "Separator": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_Separator."
+        },
+        "SeparatorActive": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_SeparatorActive."
+        },
+        "SeparatorHovered": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_SeparatorHovered."
+        },
+        "SliderGrab": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_SliderGrab."
+        },
+        "SliderGrabActive": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_SliderGrabActive."
+        },
+        "Tab": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_Tab."
+        },
+        "TabDimmed": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_TabDimmed."
+        },
+        "TabDimmedSelected": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_TabDimmedSelected."
+        },
+        "TabDimmedSelectedOverline": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_TabDimmedSelectedOverline."
+        },
+        "TabHovered": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_TabHovered."
+        },
+        "TabSelected": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_TabSelected."
+        },
+        "TabSelectedOverline": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_TabSelectedOverline."
+        },
+        "TableBorderLight": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_TableBorderLight."
+        },
+        "TableBorderStrong": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_TableBorderStrong."
+        },
+        "TableHeaderBg": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_TableHeaderBg."
+        },
+        "TableRowBg": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_TableRowBg."
+        },
+        "TableRowBgAlt": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_TableRowBgAlt."
+        },
+        "Text": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_Text."
+        },
+        "TextDisabled": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_TextDisabled."
+        },
+        "TextLink": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_TextLink."
+        },
+        "TextSelectedBg": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_TextSelectedBg."
+        },
+        "TitleBg": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_TitleBg."
+        },
+        "TitleBgActive": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_TitleBgActive."
+        },
+        "TitleBgCollapsed": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_TitleBgCollapsed."
+        },
+        "WindowBg": {
+          "$ref": "#/$defs/Color",
+          "description": "ImGuiCol_WindowBg."
+        }
+      },
+      "propertyNames": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+      },
+      "type": "object"
+    },
+    "ColorProp": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Color"
+        },
+        {
+          "$ref": "#/$defs/ExprRef"
+        },
+        {
+          "$ref": "#/$defs/ParamRef"
+        }
+      ],
+      "description": "Color prop; #rrggbbaa literal, expression or param reference."
+    },
+    "ComboFlags": {
+      "description": "ImGuiComboFlags names without the prefix. Known names: PopupAlignLeft, HeightSmall, HeightRegular, HeightLarge, HeightLargest, NoArrowButton, NoPreview, WidthFitPreview. Other identifiers are accepted for newer ImGui versions.",
+      "items": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "Ease": {
+      "description": "imb::Ease curve. Spring uses stiffness/damping instead of duration.",
+      "enum": [
+        "Linear",
+        "InQuad",
+        "OutQuad",
+        "InOutQuad",
+        "InCubic",
+        "OutCubic",
+        "InOutCubic",
+        "OutBack",
+        "InBack",
+        "OutElastic",
+        "OutBounce",
+        "OutExpo",
+        "Spring"
+      ],
+      "type": "string"
+    },
+    "EnterSpec": {
+      "additionalProperties": false,
+      "description": "Enter animation played when the node becomes visible (imb::BeginEnter).",
+      "properties": {
+        "duration": {
+          "description": "Seconds. Default 0.25.",
+          "minimum": 0,
+          "type": "number"
+        },
+        "preset": {
+          "$ref": "#/$defs/Preset",
+          "description": "Preset."
+        },
+        "stagger": {
+          "description": "Delay added per child index in seconds. Default 0.",
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "preset"
+      ],
+      "type": "object"
+    },
+    "EventSpec": {
+      "additionalProperties": false,
+      "description": "Event binding: actions run in order, then the generated handler when handler is true. An event with neither is ignored.",
+      "properties": {
+        "actions": {
+          "description": "Actions executed when the event fires.",
+          "items": {
+            "$ref": "#/$defs/Action"
+          },
+          "type": "array"
+        },
+        "handler": {
+          "description": "Emit and call a handler function <Panel>_<id>_<Event>. Default false.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ExitSpec": {
+      "additionalProperties": false,
+      "description": "Exit animation played when the node becomes hidden.",
+      "properties": {
+        "duration": {
+          "description": "Seconds. Default 0.2.",
+          "minimum": 0,
+          "type": "number"
+        },
+        "preset": {
+          "$ref": "#/$defs/Preset",
+          "description": "Preset."
+        }
+      },
+      "required": [
+        "preset"
+      ],
+      "type": "object"
+    },
+    "ExprRef": {
+      "additionalProperties": false,
+      "description": "Computed prop: {\"expr\": \"...\"} evaluated every frame.",
+      "properties": {
+        "expr": {
+          "$ref": "#/$defs/Expression",
+          "description": "Expression source."
+        }
+      },
+      "required": [
+        "expr"
+      ],
+      "type": "object"
+    },
+    "Expression": {
+      "description": "Expression: paths, literals, Enum::Member, arithmetic, comparisons, && || !.",
+      "minLength": 1,
+      "type": "string"
+    },
+    "Flags": {
+      "description": "Flag names without the ImGui*Flags_ prefix, e.g. [\"NoResize\", \"NoCollapse\"]. Names unknown to the running ImGui version are ignored by the interpreter and version-guarded by codegen.",
+      "items": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "FloatProp": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "$ref": "#/$defs/ExprRef"
+        },
+        {
+          "$ref": "#/$defs/ParamRef"
+        }
+      ],
+      "description": "Float prop; literal, expression or param reference."
+    },
+    "FxSpec": {
+      "description": "One effect drawn around the item rect after it is submitted; parameters depend on type.",
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "c0": {
+              "$ref": "#/$defs/Color",
+              "description": "Start color."
+            },
+            "c1": {
+              "$ref": "#/$defs/Color",
+              "description": "End color."
+            },
+            "rounding": {
+              "description": "Corner rounding in px. Default 0.",
+              "minimum": 0,
+              "type": "number"
+            },
+            "type": {
+              "const": "gradient",
+              "description": "imb::GradientRect: linear gradient fill."
+            },
+            "vertical": {
+              "description": "Top-to-bottom when true, left-to-right when false. Default true.",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "inner": {
+              "$ref": "#/$defs/Color",
+              "description": "Center color."
+            },
+            "outer": {
+              "$ref": "#/$defs/Color",
+              "description": "Edge color."
+            },
+            "radius": {
+              "description": "Radius in px; omit for half of the item's larger side.",
+              "minimum": 0,
+              "type": "number"
+            },
+            "segments": {
+              "description": "Circle segments. Default 48.",
+              "minimum": 3,
+              "type": "integer"
+            },
+            "type": {
+              "const": "radialGradient",
+              "description": "imb::RadialGradient centered on the item."
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "color": {
+              "$ref": "#/$defs/Color",
+              "description": "Shadow color. Default #00000080."
+            },
+            "offset": {
+              "$ref": "#/$defs/Vec2",
+              "description": "Shadow offset in px. Default {0,2}."
+            },
+            "rounding": {
+              "description": "Corner rounding in px. Default 0.",
+              "minimum": 0,
+              "type": "number"
+            },
+            "size": {
+              "description": "Blur extent in px. Default 12.",
+              "minimum": 0,
+              "type": "number"
+            },
+            "type": {
+              "const": "shadow",
+              "description": "imb::Shadow: soft drop shadow behind the item."
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "color": {
+              "$ref": "#/$defs/Color",
+              "description": "Glow color."
+            },
+            "rounding": {
+              "description": "Corner rounding in px. Default 0.",
+              "minimum": 0,
+              "type": "number"
+            },
+            "size": {
+              "description": "Glow extent in px. Default 8.",
+              "minimum": 0,
+              "type": "number"
+            },
+            "type": {
+              "const": "glow",
+              "description": "imb::Glow: outer glow around the item."
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "color": {
+              "$ref": "#/$defs/Color",
+              "description": "Border color."
+            },
+            "rounding": {
+              "description": "Corner rounding in px. Default 0.",
+              "minimum": 0,
+              "type": "number"
+            },
+            "speed": {
+              "description": "Animation speed multiplier. Default 1.",
+              "minimum": 0,
+              "type": "number"
+            },
+            "style": {
+              "description": "imb::BorderStyle. Default Solid.",
+              "enum": [
+                "Solid",
+                "Rainbow",
+                "Sweep",
+                "Pulse"
+              ],
+              "type": "string"
+            },
+            "thickness": {
+              "description": "Line thickness in px. Default 1.",
+              "minimum": 0,
+              "type": "number"
+            },
+            "type": {
+              "const": "border",
+              "description": "imb::AnimatedBorder: solid or animated border."
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "color": {
+              "$ref": "#/$defs/Color",
+              "description": "Particle color. Default #ffffff40."
+            },
+            "connect": {
+              "description": "Draw lines between nearby particles. Default false.",
+              "type": "boolean"
+            },
+            "connectDist": {
+              "description": "Maximum distance for connecting lines in px. Default 80.",
+              "minimum": 0,
+              "type": "number"
+            },
+            "count": {
+              "description": "Particle count. Default 40.",
+              "minimum": 0,
+              "type": "integer"
+            },
+            "size": {
+              "description": "Particle radius in px. Default 2.",
+              "minimum": 0,
+              "type": "number"
+            },
+            "speed": {
+              "description": "Pixels per second. Default 20.",
+              "minimum": 0,
+              "type": "number"
+            },
+            "type": {
+              "const": "particles",
+              "description": "imb::Particles inside the item rect."
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "color": {
+              "$ref": "#/$defs/Color",
+              "description": "Noise dot color."
+            },
+            "density": {
+              "description": "Fill density 0..1. Default 0.1.",
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            "type": {
+              "const": "noise",
+              "description": "imb::NoiseBackground: static noise texture fill."
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "color": {
+              "$ref": "#/$defs/Color",
+              "description": "Highlight color."
+            },
+            "radius": {
+              "description": "Highlight radius in px. Default 80.",
+              "minimum": 0,
+              "type": "number"
+            },
+            "rounding": {
+              "description": "Clip rounding in px. Default 0.",
+              "minimum": 0,
+              "type": "number"
+            },
+            "type": {
+              "const": "cursorHighlight",
+              "description": "imb::CursorHighlight: radial highlight following the mouse while hovered."
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "radius": {
+              "description": "Blur radius in px. Default 8.",
+              "minimum": 0,
+              "type": "number"
+            },
+            "rounding": {
+              "description": "Clip rounding in px. Default 0.",
+              "minimum": 0,
+              "type": "number"
+            },
+            "tint": {
+              "$ref": "#/$defs/Color",
+              "description": "Tint multiplied over the blurred result. Default #ffffffff."
+            },
+            "type": {
+              "const": "blur",
+              "description": "imb::fx::Blur: shader background blur (needs shaderFx feature and a backend fx header)."
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "FxType": {
+      "description": "DrawList effect (imb_runtime.h) or shader blur (imb::fx).",
+      "enum": [
+        "gradient",
+        "radialGradient",
+        "shadow",
+        "glow",
+        "border",
+        "particles",
+        "noise",
+        "cursorHighlight",
+        "blur"
+      ],
+      "type": "string"
+    },
+    "Identifier": {
+      "description": "C-style identifier: [A-Za-z_][A-Za-z0-9_]*.",
+      "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+      "type": "string"
+    },
+    "InputTextFlags": {
+      "description": "ImGuiInputTextFlags names without the prefix. Known names: CharsDecimal, CharsHexadecimal, CharsScientific, CharsUppercase, CharsNoBlank, AllowTabInput, EnterReturnsTrue, EscapeClearsAll, CtrlEnterForNewLine, ReadOnly, Password, AlwaysOverwrite, AutoSelectAll, ParseEmptyRefVal, DisplayEmptyRefVal, NoHorizontalScroll, NoUndoRedo, ElideLeft, CallbackCompletion, CallbackHistory, CallbackAlways, CallbackCharFilter, CallbackResize, CallbackEdit. Other identifiers are accepted for newer ImGui versions.",
+      "items": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "IntProp": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "$ref": "#/$defs/ExprRef"
+        },
+        {
+          "$ref": "#/$defs/ParamRef"
+        }
+      ],
+      "description": "Int prop; literal, expression or param reference."
+    },
+    "Layout": {
+      "additionalProperties": false,
+      "description": "Placement inside a Canvas: cursor = anchor_point + offset * S - anchor_fraction * child_size.",
+      "properties": {
+        "anchor": {
+          "$ref": "#/$defs/Anchor",
+          "description": "Anchor. Default TopLeft."
+        },
+        "offset": {
+          "$ref": "#/$defs/Vec2",
+          "description": "Offset from the anchor in px (DPI scaled)."
+        }
+      },
+      "type": "object"
+    },
+    "Node": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "stock-widgets.schema.json"
+        }
+      ],
+      "description": "UI tree node. Only id and type are required; stock types are further constrained by stock-widgets.schema.json.",
+      "properties": {
+        "anim": {
+          "$ref": "#/$defs/AnimSpec",
+          "description": "Animations."
+        },
+        "bind": {
+          "additionalProperties": {
+            "$ref": "#/$defs/BindValue"
+          },
+          "description": "Binding slots keyed by slot name; values are binding paths or {\"param\": ...}.",
+          "propertyNames": {
+            "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+          },
+          "type": "object"
+        },
+        "children": {
+          "description": "Child nodes (containers only).",
+          "items": {
+            "$ref": "#/$defs/Node"
+          },
+          "type": "array"
+        },
+        "component": {
+          "$ref": "#/$defs/Identifier",
+          "description": "Component definition name (type Component only)."
+        },
+        "enabledIf": {
+          "$ref": "#/$defs/Expression",
+          "description": "Bool expression; the node is disabled (BeginDisabled) when false."
+        },
+        "events": {
+          "additionalProperties": {
+            "$ref": "#/$defs/EventSpec"
+          },
+          "description": "Event name (onClick, onChange, onOpen, onClose, onEnter) -> EventSpec.",
+          "propertyNames": {
+            "pattern": "^on[A-Z][A-Za-z0-9]*$"
+          },
+          "type": "object"
+        },
+        "font": {
+          "description": "Name of a project font pushed around the node.",
+          "type": "string"
+        },
+        "fx": {
+          "description": "Effects drawn around the item.",
+          "items": {
+            "$ref": "#/$defs/FxSpec"
+          },
+          "type": "array"
+        },
+        "id": {
+          "$ref": "#/$defs/NodeId",
+          "description": "Unique node id."
+        },
+        "layout": {
+          "$ref": "#/$defs/Layout",
+          "description": "Canvas placement; only meaningful for direct children of a Canvas."
+        },
+        "locked": {
+          "description": "Emit this node as a locked block whose generated body the user may edit. Default false.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Display name shown in the hierarchy; not used in code.",
+          "type": "string"
+        },
+        "props": {
+          "additionalProperties": {
+            "$ref": "#/$defs/PropValue"
+          },
+          "description": "Widget props keyed by prop name.",
+          "propertyNames": {
+            "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+          },
+          "type": "object"
+        },
+        "slots": {
+          "additionalProperties": {
+            "items": {
+              "$ref": "#/$defs/Node"
+            },
+            "type": "array"
+          },
+          "description": "Component instances only: slot name -> nodes inserted at the matching Slot.",
+          "propertyNames": {
+            "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+          },
+          "type": "object"
+        },
+        "style": {
+          "$ref": "#/$defs/StyleOverride",
+          "description": "Style overrides."
+        },
+        "tooltip": {
+          "description": "Tooltip shown while hovered; supports interpolation.",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/WidgetType",
+          "description": "Widget type."
+        },
+        "visibleIf": {
+          "$ref": "#/$defs/Expression",
+          "description": "Bool expression; the node is skipped when false."
+        }
+      },
+      "required": [
+        "id",
+        "type"
+      ],
+      "type": "object"
+    },
+    "NodeId": {
+      "description": "Node id, unique within a panel or component tree; used for PushID, code markers and the live protocol.",
+      "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+      "type": "string"
+    },
+    "NullableColorProp": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Color"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/ExprRef"
+        },
+        {
+          "$ref": "#/$defs/ParamRef"
+        }
+      ],
+      "description": "Optional color prop; null means 'use the theme color'."
+    },
+    "NullableFloatProp": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/ExprRef"
+        },
+        {
+          "$ref": "#/$defs/ParamRef"
+        }
+      ],
+      "description": "Float prop where null means 'use the style default'."
+    },
+    "ParamRef": {
+      "additionalProperties": false,
+      "description": "Component parameter reference {\"param\": \"name\"}; only valid inside a component definition tree.",
+      "properties": {
+        "param": {
+          "$ref": "#/$defs/Identifier",
+          "description": "Name of a declared component param."
+        }
+      },
+      "required": [
+        "param"
+      ],
+      "type": "object"
+    },
+    "Preset": {
+      "description": "imb::Preset enter/exit animation.",
+      "enum": [
+        "None",
+        "Fade",
+        "SlideUp",
+        "SlideDown",
+        "SlideLeft",
+        "SlideRight",
+        "FadeSlideUp",
+        "FadeSlideDown",
+        "ScalePop",
+        "Stagger"
+      ],
+      "type": "string"
+    },
+    "PropValue": {
+      "description": "Any prop value: a literal of the prop's type, {\"expr\": ...} or {\"param\": ...}. Stock widgets refine this per prop in stock-widgets.schema.json."
+    },
+    "SelectableFlags": {
+      "description": "ImGuiSelectableFlags names without the prefix. Known names: NoAutoClosePopups, DontClosePopups, SpanAllColumns, AllowDoubleClick, Disabled, AllowOverlap, Highlight. Other identifiers are accepted for newer ImGui versions.",
+      "items": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "Size": {
+      "additionalProperties": false,
+      "description": "Item size; both axes default to auto.",
+      "properties": {
+        "h": {
+          "$ref": "#/$defs/SizeSpec",
+          "description": "Height SizeSpec."
+        },
+        "w": {
+          "$ref": "#/$defs/SizeSpec",
+          "description": "Width SizeSpec."
+        }
+      },
+      "type": "object"
+    },
+    "SizeListProp": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/SizeSpec"
+          },
+          "type": "array"
+        },
+        {
+          "$ref": "#/$defs/ParamRef"
+        }
+      ],
+      "description": "List of SizeSpecs or param reference."
+    },
+    "SizeProp": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Size"
+        },
+        {
+          "$ref": "#/$defs/ParamRef"
+        }
+      ],
+      "description": "Size prop {w,h} or param reference."
+    },
+    "SizeSpec": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "pattern": "^(auto|fill|[0-9]+(\\.[0-9]+)?%|fill-[0-9]+(\\.[0-9]+)?)$",
+          "type": "string"
+        }
+      ],
+      "description": "Size of one axis: \"auto\" (0), a number (px, DPI scaled), \"fill\" (-FLT_MIN), \"<n>%\" of the available region, or \"fill-<n>\" (available minus n px)."
+    },
+    "SliderFlags": {
+      "description": "ImGuiSliderFlags names without the prefix. Known names: Logarithmic, NoRoundToFormat, NoInput, WrapAround, ClampOnInput, ClampZeroRange, NoSpeedTweaks, AlwaysClamp. Other identifiers are accepted for newer ImGui versions.",
+      "items": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "StockWidgetType": {
+      "description": "Stock widget types.",
+      "enum": [
+        "Window",
+        "VStack",
+        "HStack",
+        "Group",
+        "Child",
+        "Grid",
+        "TabBar",
+        "Tab",
+        "CollapsingHeader",
+        "TreeNode",
+        "Popup",
+        "Modal",
+        "MenuBar",
+        "Menu",
+        "Canvas",
+        "Component",
+        "Slot",
+        "Code",
+        "Text",
+        "SeparatorText",
+        "Separator",
+        "Spacing",
+        "NewLine",
+        "Dummy",
+        "Button",
+        "SmallButton",
+        "ArrowButton",
+        "Checkbox",
+        "RadioButton",
+        "Combo",
+        "ListBox",
+        "SliderFloat",
+        "SliderInt",
+        "VSliderFloat",
+        "VSliderInt",
+        "DragFloat",
+        "DragInt",
+        "InputText",
+        "InputTextMultiline",
+        "InputInt",
+        "InputFloat",
+        "ColorEdit",
+        "ColorPicker",
+        "ColorButton",
+        "ProgressBar",
+        "Image",
+        "ImageButton",
+        "Selectable",
+        "MenuItem",
+        "PlotLines",
+        "PlotHistogram"
+      ],
+      "type": "string"
+    },
+    "StringListProp": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        {
+          "$ref": "#/$defs/ParamRef"
+        }
+      ],
+      "description": "List of strings or param reference."
+    },
+    "StringProp": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "#/$defs/ExprRef"
+        },
+        {
+          "$ref": "#/$defs/ParamRef"
+        }
+      ],
+      "description": "String prop; literal, expression or param reference."
+    },
+    "StyleOverride": {
+      "additionalProperties": false,
+      "description": "Per-node style overrides pushed around the item.",
+      "properties": {
+        "classes": {
+          "description": "Names of project styleClasses applied before the local overrides.",
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "colors": {
+          "$ref": "#/$defs/ColorMap",
+          "description": "PushStyleColor overrides."
+        },
+        "vars": {
+          "$ref": "#/$defs/StyleVarMap",
+          "description": "PushStyleVar overrides."
+        }
+      },
+      "type": "object"
+    },
+    "StyleVarMap": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "$ref": "#/$defs/Vec2"
+          }
+        ],
+        "description": "Style var unknown to this schema (newer ImGui); number or Vec2."
+      },
+      "description": "ImGuiStyleVar name -> number or {x,y} depending on the var.",
+      "properties": {
+        "Alpha": {
+          "description": "ImGuiStyleVar_Alpha (float).",
+          "type": "number"
+        },
+        "ButtonTextAlign": {
+          "$ref": "#/$defs/Vec2",
+          "description": "ImGuiStyleVar_ButtonTextAlign (ImVec2)."
+        },
+        "CellPadding": {
+          "$ref": "#/$defs/Vec2",
+          "description": "ImGuiStyleVar_CellPadding (ImVec2)."
+        },
+        "ChildBorderSize": {
+          "description": "ImGuiStyleVar_ChildBorderSize (float).",
+          "type": "number"
+        },
+        "ChildRounding": {
+          "description": "ImGuiStyleVar_ChildRounding (float).",
+          "type": "number"
+        },
+        "DisabledAlpha": {
+          "description": "ImGuiStyleVar_DisabledAlpha (float).",
+          "type": "number"
+        },
+        "DockingSeparatorSize": {
+          "description": "ImGuiStyleVar_DockingSeparatorSize (float).",
+          "type": "number"
+        },
+        "FrameBorderSize": {
+          "description": "ImGuiStyleVar_FrameBorderSize (float).",
+          "type": "number"
+        },
+        "FramePadding": {
+          "$ref": "#/$defs/Vec2",
+          "description": "ImGuiStyleVar_FramePadding (ImVec2)."
+        },
+        "FrameRounding": {
+          "description": "ImGuiStyleVar_FrameRounding (float).",
+          "type": "number"
+        },
+        "GrabMinSize": {
+          "description": "ImGuiStyleVar_GrabMinSize (float).",
+          "type": "number"
+        },
+        "GrabRounding": {
+          "description": "ImGuiStyleVar_GrabRounding (float).",
+          "type": "number"
+        },
+        "ImageBorderSize": {
+          "description": "ImGuiStyleVar_ImageBorderSize (float).",
+          "type": "number"
+        },
+        "IndentSpacing": {
+          "description": "ImGuiStyleVar_IndentSpacing (float).",
+          "type": "number"
+        },
+        "ItemInnerSpacing": {
+          "$ref": "#/$defs/Vec2",
+          "description": "ImGuiStyleVar_ItemInnerSpacing (ImVec2)."
+        },
+        "ItemSpacing": {
+          "$ref": "#/$defs/Vec2",
+          "description": "ImGuiStyleVar_ItemSpacing (ImVec2)."
+        },
+        "PopupBorderSize": {
+          "description": "ImGuiStyleVar_PopupBorderSize (float).",
+          "type": "number"
+        },
+        "PopupRounding": {
+          "description": "ImGuiStyleVar_PopupRounding (float).",
+          "type": "number"
+        },
+        "ScrollbarRounding": {
+          "description": "ImGuiStyleVar_ScrollbarRounding (float).",
+          "type": "number"
+        },
+        "ScrollbarSize": {
+          "description": "ImGuiStyleVar_ScrollbarSize (float).",
+          "type": "number"
+        },
+        "SelectableTextAlign": {
+          "$ref": "#/$defs/Vec2",
+          "description": "ImGuiStyleVar_SelectableTextAlign (ImVec2)."
+        },
+        "SeparatorTextAlign": {
+          "$ref": "#/$defs/Vec2",
+          "description": "ImGuiStyleVar_SeparatorTextAlign (ImVec2)."
+        },
+        "SeparatorTextBorderSize": {
+          "description": "ImGuiStyleVar_SeparatorTextBorderSize (float).",
+          "type": "number"
+        },
+        "SeparatorTextPadding": {
+          "$ref": "#/$defs/Vec2",
+          "description": "ImGuiStyleVar_SeparatorTextPadding (ImVec2)."
+        },
+        "TabBarBorderSize": {
+          "description": "ImGuiStyleVar_TabBarBorderSize (float).",
+          "type": "number"
+        },
+        "TabBarOverlineSize": {
+          "description": "ImGuiStyleVar_TabBarOverlineSize (float).",
+          "type": "number"
+        },
+        "TabBorderSize": {
+          "description": "ImGuiStyleVar_TabBorderSize (float).",
+          "type": "number"
+        },
+        "TabRounding": {
+          "description": "ImGuiStyleVar_TabRounding (float).",
+          "type": "number"
+        },
+        "TableAngledHeadersAngle": {
+          "description": "ImGuiStyleVar_TableAngledHeadersAngle (float).",
+          "type": "number"
+        },
+        "TableAngledHeadersTextAlign": {
+          "$ref": "#/$defs/Vec2",
+          "description": "ImGuiStyleVar_TableAngledHeadersTextAlign (ImVec2)."
+        },
+        "WindowBorderSize": {
+          "description": "ImGuiStyleVar_WindowBorderSize (float).",
+          "type": "number"
+        },
+        "WindowMinSize": {
+          "$ref": "#/$defs/Vec2",
+          "description": "ImGuiStyleVar_WindowMinSize (ImVec2)."
+        },
+        "WindowPadding": {
+          "$ref": "#/$defs/Vec2",
+          "description": "ImGuiStyleVar_WindowPadding (ImVec2)."
+        },
+        "WindowRounding": {
+          "description": "ImGuiStyleVar_WindowRounding (float).",
+          "type": "number"
+        },
+        "WindowTitleAlign": {
+          "$ref": "#/$defs/Vec2",
+          "description": "ImGuiStyleVar_WindowTitleAlign (ImVec2)."
+        }
+      },
+      "propertyNames": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+      },
+      "type": "object"
+    },
+    "TabBarFlags": {
+      "description": "ImGuiTabBarFlags names without the prefix. Known names: Reorderable, AutoSelectNewTabs, TabListPopupButton, NoCloseWithMiddleMouseButton, NoTabListScrollingButtons, NoTooltip, DrawSelectedOverline, FittingPolicyResizeDown, FittingPolicyScroll. Other identifiers are accepted for newer ImGui versions.",
+      "items": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "TabItemFlags": {
+      "description": "ImGuiTabItemFlags names without the prefix. Known names: UnsavedDocument, SetSelected, NoCloseWithMiddleMouseButton, NoPushId, NoTooltip, NoReorder, Leading, Trailing, NoAssumedClosure. Other identifiers are accepted for newer ImGui versions.",
+      "items": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "TableFlags": {
+      "description": "ImGuiTableFlags names without the prefix. Known names: Resizable, Reorderable, Hideable, Sortable, NoSavedSettings, ContextMenuInBody, RowBg, BordersInnerH, BordersOuterH, BordersInnerV, BordersOuterV, BordersH, BordersV, BordersInner, BordersOuter, Borders, NoBordersInBody, NoBordersInBodyUntilResize, SizingFixedFit, SizingFixedSame, SizingStretchProp, SizingStretchSame, NoHostExtendX, NoHostExtendY, NoKeepColumnsVisible, PreciseWidths, NoClip, PadOuterX, NoPadOuterX, NoPadInnerX, ScrollX, ScrollY, SortMulti, SortTristate, HighlightHoveredColumn. Other identifiers are accepted for newer ImGui versions.",
+      "items": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "Transition": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "prop": {
+                "pattern": "^color\\."
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "to": {
+                "$ref": "#/$defs/Color"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "prop": {
+                "pattern": "^(alpha|offset\\.x|offset\\.y|scale|rounding|border)$"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "to": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      ],
+      "description": "Animated property change driven by an item state (imb::Transition).",
+      "properties": {
+        "damping": {
+          "description": "Spring damping (ease Spring). Default 26.",
+          "minimum": 0,
+          "type": "number"
+        },
+        "duration": {
+          "description": "Seconds. Default 0.15.",
+          "minimum": 0,
+          "type": "number"
+        },
+        "ease": {
+          "$ref": "#/$defs/Ease",
+          "description": "Easing curve. Default OutCubic."
+        },
+        "on": {
+          "$ref": "#/$defs/TransitionTrigger",
+          "description": "Trigger state."
+        },
+        "prop": {
+          "$ref": "#/$defs/TransitionProp",
+          "description": "Property to animate."
+        },
+        "stiffness": {
+          "description": "Spring stiffness (ease Spring). Default 170.",
+          "minimum": 0,
+          "type": "number"
+        },
+        "to": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/$defs/Color"
+            },
+            {
+              "$ref": "#/$defs/Vec2"
+            }
+          ],
+          "description": "Target value: number for alpha/offset/scale/rounding/border and float vars, #rrggbbaa for color.*, {x,y} for Vec2 vars."
+        }
+      },
+      "required": [
+        "prop",
+        "on",
+        "to"
+      ],
+      "type": "object"
+    },
+    "TransitionProp": {
+      "description": "Animated property: alpha, offset.x, offset.y, scale, rounding, border, color.<ImGuiCol> or var.<ImGuiStyleVar>.",
+      "pattern": "^(alpha|offset\\.x|offset\\.y|scale|rounding|border|color\\.[A-Za-z][A-Za-z0-9]*|var\\.[A-Za-z][A-Za-z0-9]*)$",
+      "type": "string"
+    },
+    "TransitionTrigger": {
+      "description": "Item state that drives the transition toward 'to': hover (IsItemHovered), active (IsItemActive), open (header/tree/popup open), visible (visibleIf result), focus (IsItemFocused), disabled (enabledIf false).",
+      "enum": [
+        "hover",
+        "active",
+        "open",
+        "visible",
+        "focus",
+        "disabled"
+      ],
+      "type": "string"
+    },
+    "TreeNodeFlags": {
+      "description": "ImGuiTreeNodeFlags names without the prefix. Known names: Selected, Framed, AllowOverlap, NoTreePushOnOpen, NoAutoOpenOnLog, DefaultOpen, OpenOnDoubleClick, OpenOnArrow, Leaf, Bullet, FramePadding, SpanAvailWidth, SpanFullWidth, SpanLabelWidth, SpanAllColumns, LabelSpanAllColumns, NavLeftJumpsBackHere, CollapsingHeader. Other identifiers are accepted for newer ImGui versions.",
+      "items": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "Vec2": {
+      "additionalProperties": false,
+      "description": "Two floats.",
+      "properties": {
+        "x": {
+          "description": "X component.",
+          "type": "number"
+        },
+        "y": {
+          "description": "Y component.",
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "y"
+      ],
+      "type": "object"
+    },
+    "Vec2Prop": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Vec2"
+        },
+        {
+          "$ref": "#/$defs/ExprRef"
+        },
+        {
+          "$ref": "#/$defs/ParamRef"
+        }
+      ],
+      "description": "Vec2 prop; {x,y} literal, expression or param reference."
+    },
+    "Vec4": {
+      "additionalProperties": false,
+      "description": "Four floats.",
+      "properties": {
+        "w": {
+          "description": "W component.",
+          "type": "number"
+        },
+        "x": {
+          "description": "X component.",
+          "type": "number"
+        },
+        "y": {
+          "description": "Y component.",
+          "type": "number"
+        },
+        "z": {
+          "description": "Z component.",
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "z",
+        "w"
+      ],
+      "type": "object"
+    },
+    "WidgetType": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/StockWidgetType"
+        },
+        {
+          "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+          "type": "string"
+        }
+      ],
+      "description": "Node type: a stock widget or a custom widget name from a .imw.json manifest."
+    },
+    "WindowFlags": {
+      "description": "ImGuiWindowFlags names without the prefix. Known names: NoTitleBar, NoResize, NoMove, NoScrollbar, NoScrollWithMouse, NoCollapse, AlwaysAutoResize, NoBackground, NoSavedSettings, NoMouseInputs, MenuBar, HorizontalScrollbar, NoFocusOnAppearing, NoBringToFrontOnFocus, AlwaysVerticalScrollbar, AlwaysHorizontalScrollbar, NoNavInputs, NoNavFocus, UnsavedDocument, NoDocking, NoNav, NoDecoration, NoInputs. Other identifiers are accepted for newer ImGui versions.",
+      "items": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "$id": "https://raw.githubusercontent.com/fezura/ImForge/main/schemas/node.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Shared $defs for every ImForge file format: Node, SizeSpec, Color, Vec2, Vec4, PropValue, Action, EventSpec, StyleOverride, AnimSpec, FxSpec, Layout. Not a document schema by itself.",
+  "title": "ImForge shared definitions"
+}

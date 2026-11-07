@@ -1,0 +1,224 @@
+{
+  "$id": "https://raw.githubusercontent.com/fezura/ImForge/main/schemas/panel.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "panels/<Name>.imb.json: one UI panel whose root is a Window.",
+  "properties": {
+    "kind": {
+      "const": "panel",
+      "description": "File kind discriminator."
+    },
+    "name": {
+      "description": "Panel name; becomes the generated Draw<Name> function and <Name>State struct.",
+      "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+      "type": "string"
+    },
+    "params": {
+      "description": "Typed parameters passed by reference to the generated draw function; binding path roots.",
+      "items": {
+        "additionalProperties": false,
+        "description": "Panel parameter.",
+        "properties": {
+          "default": {
+            "description": "Unused for panel params; reserved."
+          },
+          "name": {
+            "$ref": "node.schema.json#/$defs/Identifier",
+            "description": "Parameter name (binding root)."
+          },
+          "type": {
+            "description": "C++ type name, e.g. Player or Settings; reflected via types.json or IMFORGE_REFLECT.",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_:<>, ]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "root": {
+      "allOf": [
+        {
+          "$ref": "node.schema.json#/$defs/Node"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "Window"
+            }
+          }
+        }
+      ],
+      "description": "Root node; must be a Window."
+    },
+    "schemaVersion": {
+      "const": 1,
+      "description": "File format version; always 1."
+    },
+    "state": {
+      "description": "Panel-local state variables stored in the generated <Name>State struct; addressed as state.<name>.",
+      "items": {
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "bool"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "default": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "int"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "default": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "enum": [
+                    "float",
+                    "double"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "default": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "string"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "default": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "vec2"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "default": {
+                  "$ref": "node.schema.json#/$defs/Vec2"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "vec4"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "default": {
+                  "$ref": "node.schema.json#/$defs/Vec4"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "color"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "default": {
+                  "$ref": "node.schema.json#/$defs/Color"
+                }
+              }
+            }
+          }
+        ],
+        "description": "State variable.",
+        "properties": {
+          "default": {
+            "description": "Initial value matching type (color as #rrggbbaa, vec2/vec4 as objects)."
+          },
+          "name": {
+            "$ref": "node.schema.json#/$defs/Identifier",
+            "description": "Variable name."
+          },
+          "type": {
+            "description": "Storage type.",
+            "enum": [
+              "bool",
+              "int",
+              "float",
+              "double",
+              "string",
+              "vec2",
+              "vec4",
+              "color"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "kind",
+    "name",
+    "root"
+  ],
+  "title": "ImForge panel",
+  "type": "object"
+}

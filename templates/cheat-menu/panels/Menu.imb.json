@@ -1,0 +1,309 @@
+{
+  "kind": "panel",
+  "name": "Menu",
+  "params": [
+    {
+      "name": "cfg",
+      "type": "Settings"
+    }
+  ],
+  "root": {
+    "anim": {
+      "enter": {
+        "duration": 0.3,
+        "preset": "FadeSlideUp"
+      }
+    },
+    "bind": {
+      "open": "state.open"
+    },
+    "children": [
+      {
+        "children": [
+          {
+            "id": "title",
+            "props": {
+              "color": "#3d8bfdff",
+              "text": "{icon:fa-crosshairs} {{PROJECT_NAME}}"
+            },
+            "type": "Text"
+          },
+          {
+            "id": "spacer",
+            "props": {
+              "size": {
+                "h": 1,
+                "w": "fill"
+              }
+            },
+            "type": "Dummy"
+          },
+          {
+            "anim": {
+              "transitions": [
+                {
+                  "duration": 0.08,
+                  "ease": "OutQuad",
+                  "on": "active",
+                  "prop": "scale",
+                  "to": 0.96
+                }
+              ]
+            },
+            "events": {
+              "onClick": {
+                "actions": [
+                  {
+                    "target": "cfg.enabled",
+                    "type": "set",
+                    "value": false
+                  }
+                ],
+                "handler": true
+              }
+            },
+            "id": "btn_panic",
+            "props": {
+              "label": "{icon:fa-power-off} Panic",
+              "size": {
+                "h": "auto",
+                "w": 90
+              }
+            },
+            "style": {
+              "colors": {
+                "Button": "#c0392bff",
+                "ButtonHovered": "#e74c3cff"
+              }
+            },
+            "type": "Button"
+          }
+        ],
+        "id": "header",
+        "props": {
+          "align": "Center",
+          "spacing": 10
+        },
+        "type": "HStack"
+      },
+      {
+        "id": "sep",
+        "type": "Separator"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "anim": {
+                  "enter": {
+                    "duration": 0.25,
+                    "preset": "FadeSlideUp",
+                    "stagger": 0.04
+                  }
+                },
+                "children": [
+                  {
+                    "bind": {
+                      "value": "cfg.enabled"
+                    },
+                    "events": {
+                      "onChange": {
+                        "handler": true
+                      }
+                    },
+                    "id": "enabled",
+                    "props": {
+                      "label": "Enabled"
+                    },
+                    "type": "Checkbox"
+                  },
+                  {
+                    "bind": {
+                      "value": "cfg.fov"
+                    },
+                    "enabledIf": "cfg.enabled",
+                    "id": "fov",
+                    "props": {
+                      "format": "%.0f",
+                      "label": "FOV",
+                      "max": 180,
+                      "min": 1
+                    },
+                    "type": "SliderFloat"
+                  },
+                  {
+                    "bind": {
+                      "value": "cfg.mode"
+                    },
+                    "enabledIf": "cfg.enabled",
+                    "id": "mode",
+                    "props": {
+                      "items": [
+                        "Off",
+                        "Legit",
+                        "Rage"
+                      ],
+                      "label": "Mode"
+                    },
+                    "type": "Combo"
+                  }
+                ],
+                "id": "tab_main_stack",
+                "props": {
+                  "spacing": 8
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "tab_main",
+            "props": {
+              "label": "Main"
+            },
+            "type": "Tab"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "enter": {
+                    "duration": 0.25,
+                    "preset": "FadeSlideUp",
+                    "stagger": 0.04
+                  }
+                },
+                "children": [
+                  {
+                    "bind": {
+                      "value": "cfg.color"
+                    },
+                    "id": "color",
+                    "props": {
+                      "alpha": true,
+                      "label": "Color"
+                    },
+                    "type": "ColorEdit"
+                  }
+                ],
+                "id": "tab_visuals_stack",
+                "props": {
+                  "spacing": 8
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "tab_visuals",
+            "props": {
+              "label": "Visuals"
+            },
+            "type": "Tab"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "enter": {
+                    "duration": 0.25,
+                    "preset": "FadeSlideUp",
+                    "stagger": 0.04
+                  }
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "transitions": [
+                        {
+                          "duration": 0.15,
+                          "ease": "OutCubic",
+                          "on": "hover",
+                          "prop": "color.Button",
+                          "to": "#3d8bfdff"
+                        }
+                      ]
+                    },
+                    "events": {
+                      "onClick": {
+                        "handler": true
+                      }
+                    },
+                    "id": "btn_save",
+                    "props": {
+                      "label": "{icon:fa-floppy-disk} Save config",
+                      "size": {
+                        "h": "auto",
+                        "w": "fill"
+                      }
+                    },
+                    "type": "Button"
+                  }
+                ],
+                "id": "tab_settings_stack",
+                "props": {
+                  "spacing": 8
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "tab_settings",
+            "props": {
+              "label": "Settings"
+            },
+            "type": "Tab"
+          }
+        ],
+        "id": "tabs",
+        "props": {
+          "flags": [
+            "Reorderable"
+          ]
+        },
+        "type": "TabBar"
+      }
+    ],
+    "fx": [
+      {
+        "radius": 10,
+        "rounding": 8,
+        "type": "blur"
+      },
+      {
+        "color": "#00000099",
+        "rounding": 8,
+        "size": 24,
+        "type": "shadow"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoCollapse",
+        "NoScrollbar"
+      ],
+      "initialPos": {
+        "x": 60,
+        "y": 60
+      },
+      "initialSize": {
+        "x": 620,
+        "y": 420
+      },
+      "menuBar": false,
+      "sizeCond": "FirstUseEver",
+      "title": "{{PROJECT_NAME}}"
+    },
+    "style": {
+      "vars": {
+        "WindowRounding": 8
+      }
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": true,
+      "name": "open",
+      "type": "bool"
+    }
+  ]
+}

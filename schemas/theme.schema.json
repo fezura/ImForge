@@ -1,0 +1,37 @@
+{
+  "$id": "https://raw.githubusercontent.com/fezura/ImForge/main/schemas/theme.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "themes/<Name>.theme.json: full ImGuiStyle colors and vars. Names unknown to the running ImGui are preserved and version-guarded in codegen.",
+  "properties": {
+    "colors": {
+      "$ref": "node.schema.json#/$defs/ColorMap",
+      "description": "ImGuiCol name -> #rrggbbaa."
+    },
+    "kind": {
+      "const": "theme",
+      "description": "File kind discriminator."
+    },
+    "name": {
+      "description": "Theme name referenced by project.activeTheme; becomes ApplyTheme_<Name>.",
+      "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1,
+      "description": "File format version; always 1."
+    },
+    "vars": {
+      "$ref": "node.schema.json#/$defs/StyleVarMap",
+      "description": "ImGuiStyleVar name -> number or {x,y}."
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "kind",
+    "name",
+    "colors"
+  ],
+  "title": "ImForge theme",
+  "type": "object"
+}

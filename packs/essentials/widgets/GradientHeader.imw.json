@@ -1,0 +1,61 @@
+{
+  "bindings": [],
+  "call": "imb::ess::GradientHeader({label}, {c0}, {c1}, {height}, {centered})",
+  "category": "Essentials",
+  "container": false,
+  "events": [],
+  "icon": "fa-heading",
+  "include": "imb_essentials.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "GradientHeader",
+  "preview": [
+    {
+      "fill": "{c0}",
+      "h": 24,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 200,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 8,
+      "y": 5
+    }
+  ],
+  "props": [
+    {
+      "default": "Section",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": "#7f3fc8ff",
+      "name": "c0",
+      "type": "color"
+    },
+    {
+      "default": "#28a0dcff",
+      "name": "c1",
+      "type": "color"
+    },
+    {
+      "default": 0,
+      "max": 128,
+      "min": 0,
+      "name": "height",
+      "type": "float"
+    },
+    {
+      "default": false,
+      "name": "centered",
+      "type": "bool"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

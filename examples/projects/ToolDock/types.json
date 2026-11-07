@@ -1,0 +1,154 @@
+{
+  "enums": {},
+  "kind": "types",
+  "schemaVersion": 1,
+  "structs": {
+    "LogBuffer": {
+      "fields": [
+        {
+          "ctype": "I32",
+          "name": "capacity",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "count",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "dropped",
+          "type": "int"
+        }
+      ],
+      "header": "engine/log.h"
+    },
+    "Material": {
+      "fields": [
+        {
+          "ctype": "StdString",
+          "name": "name",
+          "type": "std::string"
+        },
+        {
+          "ctype": "Vec4",
+          "name": "albedo",
+          "type": "ImVec4"
+        },
+        {
+          "count": 3,
+          "ctype": "FloatArray",
+          "name": "emissive",
+          "type": "float[3]"
+        },
+        {
+          "ctype": "Float",
+          "name": "roughness",
+          "type": "float"
+        },
+        {
+          "ctype": "Float",
+          "name": "metallic",
+          "type": "float"
+        },
+        {
+          "ctype": "I32",
+          "name": "shader",
+          "type": "int"
+        },
+        {
+          "ctype": "Bool",
+          "name": "double_sided",
+          "type": "bool"
+        },
+        {
+          "ctype": "StdString",
+          "name": "texture",
+          "type": "std::string"
+        }
+      ],
+      "header": "scene/material.h"
+    },
+    "Stats": {
+      "fields": [
+        {
+          "count": 120,
+          "ctype": "FloatArray",
+          "name": "frame_times",
+          "type": "float[120]"
+        },
+        {
+          "ctype": "Float",
+          "name": "frame_time_ms",
+          "type": "float"
+        },
+        {
+          "ctype": "Float",
+          "name": "fps",
+          "type": "float"
+        },
+        {
+          "ctype": "I32",
+          "name": "draw_calls",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "triangles",
+          "type": "int"
+        },
+        {
+          "ctype": "Float",
+          "name": "memory_mb",
+          "type": "float"
+        },
+        {
+          "ctype": "I32",
+          "name": "log_count",
+          "type": "int"
+        },
+        {
+          "ctype": "StdString",
+          "name": "last_log",
+          "type": "std::string"
+        }
+      ],
+      "header": "engine/stats.h"
+    },
+    "Transform": {
+      "fields": [
+        {
+          "ctype": "StdString",
+          "name": "name",
+          "type": "std::string"
+        },
+        {
+          "ctype": "Vec2",
+          "name": "position",
+          "type": "ImVec2"
+        },
+        {
+          "ctype": "Float",
+          "name": "rotation",
+          "type": "float"
+        },
+        {
+          "ctype": "Vec2",
+          "name": "scale",
+          "type": "ImVec2"
+        },
+        {
+          "ctype": "I32",
+          "name": "layer",
+          "type": "int"
+        },
+        {
+          "ctype": "Bool",
+          "name": "visible",
+          "type": "bool"
+        }
+      ],
+      "header": "scene/transform.h"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "bindings": [
+    {
+      "name": "key",
+      "required": true,
+      "types": [
+        "int"
+      ]
+    }
+  ],
+  "call": "imb::ess::KeybindPicker({label}, {key})",
+  "category": "Essentials",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-keyboard",
+  "include": "imb_essentials.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "KeybindPicker",
+  "preview": [
+    {
+      "fill": "#3a4150ff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "stroke": "#5a6478ff",
+      "w": 96,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "F1",
+      "x": 38,
+      "y": 4
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 104,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "Keybind",
+      "name": "label",
+      "type": "string"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

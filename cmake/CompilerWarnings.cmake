@@ -1,0 +1,18 @@
+add_library(imforge_warnings INTERFACE)
+add_library(imforge::warnings ALIAS imforge_warnings)
+
+if(MSVC)
+    target_compile_options(imforge_warnings INTERFACE /W4 /permissive-)
+    if(IMFORGE_WERROR)
+        target_compile_options(imforge_warnings INTERFACE /WX)
+    endif()
+else()
+    target_compile_options(imforge_warnings INTERFACE -Wall -Wextra)
+    if(IMFORGE_WERROR)
+        target_compile_options(imforge_warnings INTERFACE -Werror)
+    endif()
+endif()
+
+function(imforge_set_warnings target)
+    target_link_libraries(${target} PRIVATE imforge::warnings)
+endfunction()

@@ -1,0 +1,35 @@
+# live demo: the builder edits examples/projects/CheatMenu while a real app renders it
+#   powershell -File tools/demo/run_live_demo.ps1        (starts both, exits with this script's code)
+# or by hand:
+#   imforge_example_dx11_win32.exe                      (connects to tcp://127.0.0.1:7777, retries every second)
+#   imforge_builder.exe examples/projects/CheatMenu --script tools/demo/live_demo.txt
+# pairing is automatic, wait_client only returns once the app has paired.
+# one command per line, run at frame boundaries. relative paths are against the working dir, ${VAR} expands
+# an env var. nothing gets saved.
+
+wait_client 20
+assert_paired
+wait 4
+assert_client_fps_gt 10
+open_panel Live
+wait 0.5
+screenshot live_demo_pairing.png
+
+select title_text
+set title_text text "ImForge LIVE"
+wait 1
+screenshot live_demo_builder.png
+
+select aim_fov
+set aim_fov max 230
+theme_color Button #e0457bff
+wait 3
+
+picker on
+wait 1.5
+picker off
+wait 1
+
+export ${TEMP}/imforge_live_demo_export
+assert_no_errors
+quit 0

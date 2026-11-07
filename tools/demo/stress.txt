@@ -1,0 +1,158 @@
+# stress test: 500 nodes, set/select/undo/redo churn, then a frame time check. nothing is saved
+#   imforge_builder.exe examples/projects/CheatMenu --script tools/demo/stress.txt
+
+select window
+assert_node_count 76
+wait 1
+frame_reset
+add window VStack 1
+select window
+add window Text 249
+add window Button 250
+wait 2
+assert_node_count 576
+assert_no_errors
+wait 1
+frame_reset
+wait 3
+assert_frame_ms_lt 40
+select title_text
+set title_text text "stress 0"
+select aim_fov
+set aim_fov max 100
+select title_text
+set title_text text "stress 1"
+select aim_fov
+set aim_fov max 101
+select title_text
+set title_text text "stress 2"
+select aim_fov
+set aim_fov max 102
+select title_text
+set title_text text "stress 3"
+select aim_fov
+set aim_fov max 103
+select title_text
+set title_text text "stress 4"
+select aim_fov
+set aim_fov max 104
+select title_text
+set title_text text "stress 5"
+select aim_fov
+set aim_fov max 105
+select title_text
+set title_text text "stress 6"
+select aim_fov
+set aim_fov max 106
+select title_text
+set title_text text "stress 7"
+select aim_fov
+set aim_fov max 107
+select title_text
+set title_text text "stress 8"
+select aim_fov
+set aim_fov max 108
+select title_text
+set title_text text "stress 9"
+select aim_fov
+set aim_fov max 109
+select title_text
+set title_text text "stress 10"
+select aim_fov
+set aim_fov max 110
+select title_text
+set title_text text "stress 11"
+select aim_fov
+set aim_fov max 111
+select title_text
+set title_text text "stress 12"
+select aim_fov
+set aim_fov max 112
+select title_text
+set title_text text "stress 13"
+select aim_fov
+set aim_fov max 113
+select title_text
+set title_text text "stress 14"
+select aim_fov
+set aim_fov max 114
+select title_text
+set title_text text "stress 15"
+select aim_fov
+set aim_fov max 115
+select title_text
+set title_text text "stress 16"
+select aim_fov
+set aim_fov max 116
+select title_text
+set title_text text "stress 17"
+select aim_fov
+set aim_fov max 117
+select title_text
+set title_text text "stress 18"
+select aim_fov
+set aim_fov max 118
+select title_text
+set title_text text "stress 19"
+select aim_fov
+set aim_fov max 119
+select title_text
+set title_text text "stress 20"
+select aim_fov
+set aim_fov max 120
+select title_text
+set title_text text "stress 21"
+select aim_fov
+set aim_fov max 121
+select title_text
+set title_text text "stress 22"
+select aim_fov
+set aim_fov max 122
+select title_text
+set title_text text "stress 23"
+select aim_fov
+set aim_fov max 123
+select title_text
+set title_text text "stress 24"
+select aim_fov
+set aim_fov max 124
+select title_text
+set title_text text "stress 25"
+select aim_fov
+set aim_fov max 125
+select title_text
+set title_text text "stress 26"
+select aim_fov
+set aim_fov max 126
+select title_text
+set title_text text "stress 27"
+select aim_fov
+set aim_fov max 127
+select title_text
+set title_text text "stress 28"
+select aim_fov
+set aim_fov max 128
+select title_text
+set title_text text "stress 29"
+select aim_fov
+set aim_fov max 129
+undo 40
+redo 20
+undo 100
+redo 100
+select title_text
+duplicate
+undo
+redo
+select title_text
+delete
+undo
+wait 1
+frame_reset
+wait 3
+assert_frame_ms_lt 40
+undo 200
+wait 1
+assert_node_count 76
+assert_no_errors
+quit 0

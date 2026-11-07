@@ -1,0 +1,53 @@
+{
+  "kind": "panel",
+  "name": "Main",
+  "root": {
+    "bind": {
+      "open": "state.open"
+    },
+    "children": [
+      {
+        "id": "hello",
+        "props": {
+          "text": "Hello from {{PROJECT_NAME}}"
+        },
+        "type": "Text"
+      },
+      {
+        "id": "hint",
+        "props": {
+          "disabled": true,
+          "text": "Drop widgets from the palette or press F5 to push this panel to your app.",
+          "wrapped": true
+        },
+        "type": "Text"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoCollapse"
+      ],
+      "initialPos": {
+        "x": 60,
+        "y": 60
+      },
+      "initialSize": {
+        "x": 480,
+        "y": 360
+      },
+      "menuBar": false,
+      "sizeCond": "FirstUseEver",
+      "title": "{{PROJECT_NAME}}"
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": true,
+      "name": "open",
+      "type": "bool"
+    }
+  ]
+}

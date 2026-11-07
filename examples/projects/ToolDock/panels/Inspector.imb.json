@@ -1,0 +1,770 @@
+{
+  "kind": "panel",
+  "name": "Inspector",
+  "params": [
+    {
+      "name": "obj",
+      "type": "Transform"
+    },
+    {
+      "name": "mat",
+      "type": "Material"
+    }
+  ],
+  "root": {
+    "bind": {
+      "open": "state.open"
+    },
+    "children": [
+      {
+        "children": [
+          {
+            "bind": {
+              "value": "state.filter"
+            },
+            "id": "filter",
+            "props": {
+              "flags": [
+                "AutoSelectAll"
+              ],
+              "hint": "Filter properties",
+              "label": "##filter",
+              "maxLength": 64
+            },
+            "type": "InputText"
+          },
+          {
+            "anim": {
+              "transitions": [
+                {
+                  "duration": 0.12,
+                  "ease": "OutQuad",
+                  "on": "hover",
+                  "prop": "color.Button",
+                  "to": "#f0883eff"
+                }
+              ]
+            },
+            "events": {
+              "onClick": {
+                "actions": [
+                  {
+                    "target": "state.locked",
+                    "type": "toggle"
+                  }
+                ]
+              }
+            },
+            "id": "lock_btn",
+            "props": {
+              "label": "{icon:fa-lock}",
+              "size": {
+                "h": "auto",
+                "w": 28
+              }
+            },
+            "tooltip": "Lock the inspector to the current selection",
+            "type": "Button"
+          },
+          {
+            "events": {
+              "onClick": {
+                "actions": [
+                  {
+                    "target": "obj.rotation",
+                    "type": "set",
+                    "value": 0
+                  },
+                  {
+                    "target": "obj.scale",
+                    "type": "set",
+                    "value": {
+                      "x": 1,
+                      "y": 1
+                    }
+                  },
+                  {
+                    "target": "obj.position",
+                    "type": "set",
+                    "value": {
+                      "x": 0,
+                      "y": 0
+                    }
+                  }
+                ],
+                "handler": true
+              }
+            },
+            "id": "reset_btn",
+            "props": {
+              "label": "{icon:fa-rotate-left}",
+              "size": {
+                "h": "auto",
+                "w": 28
+              }
+            },
+            "tooltip": "Reset transform",
+            "type": "Button"
+          }
+        ],
+        "id": "toolbar",
+        "props": {
+          "align": "Center",
+          "spacing": 6
+        },
+        "type": "HStack"
+      },
+      {
+        "anim": {
+          "enter": {
+            "duration": 0.15,
+            "preset": "FadeSlideDown"
+          },
+          "exit": {
+            "duration": 0.1,
+            "preset": "Fade"
+          }
+        },
+        "id": "locked_hint",
+        "props": {
+          "disabled": true,
+          "text": "{icon:fa-lock} Locked to {obj.name}"
+        },
+        "type": "Text",
+        "visibleIf": "state.locked"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "id": "name_lbl",
+                "props": {
+                  "text": "Name"
+                },
+                "style": {
+                  "classes": [
+                    "label"
+                  ]
+                },
+                "type": "Text"
+              },
+              {
+                "bind": {
+                  "value": "obj.name"
+                },
+                "events": {
+                  "onChange": {
+                    "handler": true
+                  }
+                },
+                "id": "name_input",
+                "props": {
+                  "hint": "Object name",
+                  "label": "##name",
+                  "maxLength": 64
+                },
+                "type": "InputText"
+              },
+              {
+                "id": "pos_lbl",
+                "props": {
+                  "text": "Position"
+                },
+                "style": {
+                  "classes": [
+                    "label"
+                  ]
+                },
+                "type": "Text"
+              },
+              {
+                "bind": {
+                  "value": "obj.position"
+                },
+                "events": {
+                  "onChange": {
+                    "handler": true
+                  }
+                },
+                "id": "pos_drag",
+                "props": {
+                  "components": 2,
+                  "format": "%.2f",
+                  "label": "##pos",
+                  "max": 0,
+                  "min": 0,
+                  "speed": 0.1
+                },
+                "type": "DragFloat"
+              },
+              {
+                "id": "rot_lbl",
+                "props": {
+                  "text": "Rotation"
+                },
+                "style": {
+                  "classes": [
+                    "label"
+                  ]
+                },
+                "type": "Text"
+              },
+              {
+                "bind": {
+                  "value": "obj.rotation"
+                },
+                "id": "rot_drag",
+                "props": {
+                  "flags": [
+                    "WrapAround"
+                  ],
+                  "format": "%.1f deg",
+                  "label": "##rot",
+                  "max": 360,
+                  "min": -360,
+                  "speed": 0.5
+                },
+                "type": "DragFloat"
+              },
+              {
+                "id": "scale_lbl",
+                "props": {
+                  "text": "Scale"
+                },
+                "style": {
+                  "classes": [
+                    "label"
+                  ]
+                },
+                "type": "Text"
+              },
+              {
+                "bind": {
+                  "value": "obj.scale"
+                },
+                "id": "scale_drag",
+                "props": {
+                  "components": 2,
+                  "flags": [
+                    "AlwaysClamp"
+                  ],
+                  "format": "%.2f",
+                  "label": "##scale",
+                  "max": 100,
+                  "min": 0.01,
+                  "speed": 0.01
+                },
+                "tooltip": "Hold Alt for slower drag",
+                "type": "DragFloat"
+              },
+              {
+                "id": "layer_lbl",
+                "props": {
+                  "text": "Layer"
+                },
+                "style": {
+                  "classes": [
+                    "label"
+                  ]
+                },
+                "type": "Text"
+              },
+              {
+                "bind": {
+                  "value": "obj.layer"
+                },
+                "id": "layer_input",
+                "props": {
+                  "label": "##layer",
+                  "step": 1,
+                  "stepFast": 10
+                },
+                "type": "InputInt"
+              },
+              {
+                "id": "visible_lbl",
+                "props": {
+                  "text": "Visible"
+                },
+                "style": {
+                  "classes": [
+                    "label"
+                  ]
+                },
+                "type": "Text"
+              },
+              {
+                "bind": {
+                  "value": "obj.visible"
+                },
+                "id": "visible_cb",
+                "props": {
+                  "label": "##visible"
+                },
+                "type": "Checkbox"
+              }
+            ],
+            "id": "transform_grid",
+            "props": {
+              "columnWidths": [
+                110,
+                "fill"
+              ],
+              "columns": 2,
+              "flags": [
+                "SizingStretchProp",
+                "BordersInnerH",
+                "PadOuterX"
+              ]
+            },
+            "type": "Grid"
+          }
+        ],
+        "events": {
+          "onOpen": {
+            "actions": [
+              {
+                "target": "state.lastSection",
+                "type": "set",
+                "value": "Transform"
+              }
+            ]
+          }
+        },
+        "id": "transform_header",
+        "props": {
+          "defaultOpen": true,
+          "flags": [
+            "SpanAvailWidth"
+          ],
+          "label": "Transform"
+        },
+        "type": "CollapsingHeader"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "id": "albedo_lbl",
+                "props": {
+                  "text": "Albedo"
+                },
+                "style": {
+                  "classes": [
+                    "label"
+                  ]
+                },
+                "type": "Text"
+              },
+              {
+                "bind": {
+                  "value": "mat.albedo"
+                },
+                "events": {
+                  "onChange": {
+                    "handler": true
+                  }
+                },
+                "id": "albedo_edit",
+                "props": {
+                  "alpha": true,
+                  "flags": [
+                    "AlphaBar",
+                    "DisplayHex"
+                  ],
+                  "label": "##albedo"
+                },
+                "type": "ColorEdit"
+              },
+              {
+                "id": "emissive_lbl",
+                "props": {
+                  "text": "Emissive"
+                },
+                "style": {
+                  "classes": [
+                    "label"
+                  ]
+                },
+                "type": "Text"
+              },
+              {
+                "bind": {
+                  "value": "mat.emissive"
+                },
+                "id": "emissive_edit",
+                "props": {
+                  "alpha": false,
+                  "flags": [
+                    "HDR",
+                    "Float",
+                    "NoAlpha"
+                  ],
+                  "label": "##emissive"
+                },
+                "type": "ColorEdit"
+              },
+              {
+                "id": "rough_lbl",
+                "props": {
+                  "text": "Roughness"
+                },
+                "style": {
+                  "classes": [
+                    "label"
+                  ]
+                },
+                "type": "Text"
+              },
+              {
+                "bind": {
+                  "value": "mat.roughness"
+                },
+                "id": "rough_slider",
+                "props": {
+                  "flags": [
+                    "AlwaysClamp"
+                  ],
+                  "format": "%.3f",
+                  "label": "##rough",
+                  "max": 1,
+                  "min": 0
+                },
+                "type": "SliderFloat"
+              },
+              {
+                "id": "metal_lbl",
+                "props": {
+                  "text": "Metallic"
+                },
+                "style": {
+                  "classes": [
+                    "label"
+                  ]
+                },
+                "type": "Text"
+              },
+              {
+                "bind": {
+                  "value": "mat.metallic"
+                },
+                "id": "metal_slider",
+                "props": {
+                  "flags": [
+                    "AlwaysClamp"
+                  ],
+                  "format": "%.3f",
+                  "label": "##metal",
+                  "max": 1,
+                  "min": 0
+                },
+                "type": "SliderFloat"
+              },
+              {
+                "id": "shader_lbl",
+                "props": {
+                  "text": "Shader"
+                },
+                "style": {
+                  "classes": [
+                    "label"
+                  ]
+                },
+                "type": "Text"
+              },
+              {
+                "bind": {
+                  "value": "mat.shader"
+                },
+                "id": "shader_combo",
+                "props": {
+                  "flags": [
+                    "WidthFitPreview"
+                  ],
+                  "items": [
+                    "Lit",
+                    "Unlit",
+                    "Toon",
+                    "Glass"
+                  ],
+                  "label": "##shader"
+                },
+                "type": "Combo"
+              },
+              {
+                "id": "twosided_lbl",
+                "props": {
+                  "text": "Double sided"
+                },
+                "style": {
+                  "classes": [
+                    "label"
+                  ]
+                },
+                "type": "Text"
+              },
+              {
+                "bind": {
+                  "value": "mat.double_sided"
+                },
+                "id": "twosided_cb",
+                "props": {
+                  "label": "##twosided"
+                },
+                "type": "Checkbox"
+              },
+              {
+                "id": "tex_lbl",
+                "props": {
+                  "text": "Texture"
+                },
+                "style": {
+                  "classes": [
+                    "label"
+                  ]
+                },
+                "type": "Text"
+              },
+              {
+                "bind": {
+                  "value": "mat.texture"
+                },
+                "id": "tex_name",
+                "props": {
+                  "flags": [
+                    "ElideLeft"
+                  ],
+                  "hint": "path/to/texture.png",
+                  "label": "##tex",
+                  "maxLength": 260
+                },
+                "type": "InputText"
+              }
+            ],
+            "id": "material_grid",
+            "props": {
+              "columnWidths": [
+                110,
+                "fill"
+              ],
+              "columns": 2,
+              "flags": [
+                "SizingStretchProp",
+                "BordersInnerH",
+                "PadOuterX"
+              ]
+            },
+            "type": "Grid"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "onClick": {
+                    "actions": [
+                      {
+                        "target": "albedo_popup",
+                        "type": "openPopup"
+                      }
+                    ]
+                  }
+                },
+                "id": "mat_swatch",
+                "props": {
+                  "color": "#f0883eff",
+                  "desc": "Albedo preview",
+                  "flags": [
+                    "NoTooltip"
+                  ],
+                  "size": {
+                    "h": 40,
+                    "w": 40
+                  }
+                },
+                "tooltip": "Open the albedo picker",
+                "type": "ColorButton"
+              },
+              {
+                "id": "mat_summary",
+                "props": {
+                  "text": "{mat.name}  r={mat.roughness:%.2f}  m={mat.metallic:%.2f}",
+                  "wrapped": true
+                },
+                "type": "Text"
+              }
+            ],
+            "id": "mat_preview_row",
+            "props": {
+              "align": "Center",
+              "spacing": 8
+            },
+            "type": "HStack"
+          },
+          {
+            "children": [
+              {
+                "bind": {
+                  "value": "mat.albedo"
+                },
+                "id": "albedo_picker",
+                "props": {
+                  "alpha": true,
+                  "flags": [
+                    "PickerHueWheel",
+                    "NoSidePreview",
+                    "NoInputs"
+                  ],
+                  "label": "##albedo_picker"
+                },
+                "type": "ColorPicker"
+              }
+            ],
+            "id": "albedo_popup",
+            "props": {
+              "flags": [
+                "NoMove"
+              ]
+            },
+            "type": "Popup"
+          }
+        ],
+        "events": {
+          "onOpen": {
+            "actions": [
+              {
+                "target": "state.lastSection",
+                "type": "set",
+                "value": "Material"
+              }
+            ]
+          }
+        },
+        "id": "material_header",
+        "props": {
+          "defaultOpen": true,
+          "flags": [
+            "SpanAvailWidth"
+          ],
+          "label": "Material"
+        },
+        "type": "CollapsingHeader"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "id": "adv_id",
+                "props": {
+                  "disabled": true,
+                  "text": "Section: {state.lastSection}"
+                },
+                "type": "Text"
+              },
+              {
+                "bind": {
+                  "selected": "state.showGizmo"
+                },
+                "id": "adv_sel",
+                "props": {
+                  "flags": [
+                    "AllowDoubleClick"
+                  ],
+                  "label": "Show gizmo",
+                  "size": {
+                    "h": "auto",
+                    "w": "fill"
+                  }
+                },
+                "type": "Selectable"
+              },
+              {
+                "events": {
+                  "onClick": {
+                    "actions": [
+                      {
+                        "type": "copyClipboard",
+                        "value": "{{\"x\":{obj.position.x:%.3f},\"y\":{obj.position.y:%.3f},\"rot\":{obj.rotation:%.3f}}}"
+                      }
+                    ]
+                  }
+                },
+                "id": "adv_copy",
+                "props": {
+                  "label": "Copy transform as JSON"
+                },
+                "type": "SmallButton"
+              }
+            ],
+            "id": "adv_tree",
+            "props": {
+              "defaultOpen": false,
+              "flags": [
+                "SpanAvailWidth"
+              ],
+              "label": "Debug"
+            },
+            "type": "TreeNode"
+          }
+        ],
+        "id": "advanced_header",
+        "props": {
+          "defaultOpen": false,
+          "flags": [
+            "SpanAvailWidth"
+          ],
+          "label": "Advanced"
+        },
+        "type": "CollapsingHeader"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoCollapse"
+      ],
+      "initialPos": {
+        "x": 40,
+        "y": 40
+      },
+      "initialSize": {
+        "x": 360,
+        "y": 620
+      },
+      "menuBar": false,
+      "sizeCond": "FirstUseEver",
+      "title": "{icon:fa-sliders} Inspector"
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": true,
+      "name": "open",
+      "type": "bool"
+    },
+    {
+      "default": "",
+      "name": "filter",
+      "type": "string"
+    },
+    {
+      "default": false,
+      "name": "locked",
+      "type": "bool"
+    },
+    {
+      "default": true,
+      "name": "showGizmo",
+      "type": "bool"
+    },
+    {
+      "default": "Transform",
+      "name": "lastSection",
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "kind": "templates",
+  "schemaVersion": 1,
+  "templates": [
+    {
+      "description": "Empty window with a text node. SDL3 + OpenGL 3, no extras.",
+      "dir": "blank",
+      "features": {
+        "animations": false,
+        "docking": false,
+        "dpiScaling": true,
+        "drawlistFx": false,
+        "iconFonts": false,
+        "shaderFx": false
+      },
+      "id": "blank",
+      "name": "Blank"
+    },
+    {
+      "description": "Tabbed menu window with blur, shadow, enter animation and a bound Settings struct. Win32 + DX11.",
+      "dir": "cheat-menu",
+      "features": {
+        "animations": true,
+        "docking": false,
+        "dpiScaling": true,
+        "drawlistFx": true,
+        "iconFonts": true,
+        "shaderFx": true
+      },
+      "id": "cheat-menu",
+      "name": "Cheat / mod menu"
+    },
+    {
+      "description": "Dockable inspector panel with a properties grid bound to an Object struct. SDL3 + OpenGL 3, docking branch.",
+      "dir": "tool-dock",
+      "features": {
+        "animations": true,
+        "docking": true,
+        "dpiScaling": true,
+        "drawlistFx": false,
+        "iconFonts": true,
+        "shaderFx": false
+      },
+      "id": "tool-dock",
+      "name": "Tool / editor"
+    },
+    {
+      "description": "Fixed-size dialog with tabbed option pages and OK / Apply / Cancel buttons bound to an AppSettings struct. GLFW + OpenGL 3, light theme.",
+      "dir": "settings-dialog",
+      "features": {
+        "animations": true,
+        "docking": false,
+        "dpiScaling": true,
+        "drawlistFx": false,
+        "iconFonts": false,
+        "shaderFx": false
+      },
+      "id": "settings-dialog",
+      "name": "Settings dialog"
+    },
+    {
+      "description": "Fullscreen click-through window with a Canvas of anchored texts and a health bar bound to a Player struct. Win32 + DX11.",
+      "dir": "overlay-hud",
+      "features": {
+        "animations": true,
+        "docking": false,
+        "dpiScaling": true,
+        "drawlistFx": true,
+        "iconFonts": true,
+        "shaderFx": false
+      },
+      "id": "overlay-hud",
+      "name": "Overlay HUD"
+    }
+  ]
+}

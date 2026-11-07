@@ -1,0 +1,342 @@
+{
+  "kind": "panel",
+  "name": "Overlay",
+  "params": [
+    {
+      "name": "player",
+      "type": "Player"
+    },
+    {
+      "name": "cfg",
+      "type": "Settings"
+    }
+  ],
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "anim": {
+              "enter": {
+                "duration": 0.3,
+                "preset": "FadeSlideDown"
+              }
+            },
+            "font": "Bold",
+            "fx": [
+              {
+                "color": "#00000099",
+                "rounding": 2,
+                "size": 6,
+                "type": "shadow"
+              }
+            ],
+            "id": "watermark",
+            "layout": {
+              "anchor": "TopLeft",
+              "offset": {
+                "x": 12,
+                "y": 10
+              }
+            },
+            "props": {
+              "color": "#ffffffcc",
+              "text": "{icon:fa-crosshairs} CheatMenu | {player.name} | {state.fps:%.0f} fps"
+            },
+            "type": "Text",
+            "visibleIf": "cfg.misc.watermark"
+          },
+          {
+            "anim": {
+              "enter": {
+                "duration": 0.25,
+                "preset": "ScalePop"
+              },
+              "exit": {
+                "duration": 0.15,
+                "preset": "Fade"
+              }
+            },
+            "font": "Title",
+            "fx": [
+              {
+                "color": "#e74c3c80",
+                "rounding": 4,
+                "size": 10,
+                "type": "glow"
+              }
+            ],
+            "id": "mode_text",
+            "layout": {
+              "anchor": "TopRight",
+              "offset": {
+                "x": -16,
+                "y": 10
+              }
+            },
+            "props": {
+              "color": "#e74c3cff",
+              "text": "AIM"
+            },
+            "type": "Text",
+            "visibleIf": "cfg.aim.enabled"
+          },
+          {
+            "anim": {
+              "enter": {
+                "duration": 0.25,
+                "preset": "ScalePop"
+              },
+              "exit": {
+                "duration": 0.15,
+                "preset": "Fade"
+              }
+            },
+            "font": "Title",
+            "fx": [
+              {
+                "color": "#2ecc7180",
+                "rounding": 4,
+                "size": 10,
+                "type": "glow"
+              }
+            ],
+            "id": "esp_text",
+            "layout": {
+              "anchor": "TopRight",
+              "offset": {
+                "x": -80,
+                "y": 10
+              }
+            },
+            "props": {
+              "color": "#2ecc71ff",
+              "text": "ESP"
+            },
+            "type": "Text",
+            "visibleIf": "cfg.esp.enabled"
+          },
+          {
+            "font": "Bold",
+            "id": "hp_label",
+            "layout": {
+              "anchor": "BottomLeft",
+              "offset": {
+                "x": 20,
+                "y": -44
+              }
+            },
+            "props": {
+              "text": "{icon:fa-heart} {player.health:%.0f} / {player.max_hp:%.0f}"
+            },
+            "type": "Text",
+            "visibleIf": "player.health > 0"
+          },
+          {
+            "anim": {
+              "transitions": [
+                {
+                  "duration": 0.2,
+                  "ease": "OutCubic",
+                  "on": "visible",
+                  "prop": "color.PlotHistogram",
+                  "to": "#2ecc71ff"
+                }
+              ]
+            },
+            "fx": [
+              {
+                "color": "#00000080",
+                "rounding": 7,
+                "size": 8,
+                "type": "shadow"
+              }
+            ],
+            "id": "hp_bar",
+            "layout": {
+              "anchor": "BottomLeft",
+              "offset": {
+                "x": 20,
+                "y": -20
+              }
+            },
+            "props": {
+              "fraction": {
+                "expr": "player.health / player.max_hp"
+              },
+              "overlay": "",
+              "size": {
+                "h": 14,
+                "w": 260
+              }
+            },
+            "style": {
+              "colors": {
+                "FrameBg": "#00000080",
+                "PlotHistogram": "#2ecc71ff"
+              },
+              "vars": {
+                "FrameBorderSize": 0,
+                "FrameRounding": 7
+              }
+            },
+            "type": "ProgressBar",
+            "visibleIf": "player.health > 0"
+          },
+          {
+            "anim": {
+              "enter": {
+                "duration": 0.3,
+                "preset": "ScalePop"
+              }
+            },
+            "font": "Title",
+            "id": "dead_text",
+            "layout": {
+              "anchor": "Bottom",
+              "offset": {
+                "x": 0,
+                "y": -24
+              }
+            },
+            "props": {
+              "color": "#e74c3cff",
+              "text": "{icon:fa-skull} DEAD"
+            },
+            "type": "Text",
+            "visibleIf": "player.health <= 0"
+          },
+          {
+            "anim": {
+              "transitions": [
+                {
+                  "duration": 0.2,
+                  "ease": "OutCubic",
+                  "on": "visible",
+                  "prop": "color.Text",
+                  "to": "#ffffffff"
+                }
+              ]
+            },
+            "font": "Title",
+            "id": "ammo_text",
+            "layout": {
+              "anchor": "BottomRight",
+              "offset": {
+                "x": -20,
+                "y": -20
+              }
+            },
+            "props": {
+              "text": "{player.ammo} {icon:fa-bullseye}"
+            },
+            "type": "Text"
+          },
+          {
+            "anim": {
+              "enter": {
+                "duration": 0.2,
+                "preset": "FadeSlideUp"
+              },
+              "exit": {
+                "duration": 0.1,
+                "preset": "Fade"
+              }
+            },
+            "font": "Bold",
+            "id": "low_ammo",
+            "layout": {
+              "anchor": "BottomRight",
+              "offset": {
+                "x": -20,
+                "y": -52
+              }
+            },
+            "props": {
+              "color": "#f39c12ff",
+              "text": "RELOAD"
+            },
+            "type": "Text",
+            "visibleIf": "player.ammo <= 5"
+          },
+          {
+            "id": "crosshair",
+            "layout": {
+              "anchor": "Center"
+            },
+            "props": {
+              "color": "#ffffffff",
+              "text": "+"
+            },
+            "type": "Text",
+            "visibleIf": "cfg.misc.crosshair"
+          },
+          {
+            "id": "fov_circle",
+            "name": "FOV circle",
+            "props": {
+              "code": "ImGui::GetWindowDrawList()->AddCircle(ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.5f), cfg.aim.fov * 4.0f, IM_COL32(255, 255, 255, 60), 64, 1.0f);",
+              "preview": "Placeholder"
+            },
+            "type": "Code",
+            "visibleIf": "cfg.aim.enabled && cfg.misc.show_fov"
+          }
+        ],
+        "id": "hud",
+        "props": {
+          "border": false,
+          "size": {
+            "h": "fill",
+            "w": "fill"
+          }
+        },
+        "type": "Canvas"
+      }
+    ],
+    "id": "overlay",
+    "props": {
+      "flags": [
+        "NoTitleBar",
+        "NoBackground",
+        "NoInputs",
+        "NoResize",
+        "NoMove",
+        "NoScrollbar",
+        "NoSavedSettings",
+        "NoBringToFrontOnFocus",
+        "NoNav",
+        "NoDocking"
+      ],
+      "initialPos": {
+        "x": 0,
+        "y": 0
+      },
+      "initialSize": {
+        "x": 1920,
+        "y": 1080
+      },
+      "menuBar": false,
+      "sizeCond": "Always",
+      "title": "##overlay"
+    },
+    "style": {
+      "vars": {
+        "WindowBorderSize": 0,
+        "WindowPadding": {
+          "x": 0,
+          "y": 0
+        },
+        "WindowRounding": 0
+      }
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": 0,
+      "name": "fps",
+      "type": "float"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "bindings": [
+    {
+      "name": "open",
+      "required": false,
+      "types": [
+        "bool"
+      ]
+    }
+  ],
+  "call": "imb::ess::SectionCard({title}, {size}, {open})",
+  "callEnd": "imb::ess::EndSectionCard()",
+  "category": "Essentials",
+  "container": true,
+  "events": [],
+  "icon": "fa-square",
+  "include": "imb_essentials.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "SectionCard",
+  "preview": [
+    {
+      "fill": "#1e2129ff",
+      "h": 120,
+      "rounding": 8,
+      "shape": "rect",
+      "stroke": "#3a4150ff",
+      "w": 220,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#2d3340ff",
+      "h": 26,
+      "rounding": 8,
+      "shape": "rect",
+      "w": 220,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 1,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 220,
+      "x": 0,
+      "y": 25
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{title}",
+      "x": 10,
+      "y": 5
+    }
+  ],
+  "props": [
+    {
+      "default": "Section",
+      "name": "title",
+      "type": "string"
+    },
+    {
+      "default": {
+        "h": "auto",
+        "w": "fill"
+      },
+      "name": "size",
+      "type": "size"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

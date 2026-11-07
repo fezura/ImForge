@@ -1,0 +1,314 @@
+{
+  "kind": "panel",
+  "name": "Settings",
+  "params": [
+    {
+      "name": "settings",
+      "type": "AppSettings"
+    }
+  ],
+  "root": {
+    "bind": {
+      "open": "state.open"
+    },
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "id": "user_lbl",
+                    "props": {
+                      "text": "User name"
+                    },
+                    "type": "Text"
+                  },
+                  {
+                    "bind": {
+                      "value": "settings.username"
+                    },
+                    "id": "user_input",
+                    "props": {
+                      "hint": "Your name",
+                      "label": "##user",
+                      "maxLength": 64
+                    },
+                    "type": "InputText"
+                  },
+                  {
+                    "id": "lang_lbl",
+                    "props": {
+                      "text": "Language"
+                    },
+                    "type": "Text"
+                  },
+                  {
+                    "bind": {
+                      "value": "settings.language"
+                    },
+                    "id": "lang_combo",
+                    "props": {
+                      "items": [
+                        "English",
+                        "Deutsch",
+                        "Francais",
+                        "Espanol"
+                      ],
+                      "label": "##lang"
+                    },
+                    "type": "Combo"
+                  },
+                  {
+                    "id": "vol_lbl",
+                    "props": {
+                      "text": "Volume"
+                    },
+                    "type": "Text"
+                  },
+                  {
+                    "bind": {
+                      "value": "settings.volume"
+                    },
+                    "id": "vol_slider",
+                    "props": {
+                      "format": "%.0f%%",
+                      "label": "##vol",
+                      "max": 1,
+                      "min": 0
+                    },
+                    "type": "SliderFloat"
+                  }
+                ],
+                "id": "general_grid",
+                "props": {
+                  "columnWidths": [
+                    120,
+                    "fill"
+                  ],
+                  "columns": 2,
+                  "flags": [
+                    "SizingStretchProp"
+                  ]
+                },
+                "type": "Grid"
+              }
+            ],
+            "id": "tab_general",
+            "props": {
+              "label": "General"
+            },
+            "type": "Tab"
+          },
+          {
+            "children": [
+              {
+                "bind": {
+                  "value": "settings.fullscreen"
+                },
+                "id": "fullscreen",
+                "props": {
+                  "label": "Fullscreen"
+                },
+                "type": "Checkbox"
+              },
+              {
+                "bind": {
+                  "value": "settings.vsync"
+                },
+                "id": "vsync",
+                "props": {
+                  "label": "V-Sync"
+                },
+                "type": "Checkbox"
+              },
+              {
+                "bind": {
+                  "value": "settings.quality"
+                },
+                "id": "quality",
+                "props": {
+                  "items": [
+                    "Low",
+                    "Medium",
+                    "High",
+                    "Ultra"
+                  ],
+                  "label": "Quality"
+                },
+                "type": "Combo"
+              }
+            ],
+            "id": "tab_graphics",
+            "props": {
+              "label": "Graphics"
+            },
+            "type": "Tab"
+          }
+        ],
+        "id": "tabs",
+        "props": {
+          "flags": []
+        },
+        "type": "TabBar"
+      },
+      {
+        "id": "spacer",
+        "props": {
+          "size": {
+            "h": "fill-36",
+            "w": 1
+          }
+        },
+        "type": "Dummy"
+      },
+      {
+        "children": [
+          {
+            "anim": {
+              "enter": {
+                "duration": 0.15,
+                "preset": "Fade"
+              },
+              "exit": {
+                "duration": 0.15,
+                "preset": "Fade"
+              }
+            },
+            "id": "dirty_text",
+            "props": {
+              "disabled": true,
+              "text": "Unsaved changes"
+            },
+            "type": "Text",
+            "visibleIf": "state.dirty"
+          },
+          {
+            "id": "btn_spacer",
+            "props": {
+              "size": {
+                "h": 1,
+                "w": "fill"
+              }
+            },
+            "type": "Dummy"
+          },
+          {
+            "events": {
+              "onClick": {
+                "actions": [
+                  {
+                    "target": "state.open",
+                    "type": "set",
+                    "value": false
+                  }
+                ],
+                "handler": true
+              }
+            },
+            "id": "btn_cancel",
+            "props": {
+              "label": "Cancel",
+              "size": {
+                "h": "auto",
+                "w": 90
+              }
+            },
+            "type": "Button"
+          },
+          {
+            "enabledIf": "state.dirty",
+            "events": {
+              "onClick": {
+                "actions": [
+                  {
+                    "target": "state.dirty",
+                    "type": "set",
+                    "value": false
+                  }
+                ],
+                "handler": true
+              }
+            },
+            "id": "btn_apply",
+            "props": {
+              "label": "Apply",
+              "size": {
+                "h": "auto",
+                "w": 90
+              }
+            },
+            "type": "Button"
+          },
+          {
+            "events": {
+              "onClick": {
+                "actions": [
+                  {
+                    "target": "state.dirty",
+                    "type": "set",
+                    "value": false
+                  },
+                  {
+                    "target": "state.open",
+                    "type": "set",
+                    "value": false
+                  }
+                ],
+                "handler": true
+              }
+            },
+            "id": "btn_ok",
+            "props": {
+              "label": "OK",
+              "size": {
+                "h": "auto",
+                "w": 90
+              }
+            },
+            "type": "Button"
+          }
+        ],
+        "id": "buttons",
+        "props": {
+          "align": "Center",
+          "spacing": 8
+        },
+        "type": "HStack"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoCollapse",
+        "NoResize"
+      ],
+      "initialPos": {
+        "x": 60,
+        "y": 60
+      },
+      "initialSize": {
+        "x": 520,
+        "y": 400
+      },
+      "menuBar": false,
+      "sizeCond": "FirstUseEver",
+      "title": "Settings"
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": true,
+      "name": "open",
+      "type": "bool"
+    },
+    {
+      "default": false,
+      "name": "dirty",
+      "type": "bool"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "enums": {},
+  "kind": "types",
+  "schemaVersion": 1,
+  "structs": {
+    "AppSettings": {
+      "fields": [
+        {
+          "ctype": "StdString",
+          "name": "username",
+          "type": "std::string"
+        },
+        {
+          "ctype": "Float",
+          "name": "volume",
+          "type": "float"
+        },
+        {
+          "ctype": "Bool",
+          "name": "fullscreen",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "vsync",
+          "type": "bool"
+        },
+        {
+          "ctype": "I32",
+          "name": "quality",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "language",
+          "type": "int"
+        }
+      ],
+      "header": "app_settings.h"
+    }
+  }
+}

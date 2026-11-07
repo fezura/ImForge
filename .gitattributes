@@ -1,0 +1,13 @@
+* text=auto eol=lf
+
+*.ttf binary
+*.otf binary
+*.png binary
+*.gif binary
+*.jpg binary
+*.ico binary
+*.imblib binary
+*.zip binary
+
+*.bat text eol=crlf
+*.cmd text eol=crlf

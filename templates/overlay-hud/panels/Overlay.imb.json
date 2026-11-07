@@ -1,0 +1,162 @@
+{
+  "kind": "panel",
+  "name": "Overlay",
+  "params": [
+    {
+      "name": "player",
+      "type": "Player"
+    }
+  ],
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "fx": [
+              {
+                "color": "#00000099",
+                "rounding": 2,
+                "size": 6,
+                "type": "shadow"
+              }
+            ],
+            "id": "watermark",
+            "layout": {
+              "anchor": "TopLeft",
+              "offset": {
+                "x": 12,
+                "y": 10
+              }
+            },
+            "props": {
+              "color": "#ffffffcc",
+              "text": "{{PROJECT_NAME}} | {player.name} | {state.fps:%.0f} fps"
+            },
+            "type": "Text"
+          },
+          {
+            "id": "hp_label",
+            "layout": {
+              "anchor": "BottomLeft",
+              "offset": {
+                "x": 20,
+                "y": -44
+              }
+            },
+            "props": {
+              "text": "{icon:fa-heart} {player.health:%.0f} / {player.max_hp:%.0f}"
+            },
+            "type": "Text"
+          },
+          {
+            "id": "hp_bar",
+            "layout": {
+              "anchor": "BottomLeft",
+              "offset": {
+                "x": 20,
+                "y": -20
+              }
+            },
+            "props": {
+              "fraction": {
+                "expr": "player.health / player.max_hp"
+              },
+              "overlay": "",
+              "size": {
+                "h": 12,
+                "w": 240
+              }
+            },
+            "style": {
+              "colors": {
+                "FrameBg": "#00000080",
+                "PlotHistogram": "#2ecc71ff"
+              },
+              "vars": {
+                "FrameRounding": 6
+              }
+            },
+            "type": "ProgressBar"
+          },
+          {
+            "id": "ammo",
+            "layout": {
+              "anchor": "BottomRight",
+              "offset": {
+                "x": -20,
+                "y": -20
+              }
+            },
+            "props": {
+              "text": "{player.ammo} {icon:fa-bullseye}"
+            },
+            "type": "Text"
+          },
+          {
+            "id": "crosshair",
+            "layout": {
+              "anchor": "Center"
+            },
+            "props": {
+              "color": "#ffffffff",
+              "text": "+"
+            },
+            "type": "Text"
+          }
+        ],
+        "id": "hud",
+        "props": {
+          "border": false,
+          "size": {
+            "h": "fill",
+            "w": "fill"
+          }
+        },
+        "type": "Canvas"
+      }
+    ],
+    "id": "overlay",
+    "props": {
+      "flags": [
+        "NoTitleBar",
+        "NoBackground",
+        "NoInputs",
+        "NoResize",
+        "NoMove",
+        "NoScrollbar",
+        "NoSavedSettings",
+        "NoBringToFrontOnFocus",
+        "NoNav"
+      ],
+      "initialPos": {
+        "x": 0,
+        "y": 0
+      },
+      "initialSize": {
+        "x": 1920,
+        "y": 1080
+      },
+      "menuBar": false,
+      "sizeCond": "Always",
+      "title": "##overlay"
+    },
+    "style": {
+      "vars": {
+        "WindowBorderSize": 0,
+        "WindowPadding": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": 0,
+      "name": "fps",
+      "type": "float"
+    }
+  ]
+}

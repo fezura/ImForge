@@ -1,0 +1,182 @@
+{
+  "enums": {
+    "Mode": {
+      "header": "game/player.h",
+      "scoped": true,
+      "values": [
+        [
+          "Off",
+          0
+        ],
+        [
+          "Legit",
+          1
+        ],
+        [
+          "Rage",
+          2
+        ]
+      ]
+    }
+  },
+  "kind": "types",
+  "schemaVersion": 1,
+  "structs": {
+    "AimSettings": {
+      "fields": [
+        {
+          "ctype": "Bool",
+          "name": "enabled",
+          "type": "bool"
+        },
+        {
+          "ctype": "Float",
+          "name": "fov",
+          "type": "float"
+        },
+        {
+          "ctype": "Float",
+          "name": "smooth",
+          "type": "float"
+        },
+        {
+          "ctype": "I32",
+          "name": "bone",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "key",
+          "type": "int"
+        }
+      ],
+      "header": "game/settings.h"
+    },
+    "EspSettings": {
+      "fields": [
+        {
+          "ctype": "Bool",
+          "name": "enabled",
+          "type": "bool"
+        },
+        {
+          "ctype": "Vec4",
+          "name": "color",
+          "type": "ImVec4"
+        },
+        {
+          "ctype": "I32",
+          "name": "box_type",
+          "type": "int"
+        },
+        {
+          "ctype": "Float",
+          "name": "max_distance",
+          "type": "float"
+        }
+      ],
+      "header": "game/settings.h"
+    },
+    "MiscSettings": {
+      "fields": [
+        {
+          "ctype": "Bool",
+          "name": "bhop",
+          "type": "bool"
+        },
+        {
+          "ctype": "Float",
+          "name": "speed",
+          "type": "float"
+        },
+        {
+          "ctype": "Bool",
+          "name": "fov_changer",
+          "type": "bool"
+        },
+        {
+          "ctype": "Float",
+          "name": "fov",
+          "type": "float"
+        },
+        {
+          "ctype": "Bool",
+          "name": "watermark",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "crosshair",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "show_fov",
+          "type": "bool"
+        },
+        {
+          "ctype": "I32",
+          "name": "menu_key",
+          "type": "int"
+        }
+      ],
+      "header": "game/settings.h"
+    },
+    "Player": {
+      "fields": [
+        {
+          "count": 32,
+          "ctype": "CharArray",
+          "name": "name",
+          "type": "char[32]"
+        },
+        {
+          "ctype": "Float",
+          "name": "health",
+          "type": "float"
+        },
+        {
+          "ctype": "Float",
+          "name": "max_hp",
+          "type": "float"
+        },
+        {
+          "ctype": "Vec2",
+          "name": "pos",
+          "type": "ImVec2"
+        },
+        {
+          "ctype": "I32",
+          "name": "ammo",
+          "type": "int"
+        },
+        {
+          "ctype": "Enum",
+          "name": "mode",
+          "type": "Mode"
+        }
+      ],
+      "header": "game/player.h"
+    },
+    "Settings": {
+      "fields": [
+        {
+          "ctype": "Struct",
+          "name": "esp",
+          "type": "EspSettings"
+        },
+        {
+          "ctype": "Struct",
+          "name": "aim",
+          "type": "AimSettings"
+        },
+        {
+          "ctype": "Struct",
+          "name": "misc",
+          "type": "MiscSettings"
+        }
+      ],
+      "header": "game/settings.h"
+    }
+  }
+}
