@@ -197,9 +197,13 @@ static void OnSaveLive(imforge::DrawCtx&) {
 
 // after ImGui_ImplDX11_Init(...):
 imforge::live::Connect("tcp://127.0.0.1:7777");
+imforge::live::SetFontTextureRebuild(ImGui_ImplDX11_InvalidateDeviceObjects);   // project fonts
 imforge::live::RegisterHandler("Menu.btn_save.onClick", &OnSaveLive);
 imforge::live::RegisterWidget("Toggle", &imb::ess::DrawToggleInterp);   // one per essentials widget you use,
                                                                         // or include the pack's registration header
+
+// every frame, before ImGui_ImplDX11_NewFrame():
+imforge::live::PreNewFrame();
 
 // every frame, after ImGui::NewFrame():
 imforge::live::NewFrame();

@@ -1,0 +1,114 @@
+{
+  "bindings": [
+    {
+      "name": "enabled",
+      "required": false,
+      "types": [
+        "bool"
+      ]
+    }
+  ],
+  "call": "imb::game::CategoryCard({title}, {description}, {icon}, {enabled}, {size}, {accent:u32})",
+  "category": "Gaming",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-id-card",
+  "include": "imb_gaming.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "CategoryCard",
+  "preview": [
+    {
+      "fill": "#1e2129ff",
+      "h": 60,
+      "rounding": 6,
+      "shape": "rect",
+      "stroke": "#3a4150ff",
+      "w": 280,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#4296fad9",
+      "h": 36,
+      "rounding": 10,
+      "shape": "rect",
+      "w": 36,
+      "x": 10,
+      "y": 12
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{icon}",
+      "x": 24,
+      "y": 22
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{title}",
+      "x": 56,
+      "y": 12
+    },
+    {
+      "color": "#8a93a6ff",
+      "shape": "text",
+      "text": "{description}",
+      "x": 56,
+      "y": 32
+    },
+    {
+      "fill": "#4296faff",
+      "h": 21,
+      "rounding": 10,
+      "shape": "rect",
+      "w": 38,
+      "x": 230,
+      "y": 20
+    },
+    {
+      "fill": "#ffffffff",
+      "r": 8,
+      "shape": "circle",
+      "x": 257,
+      "y": 30
+    }
+  ],
+  "props": [
+    {
+      "default": "Visuals",
+      "name": "title",
+      "type": "string"
+    },
+    {
+      "default": "Boxes, names and health bars",
+      "name": "description",
+      "type": "string"
+    },
+    {
+      "default": "V",
+      "hint": "glyph, fa-* name or a letter",
+      "name": "icon",
+      "type": "string"
+    },
+    {
+      "default": "#00000000",
+      "hint": "transparent uses the style accent",
+      "name": "accent",
+      "type": "color"
+    },
+    {
+      "default": {
+        "h": "auto",
+        "w": "auto"
+      },
+      "name": "size",
+      "type": "size"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

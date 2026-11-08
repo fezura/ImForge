@@ -1,0 +1,271 @@
+{
+  "credit": "",
+  "description": "A neutral desktop look with stacked gray surfaces, thin borders and a blue line over the active tab. Good for tools that sit next to a game.",
+  "fonts": [
+    {
+      "family": "Outfit",
+      "role": "ui",
+      "size": 15,
+      "weight": "Regular"
+    },
+    {
+      "family": "Outfit",
+      "role": "heading",
+      "size": 19,
+      "weight": "SemiBold"
+    }
+  ],
+  "fx": {
+    "accentGlow": 0.15,
+    "windowBlur": 0,
+    "windowShadow": 0.45
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "SpotlightHover",
+    "button.press": "Shrink",
+    "list": "StaggerSlideRight",
+    "window": {
+      "durationScale": 0.8,
+      "preset": "FadeInUp"
+    },
+    "window.exit": "FadeOutDown"
+  },
+  "name": "LayeredDesk",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Border": "#4aa3ffcc",
+        "Button": "#4aa3ffff",
+        "ButtonActive": "#3a8fe6ff",
+        "ButtonHovered": "#6bb4ffff",
+        "Text": "#08192bff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#3a3a40ff",
+        "ChildBg": "#28282bff"
+      },
+      "vars": {
+        "ChildBorderSize": 1,
+        "ChildRounding": 8,
+        "WindowPadding": {
+          "x": 12,
+          "y": 10
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#ff7a7a8c",
+        "Button": "#ff7a7a29",
+        "ButtonActive": "#ff7a7a6b",
+        "ButtonHovered": "#ff7a7a47",
+        "CheckMark": "#ff7a7aff",
+        "SliderGrab": "#ff7a7aff",
+        "SliderGrabActive": "#ff7a7aff",
+        "Text": "#fc9292ff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#7fc3ff80",
+        "Button": "#7fc3ff00",
+        "ButtonActive": "#7fc3ff42",
+        "ButtonHovered": "#7fc3ff24",
+        "Text": "#7fc3ffff"
+      },
+      "vars": {
+        "FrameBorderSize": 1
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#4aa3ff66",
+        "Text": "#ffffffff"
+      },
+      "vars": {
+        "SeparatorTextBorderSize": 1
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#a0a0a8ff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#67c76b8c",
+        "Button": "#67c76b29",
+        "ButtonActive": "#67c76b6b",
+        "ButtonHovered": "#67c76b47",
+        "CheckMark": "#67c76bff",
+        "SliderGrab": "#67c76bff",
+        "SliderGrabActive": "#67c76bff",
+        "Text": "#71ca75ff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#f2c14e8c",
+        "Button": "#f2c14e29",
+        "ButtonActive": "#f2c14e6b",
+        "ButtonHovered": "#f2c14e47",
+        "CheckMark": "#f2c14eff",
+        "SliderGrab": "#f2c14eff",
+        "SliderGrabActive": "#f2c14eff",
+        "Text": "#f2c14eff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "desktop",
+    "neutral",
+    "tool"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#3a3a40ff",
+      "BorderShadow": "#00000000",
+      "Button": "#2d2d31ff",
+      "ButtonActive": "#29292dff",
+      "ButtonHovered": "#36363bff",
+      "CheckMark": "#4aa3ffff",
+      "ChildBg": "#ffffff05",
+      "DockingEmptyBg": "#1b1b1dff",
+      "DockingPreview": "#4aa3ff99",
+      "DragDropTarget": "#f2c14ee6",
+      "FrameBg": "#2d2d31ff",
+      "FrameBgActive": "#2a3a4fff",
+      "FrameBgHovered": "#36363bff",
+      "Header": "#ffffff0f",
+      "HeaderActive": "#4aa3ff4d",
+      "HeaderHovered": "#ffffff17",
+      "InputTextCursor": "#4aa3ffff",
+      "MenuBarBg": "#1b1b1dff",
+      "ModalWindowDimBg": "#10101199",
+      "NavCursor": "#4aa3ffff",
+      "NavWindowingDimBg": "#10101140",
+      "NavWindowingHighlight": "#f0f0f2b2",
+      "PlotHistogram": "#4aa3ffff",
+      "PlotHistogramHovered": "#7fc3ffff",
+      "PlotLines": "#7fc3ffff",
+      "PlotLinesHovered": "#f2c14eff",
+      "PopupBg": "#2b2b2ffa",
+      "ResizeGrip": "#4aa3ff2e",
+      "ResizeGripActive": "#4aa3ffe6",
+      "ResizeGripHovered": "#4aa3ff8c",
+      "ScrollbarBg": "#00000000",
+      "ScrollbarGrab": "#ffffff26",
+      "ScrollbarGrabActive": "#ffffff59",
+      "ScrollbarGrabHovered": "#ffffff40",
+      "Separator": "#3a3a40ff",
+      "SeparatorActive": "#4aa3ffff",
+      "SeparatorHovered": "#4aa3ffa6",
+      "SliderGrab": "#4aa3ffff",
+      "SliderGrabActive": "#7fc3ffff",
+      "Tab": "#1b1b1dff",
+      "TabDimmed": "#1b1b1dff",
+      "TabDimmedSelected": "#232326ff",
+      "TabDimmedSelectedOverline": "#4aa3ff73",
+      "TabHovered": "#2d2d31ff",
+      "TabSelected": "#28282bff",
+      "TabSelectedOverline": "#4aa3ffff",
+      "TableBorderLight": "#2e2e33ff",
+      "TableBorderStrong": "#3a3a40ff",
+      "TableHeaderBg": "#28282bff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#f0f0f208",
+      "Text": "#f0f0f2ff",
+      "TextDisabled": "#a0a0a8ff",
+      "TextLink": "#7fc3ffff",
+      "TextSelectedBg": "#4aa3ff52",
+      "TitleBg": "#1b1b1dff",
+      "TitleBgActive": "#232326ff",
+      "TitleBgCollapsed": "#1b1b1dbf",
+      "WindowBg": "#202022ff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 6,
+        "y": 3
+      },
+      "ChildBorderSize": 1,
+      "ChildRounding": 6,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 1,
+      "FramePadding": {
+        "x": 10,
+        "y": 5
+      },
+      "FrameRounding": 4,
+      "GrabMinSize": 12,
+      "GrabRounding": 10,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 20,
+      "ItemInnerSpacing": {
+        "x": 6,
+        "y": 4
+      },
+      "ItemSpacing": {
+        "x": 8,
+        "y": 6
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 8,
+      "ScrollbarRounding": 8,
+      "ScrollbarSize": 8,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 1,
+      "SeparatorTextPadding": {
+        "x": 16,
+        "y": 3
+      },
+      "TabBarBorderSize": 1,
+      "TabBarOverlineSize": 2,
+      "TabBorderSize": 0,
+      "TabRounding": 4,
+      "WindowBorderSize": 1,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 48
+      },
+      "WindowPadding": {
+        "x": 12,
+        "y": 10
+      },
+      "WindowRounding": 8,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Layered Desk",
+  "widgetStyle": {
+    "accent": "#4aa3ffff",
+    "accent2": "#7fc3ffff",
+    "danger": "#ff7a7aff",
+    "success": "#67c76bff",
+    "warning": "#f2c14eff"
+  }
+}

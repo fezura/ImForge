@@ -1,0 +1,96 @@
+{
+  "bindings": [],
+  "call": "imb::disp::EmptyState({title}, {hint}, {button}, imb::disp::EmptyIcon::{icon})",
+  "category": "Display",
+  "container": false,
+  "events": [
+    "onClick"
+  ],
+  "icon": "fa-inbox",
+  "include": "imb_display.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "EmptyState",
+  "preview": [
+    {
+      "fill": "#4f8cff1f",
+      "r": 24,
+      "shape": "circle",
+      "x": 110,
+      "y": 30
+    },
+    {
+      "fill": "#00000000",
+      "h": 16,
+      "rounding": 2,
+      "shape": "rect",
+      "stroke": "#4f8cffff",
+      "w": 24,
+      "x": 98,
+      "y": 22
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{title}",
+      "x": 62,
+      "y": 64
+    },
+    {
+      "color": "#8a91a0ff",
+      "shape": "text",
+      "text": "Save your current settings...",
+      "x": 30,
+      "y": 84
+    },
+    {
+      "fill": "#4f8cffff",
+      "h": 26,
+      "rounding": 13,
+      "shape": "rect",
+      "w": 88,
+      "x": 66,
+      "y": 106
+    },
+    {
+      "color": "#ffffffff",
+      "shape": "text",
+      "text": "{button}",
+      "x": 78,
+      "y": 110
+    }
+  ],
+  "props": [
+    {
+      "default": "No configs yet",
+      "name": "title",
+      "type": "string"
+    },
+    {
+      "default": "Save your current settings to create the first one.",
+      "name": "hint",
+      "type": "string"
+    },
+    {
+      "default": "New config",
+      "hint": "empty hides the button",
+      "name": "button",
+      "type": "string"
+    },
+    {
+      "default": "Inbox",
+      "name": "icon",
+      "type": "enum",
+      "values": [
+        "None",
+        "Inbox",
+        "Search",
+        "Folder",
+        "Alert",
+        "Check"
+      ]
+    }
+  ],
+  "returns": "clicked",
+  "schemaVersion": 1
+}

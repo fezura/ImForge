@@ -1,0 +1,631 @@
+{
+  "kind": "panel",
+  "name": "QuickMenu",
+  "root": {
+    "anim": {
+      "motions": [
+        {
+          "preset": "ZoomIn"
+        },
+        {
+          "preset": "PuffOut",
+          "trigger": "exit"
+        }
+      ]
+    },
+    "bind": {
+      "open": "state.open"
+    },
+    "children": [
+      {
+        "anim": {
+          "motions": [
+            {
+              "durationScale": 0.9,
+              "preset": "PopIn",
+              "stagger": 0.035
+            }
+          ]
+        },
+        "children": [
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "Breathe",
+                  "trigger": "loop"
+                }
+              ]
+            },
+            "fx": [
+              {
+                "inner": "#7aa8ff26",
+                "outer": "#00000000",
+                "radius": 170,
+                "segments": 64,
+                "type": "radialGradient"
+              },
+              {
+                "color": "#7aa8ff99",
+                "rounding": 150,
+                "speed": 0.35,
+                "style": "Sweep",
+                "thickness": 1.5,
+                "type": "border"
+              }
+            ],
+            "id": "ring",
+            "layout": {
+              "anchor": "Center"
+            },
+            "props": {
+              "size": {
+                "h": 300,
+                "w": 300
+              }
+            },
+            "type": "Dummy"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "Grow",
+                  "trigger": "hover"
+                },
+                {
+                  "preset": "Squish",
+                  "trigger": "press"
+                }
+              ]
+            },
+            "events": {
+              "onClick": {
+                "actions": [
+                  {
+                    "target": "state.lastAction",
+                    "type": "set",
+                    "value": "Heal"
+                  },
+                  {
+                    "target": "state.open",
+                    "type": "set",
+                    "value": false
+                  }
+                ],
+                "handler": true
+              }
+            },
+            "font": "Title",
+            "id": "act_heal",
+            "layout": {
+              "anchor": "Center",
+              "offset": {
+                "x": 0,
+                "y": -124
+              }
+            },
+            "props": {
+              "label": "{icon:fa-heart}",
+              "size": {
+                "h": 60,
+                "w": 60
+              }
+            },
+            "style": {
+              "classes": [
+                "wedge"
+              ]
+            },
+            "tooltip": "Heal  [H]",
+            "type": "Button"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "Grow",
+                  "trigger": "hover"
+                },
+                {
+                  "preset": "Squish",
+                  "trigger": "press"
+                }
+              ]
+            },
+            "events": {
+              "onClick": {
+                "actions": [
+                  {
+                    "target": "state.lastAction",
+                    "type": "set",
+                    "value": "Armor"
+                  },
+                  {
+                    "target": "state.open",
+                    "type": "set",
+                    "value": false
+                  }
+                ],
+                "handler": true
+              }
+            },
+            "font": "Title",
+            "id": "act_armor",
+            "layout": {
+              "anchor": "Center",
+              "offset": {
+                "x": 88,
+                "y": -88
+              }
+            },
+            "props": {
+              "label": "{icon:fa-shield-halved}",
+              "size": {
+                "h": 60,
+                "w": 60
+              }
+            },
+            "style": {
+              "classes": [
+                "wedge"
+              ]
+            },
+            "tooltip": "Armor  [J]",
+            "type": "Button"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "Grow",
+                  "trigger": "hover"
+                },
+                {
+                  "preset": "Squish",
+                  "trigger": "press"
+                }
+              ]
+            },
+            "events": {
+              "onClick": {
+                "actions": [
+                  {
+                    "target": "state.lastAction",
+                    "type": "set",
+                    "value": "Boost"
+                  },
+                  {
+                    "target": "state.open",
+                    "type": "set",
+                    "value": false
+                  }
+                ],
+                "handler": true
+              }
+            },
+            "font": "Title",
+            "id": "act_boost",
+            "layout": {
+              "anchor": "Center",
+              "offset": {
+                "x": 124,
+                "y": 0
+              }
+            },
+            "props": {
+              "label": "{icon:fa-bolt}",
+              "size": {
+                "h": 60,
+                "w": 60
+              }
+            },
+            "style": {
+              "classes": [
+                "wedge"
+              ]
+            },
+            "tooltip": "Boost  [K]",
+            "type": "Button"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "Grow",
+                  "trigger": "hover"
+                },
+                {
+                  "preset": "Squish",
+                  "trigger": "press"
+                }
+              ]
+            },
+            "events": {
+              "onClick": {
+                "actions": [
+                  {
+                    "target": "state.lastAction",
+                    "type": "set",
+                    "value": "Mark"
+                  },
+                  {
+                    "target": "state.open",
+                    "type": "set",
+                    "value": false
+                  }
+                ],
+                "handler": true
+              }
+            },
+            "font": "Title",
+            "id": "act_mark",
+            "layout": {
+              "anchor": "Center",
+              "offset": {
+                "x": 88,
+                "y": 88
+              }
+            },
+            "props": {
+              "label": "{icon:fa-crosshairs}",
+              "size": {
+                "h": 60,
+                "w": 60
+              }
+            },
+            "style": {
+              "classes": [
+                "wedge"
+              ]
+            },
+            "tooltip": "Mark  [M]",
+            "type": "Button"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "Grow",
+                  "trigger": "hover"
+                },
+                {
+                  "preset": "Squish",
+                  "trigger": "press"
+                }
+              ]
+            },
+            "events": {
+              "onClick": {
+                "actions": [
+                  {
+                    "target": "state.lastAction",
+                    "type": "set",
+                    "value": "Ping"
+                  },
+                  {
+                    "target": "state.open",
+                    "type": "set",
+                    "value": false
+                  }
+                ],
+                "handler": true
+              }
+            },
+            "font": "Title",
+            "id": "act_ping",
+            "layout": {
+              "anchor": "Center",
+              "offset": {
+                "x": 0,
+                "y": 124
+              }
+            },
+            "props": {
+              "label": "{icon:fa-flag}",
+              "size": {
+                "h": 60,
+                "w": 60
+              }
+            },
+            "style": {
+              "classes": [
+                "wedge"
+              ]
+            },
+            "tooltip": "Ping  [P]",
+            "type": "Button"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "Grow",
+                  "trigger": "hover"
+                },
+                {
+                  "preset": "Squish",
+                  "trigger": "press"
+                }
+              ]
+            },
+            "events": {
+              "onClick": {
+                "actions": [
+                  {
+                    "target": "state.lastAction",
+                    "type": "set",
+                    "value": "Loot"
+                  },
+                  {
+                    "target": "state.open",
+                    "type": "set",
+                    "value": false
+                  }
+                ],
+                "handler": true
+              }
+            },
+            "font": "Title",
+            "id": "act_loot",
+            "layout": {
+              "anchor": "Center",
+              "offset": {
+                "x": -88,
+                "y": 88
+              }
+            },
+            "props": {
+              "label": "{icon:fa-box-open}",
+              "size": {
+                "h": 60,
+                "w": 60
+              }
+            },
+            "style": {
+              "classes": [
+                "wedge"
+              ]
+            },
+            "tooltip": "Loot  [L]",
+            "type": "Button"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "Grow",
+                  "trigger": "hover"
+                },
+                {
+                  "preset": "Squish",
+                  "trigger": "press"
+                }
+              ]
+            },
+            "events": {
+              "onClick": {
+                "actions": [
+                  {
+                    "target": "state.lastAction",
+                    "type": "set",
+                    "value": "Map"
+                  },
+                  {
+                    "target": "state.open",
+                    "type": "set",
+                    "value": false
+                  }
+                ],
+                "handler": true
+              }
+            },
+            "font": "Title",
+            "id": "act_map",
+            "layout": {
+              "anchor": "Center",
+              "offset": {
+                "x": -124,
+                "y": 0
+              }
+            },
+            "props": {
+              "label": "{icon:fa-map-location-dot}",
+              "size": {
+                "h": 60,
+                "w": 60
+              }
+            },
+            "style": {
+              "classes": [
+                "wedge"
+              ]
+            },
+            "tooltip": "Map  [N]",
+            "type": "Button"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "Grow",
+                  "trigger": "hover"
+                },
+                {
+                  "preset": "Squish",
+                  "trigger": "press"
+                }
+              ]
+            },
+            "events": {
+              "onClick": {
+                "actions": [
+                  {
+                    "target": "state.lastAction",
+                    "type": "set",
+                    "value": "Chat"
+                  },
+                  {
+                    "target": "state.open",
+                    "type": "set",
+                    "value": false
+                  }
+                ],
+                "handler": true
+              }
+            },
+            "font": "Title",
+            "id": "act_chat",
+            "layout": {
+              "anchor": "Center",
+              "offset": {
+                "x": -88,
+                "y": -88
+              }
+            },
+            "props": {
+              "label": "{icon:fa-comment-dots}",
+              "size": {
+                "h": 60,
+                "w": 60
+              }
+            },
+            "style": {
+              "classes": [
+                "wedge"
+              ]
+            },
+            "tooltip": "Chat  [Y]",
+            "type": "Button"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "ZoomInSoft"
+                },
+                {
+                  "on": "onClick",
+                  "preset": "Ping",
+                  "trigger": "attention"
+                }
+              ]
+            },
+            "events": {
+              "onClick": {
+                "actions": [
+                  {
+                    "target": "state.open",
+                    "type": "set",
+                    "value": false
+                  }
+                ]
+              }
+            },
+            "font": "Bold",
+            "id": "hub",
+            "layout": {
+              "anchor": "Center"
+            },
+            "props": {
+              "label": "{state.lastAction}",
+              "size": {
+                "h": 104,
+                "w": 104
+              }
+            },
+            "style": {
+              "classes": [
+                "hub"
+              ]
+            },
+            "tooltip": "Release the key to pick, click to close",
+            "type": "Button"
+          },
+          {
+            "children": [
+              {
+                "id": "hint_key",
+                "props": {
+                  "keys": "Q"
+                },
+                "type": "Kbd"
+              },
+              {
+                "id": "hint_text",
+                "props": {
+                  "text": "hold to open"
+                },
+                "style": {
+                  "classes": [
+                    "muted"
+                  ]
+                },
+                "type": "Text"
+              }
+            ],
+            "id": "hint_row",
+            "layout": {
+              "anchor": "Bottom",
+              "offset": {
+                "x": -52,
+                "y": -30
+              }
+            },
+            "props": {
+              "spacing": 6
+            },
+            "type": "HStack"
+          }
+        ],
+        "id": "wheel",
+        "props": {
+          "size": {
+            "h": "fill",
+            "w": "fill"
+          }
+        },
+        "type": "Canvas"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoTitleBar",
+        "NoResize",
+        "NoScrollbar",
+        "NoCollapse",
+        "NoBackground"
+      ],
+      "initialSize": {
+        "x": 380,
+        "y": 380
+      },
+      "sizeCond": "Always",
+      "title": "{{PROJECT_NAME}}"
+    },
+    "style": {
+      "vars": {
+        "WindowBorderSize": 0,
+        "WindowPadding": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": true,
+      "name": "open",
+      "type": "bool"
+    },
+    {
+      "default": "Quick",
+      "name": "lastAction",
+      "type": "string"
+    }
+  ]
+}

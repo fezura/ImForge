@@ -1,0 +1,647 @@
+{
+  "kind": "panel",
+  "name": "Inspector",
+  "params": [
+    {
+      "name": "obj",
+      "type": "SceneObject"
+    }
+  ],
+  "root": {
+    "anim": {
+      "motions": [
+        {
+          "preset": "FadeIn"
+        }
+      ]
+    },
+    "bind": {
+      "open": "state.open"
+    },
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "on": "onChange",
+                      "preset": "Tick",
+                      "trigger": "change"
+                    }
+                  ]
+                },
+                "bind": {
+                  "value": "obj.visible"
+                },
+                "id": "visible",
+                "props": {
+                  "iconOff": "fa-eye-slash",
+                  "iconOn": "fa-eye",
+                  "label": "##visible"
+                },
+                "tooltip": "Visible in scene",
+                "type": "IconToggle"
+              },
+              {
+                "bind": {
+                  "value": "obj.name"
+                },
+                "id": "name",
+                "props": {
+                  "hint": "Object name",
+                  "label": "##name"
+                },
+                "type": "InputText"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "on": "onChange",
+                      "preset": "Wiggle",
+                      "trigger": "attention"
+                    }
+                  ]
+                },
+                "bind": {
+                  "value": "obj.locked"
+                },
+                "id": "locked",
+                "props": {
+                  "iconOff": "fa-lock-open",
+                  "iconOn": "fa-lock",
+                  "label": "##locked"
+                },
+                "tooltip": "Lock editing",
+                "type": "IconToggle"
+              }
+            ],
+            "id": "header",
+            "props": {
+              "spacing": 6
+            },
+            "type": "HStack"
+          },
+          {
+            "children": [
+              {
+                "bind": {
+                  "clicked": "state.crumb"
+                },
+                "id": "path",
+                "props": {
+                  "items": [
+                    "Scene",
+                    "Player",
+                    "Body",
+                    "Mesh"
+                  ],
+                  "label": "##path"
+                },
+                "type": "Breadcrumbs"
+              },
+              {
+                "id": "crumb_fill",
+                "props": {
+                  "size": {
+                    "h": 1,
+                    "w": "fill"
+                  }
+                },
+                "type": "Dummy"
+              },
+              {
+                "id": "kind_badge",
+                "props": {
+                  "color": "#39c5bbff",
+                  "kind": "Pill",
+                  "text": "Mesh"
+                },
+                "type": "Badge"
+              }
+            ],
+            "id": "crumb_row",
+            "props": {
+              "spacing": 6
+            },
+            "type": "HStack"
+          },
+          {
+            "id": "div",
+            "props": {
+              "look": "Line"
+            },
+            "type": "Divider"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "StaggerFadeDown",
+                      "stagger": 0.03
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "on": "onChange",
+                          "preset": "FlashHighlight",
+                          "trigger": "change"
+                        }
+                      ]
+                    },
+                    "bind": {
+                      "value": "obj.position"
+                    },
+                    "id": "position",
+                    "props": {
+                      "format": "%.2f",
+                      "label": "Position",
+                      "speed": 0.05
+                    },
+                    "type": "Vec3Edit"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "on": "onChange",
+                          "preset": "FlashHighlight",
+                          "trigger": "change"
+                        }
+                      ]
+                    },
+                    "bind": {
+                      "value": "obj.rotation"
+                    },
+                    "id": "rotation",
+                    "props": {
+                      "format": "%.1f",
+                      "label": "Rotation",
+                      "speed": 0.5
+                    },
+                    "type": "Vec3Edit"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "on": "onChange",
+                          "preset": "FlashHighlight",
+                          "trigger": "change"
+                        }
+                      ]
+                    },
+                    "bind": {
+                      "value": "obj.scale"
+                    },
+                    "id": "scale",
+                    "props": {
+                      "format": "%.2f",
+                      "label": "Scale",
+                      "speed": 0.01
+                    },
+                    "type": "Vec3Edit"
+                  }
+                ],
+                "id": "sec_transform_body",
+                "props": {
+                  "indent": 4,
+                  "spacing": 6
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "sec_transform",
+            "props": {
+              "defaultOpen": true,
+              "label": "{icon:fa-up-down-left-right}  Transform"
+            },
+            "type": "CollapsingHeader"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "StaggerFadeDown",
+                      "stagger": 0.03
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "on": "onChange",
+                          "preset": "FlashHighlight",
+                          "trigger": "change"
+                        }
+                      ]
+                    },
+                    "bind": {
+                      "color": "obj.color"
+                    },
+                    "id": "albedo",
+                    "props": {
+                      "label": "Albedo"
+                    },
+                    "type": "ColorPickerMini"
+                  },
+                  {
+                    "bind": {
+                      "hue": "obj.tintHue"
+                    },
+                    "id": "tint_hue",
+                    "props": {
+                      "label": "##hue"
+                    },
+                    "type": "HueStrip"
+                  },
+                  {
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "Brighten",
+                              "trigger": "hover"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "obj.roughness"
+                        },
+                        "id": "roughness",
+                        "props": {
+                          "format": "%.2f",
+                          "label": "Rough",
+                          "max": 1,
+                          "min": 0
+                        },
+                        "type": "Knob"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "Brighten",
+                              "trigger": "hover"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "obj.metallic"
+                        },
+                        "id": "metallic",
+                        "props": {
+                          "format": "%.2f",
+                          "label": "Metal",
+                          "max": 1,
+                          "min": 0
+                        },
+                        "type": "Knob"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "Brighten",
+                              "trigger": "hover"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "obj.emission"
+                        },
+                        "id": "emission",
+                        "props": {
+                          "format": "%.1f",
+                          "label": "Glow",
+                          "max": 8,
+                          "min": 0
+                        },
+                        "type": "Knob"
+                      }
+                    ],
+                    "id": "knobs",
+                    "props": {
+                      "spacing": 14
+                    },
+                    "type": "HStack"
+                  },
+                  {
+                    "bind": {
+                      "stops": "obj.ramp"
+                    },
+                    "id": "ramp",
+                    "props": {
+                      "label": "Color ramp"
+                    },
+                    "type": "GradientEditor"
+                  }
+                ],
+                "id": "sec_look_body",
+                "props": {
+                  "indent": 4,
+                  "spacing": 6
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "sec_look",
+            "props": {
+              "defaultOpen": true,
+              "label": "{icon:fa-palette}  Appearance"
+            },
+            "type": "CollapsingHeader"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "StaggerFadeDown",
+                      "stagger": 0.03
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "on": "onChange",
+                          "preset": "FlashHighlight",
+                          "trigger": "change"
+                        }
+                      ]
+                    },
+                    "bind": {
+                      "unit": "state.massUnit",
+                      "value": "obj.mass"
+                    },
+                    "id": "mass",
+                    "props": {
+                      "format": "%.2f",
+                      "label": "Mass",
+                      "max": 10000,
+                      "min": 0,
+                      "speed": 0.1,
+                      "units": [
+                        "kg",
+                        "g:0.001",
+                        "t:1000"
+                      ]
+                    },
+                    "type": "DragNumber"
+                  },
+                  {
+                    "bind": {
+                      "value": "obj.bounce"
+                    },
+                    "id": "bounce",
+                    "props": {
+                      "format": "%.2f",
+                      "label": "Bounce",
+                      "max": 1,
+                      "min": 0
+                    },
+                    "type": "RangeSlider"
+                  },
+                  {
+                    "bind": {
+                      "mask": "obj.layers"
+                    },
+                    "id": "layers",
+                    "props": {
+                      "items": [
+                        "World",
+                        "Player",
+                        "Props",
+                        "Triggers"
+                      ],
+                      "label": "Layers"
+                    },
+                    "type": "ToggleButtonGroup"
+                  },
+                  {
+                    "bind": {
+                      "state": "obj.collideAll"
+                    },
+                    "id": "collide",
+                    "props": {
+                      "label": "Collide with everything"
+                    },
+                    "type": "TriCheckbox"
+                  }
+                ],
+                "id": "sec_physics_body",
+                "props": {
+                  "indent": 4,
+                  "spacing": 6
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "sec_physics",
+            "props": {
+              "defaultOpen": true,
+              "label": "{icon:fa-weight-hanging}  Physics"
+            },
+            "type": "CollapsingHeader"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "StaggerFadeDown",
+                      "stagger": 0.03
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "bind": {
+                      "markers": "obj.keys",
+                      "time": "obj.time"
+                    },
+                    "id": "timeline",
+                    "props": {
+                      "duration": "obj.clipLength",
+                      "label": "##timeline"
+                    },
+                    "type": "TimelineScrubber"
+                  },
+                  {
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "Lift",
+                              "trigger": "hover"
+                            },
+                            {
+                              "preset": "Shrink",
+                              "trigger": "press"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "selected": "state.keyAction"
+                        },
+                        "id": "add_key",
+                        "props": {
+                          "items": [
+                            "Add key",
+                            "Add key to all",
+                            "Clear keys"
+                          ],
+                          "label": "Add key##split"
+                        },
+                        "type": "SplitButton"
+                      },
+                      {
+                        "id": "anim_fill",
+                        "props": {
+                          "size": {
+                            "h": 1,
+                            "w": "fill"
+                          }
+                        },
+                        "type": "Dummy"
+                      },
+                      {
+                        "id": "key_hint",
+                        "props": {
+                          "keys": "K"
+                        },
+                        "type": "Kbd"
+                      }
+                    ],
+                    "id": "anim_actions",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "HStack"
+                  }
+                ],
+                "id": "sec_anim_body",
+                "props": {
+                  "indent": 4,
+                  "spacing": 6
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "sec_anim",
+            "props": {
+              "label": "{icon:fa-film}  Animation"
+            },
+            "type": "CollapsingHeader"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "StaggerFadeDown",
+                      "stagger": 0.03
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "bind": {
+                      "tags": "obj.tags"
+                    },
+                    "id": "tags",
+                    "props": {
+                      "label": "##tags"
+                    },
+                    "type": "TagInput"
+                  }
+                ],
+                "id": "sec_tags_body",
+                "props": {
+                  "indent": 4,
+                  "spacing": 6
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "sec_tags",
+            "props": {
+              "label": "{icon:fa-tags}  Tags"
+            },
+            "type": "CollapsingHeader"
+          }
+        ],
+        "id": "stack",
+        "props": {
+          "spacing": 8
+        },
+        "type": "VStack"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoCollapse"
+      ],
+      "initialSize": {
+        "x": 380,
+        "y": 700
+      },
+      "sizeCond": "FirstUseEver",
+      "title": "Inspector"
+    },
+    "style": {
+      "vars": {
+        "WindowPadding": {
+          "x": 10,
+          "y": 10
+        }
+      }
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": true,
+      "name": "open",
+      "type": "bool"
+    },
+    {
+      "default": -1,
+      "name": "crumb",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "name": "massUnit",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "name": "keyAction",
+      "type": "int"
+    }
+  ]
+}

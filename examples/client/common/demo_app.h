@@ -93,7 +93,7 @@ inline void DemoStatusWindow(Player& player, Settings& cfg) {
         ImGui::Text("pos (%.0f, %.0f)", player.pos.x, player.pos.y);
         ImGui::Text("esp %s  aim %s  bhop %s", cfg.esp.enabled ? "on" : "off", cfg.aim.enabled ? "on" : "off",
                     cfg.misc.bhop ? "on" : "off");
-        ImGui::TextDisabled("Panels drawn live: MainMenu, Overlay");
+        ImGui::TextDisabled("Panels drawn live: MainMenu, Overlay (CheatMenu), Controls, Monitor, Arena (Showcase)");
     }
     ImGui::End();
 }
@@ -111,6 +111,10 @@ inline void DemoFrame(Player& player, Settings& cfg) {
 
     imforge::live::Draw("MainMenu", {imforge::live::Bind("player", player), imforge::live::Bind("cfg", cfg)});
     imforge::live::Draw("Overlay", {imforge::live::Bind("player", player), imforge::live::Bind("cfg", cfg)});
+    // the Showcase sample project's panels (unbound); Draw skips panels the project doesn't have
+    imforge::live::Draw("Controls", {});
+    imforge::live::Draw("Monitor", {});
+    imforge::live::Draw("Arena", {});
 
 #ifdef DEMO_HAS_ESSENTIALS
     imb::ess::DrawToasts();

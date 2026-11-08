@@ -1,0 +1,179 @@
+{
+  "enums": {},
+  "kind": "types",
+  "schemaVersion": 1,
+  "structs": {
+    "AimSettings": {
+      "fields": [
+        {
+          "ctype": "Bool",
+          "name": "enabled",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "silent",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "autowall",
+          "type": "bool"
+        },
+        {
+          "ctype": "Float",
+          "name": "fov",
+          "type": "float"
+        },
+        {
+          "ctype": "Float",
+          "name": "smooth",
+          "type": "float"
+        },
+        {
+          "ctype": "I32",
+          "name": "bone",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "weapons",
+          "type": "int"
+        }
+      ],
+      "header": "settings.h"
+    },
+    "EspSettings": {
+      "fields": [
+        {
+          "ctype": "Bool",
+          "name": "box",
+          "type": "bool"
+        },
+        {
+          "ctype": "I32",
+          "name": "boxStyle",
+          "type": "int"
+        },
+        {
+          "ctype": "Bool",
+          "name": "healthBar",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "names",
+          "type": "bool"
+        },
+        {
+          "ctype": "I32",
+          "name": "flags",
+          "type": "int"
+        },
+        {
+          "ctype": "Vec4",
+          "name": "color",
+          "type": "ImVec4"
+        }
+      ],
+      "header": "settings.h"
+    },
+    "MiscSettings": {
+      "fields": [
+        {
+          "ctype": "Bool",
+          "name": "bhop",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "radar",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "spectators",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "watermark",
+          "type": "bool"
+        }
+      ],
+      "header": "settings.h"
+    },
+    "Settings": {
+      "fields": [
+        {
+          "ctype": "Struct",
+          "name": "aim",
+          "type": "AimSettings"
+        },
+        {
+          "ctype": "Struct",
+          "name": "trigger",
+          "type": "TriggerSettings"
+        },
+        {
+          "ctype": "Struct",
+          "name": "esp",
+          "type": "EspSettings"
+        },
+        {
+          "ctype": "Struct",
+          "name": "misc",
+          "type": "MiscSettings"
+        },
+        {
+          "count": 4,
+          "ctype": "IntArray",
+          "name": "hotkeys",
+          "type": "int[4]"
+        },
+        {
+          "ctype": "I32",
+          "name": "profile",
+          "type": "int"
+        }
+      ],
+      "header": "settings.h"
+    },
+    "TriggerSettings": {
+      "fields": [
+        {
+          "ctype": "Bool",
+          "name": "enabled",
+          "type": "bool"
+        },
+        {
+          "ctype": "I32",
+          "name": "key",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "delay",
+          "type": "int"
+        },
+        {
+          "count": 2,
+          "ctype": "FloatArray",
+          "name": "spread",
+          "type": "float[2]"
+        },
+        {
+          "ctype": "Float",
+          "name": "chance",
+          "type": "float"
+        },
+        {
+          "ctype": "Float",
+          "name": "burst",
+          "type": "float"
+        }
+      ],
+      "header": "settings.h"
+    }
+  }
+}

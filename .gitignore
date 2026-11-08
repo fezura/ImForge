@@ -1,5 +1,6 @@
 # build output
 build/
+/build*/
 out/
 cmake-build-*/
 _deps/
@@ -40,3 +41,5 @@ docs/dev/
 automation.log
 imforge_selfcheck.txt
 /live_demo_*.png
+/capture*/
+*.tmp

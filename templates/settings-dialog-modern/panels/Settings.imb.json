@@ -1,0 +1,1497 @@
+{
+  "kind": "panel",
+  "name": "Settings",
+  "params": [
+    {
+      "name": "settings",
+      "type": "AppSettings"
+    }
+  ],
+  "root": {
+    "anim": {
+      "motions": [
+        {
+          "preset": "FadeInUp"
+        },
+        {
+          "preset": "ZoomOut",
+          "trigger": "exit"
+        }
+      ]
+    },
+    "bind": {
+      "open": "state.open"
+    },
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "bind": {
+                      "text": "state.query"
+                    },
+                    "id": "find",
+                    "props": {
+                      "hint": "Find a setting",
+                      "label": "##find"
+                    },
+                    "type": "SearchField"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "delay": 0.05,
+                          "preset": "FadeInLeft"
+                        }
+                      ]
+                    },
+                    "bind": {
+                      "index": "state.page"
+                    },
+                    "id": "categories",
+                    "props": {
+                      "icons": [
+                        "fa-gear",
+                        "fa-palette",
+                        "fa-keyboard",
+                        "fa-volume-high"
+                      ],
+                      "label": "##cats",
+                      "labels": [
+                        "General",
+                        "Appearance",
+                        "Controls",
+                        "Audio"
+                      ]
+                    },
+                    "type": "AnimatedSideTabs"
+                  }
+                ],
+                "id": "side_stack",
+                "props": {
+                  "spacing": 10
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "sidebar",
+            "props": {
+              "border": true,
+              "childFlags": [
+                "AlwaysUseWindowPadding"
+              ],
+              "size": {
+                "h": "fill-52",
+                "w": 210
+              }
+            },
+            "style": {
+              "classes": [
+                "sidebar"
+              ]
+            },
+            "type": "Child"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "FadeInUp"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "SlideUpText"
+                            }
+                          ]
+                        },
+                        "font": "Title",
+                        "id": "page_general_title",
+                        "props": {
+                          "text": "General"
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "id": "gen_sep_start",
+                        "props": {
+                          "text": "Startup"
+                        },
+                        "style": {
+                          "classes": [
+                            "heading"
+                          ]
+                        },
+                        "type": "SeparatorText"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "StaggerFadeUp",
+                              "stagger": 0.04
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "id": "gen_lang_label",
+                                "props": {
+                                  "text": "Language"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "gen_lang_hint",
+                                "props": {
+                                  "text": "Restart to apply"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "gen_lang_lbl",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "bind": {
+                              "current": "settings.language"
+                            },
+                            "id": "language",
+                            "props": {
+                              "icons": [
+                                "fa-flag-usa",
+                                "fa-flag",
+                                "fa-flag",
+                                "fa-flag"
+                              ],
+                              "items": [
+                                "English",
+                                "Deutsch",
+                                "Francais",
+                                "Espanol"
+                              ],
+                              "label": "##language"
+                            },
+                            "type": "IconDropdown"
+                          },
+                          {
+                            "children": [
+                              {
+                                "id": "gen_boot_label",
+                                "props": {
+                                  "text": "Start with the system"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "gen_boot_hint",
+                                "props": {
+                                  "text": "Opens minimized to the tray"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "gen_boot_lbl",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "on": "onChange",
+                                  "preset": "ValuePop",
+                                  "trigger": "change"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "value": "settings.startWithSystem"
+                            },
+                            "id": "start_boot",
+                            "props": {
+                              "label": "##start_boot"
+                            },
+                            "type": "SwitchToggle"
+                          },
+                          {
+                            "children": [
+                              {
+                                "id": "gen_updates_label",
+                                "props": {
+                                  "text": "Check for updates"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "gen_updates_hint",
+                                "props": {
+                                  "text": "We never install without asking"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "gen_updates_lbl",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "bind": {
+                              "index": "settings.updateChannel"
+                            },
+                            "id": "updates",
+                            "props": {
+                              "items": [
+                                "Never",
+                                "Weekly",
+                                "Daily"
+                              ],
+                              "label": "##updates"
+                            },
+                            "type": "SegmentedControl"
+                          },
+                          {
+                            "children": [
+                              {
+                                "id": "gen_autosave_label",
+                                "props": {
+                                  "text": "Autosave every"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "gen_autosave_hint",
+                                "props": {
+                                  "text": "Minutes, 0 turns it off"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "gen_autosave_lbl",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "bind": {
+                              "value": "settings.autosaveMinutes"
+                            },
+                            "id": "autosave",
+                            "props": {
+                              "label": "##autosave",
+                              "max": 60,
+                              "min": 0,
+                              "step": 5
+                            },
+                            "type": "Stepper"
+                          }
+                        ],
+                        "id": "gen_rows",
+                        "props": {
+                          "columnWidths": [
+                            220,
+                            "fill"
+                          ],
+                          "columns": 2
+                        },
+                        "style": {
+                          "vars": {
+                            "CellPadding": {
+                              "x": 4,
+                              "y": 7
+                            }
+                          }
+                        },
+                        "type": "Grid"
+                      },
+                      {
+                        "id": "gen_sep_files",
+                        "props": {
+                          "text": "Files"
+                        },
+                        "style": {
+                          "classes": [
+                            "heading"
+                          ]
+                        },
+                        "type": "SeparatorText"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "StaggerFadeUp",
+                              "stagger": 0.04
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "id": "gen_reopen_label",
+                                "props": {
+                                  "text": "Reopen last project"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "gen_reopen_hint",
+                                "props": {
+                                  "text": "Skips the start page"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "gen_reopen_lbl",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "on": "onChange",
+                                  "preset": "ValuePop",
+                                  "trigger": "change"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "value": "settings.reopenLast"
+                            },
+                            "id": "reopen",
+                            "props": {
+                              "label": "##reopen"
+                            },
+                            "type": "SwitchToggle"
+                          },
+                          {
+                            "children": [
+                              {
+                                "id": "gen_recent_label",
+                                "props": {
+                                  "text": "Recent files"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "gen_recent_hint",
+                                "props": {
+                                  "text": "Shown in the File menu"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "gen_recent_lbl",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "bind": {
+                              "value": "settings.recentCount"
+                            },
+                            "id": "recent",
+                            "props": {
+                              "label": "##recent",
+                              "max": 20,
+                              "min": 0,
+                              "step": 1
+                            },
+                            "type": "Stepper"
+                          }
+                        ],
+                        "id": "gen_rows_files",
+                        "props": {
+                          "columnWidths": [
+                            220,
+                            "fill"
+                          ],
+                          "columns": 2
+                        },
+                        "style": {
+                          "vars": {
+                            "CellPadding": {
+                              "x": 4,
+                              "y": 7
+                            }
+                          }
+                        },
+                        "type": "Grid"
+                      }
+                    ],
+                    "id": "page_general",
+                    "props": {
+                      "spacing": 10
+                    },
+                    "type": "VStack",
+                    "visibleIf": "state.page == 0"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "FadeInUp"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "SlideUpText"
+                            }
+                          ]
+                        },
+                        "font": "Title",
+                        "id": "page_appearance_title",
+                        "props": {
+                          "text": "Appearance"
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "id": "app_sep_theme",
+                        "props": {
+                          "text": "Theme"
+                        },
+                        "style": {
+                          "classes": [
+                            "heading"
+                          ]
+                        },
+                        "type": "SeparatorText"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "StaggerFadeUp",
+                              "stagger": 0.04
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "id": "app_mode_label",
+                                "props": {
+                                  "text": "Mode"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "app_mode_hint",
+                                "props": {
+                                  "text": "System follows your OS"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "app_mode_lbl",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "bind": {
+                              "index": "settings.themeMode"
+                            },
+                            "id": "mode",
+                            "props": {
+                              "items": [
+                                "Light",
+                                "Dark",
+                                "System"
+                              ],
+                              "label": "##mode"
+                            },
+                            "type": "SegmentedControl"
+                          },
+                          {
+                            "children": [
+                              {
+                                "id": "app_accent_label",
+                                "props": {
+                                  "text": "Accent color"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "app_accent_hint",
+                                "props": {
+                                  "text": "Used for buttons and focus rings"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "app_accent_lbl",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "bind": {
+                              "color": "settings.accent"
+                            },
+                            "id": "accent",
+                            "props": {
+                              "columns": 8,
+                              "label": "##accent"
+                            },
+                            "type": "ColorPalette"
+                          },
+                          {
+                            "children": [
+                              {
+                                "id": "app_scale_label",
+                                "props": {
+                                  "text": "Interface scale"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "app_scale_hint",
+                                "props": {
+                                  "text": "Percent of the default size"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "app_scale_lbl",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "bind": {
+                              "value": "settings.uiScale"
+                            },
+                            "id": "scale",
+                            "props": {
+                              "format": "%.0f%%",
+                              "label": "##scale",
+                              "max": 200,
+                              "min": 75,
+                              "ticks": 6
+                            },
+                            "type": "TickSlider"
+                          },
+                          {
+                            "children": [
+                              {
+                                "id": "app_motion_label",
+                                "props": {
+                                  "text": "Reduce motion"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "app_motion_hint",
+                                "props": {
+                                  "text": "Shorter, simpler animations"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "app_motion_lbl",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "on": "onChange",
+                                  "preset": "ValuePop",
+                                  "trigger": "change"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "value": "settings.reduceMotion"
+                            },
+                            "id": "reduce_motion",
+                            "props": {
+                              "label": "##reduce_motion"
+                            },
+                            "type": "SwitchToggle"
+                          }
+                        ],
+                        "id": "app_rows",
+                        "props": {
+                          "columnWidths": [
+                            220,
+                            "fill"
+                          ],
+                          "columns": 2
+                        },
+                        "style": {
+                          "vars": {
+                            "CellPadding": {
+                              "x": 4,
+                              "y": 7
+                            }
+                          }
+                        },
+                        "type": "Grid"
+                      }
+                    ],
+                    "id": "page_appearance",
+                    "props": {
+                      "spacing": 10
+                    },
+                    "type": "VStack",
+                    "visibleIf": "state.page == 1"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "FadeInUp"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "SlideUpText"
+                            }
+                          ]
+                        },
+                        "font": "Title",
+                        "id": "page_controls_title",
+                        "props": {
+                          "text": "Controls"
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "id": "ctl_sep_keys",
+                        "props": {
+                          "text": "Shortcuts"
+                        },
+                        "style": {
+                          "classes": [
+                            "heading"
+                          ]
+                        },
+                        "type": "SeparatorText"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "StaggerFadeUp",
+                              "stagger": 0.04
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "id": "ctl_palette_label",
+                                "props": {
+                                  "text": "Command palette"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "ctl_palette_hint",
+                                "props": {
+                                  "text": "Opens the quick search"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "ctl_palette_lbl",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "bind": {
+                              "chord": "settings.keyPalette"
+                            },
+                            "id": "key_palette",
+                            "props": {
+                              "label": "##palette"
+                            },
+                            "type": "KeyChordPicker"
+                          },
+                          {
+                            "children": [
+                              {
+                                "id": "ctl_hide_label",
+                                "props": {
+                                  "text": "Hide window"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "ctl_hide_hint",
+                                "props": {
+                                  "text": "Works while the app is focused"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "ctl_hide_lbl",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "bind": {
+                              "chord": "settings.keyHide"
+                            },
+                            "id": "key_hide",
+                            "props": {
+                              "label": "##hide"
+                            },
+                            "type": "KeyChordPicker"
+                          },
+                          {
+                            "children": [
+                              {
+                                "id": "ctl_sens_label",
+                                "props": {
+                                  "text": "Pointer speed"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "ctl_sens_hint",
+                                "props": {
+                                  "text": "Applies to drag fields"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "ctl_sens_lbl",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "Brighten",
+                                  "trigger": "hover"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "value": "settings.pointerSpeed"
+                            },
+                            "id": "sens",
+                            "props": {
+                              "format": "%.1fx",
+                              "label": "##sens",
+                              "max": 3,
+                              "min": 0.1
+                            },
+                            "type": "Knob"
+                          }
+                        ],
+                        "id": "ctl_rows",
+                        "props": {
+                          "columnWidths": [
+                            220,
+                            "fill"
+                          ],
+                          "columns": 2
+                        },
+                        "style": {
+                          "vars": {
+                            "CellPadding": {
+                              "x": 4,
+                              "y": 7
+                            }
+                          }
+                        },
+                        "type": "Grid"
+                      }
+                    ],
+                    "id": "page_controls",
+                    "props": {
+                      "spacing": 10
+                    },
+                    "type": "VStack",
+                    "visibleIf": "state.page == 2"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "FadeInUp"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "SlideUpText"
+                            }
+                          ]
+                        },
+                        "font": "Title",
+                        "id": "page_audio_title",
+                        "props": {
+                          "text": "Audio"
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "id": "aud_sep",
+                        "props": {
+                          "text": "Output"
+                        },
+                        "style": {
+                          "classes": [
+                            "heading"
+                          ]
+                        },
+                        "type": "SeparatorText"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "StaggerFadeUp",
+                              "stagger": 0.04
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "id": "aud_master_label",
+                                "props": {
+                                  "text": "Master volume"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "aud_master_hint",
+                                "props": {
+                                  "text": "All sounds"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "aud_master_lbl",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "bind": {
+                              "value": "settings.masterVolume"
+                            },
+                            "id": "master",
+                            "props": {
+                              "format": "%.0f",
+                              "label": "##master",
+                              "max": 100,
+                              "min": 0,
+                              "ticks": 5
+                            },
+                            "type": "TickSlider"
+                          },
+                          {
+                            "children": [
+                              {
+                                "id": "aud_device_label",
+                                "props": {
+                                  "text": "Device"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "aud_device_hint",
+                                "props": {
+                                  "text": "Default follows the system"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "aud_device_lbl",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "bind": {
+                              "current": "settings.audioDevice"
+                            },
+                            "id": "device",
+                            "props": {
+                              "icons": [
+                                "fa-gear",
+                                "fa-headphones",
+                                "fa-volume-high"
+                              ],
+                              "items": [
+                                "System default",
+                                "Headphones",
+                                "Speakers"
+                              ],
+                              "label": "##device"
+                            },
+                            "type": "IconDropdown"
+                          },
+                          {
+                            "children": [
+                              {
+                                "id": "aud_notify_label",
+                                "props": {
+                                  "text": "Notification sounds"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "aud_notify_hint",
+                                "props": {
+                                  "text": "Short chime on alerts"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "aud_notify_lbl",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "on": "onChange",
+                                  "preset": "ValuePop",
+                                  "trigger": "change"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "value": "settings.notifySounds"
+                            },
+                            "id": "notify_sounds",
+                            "props": {
+                              "label": "##notify_sounds"
+                            },
+                            "type": "SwitchToggle"
+                          }
+                        ],
+                        "id": "aud_rows",
+                        "props": {
+                          "columnWidths": [
+                            220,
+                            "fill"
+                          ],
+                          "columns": 2
+                        },
+                        "style": {
+                          "vars": {
+                            "CellPadding": {
+                              "x": 4,
+                              "y": 7
+                            }
+                          }
+                        },
+                        "type": "Grid"
+                      }
+                    ],
+                    "id": "page_audio",
+                    "props": {
+                      "spacing": 10
+                    },
+                    "type": "VStack",
+                    "visibleIf": "state.page == 3"
+                  }
+                ],
+                "id": "pages",
+                "props": {
+                  "spacing": 0
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "content",
+            "props": {
+              "childFlags": [
+                "AlwaysUseWindowPadding"
+              ],
+              "size": {
+                "h": "fill-52",
+                "w": "fill"
+              }
+            },
+            "style": {
+              "vars": {
+                "WindowPadding": {
+                  "x": 18,
+                  "y": 6
+                }
+              }
+            },
+            "type": "Child"
+          }
+        ],
+        "id": "body",
+        "props": {
+          "spacing": 12
+        },
+        "type": "HStack"
+      },
+      {
+        "children": [
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "Lift",
+                  "trigger": "hover"
+                },
+                {
+                  "preset": "PressDown",
+                  "trigger": "press"
+                }
+              ]
+            },
+            "events": {
+              "onClick": {
+                "actions": [
+                  {
+                    "target": "confirm_reset",
+                    "type": "openPopup"
+                  }
+                ]
+              }
+            },
+            "id": "reset",
+            "props": {
+              "label": "Reset to defaults",
+              "size": {
+                "h": 32,
+                "w": "auto"
+              }
+            },
+            "style": {
+              "classes": [
+                "ghost_button"
+              ]
+            },
+            "type": "Button"
+          },
+          {
+            "id": "footer_fill",
+            "props": {
+              "size": {
+                "h": 1,
+                "w": "fill"
+              }
+            },
+            "type": "Dummy"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "Lift",
+                  "trigger": "hover"
+                },
+                {
+                  "preset": "PressDown",
+                  "trigger": "press"
+                }
+              ]
+            },
+            "events": {
+              "onClick": {
+                "actions": [
+                  {
+                    "target": "state.open",
+                    "type": "set",
+                    "value": false
+                  }
+                ],
+                "handler": true
+              }
+            },
+            "id": "cancel",
+            "props": {
+              "label": "Cancel",
+              "size": {
+                "h": 32,
+                "w": 96
+              }
+            },
+            "type": "Button"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "Lift",
+                  "trigger": "hover"
+                },
+                {
+                  "preset": "PressDown",
+                  "trigger": "press"
+                },
+                {
+                  "on": "onClick",
+                  "preset": "SuccessGlow",
+                  "trigger": "change"
+                }
+              ]
+            },
+            "events": {
+              "onClick": {
+                "handler": true
+              }
+            },
+            "id": "apply",
+            "props": {
+              "label": "Apply",
+              "size": {
+                "h": 32,
+                "w": 96
+              }
+            },
+            "style": {
+              "classes": [
+                "accent_button"
+              ]
+            },
+            "type": "Button"
+          }
+        ],
+        "id": "footer",
+        "props": {
+          "spacing": 8
+        },
+        "type": "HStack"
+      },
+      {
+        "anim": {
+          "motions": [
+            {
+              "preset": "ZoomIn"
+            }
+          ]
+        },
+        "children": [
+          {
+            "children": [
+              {
+                "id": "modal_icon",
+                "props": {
+                  "color": "#b8740aff",
+                  "text": "{icon:fa-triangle-exclamation}  This puts every option back to its default."
+                },
+                "type": "Text"
+              },
+              {
+                "id": "modal_text",
+                "props": {
+                  "text": "Your shortcuts and window layout are kept."
+                },
+                "style": {
+                  "classes": [
+                    "muted"
+                  ]
+                },
+                "type": "Text"
+              },
+              {
+                "children": [
+                  {
+                    "id": "modal_fill",
+                    "props": {
+                      "size": {
+                        "h": 1,
+                        "w": 160
+                      }
+                    },
+                    "type": "Dummy"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "Lift",
+                          "trigger": "hover"
+                        }
+                      ]
+                    },
+                    "events": {
+                      "onClick": {
+                        "actions": [
+                          {
+                            "type": "closePopup"
+                          }
+                        ]
+                      }
+                    },
+                    "id": "modal_cancel",
+                    "props": {
+                      "label": "Keep",
+                      "size": {
+                        "h": 30,
+                        "w": 90
+                      }
+                    },
+                    "type": "Button"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "Lift",
+                          "trigger": "hover"
+                        },
+                        {
+                          "on": "onClick",
+                          "preset": "ShakeX",
+                          "trigger": "attention"
+                        }
+                      ]
+                    },
+                    "events": {
+                      "onClick": {
+                        "actions": [
+                          {
+                            "type": "closePopup"
+                          }
+                        ],
+                        "handler": true
+                      }
+                    },
+                    "id": "modal_ok",
+                    "props": {
+                      "label": "Reset",
+                      "size": {
+                        "h": 30,
+                        "w": 90
+                      }
+                    },
+                    "style": {
+                      "classes": [
+                        "danger"
+                      ]
+                    },
+                    "type": "Button"
+                  }
+                ],
+                "id": "modal_buttons",
+                "props": {
+                  "spacing": 8
+                },
+                "type": "HStack"
+              }
+            ],
+            "id": "modal_body",
+            "props": {
+              "spacing": 10
+            },
+            "type": "VStack"
+          }
+        ],
+        "id": "confirm_reset",
+        "props": {
+          "flags": [
+            "AlwaysAutoResize",
+            "NoMove"
+          ],
+          "title": "Reset settings?"
+        },
+        "type": "Modal"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoCollapse",
+        "NoResize",
+        "NoScrollbar"
+      ],
+      "initialSize": {
+        "x": 780,
+        "y": 540
+      },
+      "sizeCond": "Always",
+      "title": "Settings"
+    },
+    "style": {
+      "vars": {
+        "WindowPadding": {
+          "x": 14,
+          "y": 14
+        }
+      }
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": true,
+      "name": "open",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "name": "page",
+      "type": "int"
+    },
+    {
+      "default": "",
+      "name": "query",
+      "type": "string"
+    }
+  ]
+}

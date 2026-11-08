@@ -1,0 +1,2412 @@
+{
+  "animations": [
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades out in place.",
+      "direction": "normal",
+      "duration": 0.25,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "FadeOut",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "subtle"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades out while drifting up a little.",
+      "direction": "normal",
+      "duration": 0.3,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "FadeOutUp",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "slide",
+        "up"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": -24
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades out while drifting down a little.",
+      "direction": "normal",
+      "duration": 0.3,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "FadeOutDown",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "slide",
+        "down"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 24
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades out while drifting left a little.",
+      "direction": "normal",
+      "duration": 0.3,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "FadeOutLeft",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "slide",
+        "left"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": -24
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades out while drifting right a little.",
+      "direction": "normal",
+      "duration": 0.3,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "FadeOutRight",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "slide",
+        "right"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 24
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades out and travels a long way up.",
+      "direction": "normal",
+      "duration": 0.45,
+      "ease": "InQuart",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "FadeOutUpBig",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "slide",
+        "up"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": -160
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades out and travels a long way down.",
+      "direction": "normal",
+      "duration": 0.45,
+      "ease": "InQuart",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "FadeOutDownBig",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "slide",
+        "down"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 160
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades out and travels a long way left.",
+      "direction": "normal",
+      "duration": 0.45,
+      "ease": "InQuart",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "FadeOutLeftBig",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "slide",
+        "left"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": -160
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades out and travels a long way right.",
+      "direction": "normal",
+      "duration": 0.45,
+      "ease": "InQuart",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "FadeOutRightBig",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "slide",
+        "right"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 160
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Shrinks toward the center and fades away.",
+      "direction": "normal",
+      "duration": 0.3,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "ZoomOut",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "zoom",
+        "scale"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.7,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0.3
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Pulls back a bit, then shrinks and flies up.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "ZoomOutUp",
+      "origin": {
+        "x": 0.5,
+        "y": 1
+      },
+      "revealDir": "left",
+      "tags": [
+        "zoom",
+        "up",
+        "dramatic"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.4,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scale": [
+          {
+            "ease": "cubic-bezier(0.55,0.055,0.675,0.19)",
+            "t": 0,
+            "v": 1
+          },
+          {
+            "ease": "cubic-bezier(0.175,0.885,0.32,1)",
+            "t": 0.4,
+            "v": 0.475
+          },
+          {
+            "t": 1,
+            "v": 0.1
+          }
+        ],
+        "translateY": [
+          {
+            "ease": "cubic-bezier(0.55,0.055,0.675,0.19)",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "ease": "cubic-bezier(0.175,0.885,0.32,1)",
+            "t": 0.4,
+            "v": 12
+          },
+          {
+            "t": 1,
+            "v": -120
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Pulls back a bit, then shrinks and flies down.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "ZoomOutDown",
+      "origin": {
+        "x": 0.5,
+        "y": 1
+      },
+      "revealDir": "left",
+      "tags": [
+        "zoom",
+        "down",
+        "dramatic"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.4,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scale": [
+          {
+            "ease": "cubic-bezier(0.55,0.055,0.675,0.19)",
+            "t": 0,
+            "v": 1
+          },
+          {
+            "ease": "cubic-bezier(0.175,0.885,0.32,1)",
+            "t": 0.4,
+            "v": 0.475
+          },
+          {
+            "t": 1,
+            "v": 0.1
+          }
+        ],
+        "translateY": [
+          {
+            "ease": "cubic-bezier(0.55,0.055,0.675,0.19)",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "ease": "cubic-bezier(0.175,0.885,0.32,1)",
+            "t": 0.4,
+            "v": -12
+          },
+          {
+            "t": 1,
+            "v": 120
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Pulls back a bit, then shrinks and flies off to the left.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "ZoomOutLeft",
+      "origin": {
+        "x": 0,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "zoom",
+        "left",
+        "dramatic"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.4,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.4,
+            "v": 0.475
+          },
+          {
+            "t": 1,
+            "v": 0.1
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.4,
+            "v": 10
+          },
+          {
+            "t": 1,
+            "v": -120
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Pulls back a bit, then shrinks and flies off to the right.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "ZoomOutRight",
+      "origin": {
+        "x": 1,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "zoom",
+        "right",
+        "dramatic"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.4,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.4,
+            "v": 0.475
+          },
+          {
+            "t": 1,
+            "v": 0.1
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.4,
+            "v": -10
+          },
+          {
+            "t": 1,
+            "v": 120
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Squeezes, swells once, then shrinks away.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "BounceOut",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "bounce",
+        "playful",
+        "scale"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.55,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.2,
+            "v": 0.9
+          },
+          {
+            "t": 0.5,
+            "v": 1.1
+          },
+          {
+            "t": 0.55,
+            "v": 1.1
+          },
+          {
+            "t": 1,
+            "v": 0.3
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Hops, crouches, then shoots upward.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "BounceOutUp",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "bounce",
+        "playful",
+        "up"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.45,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scaleY": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.2,
+            "v": 0.985
+          },
+          {
+            "t": 0.4,
+            "v": 0.9
+          },
+          {
+            "t": 0.45,
+            "v": 0.9
+          },
+          {
+            "t": 1,
+            "v": 1.5
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.2,
+            "v": -6
+          },
+          {
+            "t": 0.4,
+            "v": 12
+          },
+          {
+            "t": 0.45,
+            "v": 12
+          },
+          {
+            "t": 1,
+            "v": -140
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Hops, crouches, then shoots downward.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "BounceOutDown",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "bounce",
+        "playful",
+        "down"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.45,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scaleY": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.2,
+            "v": 0.985
+          },
+          {
+            "t": 0.4,
+            "v": 0.9
+          },
+          {
+            "t": 0.45,
+            "v": 0.9
+          },
+          {
+            "t": 1,
+            "v": 1.5
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.2,
+            "v": 6
+          },
+          {
+            "t": 0.4,
+            "v": -12
+          },
+          {
+            "t": 0.45,
+            "v": -12
+          },
+          {
+            "t": 1,
+            "v": 140
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Leans back, then shoots off to the left.",
+      "direction": "normal",
+      "duration": 0.45,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "BounceOutLeft",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "bounce",
+        "playful",
+        "left"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.2,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scaleX": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.2,
+            "v": 0.9
+          },
+          {
+            "t": 1,
+            "v": 1.5
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.2,
+            "v": 10
+          },
+          {
+            "t": 1,
+            "v": -140
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Leans back, then shoots off to the right.",
+      "direction": "normal",
+      "duration": 0.45,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "BounceOutRight",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "bounce",
+        "playful",
+        "right"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.2,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scaleX": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.2,
+            "v": 0.9
+          },
+          {
+            "t": 1,
+            "v": 1.5
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.2,
+            "v": -10
+          },
+          {
+            "t": 1,
+            "v": 140
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Shrinks back, then slides out upward.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "InBack",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "BackOutUp",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "back",
+        "up",
+        "depth"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 1
+          },
+          {
+            "ease": "InCubic",
+            "t": 0.2,
+            "v": 0.7
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scale": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.2,
+            "v": 0.7
+          },
+          {
+            "t": 1,
+            "v": 0.7
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "ease": "InBack",
+            "t": 0.2,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": -120
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Shrinks back, then slides out downward.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "InBack",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "BackOutDown",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "back",
+        "down",
+        "depth"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 1
+          },
+          {
+            "ease": "InCubic",
+            "t": 0.2,
+            "v": 0.7
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scale": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.2,
+            "v": 0.7
+          },
+          {
+            "t": 1,
+            "v": 0.7
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "ease": "InBack",
+            "t": 0.2,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 120
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Shrinks back, then slides out to the left.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "InBack",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "BackOutLeft",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "back",
+        "left",
+        "depth"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 1
+          },
+          {
+            "ease": "InCubic",
+            "t": 0.2,
+            "v": 0.7
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scale": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.2,
+            "v": 0.7
+          },
+          {
+            "t": 1,
+            "v": 0.7
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "ease": "InBack",
+            "t": 0.2,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": -120
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Shrinks back, then slides out to the right.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "InBack",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "BackOutRight",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "back",
+        "right",
+        "depth"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 1
+          },
+          {
+            "ease": "InCubic",
+            "t": 0.2,
+            "v": 0.7
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scale": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.2,
+            "v": 0.7
+          },
+          {
+            "t": 1,
+            "v": 0.7
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "ease": "InBack",
+            "t": 0.2,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 120
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "",
+      "delay": 0,
+      "description": "Folds shut on the horizontal axis like a card turning away.",
+      "direction": "normal",
+      "duration": 0.4,
+      "ease": "InBack",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "FlipOutX",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "flip",
+        "scale",
+        "3d"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "ease": "InCubic",
+            "t": 0.5,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scaleX": [
+          {
+            "ease": "InCubic",
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0.92
+          }
+        ],
+        "scaleY": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "",
+      "delay": 0,
+      "description": "Folds shut on the vertical axis like a card turning away.",
+      "direction": "normal",
+      "duration": 0.4,
+      "ease": "InBack",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "FlipOutY",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "flip",
+        "scale",
+        "3d"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "ease": "InCubic",
+            "t": 0.5,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scaleX": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scaleY": [
+          {
+            "ease": "InCubic",
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0.92
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Spins away around its center as it fades.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "RotateOut",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "rotate",
+        "spin"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "rotate": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 200
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Rolls off to the right like a wheel.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "RollOut",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "rotate",
+        "slide",
+        "right"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "rotate": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 120
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 120
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Skews and zips off to the left.",
+      "direction": "normal",
+      "duration": 0.4,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "LightSpeedOutLeft",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "skew",
+        "fast",
+        "left"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "skewX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": -30
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": -140
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Skews and zips off to the right.",
+      "direction": "normal",
+      "duration": 0.4,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "LightSpeedOutRight",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "skew",
+        "fast",
+        "right"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "skewX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 30
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 140
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Swings loose from its top left corner, then drops.",
+      "direction": "normal",
+      "duration": 0.6,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "Hinge",
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "revealDir": "left",
+      "tags": [
+        "rotate",
+        "fall",
+        "playful"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "ease": "InQuad",
+            "t": 0.7,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "rotate": [
+          {
+            "ease": "InOutQuad",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "ease": "InOutQuad",
+            "t": 0.3,
+            "v": 80
+          },
+          {
+            "ease": "InOutQuad",
+            "t": 0.5,
+            "v": 62
+          },
+          {
+            "ease": "InOutQuad",
+            "t": 0.65,
+            "v": 74
+          },
+          {
+            "t": 1,
+            "v": 74
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "ease": "InCubic",
+            "t": 0.65,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 260
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "",
+      "delay": 0,
+      "description": "Wipes away toward the left edge.",
+      "direction": "normal",
+      "duration": 0.35,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "ClipHideLeft",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "clip",
+        "wipe",
+        "reveal"
+      ],
+      "tracks": {
+        "reveal": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "",
+      "delay": 0,
+      "description": "Wipes away toward the right edge.",
+      "direction": "normal",
+      "duration": 0.35,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "ClipHideRight",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "right",
+      "tags": [
+        "clip",
+        "wipe",
+        "reveal"
+      ],
+      "tracks": {
+        "reveal": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "",
+      "delay": 0,
+      "description": "Wipes away toward the top edge.",
+      "direction": "normal",
+      "duration": 0.35,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "ClipHideUp",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "up",
+      "tags": [
+        "clip",
+        "wipe",
+        "reveal"
+      ],
+      "tracks": {
+        "reveal": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "",
+      "delay": 0,
+      "description": "Wipes away toward the bottom edge.",
+      "direction": "normal",
+      "duration": 0.35,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "ClipHideDown",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "down",
+      "tags": [
+        "clip",
+        "wipe",
+        "reveal"
+      ],
+      "tracks": {
+        "reveal": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "",
+      "delay": 0,
+      "description": "Closes in from both sides to the middle.",
+      "direction": "normal",
+      "duration": 0.35,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "ClipHideCenter",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "center",
+      "tags": [
+        "clip",
+        "wipe",
+        "reveal"
+      ],
+      "tracks": {
+        "reveal": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Slides upward and fades only at the very end.",
+      "direction": "normal",
+      "duration": 0.3,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "SlideOutUp",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "slide",
+        "up"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": -48
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Slides downward and fades only at the very end.",
+      "direction": "normal",
+      "duration": 0.3,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "SlideOutDown",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "slide",
+        "down"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 48
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Slides to the left and fades only at the very end.",
+      "direction": "normal",
+      "duration": 0.3,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "SlideOutLeft",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "slide",
+        "left"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": -48
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Slides to the right and fades only at the very end.",
+      "direction": "normal",
+      "duration": 0.3,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "SlideOutRight",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "slide",
+        "right"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 48
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "",
+      "delay": 0,
+      "description": "Swells for a beat, then pops out of sight.",
+      "direction": "normal",
+      "duration": 0.3,
+      "ease": "InBack",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "PopOut",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "pop",
+        "scale",
+        "playful"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "ease": "InCubic",
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "",
+      "delay": 0,
+      "description": "Grows and fades like a puff of smoke.",
+      "direction": "normal",
+      "duration": 0.4,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "PuffOut",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "fade",
+        "soft"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scale": [
+          {
+            "ease": "OutQuart",
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1.5
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "",
+      "delay": 0,
+      "description": "Shrinks a touch and fades, good for dismissing cards.",
+      "direction": "normal",
+      "duration": 0.25,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "ShrinkAway",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "fade",
+        "subtle"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0.85
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "",
+      "delay": 0,
+      "description": "Flares up with a glow, then fades out.",
+      "direction": "normal",
+      "duration": 0.45,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "GlowOut",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "glow",
+        "fade",
+        "highlight"
+      ],
+      "tracks": {
+        "glow": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "ease": "InCubic",
+            "t": 0.35,
+            "v": 0.8
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "ease": "InCubic",
+            "t": 0.35,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scale": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 1
+          },
+          {
+            "ease": "InCubic",
+            "t": 0.35,
+            "v": 1.03
+          },
+          {
+            "t": 1,
+            "v": 0.96
+          }
+        ]
+      },
+      "trigger": "exit"
+    },
+    {
+      "category": "exit",
+      "credit": "",
+      "delay": 0,
+      "description": "Squashes up into its top edge.",
+      "direction": "normal",
+      "duration": 0.3,
+      "ease": "InCubic",
+      "fill": "forwards",
+      "iterations": 1,
+      "name": "Collapse",
+      "origin": {
+        "x": 0.5,
+        "y": 0
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "collapse",
+        "list"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.5,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scaleY": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "exit"
+    }
+  ],
+  "category": "exit",
+  "kind": "animationSet",
+  "schemaVersion": 1
+}

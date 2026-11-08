@@ -92,6 +92,10 @@ IMFORGE_REFLECT(Player, name, health, max_hp, pos, ammo, mode);
 // after your ImGui backend init:
 imforge::live::Connect("tcp://127.0.0.1:7777");
 imforge::live::RegisterHandler("MainMenu.btn_play.onClick", &OnPlay);   // or #include "generated/imforge_dev.h"
+imforge::live::SetFontTextureRebuild(ImGui_ImplDX11_InvalidateDeviceObjects);   // per renderer, see main.cpp
+
+// every frame, before the backend NewFrame calls:
+imforge::live::PreNewFrame();
 
 // every frame, after ImGui::NewFrame():
 imforge::live::NewFrame();

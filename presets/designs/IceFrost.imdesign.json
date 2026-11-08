@@ -1,0 +1,268 @@
+{
+  "credit": "",
+  "description": "Pale cyan on cold navy with soft corners and faint light borders. The window is slightly see-through so an optional blur can show.",
+  "fonts": [
+    {
+      "family": "Titillium Web",
+      "role": "ui",
+      "size": 16,
+      "weight": "Regular"
+    },
+    {
+      "family": "Michroma",
+      "role": "heading",
+      "size": 17,
+      "weight": "Regular"
+    }
+  ],
+  "fx": {
+    "accentGlow": 0.45,
+    "windowBlur": 0.4,
+    "windowShadow": 0.4
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "GlowUp",
+    "button.press": "PressDown",
+    "list": "StaggerFadeUp",
+    "window": "ZoomInSoft",
+    "window.exit": "ShrinkAway"
+  },
+  "name": "IceFrost",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Border": "#7fd7ffcc",
+        "Button": "#7fd7ffff",
+        "ButtonActive": "#b8f0ffff",
+        "ButtonHovered": "#a3e3ffff",
+        "Text": "#0b1520ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#b8f0ff33",
+        "ChildBg": "#10202ecc"
+      },
+      "vars": {
+        "ChildBorderSize": 1,
+        "ChildRounding": 8,
+        "WindowPadding": {
+          "x": 12,
+          "y": 10
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#ff8a9a8c",
+        "Button": "#ff8a9a29",
+        "ButtonActive": "#ff8a9a6b",
+        "ButtonHovered": "#ff8a9a47",
+        "CheckMark": "#ff8a9aff",
+        "SliderGrab": "#ff8a9aff",
+        "SliderGrabActive": "#ff8a9aff",
+        "Text": "#fc98a7ff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#b8f0ff80",
+        "Button": "#b8f0ff00",
+        "ButtonActive": "#b8f0ff42",
+        "ButtonHovered": "#b8f0ff24",
+        "Text": "#b8f0ffff"
+      },
+      "vars": {
+        "FrameBorderSize": 1
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#7fd7ff80",
+        "Text": "#b8f0ffff"
+      },
+      "vars": {
+        "SeparatorTextBorderSize": 1
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#7d9bb3ff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#6fe3c18c",
+        "Button": "#6fe3c129",
+        "ButtonActive": "#6fe3c16b",
+        "ButtonHovered": "#6fe3c147",
+        "CheckMark": "#6fe3c1ff",
+        "SliderGrab": "#6fe3c1ff",
+        "SliderGrabActive": "#6fe3c1ff",
+        "Text": "#6fe3c1ff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#ffd98a8c",
+        "Button": "#ffd98a29",
+        "ButtonActive": "#ffd98a6b",
+        "ButtonHovered": "#ffd98a47",
+        "CheckMark": "#ffd98aff",
+        "SliderGrab": "#ffd98aff",
+        "SliderGrabActive": "#ffd98aff",
+        "Text": "#ffd98aff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "blue",
+    "cold",
+    "translucent"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#b8f0ff33",
+      "BorderShadow": "#00000000",
+      "Button": "#233e53ff",
+      "ButtonActive": "#3c6882ff",
+      "ButtonHovered": "#2f536aff",
+      "CheckMark": "#b8f0ffff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#080f16ff",
+      "DockingPreview": "#7fd7ff99",
+      "DragDropTarget": "#ffd98ae6",
+      "FrameBg": "#16293bff",
+      "FrameBgActive": "#2f5270ff",
+      "FrameBgHovered": "#1e3550ff",
+      "Header": "#7fd7ff29",
+      "HeaderActive": "#7fd7ff61",
+      "HeaderHovered": "#7fd7ff42",
+      "InputTextCursor": "#7fd7ffff",
+      "MenuBarBg": "#10202eff",
+      "ModalWindowDimBg": "#060a1099",
+      "NavCursor": "#7fd7ffff",
+      "NavWindowingDimBg": "#060a1040",
+      "NavWindowingHighlight": "#e8f6ffb2",
+      "PlotHistogram": "#7fd7ffff",
+      "PlotHistogramHovered": "#b8f0ffff",
+      "PlotLines": "#b8f0ffff",
+      "PlotLinesHovered": "#ffd98aff",
+      "PopupBg": "#10202ef7",
+      "ResizeGrip": "#7fd7ff2e",
+      "ResizeGripActive": "#7fd7ffe6",
+      "ResizeGripHovered": "#7fd7ff8c",
+      "ScrollbarBg": "#00000000",
+      "ScrollbarGrab": "#24415cff",
+      "ScrollbarGrabActive": "#5a9abaff",
+      "ScrollbarGrabHovered": "#2f5577ff",
+      "Separator": "#b8f0ff26",
+      "SeparatorActive": "#7fd7ffff",
+      "SeparatorHovered": "#7fd7ffa6",
+      "SliderGrab": "#7fd7ffff",
+      "SliderGrabActive": "#b8f0ffff",
+      "Tab": "#122130ff",
+      "TabDimmed": "#0f1c2aff",
+      "TabDimmedSelected": "#20394bff",
+      "TabDimmedSelectedOverline": "#b8f0ff73",
+      "TabHovered": "#355d76ff",
+      "TabSelected": "#2b4c62ff",
+      "TabSelectedOverline": "#b8f0ffff",
+      "TableBorderLight": "#b8f0ff1a",
+      "TableBorderStrong": "#b8f0ff33",
+      "TableHeaderBg": "#10202eff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#e8f6ff08",
+      "Text": "#e8f6ffff",
+      "TextDisabled": "#7d9bb3ff",
+      "TextLink": "#b8f0ffff",
+      "TextSelectedBg": "#7fd7ff52",
+      "TitleBg": "#08111af0",
+      "TitleBgActive": "#10202ef5",
+      "TitleBgCollapsed": "#08111abf",
+      "WindowBg": "#0b1520f0"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 6,
+        "y": 3
+      },
+      "ChildBorderSize": 1,
+      "ChildRounding": 8,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 0,
+      "FramePadding": {
+        "x": 8,
+        "y": 4
+      },
+      "FrameRounding": 6,
+      "GrabMinSize": 10,
+      "GrabRounding": 6,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 20,
+      "ItemInnerSpacing": {
+        "x": 6,
+        "y": 4
+      },
+      "ItemSpacing": {
+        "x": 8,
+        "y": 7
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 8,
+      "ScrollbarRounding": 10,
+      "ScrollbarSize": 10,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 1,
+      "SeparatorTextPadding": {
+        "x": 16,
+        "y": 3
+      },
+      "TabBarBorderSize": 0,
+      "TabBarOverlineSize": 1,
+      "TabBorderSize": 0,
+      "TabRounding": 6,
+      "WindowBorderSize": 1,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 48
+      },
+      "WindowPadding": {
+        "x": 12,
+        "y": 12
+      },
+      "WindowRounding": 10,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Ice Frost",
+  "widgetStyle": {
+    "accent": "#7fd7ffff",
+    "accent2": "#b8f0ffff",
+    "danger": "#ff8a9aff",
+    "success": "#6fe3c1ff",
+    "warning": "#ffd98aff"
+  }
+}

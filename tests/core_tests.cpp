@@ -878,6 +878,108 @@ TEST_CASE("ValidatePanel: docking-only window flags") {
     CHECK_FALSE(HasDiag(d, Diagnostic::Level::Warning, "w", "unknown flag"));
 }
 
+TEST_CASE("motions round trip and leave defaults out") {
+    const char* text = R"json({"id":"b","type":"Button","anim":{"motions":[
+      {"preset":"BounceIn","trigger":"enter","durationScale":1.0,"delay":0,"iterations":-1,"stagger":0.04},
+      {"preset":"Pulse","trigger":"hover"},
+      {"custom":"MyWiggle","trigger":"attention","on":"onClick","durationScale":0.5,"delay":0.25,"iterations":3}]}})json";
+    Node n = ParseNode(text);
+    REQUIRE(n.anim.motions.size() == 3);
+    const MotionSpec& a = n.anim.motions[0];
+    CHECK(a.preset == "BounceIn");
+    CHECK(a.custom.empty());
+    CHECK(a.trigger == "enter");
+    CHECK(a.duration_scale == doctest::Approx(1.0f));
+    CHECK(a.iterations == -1);
+    CHECK(a.stagger == doctest::Approx(0.04f));
+    CHECK(n.anim.motions[1].trigger == "hover");
+    const MotionSpec& c = n.anim.motions[2];
+    CHECK(c.custom == "MyWiggle");
+    CHECK(c.Name() == "MyWiggle");
+    CHECK(c.on == "onClick");
+    CHECK(c.duration_scale == doctest::Approx(0.5f));
+    CHECK(c.delay == doctest::Approx(0.25f));
+    CHECK(c.iterations == 3);
+    CHECK_FALSE(n.anim.Empty());
+
+    std::string d = NodeRoundTrip(text);
+    CHECK(d.find("\"trigger\": \"enter\"") == std::string::npos);
+    CHECK(d.find("durationScale\": 1") == std::string::npos);
+    CHECK(DumpJson(NodeToJson(ParseNode(R"json({"id":"t","type":"Text","anim":{"motions":[{"preset":"FadeIn"}]}})json")), 0) ==
+          R"({"anim":{"motions":[{"preset":"FadeIn"}]},"id":"t","type":"Text"})");
+
+    Node plain = ParseNode(R"json({"id":"t","type":"Text","anim":{"motions":[]}})json");
+    CHECK(plain.anim.Empty());
+    CHECK_FALSE(NodeToJson(plain).Has("anim"));
+
+    Node e;
+    Error err;
+    CHECK_FALSE(NodeFromJson(P(R"json({"id":"x","type":"Text","anim":{"motions":{}}})json"), e, &err));
+    CHECK(err.message.find("\"motions\" must be an array") != std::string::npos);
+    CHECK_FALSE(NodeFromJson(P(R"json({"id":"x","type":"Text","anim":{"motions":[3]}})json"), e, &err));
+    CHECK_FALSE(NodeFromJson(P(R"json({"id":"x","type":"Text","anim":{"motions":[{"preset":1}]}})json"), e, &err));
+    CHECK_FALSE(NodeFromJson(P(R"json({"id":"x","type":"Text","anim":{"motions":[{"preset":"A","delay":"soon"}]}})json"), e, &err));
+}
+
+TEST_CASE("project animation files round trip") {
+    Project p;
+    Error e;
+    REQUIRE(ProjectFromJson(P(R"json({"kind":"project","name":"A","animations":["animations/MyWiggle.imanim.json"]})json"), p, &e));
+    REQUIRE(p.animation_files.size() == 1);
+    CHECK(p.animation_files[0] == "animations/MyWiggle.imanim.json");
+    Json out = ProjectToJson(p);
+    REQUIRE(out["animations"].IsArray());
+    CHECK(out["animations"][0].AsString() == "animations/MyWiggle.imanim.json");
+    p.animation_files.clear();
+    CHECK_FALSE(ProjectToJson(p).Has("animations"));
+    CHECK_FALSE(ProjectFromJson(P(R"json({"kind":"project","name":"A","animations":[{"name":"X"}]})json"), p, &e));
+
+    p.animations.push_back(P(R"json({"name":"MyWiggle","tracks":{}})json"));
+    CHECK(p.FindAnimation("MyWiggle") != nullptr);
+    CHECK(p.FindAnimation("Other") == nullptr);
+}
+
+namespace {
+bool KnownPresetForTest(const char* name) { return std::string(name) == "BounceIn" || std::string(name) == "Pulse"; }
+}  // namespace
+
+TEST_CASE("ValidatePanel: motions") {
+    MotionPresetFn saved = MotionPresetResolver();
+    MotionPresetResolver() = &KnownPresetForTest;
+    Project project = MakeProject();
+    project.animations.push_back(P(R"json({"name":"MyWiggle","tracks":{}})json"));
+    Panel panel = MakePanel(R"json({"id":"w","type":"Window","props":{"title":"T"},"children":[
+      {"id":"ok","type":"Button","props":{"label":"b"},"anim":{"motions":[
+         {"preset":"BounceIn"},{"preset":"Pulse","trigger":"hover"},{"custom":"MyWiggle","trigger":"attention","on":"onClick"}]}},
+      {"id":"bad","type":"Button","props":{"label":"b"},"anim":{"motions":[
+         {"preset":"Teleport"},{"custom":"Nope"},{"preset":"Pulse","trigger":"sometimes"},{},
+         {"preset":"Pulse","custom":"MyWiggle"},{"preset":"Pulse","durationScale":0,"delay":-1,"stagger":-1,"iterations":-2},
+         {"preset":"Pulse","trigger":"change","on":"onExplode"}]}}
+    ]})json");
+    std::vector<Diagnostic> d;
+    CHECK_FALSE(ValidatePanel(project, panel, d));
+    CHECK_FALSE(HasDiag(d, Diagnostic::Level::Error, "ok", ""));
+    CHECK_FALSE(HasDiag(d, Diagnostic::Level::Warning, "ok", ""));
+    CHECK(HasDiag(d, Diagnostic::Level::Warning, "bad", "unknown motion preset \"Teleport\""));
+    CHECK_FALSE(HasError(d, "bad", "Teleport"));
+    CHECK(HasError(d, "bad", "unknown custom animation \"Nope\""));
+    CHECK(HasError(d, "bad", "unknown trigger \"sometimes\""));
+    CHECK(HasError(d, "bad", "needs a \"preset\" or \"custom\""));
+    CHECK(HasError(d, "bad", "sets both"));
+    CHECK(HasError(d, "bad", "durationScale must be > 0"));
+    CHECK(HasError(d, "bad", "negative delay"));
+    CHECK(HasError(d, "bad", "negative stagger"));
+    CHECK(HasError(d, "bad", "iterations must be"));
+    CHECK(HasDiag(d, Diagnostic::Level::Warning, "bad", "unknown event \"onExplode\""));
+
+    MotionPresetResolver() = nullptr;
+    d.clear();
+    ValidatePanel(project, panel, d);
+    CHECK_FALSE(HasDiag(d, Diagnostic::Level::Warning, "bad", "Teleport"));
+    CHECK(HasError(d, "bad", "unknown custom animation \"Nope\""));
+    MotionPresetResolver() = saved;
+}
+
 TEST_CASE("ColorToHex clamps NaN and out-of-range components") {
     CHECK(ColorToHex(Vec4{std::nanf(""), 2.0f, -1.0f, 0.5f}) == "#00ff0080");
     CHECK(ColorToHex(Vec4{HUGE_VALF, -HUGE_VALF, 1.0f, 0.0f}) == "#ff00ff00");

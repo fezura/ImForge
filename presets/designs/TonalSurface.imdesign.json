@@ -1,0 +1,279 @@
+{
+  "credit": "",
+  "description": "Surfaces get lighter as they rise, accent buttons and tabs are pill shaped, and there are no borders at all. A calm pastel blue carries the accent.",
+  "fonts": [
+    {
+      "family": "Roboto",
+      "role": "ui",
+      "size": 15,
+      "weight": "Regular"
+    },
+    {
+      "family": "Roboto",
+      "role": "heading",
+      "size": 20,
+      "weight": "Medium"
+    }
+  ],
+  "fx": {
+    "accentGlow": 0,
+    "windowBlur": 0,
+    "windowShadow": 0.45
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "Widen",
+    "button.press": "PressDown",
+    "list": "StaggerFadeUp",
+    "window": "FadeInUp",
+    "window.exit": "FadeOutDown"
+  },
+  "name": "TonalSurface",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Border": "#a8c7ffcc",
+        "Button": "#a8c7ffff",
+        "ButtonActive": "#8fb4f5ff",
+        "ButtonHovered": "#bcd4ffff",
+        "Text": "#0f2a55ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0,
+        "FramePadding": {
+          "x": 18,
+          "y": 7
+        },
+        "FrameRounding": 20
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#3a3a46ff",
+        "ChildBg": "#23242bff"
+      },
+      "vars": {
+        "ChildBorderSize": 0,
+        "ChildRounding": 16,
+        "WindowPadding": {
+          "x": 16,
+          "y": 14
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#ff9e948c",
+        "Button": "#ff9e9429",
+        "ButtonActive": "#ff9e946b",
+        "ButtonHovered": "#ff9e9447",
+        "CheckMark": "#ff9e94ff",
+        "SliderGrab": "#ff9e94ff",
+        "SliderGrabActive": "#ff9e94ff",
+        "Text": "#ff9e94ff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#a8c7ff80",
+        "Button": "#a8c7ff00",
+        "ButtonActive": "#a8c7ff42",
+        "ButtonHovered": "#a8c7ff24",
+        "Text": "#a8c7ffff"
+      },
+      "vars": {
+        "FrameBorderSize": 1,
+        "FramePadding": {
+          "x": 18,
+          "y": 7
+        },
+        "FrameRounding": 20
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#a8c7ff59",
+        "Text": "#ffffffff"
+      },
+      "vars": {
+        "SeparatorTextBorderSize": 1
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#9a99a6ff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#8fd6a58c",
+        "Button": "#8fd6a529",
+        "ButtonActive": "#8fd6a56b",
+        "ButtonHovered": "#8fd6a547",
+        "CheckMark": "#8fd6a5ff",
+        "SliderGrab": "#8fd6a5ff",
+        "SliderGrabActive": "#8fd6a5ff",
+        "Text": "#8fd6a5ff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#f0c27a8c",
+        "Button": "#f0c27a29",
+        "ButtonActive": "#f0c27a6b",
+        "ButtonHovered": "#f0c27a47",
+        "CheckMark": "#f0c27aff",
+        "SliderGrab": "#f0c27aff",
+        "SliderGrabActive": "#f0c27aff",
+        "Text": "#f0c27aff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "tonal",
+    "pill",
+    "rounded",
+    "modern"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#3a3a46ff",
+      "BorderShadow": "#00000000",
+      "Button": "#2a3142ff",
+      "ButtonActive": "#41506eff",
+      "ButtonHovered": "#344058ff",
+      "CheckMark": "#a8c7ffff",
+      "ChildBg": "#1b1c22ff",
+      "DockingEmptyBg": "#0d0d11ff",
+      "DockingPreview": "#a8c7ff99",
+      "DragDropTarget": "#f0c27ae6",
+      "FrameBg": "#262730ff",
+      "FrameBgActive": "#3a3b48ff",
+      "FrameBgHovered": "#31323dff",
+      "Header": "#a8c7ff24",
+      "HeaderActive": "#a8c7ff4d",
+      "HeaderHovered": "#a8c7ff38",
+      "InputTextCursor": "#a8c7ffff",
+      "MenuBarBg": "#1b1c22ff",
+      "ModalWindowDimBg": "#090a0c99",
+      "NavCursor": "#a8c7ffff",
+      "NavWindowingDimBg": "#090a0c40",
+      "NavWindowingHighlight": "#e4e3eab2",
+      "PlotHistogram": "#a8c7ffff",
+      "PlotHistogramHovered": "#c9b8ffff",
+      "PlotLines": "#c9b8ffff",
+      "PlotLinesHovered": "#f0c27aff",
+      "PopupBg": "#23242bfa",
+      "ResizeGrip": "#a8c7ff2e",
+      "ResizeGripActive": "#a8c7ffe6",
+      "ResizeGripHovered": "#a8c7ff8c",
+      "ScrollbarBg": "#00000000",
+      "ScrollbarGrab": "#3a3a46ff",
+      "ScrollbarGrabActive": "#a8c7ff99",
+      "ScrollbarGrabHovered": "#4a4a58ff",
+      "Separator": "#2e2f38ff",
+      "SeparatorActive": "#a8c7ffff",
+      "SeparatorHovered": "#a8c7ffa6",
+      "SliderGrab": "#a8c7ffff",
+      "SliderGrabActive": "#c9b8ffff",
+      "Tab": "#00000000",
+      "TabDimmed": "#00000000",
+      "TabDimmedSelected": "#a8c7ff1f",
+      "TabDimmedSelectedOverline": "#a8c7ff00",
+      "TabHovered": "#a8c7ff1f",
+      "TabSelected": "#a8c7ff3d",
+      "TabSelectedOverline": "#a8c7ff00",
+      "TableBorderLight": "#2a2b33ff",
+      "TableBorderStrong": "#3a3a46ff",
+      "TableHeaderBg": "#23242bff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#e4e3ea08",
+      "Text": "#e4e3eaff",
+      "TextDisabled": "#9a99a6ff",
+      "TextLink": "#a8c7ffff",
+      "TextSelectedBg": "#a8c7ff40",
+      "TitleBg": "#121318ff",
+      "TitleBgActive": "#1b1c22ff",
+      "TitleBgCollapsed": "#121318bf",
+      "WindowBg": "#121318ff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 10,
+        "y": 6
+      },
+      "ChildBorderSize": 0,
+      "ChildRounding": 12,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 0,
+      "FramePadding": {
+        "x": 12,
+        "y": 7
+      },
+      "FrameRounding": 10,
+      "GrabMinSize": 14,
+      "GrabRounding": 10,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 24,
+      "ItemInnerSpacing": {
+        "x": 8,
+        "y": 6
+      },
+      "ItemSpacing": {
+        "x": 10,
+        "y": 10
+      },
+      "PopupBorderSize": 0,
+      "PopupRounding": 12,
+      "ScrollbarRounding": 12,
+      "ScrollbarSize": 12,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 1,
+      "SeparatorTextPadding": {
+        "x": 16,
+        "y": 4
+      },
+      "TabBarBorderSize": 0,
+      "TabBarOverlineSize": 0,
+      "TabBorderSize": 0,
+      "TabRounding": 16,
+      "WindowBorderSize": 0,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 48
+      },
+      "WindowPadding": {
+        "x": 16,
+        "y": 16
+      },
+      "WindowRounding": 16,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Tonal Surface",
+  "widgetStyle": {
+    "accent": "#a8c7ffff",
+    "accent2": "#c9b8ffff",
+    "danger": "#ff9e94ff",
+    "success": "#8fd6a5ff",
+    "warning": "#f0c27aff"
+  }
+}

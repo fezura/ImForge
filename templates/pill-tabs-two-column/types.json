@@ -1,0 +1,159 @@
+{
+  "enums": {},
+  "kind": "types",
+  "schemaVersion": 1,
+  "structs": {
+    "Config": {
+      "fields": [
+        {
+          "ctype": "Bool",
+          "name": "aim",
+          "type": "bool"
+        },
+        {
+          "ctype": "I32",
+          "name": "weapon",
+          "type": "int"
+        },
+        {
+          "ctype": "Float",
+          "name": "fov",
+          "type": "float"
+        },
+        {
+          "count": 2,
+          "ctype": "FloatArray",
+          "name": "reaction",
+          "type": "float[2]"
+        },
+        {
+          "ctype": "Float",
+          "name": "smooth",
+          "type": "float"
+        },
+        {
+          "ctype": "Bool",
+          "name": "trigger",
+          "type": "bool"
+        },
+        {
+          "ctype": "I32",
+          "name": "triggerKey",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "triggerDelay",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "hitboxes",
+          "type": "int"
+        },
+        {
+          "ctype": "Bool",
+          "name": "rcs",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "rage",
+          "type": "bool"
+        },
+        {
+          "ctype": "I32",
+          "name": "minDamage",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "hitscan",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "multipoint",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "pitch",
+          "type": "int"
+        },
+        {
+          "ctype": "Float",
+          "name": "yaw",
+          "type": "float"
+        },
+        {
+          "ctype": "I32",
+          "name": "aggression",
+          "type": "int"
+        },
+        {
+          "ctype": "Vec4",
+          "name": "allyColor",
+          "type": "ImVec4"
+        },
+        {
+          "ctype": "Vec4",
+          "name": "enemyColor",
+          "type": "ImVec4"
+        },
+        {
+          "ctype": "Vec4",
+          "name": "accent",
+          "type": "ImVec4"
+        },
+        {
+          "ctype": "Float",
+          "name": "xhairGap",
+          "type": "float"
+        },
+        {
+          "ctype": "Float",
+          "name": "xhairLength",
+          "type": "float"
+        },
+        {
+          "ctype": "Float",
+          "name": "xhairThickness",
+          "type": "float"
+        },
+        {
+          "ctype": "Bool",
+          "name": "xhairDot",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "xhairOutline",
+          "type": "bool"
+        },
+        {
+          "ctype": "Vec4",
+          "name": "xhairColor",
+          "type": "ImVec4"
+        },
+        {
+          "count": 4,
+          "ctype": "IntArray",
+          "name": "hotkeys",
+          "type": "int[4]"
+        },
+        {
+          "ctype": "StdString",
+          "name": "friends",
+          "type": "std::string"
+        },
+        {
+          "ctype": "Bool",
+          "name": "streamProof",
+          "type": "bool"
+        }
+      ],
+      "header": "config.h"
+    }
+  }
+}

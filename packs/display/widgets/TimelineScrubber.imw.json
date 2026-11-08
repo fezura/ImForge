@@ -1,0 +1,113 @@
+{
+  "bindings": [
+    {
+      "name": "time",
+      "required": true,
+      "types": [
+        "float"
+      ]
+    },
+    {
+      "name": "markers",
+      "required": false,
+      "types": [
+        "float[N]",
+        "vector<float>"
+      ]
+    }
+  ],
+  "call": "imb::disp::TimelineScrubber({label}, {time}, (float)({duration}), {markers}, {markers:count})",
+  "category": "Display",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-film",
+  "include": "imb_display.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "TimelineScrubber",
+  "preview": [
+    {
+      "color": "#8a91a0ff",
+      "shape": "text",
+      "text": "0:06.0",
+      "x": 0,
+      "y": 6
+    },
+    {
+      "fill": "#2a2f3aff",
+      "h": 5,
+      "rounding": 2,
+      "shape": "rect",
+      "w": 160,
+      "x": 48,
+      "y": 12
+    },
+    {
+      "fill": "#4f8cffff",
+      "h": 5,
+      "rounding": 2,
+      "shape": "rect",
+      "w": 32,
+      "x": 48,
+      "y": 12
+    },
+    {
+      "fill": "#f1b40fff",
+      "h": 8,
+      "rounding": 1,
+      "shape": "rect",
+      "w": 8,
+      "x": 96,
+      "y": 10
+    },
+    {
+      "fill": "#f1b40fff",
+      "h": 8,
+      "rounding": 1,
+      "shape": "rect",
+      "w": 8,
+      "x": 150,
+      "y": 10
+    },
+    {
+      "shape": "line",
+      "stroke": "#e6e6e6ff",
+      "thickness": 2,
+      "x": 80,
+      "x2": 80,
+      "y": 2,
+      "y2": 28
+    },
+    {
+      "fill": "#e6e6e6ff",
+      "r": 6,
+      "shape": "circle",
+      "x": 80,
+      "y": 14
+    },
+    {
+      "color": "#8a91a0ff",
+      "shape": "text",
+      "text": "0:30.0",
+      "x": 214,
+      "y": 6
+    }
+  ],
+  "props": [
+    {
+      "default": "##timeline",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": "30",
+      "hint": "seconds, number or expression",
+      "name": "duration",
+      "type": "expr"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

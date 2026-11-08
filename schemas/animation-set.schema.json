@@ -1,0 +1,35 @@
+{
+  "$id": "https://raw.githubusercontent.com/fezura/ImForge/main/schemas/animation-set.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "presets/animations/<category>.imanims.json: the bundled presets of one category. tools/gen_motion_presets.py compiles every set into include/imforge/imb_motion_presets.h.",
+  "properties": {
+    "animations": {
+      "items": {
+        "$ref": "animation.schema.json#/$defs/Animation"
+      },
+      "maxItems": 2048,
+      "type": "array"
+    },
+    "category": {
+      "$ref": "animation.schema.json#/$defs/Category",
+      "description": "Category of every animation in the set; the file is named after it."
+    },
+    "kind": {
+      "const": "animationSet",
+      "description": "File kind discriminator."
+    },
+    "schemaVersion": {
+      "const": 1,
+      "description": "File format version; always 1."
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "kind",
+    "category",
+    "animations"
+  ],
+  "title": "ImForge animation set",
+  "type": "object"
+}

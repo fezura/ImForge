@@ -1,0 +1,269 @@
+{
+  "credit": "",
+  "description": "Cyan on near black, with magenta for presses and the selected tab. Thin glowing outlines and tight spacing, for overlays you read at a glance.",
+  "fonts": [
+    {
+      "family": "Rajdhani",
+      "role": "ui",
+      "size": 17,
+      "weight": "Medium"
+    },
+    {
+      "family": "Orbitron",
+      "role": "heading",
+      "size": 20,
+      "weight": "Bold"
+    }
+  ],
+  "fx": {
+    "accentGlow": 0.75,
+    "windowBlur": 0,
+    "windowShadow": 0.35
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "GlowUp",
+    "button.press": "GlowPress",
+    "list": "StaggerFadeUp",
+    "window": "GlowIn",
+    "window.exit": "GlowOut"
+  },
+  "name": "NeonCyber",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Border": "#00e5ffcc",
+        "Button": "#00e5ffff",
+        "ButtonActive": "#ff2bd6ff",
+        "ButtonHovered": "#5cf0ffff",
+        "Text": "#05060cff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#00e5ff4d",
+        "ChildBg": "#11131fee"
+      },
+      "vars": {
+        "ChildBorderSize": 1,
+        "ChildRounding": 4,
+        "WindowPadding": {
+          "x": 10,
+          "y": 8
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#ff38648c",
+        "Button": "#ff386429",
+        "ButtonActive": "#ff38646b",
+        "ButtonHovered": "#ff386447",
+        "CheckMark": "#ff3864ff",
+        "SliderGrab": "#ff3864ff",
+        "SliderGrabActive": "#ff3864ff",
+        "Text": "#fb587fff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#00e5ff80",
+        "Button": "#00e5ff00",
+        "ButtonActive": "#00e5ff42",
+        "ButtonHovered": "#00e5ff24",
+        "Text": "#00e5ffff"
+      },
+      "vars": {
+        "FrameBorderSize": 1
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#00e5ff99",
+        "Text": "#00e5ffff"
+      },
+      "vars": {
+        "SeparatorTextBorderSize": 1
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#7b86a8ff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#3dff9a8c",
+        "Button": "#3dff9a29",
+        "ButtonActive": "#3dff9a6b",
+        "ButtonHovered": "#3dff9a47",
+        "CheckMark": "#3dff9aff",
+        "SliderGrab": "#3dff9aff",
+        "SliderGrabActive": "#3dff9aff",
+        "Text": "#3dff9aff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#ffd23f8c",
+        "Button": "#ffd23f29",
+        "ButtonActive": "#ffd23f6b",
+        "ButtonHovered": "#ffd23f47",
+        "CheckMark": "#ffd23fff",
+        "SliderGrab": "#ffd23fff",
+        "SliderGrabActive": "#ffd23fff",
+        "Text": "#ffd23fff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "neon",
+    "cyberpunk",
+    "gaming",
+    "overlay"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#00e5ff4d",
+      "BorderShadow": "#00000000",
+      "Button": "#182d3fff",
+      "ButtonActive": "#762371ff",
+      "ButtonHovered": "#144d60ff",
+      "CheckMark": "#00e5ffff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#07080eff",
+      "DockingPreview": "#00e5ff99",
+      "DragDropTarget": "#ffd23fe6",
+      "FrameBg": "#1a1d2eff",
+      "FrameBgActive": "#1f3346ff",
+      "FrameBgHovered": "#242842ff",
+      "Header": "#00e5ff24",
+      "HeaderActive": "#00e5ff5c",
+      "HeaderHovered": "#00e5ff3d",
+      "InputTextCursor": "#00e5ffff",
+      "MenuBarBg": "#11131fff",
+      "ModalWindowDimBg": "#05060a99",
+      "NavCursor": "#ff2bd6ff",
+      "NavWindowingDimBg": "#05060a40",
+      "NavWindowingHighlight": "#e6f1ffb2",
+      "PlotHistogram": "#ff2bd6ff",
+      "PlotHistogramHovered": "#00e5ffff",
+      "PlotLines": "#00e5ffff",
+      "PlotLinesHovered": "#ff2bd6ff",
+      "PopupBg": "#141624fa",
+      "ResizeGrip": "#00e5ff2e",
+      "ResizeGripActive": "#00e5ffe6",
+      "ResizeGripHovered": "#ff2bd68c",
+      "ScrollbarBg": "#08091099",
+      "ScrollbarGrab": "#323647ff",
+      "ScrollbarGrabActive": "#00e5ffcc",
+      "ScrollbarGrabHovered": "#474c5cff",
+      "Separator": "#00e5ff40",
+      "SeparatorActive": "#00e5ffff",
+      "SeparatorHovered": "#00e5ffa6",
+      "SliderGrab": "#00e5ffff",
+      "SliderGrabActive": "#ff2bd6ff",
+      "Tab": "#141624ff",
+      "TabDimmed": "#10121eff",
+      "TabDimmedSelected": "#141f2eff",
+      "TabDimmedSelectedOverline": "#ff2bd673",
+      "TabHovered": "#1c3a4dff",
+      "TabSelected": "#1a2a3cff",
+      "TabSelectedOverline": "#ff2bd6ff",
+      "TableBorderLight": "#1d2236ff",
+      "TableBorderStrong": "#00e5ff40",
+      "TableHeaderBg": "#11131fff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#e6f1ff08",
+      "Text": "#e6f1ffff",
+      "TextDisabled": "#7b86a8ff",
+      "TextLink": "#00e5ffff",
+      "TextSelectedBg": "#ff2bd659",
+      "TitleBg": "#07080fff",
+      "TitleBgActive": "#0d1a26ff",
+      "TitleBgCollapsed": "#07080fbf",
+      "WindowBg": "#0a0b14ff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 4,
+        "y": 2
+      },
+      "ChildBorderSize": 1,
+      "ChildRounding": 4,
+      "DisabledAlpha": 0.45,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 1,
+      "FramePadding": {
+        "x": 6,
+        "y": 3
+      },
+      "FrameRounding": 3,
+      "GrabMinSize": 8,
+      "GrabRounding": 2,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 14,
+      "ItemInnerSpacing": {
+        "x": 4,
+        "y": 4
+      },
+      "ItemSpacing": {
+        "x": 6,
+        "y": 4
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 4,
+      "ScrollbarRounding": 2,
+      "ScrollbarSize": 10,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 1,
+      "SeparatorTextPadding": {
+        "x": 12,
+        "y": 2
+      },
+      "TabBarBorderSize": 1,
+      "TabBarOverlineSize": 2,
+      "TabBorderSize": 0,
+      "TabRounding": 3,
+      "WindowBorderSize": 1,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 48
+      },
+      "WindowPadding": {
+        "x": 8,
+        "y": 8
+      },
+      "WindowRounding": 6,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Neon Cyber",
+  "widgetStyle": {
+    "accent": "#00e5ffff",
+    "accent2": "#ff2bd6ff",
+    "danger": "#ff3864ff",
+    "success": "#3dff9aff",
+    "warning": "#ffd23fff"
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "bindings": [
+    {
+      "name": "teamA",
+      "required": false,
+      "types": [
+        "vec4"
+      ]
+    },
+    {
+      "name": "teamB",
+      "required": false,
+      "types": [
+        "vec4"
+      ]
+    }
+  ],
+  "call": "imb::game::TeamColorPicker({label}, {teamA}, {teamB}, {nameA}, {nameB}, {presets})",
+  "category": "Gaming",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-palette",
+  "include": "imb_gaming.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "TeamColorPicker",
+  "preview": [
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#4aa3ffff",
+      "h": 42,
+      "rounding": 5,
+      "shape": "rect",
+      "w": 120,
+      "x": 0,
+      "y": 20
+    },
+    {
+      "color": "#14141aff",
+      "shape": "text",
+      "text": "{nameA}",
+      "x": 8,
+      "y": 26
+    },
+    {
+      "color": "#14141abf",
+      "shape": "text",
+      "text": "#4AA3FF",
+      "x": 8,
+      "y": 44
+    },
+    {
+      "fill": "#2a2f3aff",
+      "r": 11,
+      "shape": "circle",
+      "x": 140,
+      "y": 41
+    },
+    {
+      "color": "#8a93a6ff",
+      "shape": "text",
+      "text": "<>",
+      "x": 135,
+      "y": 34
+    },
+    {
+      "fill": "#ff5656ff",
+      "h": 42,
+      "rounding": 5,
+      "shape": "rect",
+      "w": 120,
+      "x": 160,
+      "y": 20
+    },
+    {
+      "color": "#14141aff",
+      "shape": "text",
+      "text": "{nameB}",
+      "x": 168,
+      "y": 26
+    },
+    {
+      "color": "#14141abf",
+      "shape": "text",
+      "text": "#FF5656",
+      "x": 168,
+      "y": 44
+    },
+    {
+      "fill": "#4aa3ffff",
+      "h": 22,
+      "rounding": 3,
+      "shape": "rect",
+      "w": 17,
+      "x": 0,
+      "y": 70
+    },
+    {
+      "fill": "#ff5656ff",
+      "h": 22,
+      "rounding": 3,
+      "shape": "rect",
+      "w": 17,
+      "x": 17,
+      "y": 70
+    },
+    {
+      "fill": "#0072b2ff",
+      "h": 22,
+      "rounding": 3,
+      "shape": "rect",
+      "w": 17,
+      "x": 40,
+      "y": 70
+    },
+    {
+      "fill": "#e69f00ff",
+      "h": 22,
+      "rounding": 3,
+      "shape": "rect",
+      "w": 17,
+      "x": 57,
+      "y": 70
+    },
+    {
+      "fill": "#7cfc78ff",
+      "h": 22,
+      "rounding": 3,
+      "shape": "rect",
+      "w": 17,
+      "x": 80,
+      "y": 70
+    },
+    {
+      "fill": "#be5affff",
+      "h": 22,
+      "rounding": 3,
+      "shape": "rect",
+      "w": 17,
+      "x": 97,
+      "y": 70
+    },
+    {
+      "fill": "#78e6ffff",
+      "h": 22,
+      "rounding": 3,
+      "shape": "rect",
+      "w": 17,
+      "x": 120,
+      "y": 70
+    },
+    {
+      "fill": "#ff963cff",
+      "h": 22,
+      "rounding": 3,
+      "shape": "rect",
+      "w": 17,
+      "x": 137,
+      "y": 70
+    },
+    {
+      "fill": "#ebebebff",
+      "h": 22,
+      "rounding": 3,
+      "shape": "rect",
+      "w": 17,
+      "x": 160,
+      "y": 70
+    },
+    {
+      "fill": "#ffd23cff",
+      "h": 22,
+      "rounding": 3,
+      "shape": "rect",
+      "w": 17,
+      "x": 177,
+      "y": 70
+    }
+  ],
+  "props": [
+    {
+      "default": "Team colors",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": "Team",
+      "name": "nameA",
+      "type": "string"
+    },
+    {
+      "default": "Enemy",
+      "name": "nameB",
+      "type": "string"
+    },
+    {
+      "default": true,
+      "name": "presets",
+      "type": "bool"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

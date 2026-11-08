@@ -209,7 +209,11 @@ static Transform g_obj; static Material g_mat; static Stats g_stats; static LogB
 
 // once, after ImGui_ImplOpenGL3_Init
 imforge::live::Connect("pipe://ToolDock");
+imforge::live::SetFontTextureRebuild([] { ImGui_ImplOpenGL3_DestroyFontsTexture(); ImGui_ImplOpenGL3_CreateFontsTexture(); });
 #include "generated/imforge_dev.h"           // registers LogView.log_lines and the handlers (after a first export)
+
+// every frame, before ImGui_ImplOpenGL3_NewFrame()
+imforge::live::PreNewFrame();
 
 // every frame, after ImGui::NewFrame()
 imforge::live::NewFrame();

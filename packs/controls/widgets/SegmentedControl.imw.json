@@ -1,0 +1,95 @@
+{
+  "bindings": [
+    {
+      "name": "index",
+      "required": true,
+      "types": [
+        "int",
+        "enum"
+      ]
+    }
+  ],
+  "call": "imb::ctl::SegmentedControl({label}, {index}, {items:array}, {items:count}, {width})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-table-columns",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "SegmentedControl",
+  "preview": [
+    {
+      "fill": "#262d3aff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 180,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#4296faff",
+      "h": 18,
+      "rounding": 3,
+      "shape": "rect",
+      "w": 58,
+      "x": 2,
+      "y": 2
+    },
+    {
+      "color": "#ffffffff",
+      "shape": "text",
+      "text": "List",
+      "x": 17,
+      "y": 4
+    },
+    {
+      "color": "#8a8f9cff",
+      "shape": "text",
+      "text": "Grid",
+      "x": 78,
+      "y": 4
+    },
+    {
+      "color": "#8a8f9cff",
+      "shape": "text",
+      "text": "Cards",
+      "x": 136,
+      "y": 4
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 188,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "View",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": [
+        "List",
+        "Grid",
+        "Cards"
+      ],
+      "name": "items",
+      "type": "stringList"
+    },
+    {
+      "default": 0,
+      "hint": "0 fits the items, negative fills the row",
+      "name": "width",
+      "type": "float"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

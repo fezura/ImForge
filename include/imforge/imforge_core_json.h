@@ -1,6 +1,7 @@
 #pragma once
 
 #include <algorithm>
+#include <cmath>
 
 #include "imforge_core.h"
 
@@ -35,7 +36,9 @@ inline bool ReadFloat(const Json& j, const char* key, float& out, Error* err, co
     const Json* v = j.Find(key);
     if (!v || v->IsNull()) return true;
     if (!v->IsNumber()) return Fail(err, ctx + ": \"" + key + "\" must be a number");
-    out = (float)v->AsDouble();
+    double d = v->AsDouble();
+    if (!std::isfinite(d) || d > 3.0e38 || d < -3.0e38) return Fail(err, ctx + ": \"" + key + "\" is out of range");
+    out = (float)d;
     return true;
 }
 inline bool ReadInt(const Json& j, const char* key, int& out, Error* err, const std::string& ctx) {
@@ -229,6 +232,19 @@ inline bool AnimFromJson(const Json& j, AnimSpec& out, Error* err, const std::st
             !ReadFloat(exit, "duration", out.exit_duration, err, ctx))
             return false;
     }
+    const Json& motions = j["motions"];
+    if (!motions.IsNull() && !motions.IsArray()) return Fail(err, ctx + ": \"motions\" must be an array");
+    for (const Json& m : motions.arr) {
+        if (!m.IsObject()) return Fail(err, ctx + ": motion must be an object");
+        MotionSpec ms;
+        if (!ReadString(m, "preset", ms.preset, err, ctx) || !ReadString(m, "custom", ms.custom, err, ctx) ||
+            !ReadString(m, "trigger", ms.trigger, err, ctx) || !ReadString(m, "on", ms.on, err, ctx) ||
+            !ReadFloat(m, "durationScale", ms.duration_scale, err, ctx) || !ReadFloat(m, "delay", ms.delay, err, ctx) ||
+            !ReadFloat(m, "stagger", ms.stagger, err, ctx) || !ReadInt(m, "iterations", ms.iterations, err, ctx))
+            return false;
+        if (ms.trigger.empty()) ms.trigger = "enter";
+        out.motions.push_back(std::move(ms));
+    }
     return true;
 }
 inline Json AnimToJson(const AnimSpec& a) {
@@ -260,6 +276,22 @@ inline Json AnimToJson(const AnimSpec& a) {
         e.Set("preset", Json(a.exit_preset));
         e.Set("duration", Json(FloatToNum(a.exit_duration)));
         o.Set("exit", std::move(e));
+    }
+    if (!a.motions.empty()) {
+        Json ms = Json::Array();
+        for (const MotionSpec& m : a.motions) {
+            Json e = Json::Object();
+            if (!m.preset.empty()) e.Set("preset", Json(m.preset));
+            if (!m.custom.empty()) e.Set("custom", Json(m.custom));
+            if (m.trigger != "enter") e.Set("trigger", Json(m.trigger));
+            if (!m.on.empty()) e.Set("on", Json(m.on));
+            if (m.duration_scale != 1) e.Set("durationScale", Json(FloatToNum(m.duration_scale)));
+            if (m.delay != 0) e.Set("delay", Json(FloatToNum(m.delay)));
+            if (m.stagger != 0) e.Set("stagger", Json(FloatToNum(m.stagger)));
+            if (m.iterations != -1) e.Set("iterations", Json(m.iterations));
+            ms.Push(std::move(e));
+        }
+        o.Set("motions", std::move(ms));
     }
     return o;
 }
@@ -574,7 +606,8 @@ inline bool ProjectFromJson(const Json& j, Project& out, Error* err) {
     if (!ReadStringList(j, "themes", out.theme_files, err, ctx) || !ReadString(j, "activeTheme", out.active_theme, err, ctx) ||
         !ReadStringList(j, "panels", out.panel_files, err, ctx) ||
         !ReadStringList(j, "components", out.component_files, err, ctx) ||
-        !ReadStringList(j, "libraries", out.libraries, err, ctx))
+        !ReadStringList(j, "libraries", out.libraries, err, ctx) ||
+        !ReadStringList(j, "animations", out.animation_files, err, ctx))
         return false;
     if (!classes.IsNull() && !classes.IsObject()) return Fail(err, ctx + ": \"styleClasses\" must be an object");
     for (const auto& kv : classes.obj) {
@@ -654,6 +687,7 @@ inline Json ProjectToJson(const Project& p) {
     o.Set("panels", StringListToJson(panels.empty() ? p.panel_files : panels));
     o.Set("components", StringListToJson(components.empty() ? p.component_files : components));
     o.Set("libraries", StringListToJson(p.libraries));
+    if (!p.animation_files.empty()) o.Set("animations", StringListToJson(p.animation_files));
     return o;
 }
 

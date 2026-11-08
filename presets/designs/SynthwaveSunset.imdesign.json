@@ -1,0 +1,269 @@
+{
+  "credit": "",
+  "description": "Warm orange and pink over dark plum, like an 80s horizon at dusk. The title bar picks up the sunset and the active tab carries an orange line.",
+  "fonts": [
+    {
+      "family": "Saira",
+      "role": "ui",
+      "size": 15,
+      "weight": "Regular"
+    },
+    {
+      "family": "Audiowide",
+      "role": "heading",
+      "size": 20,
+      "weight": "Regular"
+    }
+  ],
+  "fx": {
+    "accentGlow": 0.6,
+    "windowBlur": 0,
+    "windowShadow": 0.55
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "Raise",
+    "button.press": "PressDown",
+    "list": "StaggerScaleIn",
+    "window": "BackInUp",
+    "window.exit": "BackOutDown"
+  },
+  "name": "SynthwaveSunset",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Border": "#ff7a3dcc",
+        "Button": "#ff7a3dff",
+        "ButtonActive": "#ff3d8bff",
+        "ButtonHovered": "#ff9560ff",
+        "Text": "#140a1fff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#4a2463ff",
+        "ChildBg": "#1d0f2cff"
+      },
+      "vars": {
+        "ChildBorderSize": 0,
+        "ChildRounding": 8,
+        "WindowPadding": {
+          "x": 12,
+          "y": 10
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#ff3d5a8c",
+        "Button": "#ff3d5a29",
+        "ButtonActive": "#ff3d5a6b",
+        "ButtonHovered": "#ff3d5a47",
+        "CheckMark": "#ff3d5aff",
+        "SliderGrab": "#ff3d5aff",
+        "SliderGrabActive": "#ff3d5aff",
+        "Text": "#ff5f78ff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#ff7a3d80",
+        "Button": "#ff7a3d00",
+        "ButtonActive": "#ff7a3d42",
+        "ButtonHovered": "#ff7a3d24",
+        "Text": "#ff7a3dff"
+      },
+      "vars": {
+        "FrameBorderSize": 1
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#ff3d8b99",
+        "Text": "#ff9a66ff"
+      },
+      "vars": {
+        "SeparatorTextBorderSize": 2
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#a88aa8ff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#3dffc88c",
+        "Button": "#3dffc829",
+        "ButtonActive": "#3dffc86b",
+        "ButtonHovered": "#3dffc847",
+        "CheckMark": "#3dffc8ff",
+        "SliderGrab": "#3dffc8ff",
+        "SliderGrabActive": "#3dffc8ff",
+        "Text": "#3dffc8ff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#ffd23d8c",
+        "Button": "#ffd23d29",
+        "ButtonActive": "#ffd23d6b",
+        "ButtonHovered": "#ffd23d47",
+        "CheckMark": "#ffd23dff",
+        "SliderGrab": "#ffd23dff",
+        "SliderGrabActive": "#ffd23dff",
+        "Text": "#ffd23dff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "orange",
+    "pink",
+    "retro",
+    "neon"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#4a2463ff",
+      "BorderShadow": "#00000000",
+      "Button": "#4a1c4bff",
+      "ButtonActive": "#94483fff",
+      "ButtonHovered": "#6e2a50ff",
+      "CheckMark": "#ff7a3dff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#0e0716ff",
+      "DockingPreview": "#ff7a3d99",
+      "DragDropTarget": "#ffd23de6",
+      "FrameBg": "#2a1640ff",
+      "FrameBgActive": "#5b2e4fff",
+      "FrameBgHovered": "#371d53ff",
+      "Header": "#ff3d8b38",
+      "HeaderActive": "#ff3d8b7a",
+      "HeaderHovered": "#ff3d8b57",
+      "InputTextCursor": "#ff7a3dff",
+      "MenuBarBg": "#1d0f2cff",
+      "ModalWindowDimBg": "#0a051099",
+      "NavCursor": "#ff7a3dff",
+      "NavWindowingDimBg": "#0a051040",
+      "NavWindowingHighlight": "#ffe9f2b2",
+      "PlotHistogram": "#ff7a3dff",
+      "PlotHistogramHovered": "#ff3d8bff",
+      "PlotLines": "#ff3d8bff",
+      "PlotLinesHovered": "#ffd23dff",
+      "PopupBg": "#221133fa",
+      "ResizeGrip": "#ff7a3d2e",
+      "ResizeGripActive": "#ff7a3de6",
+      "ResizeGripHovered": "#ff7a3d8c",
+      "ScrollbarBg": "#00000000",
+      "ScrollbarGrab": "#4a2463ff",
+      "ScrollbarGrabActive": "#b4573eff",
+      "ScrollbarGrabHovered": "#5f2f7dff",
+      "Separator": "#4a2463ff",
+      "SeparatorActive": "#ff7a3dff",
+      "SeparatorHovered": "#ff7a3da6",
+      "SliderGrab": "#ff7a3dff",
+      "SliderGrabActive": "#ff3d8bff",
+      "Tab": "#211133ff",
+      "TabDimmed": "#1c0e2bff",
+      "TabDimmedSelected": "#37183bff",
+      "TabDimmedSelectedOverline": "#ff7a3d73",
+      "TabHovered": "#5e2246ff",
+      "TabSelected": "#4a1f4aff",
+      "TabSelectedOverline": "#ff7a3dff",
+      "TableBorderLight": "#341a48ff",
+      "TableBorderStrong": "#4a2463ff",
+      "TableHeaderBg": "#26123aff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#ffe9f208",
+      "Text": "#ffe9f2ff",
+      "TextDisabled": "#a88aa8ff",
+      "TextLink": "#ff9a66ff",
+      "TextSelectedBg": "#ff7a3d52",
+      "TitleBg": "#140a1fff",
+      "TitleBgActive": "#4a1838ff",
+      "TitleBgCollapsed": "#140a1fbf",
+      "WindowBg": "#140a1fff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 6,
+        "y": 3
+      },
+      "ChildBorderSize": 0,
+      "ChildRounding": 6,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 0,
+      "FramePadding": {
+        "x": 10,
+        "y": 5
+      },
+      "FrameRounding": 4,
+      "GrabMinSize": 10,
+      "GrabRounding": 4,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 20,
+      "ItemInnerSpacing": {
+        "x": 6,
+        "y": 4
+      },
+      "ItemSpacing": {
+        "x": 8,
+        "y": 7
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 6,
+      "ScrollbarRounding": 8,
+      "ScrollbarSize": 12,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 2,
+      "SeparatorTextPadding": {
+        "x": 16,
+        "y": 3
+      },
+      "TabBarBorderSize": 1,
+      "TabBarOverlineSize": 2,
+      "TabBorderSize": 0,
+      "TabRounding": 4,
+      "WindowBorderSize": 1,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 48
+      },
+      "WindowPadding": {
+        "x": 12,
+        "y": 12
+      },
+      "WindowRounding": 8,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Synthwave Sunset",
+  "widgetStyle": {
+    "accent": "#ff7a3dff",
+    "accent2": "#ff3d8bff",
+    "danger": "#ff3d5aff",
+    "success": "#3dffc8ff",
+    "warning": "#ffd23dff"
+  }
+}

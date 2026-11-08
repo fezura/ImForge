@@ -1,0 +1,74 @@
+{
+  "bindings": [],
+  "call": "imb::disp::LoadingBar({label}, {indeterminate} ? -1.0f : (float)({fraction}), {segments}, {size}, {color:u32})",
+  "category": "Display",
+  "container": false,
+  "events": [],
+  "icon": "fa-bars-progress",
+  "include": "imb_display.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "LoadingBar",
+  "preview": [
+    {
+      "fill": "#2a2f3aff",
+      "h": 6,
+      "rounding": 3,
+      "shape": "rect",
+      "w": 200,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#4f8cffff",
+      "h": 6,
+      "rounding": 3,
+      "shape": "rect",
+      "w": 80,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "props": [
+    {
+      "default": "##loading",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": "0.4",
+      "hint": "0..1, a number or an expression",
+      "name": "fraction",
+      "type": "expr"
+    },
+    {
+      "default": false,
+      "name": "indeterminate",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "hint": "> 0 draws discrete steps",
+      "max": 64,
+      "min": 0,
+      "name": "segments",
+      "type": "int"
+    },
+    {
+      "default": {
+        "h": "auto",
+        "w": "fill"
+      },
+      "name": "size",
+      "type": "size"
+    },
+    {
+      "default": "#00000000",
+      "hint": "#00000000 = accent",
+      "name": "color",
+      "type": "color"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

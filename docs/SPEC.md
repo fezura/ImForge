@@ -863,13 +863,16 @@ Payloads are capped at 16 MB.
 | `pair_response` | app to builder | `session_id, mac_a` |
 | `pair_ok` | builder to app | `session_id` |
 | `pair_fail` | builder to app | `attempts_left, reason`, then the builder closes the connection |
-| `client_info` | app to builder | `app, pid, imgui_version (int), backend, platform, widgets: [names], textures: [names]`. First message after `pair_ok`. |
+| `client_info` | app to builder | `app, pid, imgui_version (int), backend, platform, widgets: [names], textures: [names], fonts: [sha256 hex]`. First message after `pair_ok`, and the builder ignores any later one on the same connection. `fonts` lists the font files the app already holds (at most 16, optional). |
 | `project` | builder to app | `project`: imforge.json content with themes, classes and fonts inlined |
 | `panel` | builder to app | `panel`: panel JSON |
 | `components` | builder to app | `components: [...]` |
 | `widgets` | builder to app | `manifests: [...]` |
 | `remove_panel` | builder to app | `name` |
 | `theme` | builder to app | `theme` |
+| `font_data` | builder to app | `hash, total, offset, data`: one chunk of a font file. `hash` is the lowercase hex SHA-256 of the whole file, `total` its size (1 to 8 MB), `offset` where this chunk starts, `data` the bytes in base64 (at most 192 KB decoded). |
+| `fonts` | builder to app | `fonts: [{name, size, ranges, mergeIcons, file, icons, iconLo, iconHi}]`, at most 32. `file` and `icons` are `font_data` hashes (`icons` may be empty), `size` is 4 to 256 px, `iconLo`/`iconHi` the code point range of the icon font. Replaces the previous list. |
+| `icons` | builder to app | `icons: {name: codepoint}`, at most 8192 entries. Names are lowercase letters, digits and `-` up to 64 characters, code points 0x20 to 0x10FFFF without surrogates and without 0x7F to 0x9F. Replaces the previous table. |
 | `mode` | builder to app | `picker: bool, selected: "id", panel: "name"` |
 | `ping` / `pong` | builder to app / back | |
 | `blocks` | app to builder | `panel, blocks: [{id, h}]` |
@@ -879,6 +882,14 @@ Payloads are capped at 16 MB.
 
 The old protocol v1 `hello` carried the `client_info` fields directly and had no pairing. The
 builder only accepts it when its "Require pairing" preference is off.
+
+Fonts travel as follows. After `client_info` the builder sends every font file the app doesn't
+list in `fonts`, one file at a time as `font_data` chunks in order (offset 0 first, each chunk
+starting where the last ended), then `icons` if a font merges icons, then `fonts`. A file is sent
+once per connection. The app joins the chunks, checks the SHA-256 against `hash`, runs a
+structural TrueType check and only then keeps the bytes; a bad file is dropped with a log line and
+the `fonts` entries that name it wait. Fonts are added to Dear ImGui's atlas in
+`imforge::live::PreNewFrame()`. The limits are in [SECURITY_MODEL.md](SECURITY_MODEL.md#fonts-over-the-link).
 
 ### Pairing
 
@@ -1094,8 +1105,8 @@ on the docking tag. [VERSION_MATRIX.md](VERSION_MATRIX.md) has the results.
 
 ## Versions and licensing
 
-The project version (`0.1.0`) lives in `CMakeLists.txt` and `include/imforge/imforge_version.h`
-(`IMFORGE_VERSION "0.1.0"`, `IMFORGE_VERSION_NUM 100`). ImGui versions are strings in JSON
+The project version (`0.2.0`) lives in `CMakeLists.txt` and `include/imforge/imforge_version.h`
+(`IMFORGE_VERSION "0.2.0"`, `IMFORGE_VERSION_NUM 200`). ImGui versions are strings in JSON
 (`"1.91.9"`) and `IMGUI_VERSION_NUM` ints in code (`19190`).
 
 ImForge is MIT licensed. The bundled fonts are OFL (their license files ship with them),

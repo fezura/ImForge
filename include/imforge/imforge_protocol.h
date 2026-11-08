@@ -3,6 +3,7 @@
 #include "imforge_json.h"
 
 #include <string>
+#include <utility>
 #include <vector>
 
 namespace imforge {
@@ -15,6 +16,21 @@ constexpr size_t kProtocolMaxList = 4096;
 constexpr size_t kProtocolMaxBlocks = 20000;
 constexpr size_t kProtocolMaxName = 256;
 constexpr size_t kProtocolMaxLogText = 4096;
+constexpr size_t kProtocolMaxAnimations = 2048;
+constexpr size_t kProtocolMaxAnimKeys = 64;
+constexpr size_t kProtocolMaxAnimTracks = 32;
+constexpr size_t kProtocolMaxAnimText = 4096;
+constexpr size_t kProtocolMaxAnimTags = 32;
+// project fonts: files go in chunks (the shm ring is 1 MB), each file at most 8 MB, 32 MB in all
+constexpr size_t kProtocolMaxFontBytes = size_t(8) << 20;
+constexpr size_t kProtocolMaxFontTotal = size_t(32) << 20;
+constexpr size_t kProtocolMaxFontFiles = 16;
+constexpr size_t kProtocolMaxFonts = 32;
+constexpr size_t kProtocolFontChunk = size_t(192) << 10;
+constexpr size_t kProtocolFontHashHex = 64;
+// icon names ("fa-gear") to code points, for {icon:...} text and icon props
+constexpr size_t kProtocolMaxIcons = 8192;
+constexpr size_t kProtocolMaxIconName = 64;
 
 inline bool Unframe(const void* data, size_t len, Json& out) {
     if (len > kProtocolMaxPayload) return false;
@@ -68,6 +84,10 @@ constexpr const char* kPairResponse = "pair_response";
 constexpr const char* kPairOk = "pair_ok";
 constexpr const char* kPairFail = "pair_fail";
 constexpr const char* kClientInfo = "client_info";
+constexpr const char* kAnimations = "animations";
+constexpr const char* kFontData = "font_data";
+constexpr const char* kFonts = "fonts";
+constexpr const char* kIcons = "icons";
 }  // namespace msg
 
 // v2: hello is just {t, v, pairing, nonce_a}, app metadata moved to the sealed client_info
@@ -110,6 +130,47 @@ inline bool IsLowerHexField(const Json& v, size_t chars) {
         if (!((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f'))) return false;
     return true;
 }
+inline std::string Base64Encode(const unsigned char* d, size_t n) {
+    static const char kAlpha[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    std::string out;
+    out.reserve((n + 2) / 3 * 4);
+    for (size_t i = 0; i < n; i += 3) {
+        unsigned v = unsigned(d[i]) << 16;
+        if (i + 1 < n) v |= unsigned(d[i + 1]) << 8;
+        if (i + 2 < n) v |= d[i + 2];
+        out.push_back(kAlpha[(v >> 18) & 63]);
+        out.push_back(kAlpha[(v >> 12) & 63]);
+        out.push_back(i + 1 < n ? kAlpha[(v >> 6) & 63] : '=');
+        out.push_back(i + 2 < n ? kAlpha[v & 63] : '=');
+    }
+    return out;
+}
+// strict: no whitespace, padding only at the end
+inline bool Base64Decode(const std::string& s, std::vector<unsigned char>& out) {
+    out.clear();
+    if (s.size() % 4) return false;
+    out.reserve(s.size() / 4 * 3);
+    for (size_t i = 0; i < s.size(); i += 4) {
+        unsigned v = 0;
+        int pad = 0;
+        for (size_t k = 0; k < 4; ++k) {
+            char c = s[i + k];
+            int x = c >= 'A' && c <= 'Z' ? c - 'A' : c >= 'a' && c <= 'z' ? c - 'a' + 26 : c >= '0' && c <= '9' ? c - '0' + 52
+                    : c == '+' ? 62 : c == '/' ? 63 : -1;
+            if (c == '=' && i + 4 == s.size() && k >= 2) {
+                ++pad;
+                x = 0;
+            } else if (x < 0 || pad) {
+                return false;
+            }
+            v = (v << 6) | unsigned(x);
+        }
+        out.push_back((unsigned char)(v >> 16));
+        if (pad < 2) out.push_back((unsigned char)(v >> 8));
+        if (pad < 1) out.push_back((unsigned char)v);
+    }
+    return true;
+}
 }  // namespace detail
 
 struct BlockHeight {
@@ -140,6 +201,25 @@ struct ClientInfoMsg {
     std::string platform;
     std::vector<std::string> widgets;
     std::vector<std::string> textures;
+    std::vector<std::string> font_hashes;
+};
+
+// one project font as the app should load it; file/icons are sha256 hex of font_data files
+struct FontSpecMsg {
+    std::string name;
+    float size = 16.0f;
+    std::string ranges;
+    std::string merge_icons;
+    std::string file;
+    std::string icons;
+    unsigned icon_lo = 0, icon_hi = 0;
+};
+
+struct FontDataMsg {
+    std::string hash;
+    size_t total = 0;
+    size_t offset = 0;
+    std::vector<unsigned char> bytes;
 };
 
 struct PairChallengeMsg {
@@ -204,8 +284,10 @@ inline Json MsgPairingHello(const std::string& nonce_a) {
     return m;
 }
 
+// font_hashes: font files the app already holds from an earlier connection, so they aren't sent again
 inline Json MsgClientInfo(const char* app, int pid, int imgui_version, const char* backend, const char* platform,
-                          const std::vector<std::string>& widgets, const std::vector<std::string>& textures) {
+                          const std::vector<std::string>& widgets, const std::vector<std::string>& textures,
+                          const std::vector<std::string>& font_hashes = std::vector<std::string>()) {
     Json m = detail::NewMsg(msg::kClientInfo);
     m.Set("app", app ? app : "");
     m.Set("pid", pid);
@@ -214,6 +296,35 @@ inline Json MsgClientInfo(const char* app, int pid, int imgui_version, const cha
     m.Set("platform", platform ? platform : "");
     m.Set("widgets", detail::StringArray(widgets));
     m.Set("textures", detail::StringArray(textures));
+    if (!font_hashes.empty()) m.Set("fonts", detail::StringArray(font_hashes));
+    return m;
+}
+
+inline Json MsgFontData(const std::string& hash, size_t total, size_t offset, const unsigned char* data, size_t n) {
+    Json m = detail::NewMsg(msg::kFontData);
+    m.Set("hash", hash);
+    m.Set("total", (int64_t)total);
+    m.Set("offset", (int64_t)offset);
+    m.Set("data", detail::Base64Encode(data, n));
+    return m;
+}
+
+inline Json MsgFonts(const std::vector<FontSpecMsg>& fonts) {
+    Json m = detail::NewMsg(msg::kFonts);
+    Json arr = Json::Array();
+    for (const FontSpecMsg& f : fonts) {
+        Json e = Json::Object();
+        e.Set("name", f.name);
+        e.Set("size", (double)f.size);
+        e.Set("ranges", f.ranges);
+        e.Set("mergeIcons", f.merge_icons);
+        e.Set("file", f.file);
+        e.Set("icons", f.icons);
+        e.Set("iconLo", (int64_t)f.icon_lo);
+        e.Set("iconHi", (int64_t)f.icon_hi);
+        arr.Push(e);
+    }
+    m.Set("fonts", arr);
     return m;
 }
 
@@ -313,6 +424,12 @@ inline Json MsgWidgets(const std::vector<Json>& manifests) {
     return m;
 }
 
+inline Json MsgAnimations(const std::vector<Json>& animations) {
+    Json m = detail::NewMsg(msg::kAnimations);
+    m.Set("animations", detail::JsonArray(animations));
+    return m;
+}
+
 inline Json MsgRemovePanel(const char* name) {
     Json m = detail::NewMsg(msg::kRemovePanel);
     m.Set("name", name ? name : "");
@@ -360,6 +477,81 @@ inline bool ParseClientInfo(const Json& m, ClientInfoMsg& out) {
     out.platform = detail::Clip(m["platform"].AsString());
     detail::ReadStringArray(m["widgets"], out.widgets);
     detail::ReadStringArray(m["textures"], out.textures);
+    out.font_hashes.clear();
+    const Json& fonts = m["fonts"];
+    for (size_t i = 0; fonts.IsArray() && i < fonts.Size() && out.font_hashes.size() < kProtocolMaxFontFiles; ++i)
+        if (detail::IsLowerHexField(fonts[i], kProtocolFontHashHex)) out.font_hashes.push_back(fonts[i].AsString());
+    return true;
+}
+
+// a chunk must fit the file it claims to belong to, and the file must fit the cap
+inline bool ParseFontData(const Json& m, FontDataMsg& out) {
+    if (!IsMsg(m, msg::kFontData) || !detail::IsLowerHexField(m["hash"], kProtocolFontHashHex) || !m["total"].IsNumber() ||
+        !m["offset"].IsNumber() || !m["data"].IsString())
+        return false;
+    double total = m["total"].AsDouble(), offset = m["offset"].AsDouble();
+    if (!(total >= 1 && total <= (double)kProtocolMaxFontBytes && offset >= 0 && offset < total)) return false;
+    if (total != (double)(size_t)total || offset != (double)(size_t)offset) return false;
+    if (m["data"].AsString().size() > (kProtocolFontChunk + 2) / 3 * 4) return false;
+    out.hash = m["hash"].AsString();
+    out.total = (size_t)total;
+    out.offset = (size_t)offset;
+    if (!detail::Base64Decode(m["data"].AsString(), out.bytes) || out.bytes.empty()) return false;
+    return out.bytes.size() <= out.total - out.offset;
+}
+
+inline bool ParseFonts(const Json& m, std::vector<FontSpecMsg>& out) {
+    out.clear();
+    if (!IsMsg(m, msg::kFonts) || !m["fonts"].IsArray() || m["fonts"].Size() > kProtocolMaxFonts) return false;
+    const Json& arr = m["fonts"];
+    for (size_t i = 0; i < arr.Size(); ++i) {
+        const Json& e = arr[i];
+        if (!e.IsObject() || !e["name"].IsString() || e["name"].AsString().empty() || !e["size"].IsNumber() ||
+            !detail::IsLowerHexField(e["file"], kProtocolFontHashHex))
+            return false;
+        FontSpecMsg f;
+        f.name = SanitizeText(e["name"].AsString(), kProtocolMaxName);
+        double size = e["size"].AsDouble();
+        if (!(size >= 4.0 && size <= 256.0)) return false;
+        f.size = (float)size;
+        f.ranges = detail::Clip(e["ranges"].AsString(), 64);
+        f.merge_icons = detail::Clip(e["mergeIcons"].AsString(), 64);
+        f.file = e["file"].AsString();
+        if (e["icons"].IsString() && !e["icons"].AsString().empty()) {
+            if (!detail::IsLowerHexField(e["icons"], kProtocolFontHashHex)) return false;
+            f.icons = e["icons"].AsString();
+            double lo = e["iconLo"].AsDouble(), hi = e["iconHi"].AsDouble();
+            if (!(lo >= 0x20 && hi >= lo && hi <= 0x10FFFF)) return false;
+            f.icon_lo = (unsigned)lo;
+            f.icon_hi = (unsigned)hi;
+        }
+        out.push_back(f);
+    }
+    return true;
+}
+
+inline Json MsgIcons(const std::vector<std::pair<std::string, unsigned>>& icons) {
+    Json m = detail::NewMsg(msg::kIcons);
+    Json map = Json::Object();
+    for (const auto& kv : icons) map.Set(kv.first, (int64_t)kv.second);
+    m.Set("icons", map);
+    return m;
+}
+
+// names are lowercase letters, digits and '-', code points printable and not surrogates
+inline bool ParseIcons(const Json& m, std::vector<std::pair<std::string, unsigned>>& out) {
+    out.clear();
+    if (!IsMsg(m, msg::kIcons) || !m["icons"].IsObject() || m["icons"].obj.size() > kProtocolMaxIcons) return false;
+    for (const auto& kv : m["icons"].obj) {
+        const std::string& name = kv.first;
+        if (name.empty() || name.size() > kProtocolMaxIconName || !kv.second.IsNumber()) return false;
+        for (char c : name)
+            if (!((c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == '-')) return false;
+        double cp = kv.second.AsDouble();
+        if (!(cp >= 0x20 && cp <= 0x10FFFF) || cp != (double)(unsigned)cp || (cp >= 0xD800 && cp <= 0xDFFF)) return false;
+        if (cp >= 0x7F && cp <= 0x9F) return false;
+        out.emplace_back(name, (unsigned)cp);
+    }
     return true;
 }
 
@@ -465,6 +657,40 @@ inline bool ParseComponents(const Json& m, std::vector<Json>& components) {
 
 inline bool ParseWidgets(const Json& m, std::vector<Json>& manifests) {
     return ParseJsonList(m, msg::kWidgets, "manifests", manifests);
+}
+
+// one AnimJson entry: named object, at most 32 tracks of at most 64 keyframes each
+inline bool AnimationWithinCaps(const Json& a) {
+    if (!a.IsObject() || !a["name"].IsString() || a["name"].AsString().empty() ||
+        a["name"].AsString().size() > kProtocolMaxName)
+        return false;
+    for (const char* key : {"description", "credit"})
+        if (a[key].IsString() && a[key].AsString().size() > kProtocolMaxAnimText) return false;
+    if (a["tags"].IsArray()) {
+        if (a["tags"].Size() > kProtocolMaxAnimTags) return false;
+        for (size_t i = 0; i < a["tags"].Size(); ++i)
+            if (a["tags"][i].IsString() && a["tags"][i].AsString().size() > kProtocolMaxName) return false;
+    }
+    const Json& tracks = a["tracks"];
+    if (tracks.IsNull()) return true;
+    if (!tracks.IsObject() || tracks.obj.size() > kProtocolMaxAnimTracks) return false;
+    for (const auto& kv : tracks.obj)
+        if (!kv.second.IsArray() || kv.second.Size() > kProtocolMaxAnimKeys) return false;
+    return true;
+}
+
+// the whole message is refused past 2048 entries; entries over the per-track cap are dropped and counted
+inline bool ParseAnimations(const Json& m, std::vector<Json>& out, size_t* dropped = nullptr) {
+    if (dropped) *dropped = 0;
+    if (!IsMsg(m, msg::kAnimations) || !m["animations"].IsArray() || m["animations"].Size() > kProtocolMaxAnimations)
+        return false;
+    out.clear();
+    const Json& arr = m["animations"];
+    for (size_t i = 0; i < arr.Size(); ++i) {
+        if (AnimationWithinCaps(arr[i])) out.push_back(arr[i]);
+        else if (dropped) ++*dropped;
+    }
+    return true;
 }
 
 inline bool ParseRemovePanel(const Json& m, std::string& name) {

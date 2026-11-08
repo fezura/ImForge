@@ -262,6 +262,54 @@ TEST_CASE("components and widgets") {
     CHECK(out.empty());
 }
 
+TEST_CASE("animations") {
+    Json wiggle;
+    REQUIRE(ParseJson(R"({"name":"MyWiggle","category":"attention","duration":0.5,
+        "tracks":{"rotate":[{"t":0,"v":0},{"t":0.5,"v":8},{"t":1,"v":0}]}})", wiggle));
+    Json bare = Json::Object();
+    bare.Set("name", "Bare");
+    std::vector<Json> out;
+    size_t dropped = 99;
+    Json am = RoundTrip(MsgAnimations({wiggle, bare}), msg::kAnimations);
+    REQUIRE(ParseAnimations(am, out, &dropped));
+    CHECK(dropped == 0);
+    REQUIRE(out.size() == 2);
+    CHECK(out[0] == wiggle);
+    CHECK(out[1]["name"].AsString() == "Bare");
+    CHECK_FALSE(ParseAnimations(MsgComponents({}), out));
+    CHECK_FALSE(ParseComponents(am, out));
+
+    Json long_track = wiggle;
+    Json keys = Json::Array();
+    for (size_t i = 0; i <= kProtocolMaxAnimKeys; ++i) {
+        Json k = Json::Object();
+        k.Set("t", (double)i / (double)kProtocolMaxAnimKeys);
+        k.Set("v", 1);
+        keys.Push(k);
+    }
+    Json tracks = Json::Object();
+    tracks.Set("opacity", keys);
+    long_track.Set("name", "TooLong");
+    long_track.Set("tracks", tracks);
+    Json unnamed = Json::Object();
+    unnamed.Set("tracks", Json::Object());
+    REQUIRE(ParseAnimations(MsgAnimations({wiggle, long_track, unnamed, Json(3)}), out, &dropped));
+    CHECK(dropped == 3);
+    REQUIRE(out.size() == 1);
+    CHECK(out[0]["name"].AsString() == "MyWiggle");
+    CHECK(AnimationWithinCaps(wiggle));
+    CHECK_FALSE(AnimationWithinCaps(long_track));
+
+    std::vector<Json> many(kProtocolMaxAnimations, bare);
+    CHECK(ParseAnimations(MsgAnimations(many), out));
+    CHECK(out.size() == kProtocolMaxAnimations);
+    many.push_back(bare);
+    CHECK_FALSE(ParseAnimations(MsgAnimations(many), out));
+    Json not_array = MsgAnimations({});
+    not_array.Set("animations", Json::Object());
+    CHECK_FALSE(ParseAnimations(not_array, out));
+}
+
 TEST_CASE("remove_panel and mode") {
     std::string name;
     Json rm = RoundTrip(MsgRemovePanel("Old"), msg::kRemovePanel);
@@ -325,6 +373,7 @@ TEST_CASE("type dispatch over every builder") {
         {MsgPanel(Json::Object()), msg::kPanel},
         {MsgComponents({}), msg::kComponents},
         {MsgWidgets({}), msg::kWidgets},
+        {MsgAnimations({}), msg::kAnimations},
         {MsgRemovePanel("p"), msg::kRemovePanel},
         {MsgTheme(Json::Object()), msg::kTheme},
         {MsgMode(false, "", ""), msg::kMode},

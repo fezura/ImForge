@@ -1,0 +1,89 @@
+{
+  "bindings": [],
+  "call": "imb::disp::Kbd({keys})",
+  "category": "Display",
+  "container": false,
+  "events": [],
+  "icon": "fa-keyboard",
+  "include": "imb_display.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "Kbd",
+  "preview": [
+    {
+      "fill": "#2c313cff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "stroke": "#3a4150ff",
+      "w": 36,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Ctrl",
+      "x": 5,
+      "y": 4
+    },
+    {
+      "color": "#8a91a0ff",
+      "shape": "text",
+      "text": "+",
+      "x": 40,
+      "y": 4
+    },
+    {
+      "fill": "#2c313cff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "stroke": "#3a4150ff",
+      "w": 40,
+      "x": 50,
+      "y": 0
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Shift",
+      "x": 54,
+      "y": 4
+    },
+    {
+      "color": "#8a91a0ff",
+      "shape": "text",
+      "text": "+",
+      "x": 94,
+      "y": 4
+    },
+    {
+      "fill": "#2c313cff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "stroke": "#3a4150ff",
+      "w": 22,
+      "x": 104,
+      "y": 0
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "P",
+      "x": 111,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "Ctrl+Shift+P",
+      "hint": "keys joined with +",
+      "name": "keys",
+      "type": "string"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

@@ -1,0 +1,118 @@
+{
+  "enums": {},
+  "kind": "types",
+  "schemaVersion": 1,
+  "structs": {
+    "SceneObject": {
+      "fields": [
+        {
+          "ctype": "StdString",
+          "name": "name",
+          "type": "std::string"
+        },
+        {
+          "ctype": "Bool",
+          "name": "visible",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "locked",
+          "type": "bool"
+        },
+        {
+          "count": 3,
+          "ctype": "FloatArray",
+          "name": "position",
+          "type": "float[3]"
+        },
+        {
+          "count": 3,
+          "ctype": "FloatArray",
+          "name": "rotation",
+          "type": "float[3]"
+        },
+        {
+          "count": 3,
+          "ctype": "FloatArray",
+          "name": "scale",
+          "type": "float[3]"
+        },
+        {
+          "ctype": "Vec4",
+          "name": "color",
+          "type": "ImVec4"
+        },
+        {
+          "ctype": "Float",
+          "name": "tintHue",
+          "type": "float"
+        },
+        {
+          "ctype": "Float",
+          "name": "roughness",
+          "type": "float"
+        },
+        {
+          "ctype": "Float",
+          "name": "metallic",
+          "type": "float"
+        },
+        {
+          "ctype": "Float",
+          "name": "emission",
+          "type": "float"
+        },
+        {
+          "ctype": "Vector",
+          "elem": "float",
+          "name": "ramp",
+          "type": "std::vector<float>"
+        },
+        {
+          "ctype": "Float",
+          "name": "mass",
+          "type": "float"
+        },
+        {
+          "count": 2,
+          "ctype": "FloatArray",
+          "name": "bounce",
+          "type": "float[2]"
+        },
+        {
+          "ctype": "I32",
+          "name": "layers",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "collideAll",
+          "type": "int"
+        },
+        {
+          "ctype": "Float",
+          "name": "time",
+          "type": "float"
+        },
+        {
+          "ctype": "Float",
+          "name": "clipLength",
+          "type": "float"
+        },
+        {
+          "ctype": "Vector",
+          "elem": "float",
+          "name": "keys",
+          "type": "std::vector<float>"
+        },
+        {
+          "ctype": "StdString",
+          "name": "tags",
+          "type": "std::string"
+        }
+      ],
+      "header": "scene_object.h"
+    }
+  }
+}

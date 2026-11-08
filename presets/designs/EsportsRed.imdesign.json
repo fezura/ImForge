@@ -1,0 +1,270 @@
+{
+  "credit": "",
+  "description": "Square corners, a hard red title strip and a bar on top of the active tab. Feels like a tournament broadcast overlay.",
+  "fonts": [
+    {
+      "family": "Barlow",
+      "role": "ui",
+      "size": 15,
+      "weight": "Medium"
+    },
+    {
+      "family": "Teko",
+      "role": "heading",
+      "size": 26,
+      "weight": "SemiBold"
+    }
+  ],
+  "fx": {
+    "accentGlow": 0.2,
+    "windowBlur": 0,
+    "windowShadow": 0.85
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "NudgeRight",
+    "button.press": "ClickBounce",
+    "checkbox.change": "ValuePop",
+    "list": "StaggerSlideRight",
+    "window": "LightSpeedInLeft",
+    "window.exit": "LightSpeedOutRight"
+  },
+  "name": "EsportsRed",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Border": "#d81c2acc",
+        "Button": "#d81c2aff",
+        "ButtonActive": "#a8121eff",
+        "ButtonHovered": "#e0202eff",
+        "Text": "#ffffffff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#2c2c33ff",
+        "ChildBg": "#151518ff"
+      },
+      "vars": {
+        "ChildBorderSize": 1,
+        "ChildRounding": 0,
+        "WindowPadding": {
+          "x": 10,
+          "y": 8
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#ff54708c",
+        "Button": "#ff547029",
+        "ButtonActive": "#ff54706b",
+        "ButtonHovered": "#ff547047",
+        "CheckMark": "#ff5470ff",
+        "SliderGrab": "#ff5470ff",
+        "SliderGrabActive": "#ff5470ff",
+        "Text": "#fe607aff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#ff6b3d80",
+        "Button": "#ff6b3d00",
+        "ButtonActive": "#ff6b3d42",
+        "ButtonHovered": "#ff6b3d24",
+        "Text": "#ff6b3dff"
+      },
+      "vars": {
+        "FrameBorderSize": 1
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#e8202fff",
+        "Text": "#ffffffff"
+      },
+      "vars": {
+        "SeparatorTextBorderSize": 3
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#8a8a96ff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#2ecc718c",
+        "Button": "#2ecc7129",
+        "ButtonActive": "#2ecc716b",
+        "ButtonHovered": "#2ecc7147",
+        "CheckMark": "#2ecc71ff",
+        "SliderGrab": "#2ecc71ff",
+        "SliderGrabActive": "#2ecc71ff",
+        "Text": "#2ecc71ff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#f5b7008c",
+        "Button": "#f5b70029",
+        "ButtonActive": "#f5b7006b",
+        "ButtonHovered": "#f5b70047",
+        "CheckMark": "#f5b700ff",
+        "SliderGrab": "#f5b700ff",
+        "SliderGrabActive": "#f5b700ff",
+        "Text": "#f5b700ff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "red",
+    "esports",
+    "gaming",
+    "angular"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#2c2c33ff",
+      "BorderShadow": "#00000000",
+      "Button": "#1f1f24ff",
+      "ButtonActive": "#8e202aff",
+      "ButtonHovered": "#511f27ff",
+      "CheckMark": "#ff3341ff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#08080aff",
+      "DockingPreview": "#e8202f99",
+      "DragDropTarget": "#f5b700e6",
+      "FrameBg": "#1f1f24ff",
+      "FrameBgActive": "#4c2831ff",
+      "FrameBgHovered": "#2a2a31ff",
+      "Header": "#e8202f33",
+      "HeaderActive": "#e8202f80",
+      "HeaderHovered": "#e8202f52",
+      "InputTextCursor": "#e8202fff",
+      "MenuBarBg": "#111113ff",
+      "ModalWindowDimBg": "#06060799",
+      "NavCursor": "#e8202fff",
+      "NavWindowingDimBg": "#06060740",
+      "NavWindowingHighlight": "#f2f2f4b2",
+      "PlotHistogram": "#e8202fff",
+      "PlotHistogramHovered": "#ff6b3dff",
+      "PlotLines": "#ff6b3dff",
+      "PlotLinesHovered": "#f5b700ff",
+      "PopupBg": "#18181cfa",
+      "ResizeGrip": "#e8202f2e",
+      "ResizeGripActive": "#e8202fe6",
+      "ResizeGripHovered": "#e8202f8c",
+      "ScrollbarBg": "#00000000",
+      "ScrollbarGrab": "#2c2c33ff",
+      "ScrollbarGrabActive": "#a2202bff",
+      "ScrollbarGrabHovered": "#3a3a43ff",
+      "Separator": "#2c2c33ff",
+      "SeparatorActive": "#e8202fff",
+      "SeparatorHovered": "#e8202fa6",
+      "SliderGrab": "#e8202fff",
+      "SliderGrabActive": "#ff6b3dff",
+      "Tab": "#151518ff",
+      "TabDimmed": "#111114ff",
+      "TabDimmedSelected": "#1c1c20ff",
+      "TabDimmedSelectedOverline": "#e8202f80",
+      "TabHovered": "#5a1e24ff",
+      "TabSelected": "#24242aff",
+      "TabSelectedOverline": "#e8202fff",
+      "TableBorderLight": "#1f1f24ff",
+      "TableBorderStrong": "#2c2c33ff",
+      "TableHeaderBg": "#151518ff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#f2f2f408",
+      "Text": "#f2f2f4ff",
+      "TextDisabled": "#8a8a96ff",
+      "TextLink": "#ff6b3dff",
+      "TextSelectedBg": "#e8202f52",
+      "TitleBg": "#141416ff",
+      "TitleBgActive": "#6a1219ff",
+      "TitleBgCollapsed": "#141416bf",
+      "WindowBg": "#0c0c0eff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 4,
+        "y": 2
+      },
+      "ChildBorderSize": 1,
+      "ChildRounding": 0,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 0,
+      "FramePadding": {
+        "x": 10,
+        "y": 4
+      },
+      "FrameRounding": 0,
+      "GrabMinSize": 10,
+      "GrabRounding": 0,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 16,
+      "ItemInnerSpacing": {
+        "x": 4,
+        "y": 4
+      },
+      "ItemSpacing": {
+        "x": 6,
+        "y": 5
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 0,
+      "ScrollbarRounding": 0,
+      "ScrollbarSize": 8,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 3,
+      "SeparatorTextPadding": {
+        "x": 0,
+        "y": 4
+      },
+      "TabBarBorderSize": 2,
+      "TabBarOverlineSize": 2,
+      "TabBorderSize": 0,
+      "TabRounding": 0,
+      "WindowBorderSize": 1,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 48
+      },
+      "WindowPadding": {
+        "x": 10,
+        "y": 8
+      },
+      "WindowRounding": 2,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Esports Red",
+  "widgetStyle": {
+    "accent": "#e8202fff",
+    "accent2": "#ff6b3dff",
+    "danger": "#ff5470ff",
+    "success": "#2ecc71ff",
+    "warning": "#f5b700ff"
+  }
+}

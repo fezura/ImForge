@@ -1,0 +1,161 @@
+{
+  "bindings": [
+    {
+      "name": "points",
+      "required": false,
+      "types": [
+        "float[N]",
+        "vector<float>"
+      ]
+    },
+    {
+      "name": "rotation",
+      "required": false,
+      "types": [
+        "float"
+      ]
+    }
+  ],
+  "call": "imb::game::RadarMiniMapPacked({label}, {points}, imb::game::CountOf({points:count}), {rotation}, imb::game::RadarShape_{shape}, {zoom}, {rings}, {sweep}, {size})",
+  "category": "Gaming",
+  "container": false,
+  "events": [],
+  "icon": "fa-satellite-dish",
+  "include": "imb_gaming.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "RadarMiniMap",
+  "preview": [
+    {
+      "fill": "#0d0f14e1",
+      "r": 64,
+      "shape": "circle",
+      "stroke": "#3a4150ff",
+      "x": 65,
+      "y": 65
+    },
+    {
+      "fill": "#00000000",
+      "r": 48,
+      "shape": "circle",
+      "stroke": "#ffffff1e",
+      "x": 65,
+      "y": 65
+    },
+    {
+      "fill": "#00000000",
+      "r": 32,
+      "shape": "circle",
+      "stroke": "#ffffff1e",
+      "x": 65,
+      "y": 65
+    },
+    {
+      "fill": "#00000000",
+      "r": 16,
+      "shape": "circle",
+      "stroke": "#ffffff1e",
+      "x": 65,
+      "y": 65
+    },
+    {
+      "fill": "#ffffff1e",
+      "h": 1,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 128,
+      "x": 1,
+      "y": 65
+    },
+    {
+      "fill": "#ffffff1e",
+      "h": 128,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 1,
+      "x": 65,
+      "y": 1
+    },
+    {
+      "fill": "#ff5656ff",
+      "r": 4,
+      "shape": "circle",
+      "x": 84,
+      "y": 32
+    },
+    {
+      "fill": "#ff5656ff",
+      "r": 4,
+      "shape": "circle",
+      "x": 40,
+      "y": 50
+    },
+    {
+      "fill": "#4aa3ffff",
+      "r": 4,
+      "shape": "circle",
+      "x": 90,
+      "y": 84
+    },
+    {
+      "fill": "#ffffffff",
+      "r": 4,
+      "shape": "circle",
+      "x": 65,
+      "y": 65
+    },
+    {
+      "color": "#4296faff",
+      "shape": "text",
+      "text": "N",
+      "x": 61,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "Radar",
+      "hint": "ImGui id, not shown",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": "Circle",
+      "name": "shape",
+      "type": "enum",
+      "values": [
+        "Circle",
+        "Square"
+      ]
+    },
+    {
+      "default": 1,
+      "max": 8,
+      "min": 0.1,
+      "name": "zoom",
+      "type": "float"
+    },
+    {
+      "default": 3,
+      "max": 8,
+      "min": 0,
+      "name": "rings",
+      "type": "int"
+    },
+    {
+      "default": true,
+      "name": "sweep",
+      "type": "bool"
+    },
+    {
+      "default": {
+        "h": "auto",
+        "w": "auto"
+      },
+      "name": "size",
+      "type": "size"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

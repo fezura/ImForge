@@ -1,0 +1,1299 @@
+{
+  "kind": "panel",
+  "name": "Launcher",
+  "root": {
+    "anim": {
+      "motions": [
+        {
+          "preset": "BlurIn"
+        }
+      ]
+    },
+    "children": [
+      {
+        "children": [
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "FadeInDown"
+                }
+              ]
+            },
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "SpinSlow",
+                      "trigger": "loop"
+                    }
+                  ]
+                },
+                "font": "Title",
+                "id": "logo",
+                "props": {
+                  "color": "#ff7a3dff",
+                  "text": "{icon:fa-sun}"
+                },
+                "type": "Text"
+              },
+              {
+                "font": "Title",
+                "id": "brand",
+                "props": {
+                  "text": "{{PROJECT_NAME}}"
+                },
+                "type": "Text"
+              },
+              {
+                "id": "brand_gap",
+                "props": {
+                  "size": {
+                    "h": 1,
+                    "w": 24
+                  }
+                },
+                "type": "Dummy"
+              },
+              {
+                "bind": {
+                  "index": "state.tab"
+                },
+                "id": "nav",
+                "props": {
+                  "items": [
+                    "Home",
+                    "Library",
+                    "Store",
+                    "Friends"
+                  ],
+                  "label": "##nav"
+                },
+                "type": "PillTabs"
+              },
+              {
+                "id": "top_fill",
+                "props": {
+                  "size": {
+                    "h": 1,
+                    "w": "fill"
+                  }
+                },
+                "type": "Dummy"
+              },
+              {
+                "children": [
+                  {
+                    "bind": {
+                      "text": "state.query"
+                    },
+                    "id": "search",
+                    "props": {
+                      "hint": "Search  (Ctrl+K)",
+                      "label": "##search"
+                    },
+                    "type": "SearchField"
+                  }
+                ],
+                "id": "search_box",
+                "props": {
+                  "flags": [
+                    "NoScrollbar",
+                    "NoBackground"
+                  ],
+                  "size": {
+                    "h": 32,
+                    "w": 240
+                  }
+                },
+                "style": {
+                  "vars": {
+                    "WindowPadding": {
+                      "x": 0,
+                      "y": 0
+                    }
+                  }
+                },
+                "type": "Child"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "on": "onClick",
+                      "preset": "Swing",
+                      "trigger": "attention"
+                    },
+                    {
+                      "preset": "Grow",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "events": {
+                  "onClick": {
+                    "actions": [
+                      {
+                        "target": "state.unread",
+                        "type": "set",
+                        "value": 0
+                      }
+                    ]
+                  }
+                },
+                "id": "bell",
+                "props": {
+                  "label": "{icon:fa-bell}",
+                  "size": {
+                    "h": 34,
+                    "w": 34
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "ghost_button"
+                  ]
+                },
+                "type": "Button"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "PopIn"
+                    },
+                    {
+                      "preset": "Ping",
+                      "trigger": "attention"
+                    }
+                  ]
+                },
+                "id": "bell_badge",
+                "props": {
+                  "count": "state.unread",
+                  "kind": "Count"
+                },
+                "type": "Badge",
+                "visibleIf": "state.unread > 0"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "Grow",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "id": "me",
+                "props": {
+                  "name": "Riley Park",
+                  "size": 34,
+                  "status": "Online"
+                },
+                "type": "Avatar"
+              }
+            ],
+            "id": "topbar",
+            "props": {
+              "spacing": 10
+            },
+            "type": "HStack"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "FadeIn"
+                            }
+                          ]
+                        },
+                        "id": "season",
+                        "props": {
+                          "color": "#ff3d8bff",
+                          "kind": "Pill",
+                          "text": "SEASON 4"
+                        },
+                        "type": "Badge"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "delay": 0.1,
+                              "preset": "Headline"
+                            }
+                          ]
+                        },
+                        "font": "Display",
+                        "id": "hero_title",
+                        "props": {
+                          "text": "Night Drive"
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "delay": 0.25,
+                              "preset": "FadeInUp"
+                            }
+                          ]
+                        },
+                        "id": "hero_sub",
+                        "props": {
+                          "text": "Outrun the sunrise on 24 new neon tracks. Co-op for up to four drivers.",
+                          "wrapped": true
+                        },
+                        "style": {
+                          "classes": [
+                            "muted"
+                          ]
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "id": "hero_gap",
+                        "props": {
+                          "size": {
+                            "h": 18,
+                            "w": 1
+                          }
+                        },
+                        "type": "Dummy"
+                      },
+                      {
+                        "children": [
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "delay": 0.35,
+                                  "preset": "BounceIn"
+                                },
+                                {
+                                  "preset": "PulseGlow",
+                                  "trigger": "loop"
+                                },
+                                {
+                                  "preset": "Grow",
+                                  "trigger": "hover"
+                                },
+                                {
+                                  "preset": "Squish",
+                                  "trigger": "press"
+                                }
+                              ]
+                            },
+                            "events": {
+                              "onClick": {
+                                "handler": true
+                              }
+                            },
+                            "font": "Bold",
+                            "id": "play",
+                            "props": {
+                              "label": "{icon:fa-play}  PLAY",
+                              "size": {
+                                "h": 46,
+                                "w": 170
+                              }
+                            },
+                            "style": {
+                              "classes": [
+                                "play_button"
+                              ]
+                            },
+                            "type": "Button"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "delay": 0.45,
+                                  "preset": "FadeInRight"
+                                },
+                                {
+                                  "preset": "Lift",
+                                  "trigger": "hover"
+                                },
+                                {
+                                  "preset": "PressDown",
+                                  "trigger": "press"
+                                }
+                              ]
+                            },
+                            "id": "trailer",
+                            "props": {
+                              "label": "{icon:fa-film}  Trailer",
+                              "size": {
+                                "h": 46,
+                                "w": 130
+                              }
+                            },
+                            "style": {
+                              "classes": [
+                                "ghost_button"
+                              ]
+                            },
+                            "type": "Button"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "delay": 0.5,
+                                  "preset": "FadeIn"
+                                },
+                                {
+                                  "on": "onChange",
+                                  "preset": "RubberBand",
+                                  "trigger": "attention"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "value": "state.rating"
+                            },
+                            "id": "rating",
+                            "props": {
+                              "label": "##rating",
+                              "max": 5
+                            },
+                            "type": "RatingStars"
+                          }
+                        ],
+                        "id": "hero_actions",
+                        "props": {
+                          "spacing": 12
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "id": "hero_gap2",
+                        "props": {
+                          "size": {
+                            "h": 10,
+                            "w": 1
+                          }
+                        },
+                        "type": "Dummy"
+                      },
+                      {
+                        "children": [
+                          {
+                            "id": "update_bar",
+                            "props": {
+                              "fraction": "state.download",
+                              "label": "##update",
+                              "size": {
+                                "h": 6,
+                                "w": 260
+                              }
+                            },
+                            "type": "LoadingBar"
+                          },
+                          {
+                            "font": "Small",
+                            "id": "update_text",
+                            "props": {
+                              "text": "Update 1.4 GB, {state.downloadPct:%.0f}%"
+                            },
+                            "style": {
+                              "classes": [
+                                "muted"
+                              ]
+                            },
+                            "type": "Text"
+                          }
+                        ],
+                        "id": "hero_update",
+                        "props": {
+                          "spacing": 10
+                        },
+                        "type": "HStack"
+                      }
+                    ],
+                    "id": "hero_body",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "fx": [
+                  {
+                    "c0": "#ff7a3d40",
+                    "c1": "#7a3dff1f",
+                    "rounding": 14,
+                    "type": "gradient"
+                  },
+                  {
+                    "color": "#ff3d8b66",
+                    "count": 26,
+                    "size": 1.6,
+                    "speed": 14,
+                    "type": "particles"
+                  }
+                ],
+                "id": "hero",
+                "props": {
+                  "childFlags": [
+                    "AlwaysUseWindowPadding"
+                  ],
+                  "size": {
+                    "h": 340,
+                    "w": "fill"
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "hero"
+                  ]
+                },
+                "type": "Child"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "font": "Bold",
+                            "id": "news_title",
+                            "props": {
+                              "text": "{icon:fa-newspaper}  News"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "id": "news_fill",
+                            "props": {
+                              "size": {
+                                "h": 1,
+                                "w": "fill"
+                              }
+                            },
+                            "type": "Dummy"
+                          },
+                          {
+                            "id": "news_new",
+                            "props": {
+                              "kind": "Pill",
+                              "text": "3 new"
+                            },
+                            "type": "Badge"
+                          }
+                        ],
+                        "id": "news_head",
+                        "props": {
+                          "spacing": 8
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "delay": 0.2,
+                              "preset": "StaggerSlideRight",
+                              "stagger": 0.08
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "NudgeRight",
+                                  "trigger": "hover"
+                                }
+                              ]
+                            },
+                            "children": [
+                              {
+                                "font": "Bold",
+                                "id": "news_0_title",
+                                "props": {
+                                  "text": "Season 4 is live"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "news_0_body",
+                                "props": {
+                                  "text": "New tracks, a photo mode and 40 cosmetics.",
+                                  "wrapped": true
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "news_0_when",
+                                "props": {
+                                  "color": "#ff7a3dff",
+                                  "text": "2 days ago"
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "news_0",
+                            "props": {
+                              "spacing": 2
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "NudgeRight",
+                                  "trigger": "hover"
+                                }
+                              ]
+                            },
+                            "children": [
+                              {
+                                "font": "Bold",
+                                "id": "news_1_title",
+                                "props": {
+                                  "text": "Servers moved to EU-2"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "news_1_body",
+                                "props": {
+                                  "text": "Expect lower ping across central Europe.",
+                                  "wrapped": true
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "news_1_when",
+                                "props": {
+                                  "color": "#ff7a3dff",
+                                  "text": "5 days ago"
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "news_1",
+                            "props": {
+                              "spacing": 2
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "NudgeRight",
+                                  "trigger": "hover"
+                                }
+                              ]
+                            },
+                            "children": [
+                              {
+                                "font": "Bold",
+                                "id": "news_2_title",
+                                "props": {
+                                  "text": "Patch 1.4.2 notes"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "news_2_body",
+                                "props": {
+                                  "text": "Fixes for controller drift and HDR banding.",
+                                  "wrapped": true
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "news_2_when",
+                                "props": {
+                                  "color": "#ff7a3dff",
+                                  "text": "1 week ago"
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "news_2",
+                            "props": {
+                              "spacing": 2
+                            },
+                            "type": "VStack"
+                          }
+                        ],
+                        "id": "news_list",
+                        "props": {
+                          "spacing": 12
+                        },
+                        "type": "VStack"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "Shimmer",
+                              "trigger": "loop"
+                            }
+                          ]
+                        },
+                        "id": "news_more",
+                        "props": {
+                          "lines": 2,
+                          "shape": "Line",
+                          "size": {
+                            "h": "auto",
+                            "w": "fill"
+                          }
+                        },
+                        "type": "SkeletonBlock"
+                      }
+                    ],
+                    "id": "news_body",
+                    "props": {
+                      "spacing": 10
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "news",
+                "props": {
+                  "childFlags": [
+                    "AlwaysUseWindowPadding"
+                  ],
+                  "size": {
+                    "h": 340,
+                    "w": 360
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "card"
+                  ]
+                },
+                "type": "Child"
+              }
+            ],
+            "id": "hero_row",
+            "props": {
+              "spacing": 16
+            },
+            "type": "HStack"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "font": "Bold",
+                    "id": "lib_title",
+                    "props": {
+                      "text": "Your library"
+                    },
+                    "type": "Text"
+                  },
+                  {
+                    "id": "lib_fill",
+                    "props": {
+                      "size": {
+                        "h": 1,
+                        "w": "fill"
+                      }
+                    },
+                    "type": "Dummy"
+                  },
+                  {
+                    "bind": {
+                      "index": "state.sort"
+                    },
+                    "id": "lib_view",
+                    "props": {
+                      "items": [
+                        "Recent",
+                        "A-Z",
+                        "Size"
+                      ],
+                      "label": "##view"
+                    },
+                    "type": "SegmentedControl"
+                  }
+                ],
+                "id": "lib_head",
+                "props": {
+                  "spacing": 8
+                },
+                "type": "HStack"
+              },
+              {
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "SpotlightHover",
+                          "trigger": "hover"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "delay": 0.35,
+                              "preset": "ZoomInSoft"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "font": "Display",
+                            "id": "tile_0_icon",
+                            "props": {
+                              "color": "#ff7a3dff",
+                              "text": "{icon:fa-car-side}"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "font": "Bold",
+                            "id": "tile_0_title",
+                            "props": {
+                              "text": "Night Drive"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "children": [
+                              {
+                                "id": "tile_0_dot",
+                                "props": {
+                                  "label": "Installed",
+                                  "status": "Online"
+                                },
+                                "type": "StatusDot"
+                              }
+                            ],
+                            "id": "tile_0_foot",
+                            "props": {
+                              "spacing": 6
+                            },
+                            "type": "HStack"
+                          }
+                        ],
+                        "id": "tile_0_body",
+                        "props": {
+                          "spacing": 6
+                        },
+                        "type": "VStack"
+                      }
+                    ],
+                    "id": "tile_0",
+                    "props": {
+                      "childFlags": [
+                        "AlwaysUseWindowPadding"
+                      ],
+                      "size": {
+                        "h": 150,
+                        "w": "fill"
+                      }
+                    },
+                    "style": {
+                      "classes": [
+                        "card"
+                      ]
+                    },
+                    "tooltip": "Open Night Drive",
+                    "type": "Child"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "SpotlightHover",
+                          "trigger": "hover"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "delay": 0.41,
+                              "preset": "ZoomInSoft"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "font": "Display",
+                            "id": "tile_1_icon",
+                            "props": {
+                              "color": "#ff3d8bff",
+                              "text": "{icon:fa-dragon}"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "font": "Bold",
+                            "id": "tile_1_title",
+                            "props": {
+                              "text": "Ember Keep"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "children": [
+                              {
+                                "id": "tile_1_dot",
+                                "props": {
+                                  "label": "Update ready",
+                                  "status": "Away"
+                                },
+                                "type": "StatusDot"
+                              }
+                            ],
+                            "id": "tile_1_foot",
+                            "props": {
+                              "spacing": 6
+                            },
+                            "type": "HStack"
+                          }
+                        ],
+                        "id": "tile_1_body",
+                        "props": {
+                          "spacing": 6
+                        },
+                        "type": "VStack"
+                      }
+                    ],
+                    "id": "tile_1",
+                    "props": {
+                      "childFlags": [
+                        "AlwaysUseWindowPadding"
+                      ],
+                      "size": {
+                        "h": 150,
+                        "w": "fill"
+                      }
+                    },
+                    "style": {
+                      "classes": [
+                        "card"
+                      ]
+                    },
+                    "tooltip": "Open Ember Keep",
+                    "type": "Child"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "SpotlightHover",
+                          "trigger": "hover"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "delay": 0.47,
+                              "preset": "ZoomInSoft"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "font": "Display",
+                            "id": "tile_2_icon",
+                            "props": {
+                              "color": "#3dffc8ff",
+                              "text": "{icon:fa-rocket}"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "font": "Bold",
+                            "id": "tile_2_title",
+                            "props": {
+                              "text": "Orbit 9"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "children": [
+                              {
+                                "id": "tile_2_dot",
+                                "props": {
+                                  "label": "Installed",
+                                  "status": "Online"
+                                },
+                                "type": "StatusDot"
+                              }
+                            ],
+                            "id": "tile_2_foot",
+                            "props": {
+                              "spacing": 6
+                            },
+                            "type": "HStack"
+                          }
+                        ],
+                        "id": "tile_2_body",
+                        "props": {
+                          "spacing": 6
+                        },
+                        "type": "VStack"
+                      }
+                    ],
+                    "id": "tile_2",
+                    "props": {
+                      "childFlags": [
+                        "AlwaysUseWindowPadding"
+                      ],
+                      "size": {
+                        "h": 150,
+                        "w": "fill"
+                      }
+                    },
+                    "style": {
+                      "classes": [
+                        "card"
+                      ]
+                    },
+                    "tooltip": "Open Orbit 9",
+                    "type": "Child"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "SpotlightHover",
+                          "trigger": "hover"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "delay": 0.53,
+                              "preset": "ZoomInSoft"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "font": "Display",
+                            "id": "tile_3_icon",
+                            "props": {
+                              "color": "#7a3dffff",
+                              "text": "{icon:fa-chess-knight}"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "font": "Bold",
+                            "id": "tile_3_title",
+                            "props": {
+                              "text": "Gambit"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "children": [
+                              {
+                                "id": "tile_3_dot",
+                                "props": {
+                                  "label": "Not installed",
+                                  "status": "Offline"
+                                },
+                                "type": "StatusDot"
+                              }
+                            ],
+                            "id": "tile_3_foot",
+                            "props": {
+                              "spacing": 6
+                            },
+                            "type": "HStack"
+                          }
+                        ],
+                        "id": "tile_3_body",
+                        "props": {
+                          "spacing": 6
+                        },
+                        "type": "VStack"
+                      }
+                    ],
+                    "id": "tile_3",
+                    "props": {
+                      "childFlags": [
+                        "AlwaysUseWindowPadding"
+                      ],
+                      "size": {
+                        "h": 150,
+                        "w": "fill"
+                      }
+                    },
+                    "style": {
+                      "classes": [
+                        "card"
+                      ]
+                    },
+                    "tooltip": "Open Gambit",
+                    "type": "Child"
+                  }
+                ],
+                "id": "tiles",
+                "props": {
+                  "columns": 4,
+                  "flags": [
+                    "SizingStretchSame"
+                  ]
+                },
+                "type": "Grid"
+              }
+            ],
+            "id": "library",
+            "props": {
+              "spacing": 10
+            },
+            "type": "VStack"
+          },
+          {
+            "children": [
+              {
+                "id": "check_bar",
+                "props": {
+                  "indeterminate": true,
+                  "label": "##check",
+                  "size": {
+                    "h": 4,
+                    "w": 140
+                  }
+                },
+                "type": "LoadingBar"
+              },
+              {
+                "font": "Small",
+                "id": "check_text",
+                "props": {
+                  "text": "Checking for updates"
+                },
+                "style": {
+                  "classes": [
+                    "muted"
+                  ]
+                },
+                "type": "Text"
+              },
+              {
+                "id": "status_fill",
+                "props": {
+                  "size": {
+                    "h": 1,
+                    "w": "fill"
+                  }
+                },
+                "type": "Dummy"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "Breathe",
+                      "trigger": "loop"
+                    }
+                  ]
+                },
+                "id": "servers",
+                "props": {
+                  "label": "Servers online",
+                  "status": "Online"
+                },
+                "type": "StatusDot"
+              },
+              {
+                "font": "Small",
+                "id": "version",
+                "props": {
+                  "text": "launcher 1.0.4"
+                },
+                "style": {
+                  "classes": [
+                    "muted"
+                  ]
+                },
+                "type": "Text"
+              }
+            ],
+            "id": "statusbar",
+            "props": {
+              "spacing": 10
+            },
+            "type": "HStack"
+          }
+        ],
+        "id": "page",
+        "props": {
+          "spacing": 16
+        },
+        "type": "VStack"
+      },
+      {
+        "bind": {
+          "open": "state.paletteOpen",
+          "selected": "state.paletteItem"
+        },
+        "id": "palette",
+        "props": {
+          "hints": [
+            "Enter",
+            "Ctrl+L",
+            "Ctrl+F",
+            "Ctrl+,",
+            ""
+          ],
+          "items": [
+            "Play Night Drive",
+            "Open library",
+            "Friends",
+            "Settings",
+            "Check for updates"
+          ],
+          "label": "##palette"
+        },
+        "type": "CommandPalette"
+      }
+    ],
+    "fx": [
+      {
+        "c0": "#1d0f2cff",
+        "c1": "#0d0614ff",
+        "type": "gradient",
+        "vertical": true
+      },
+      {
+        "color": "#ffffff0d",
+        "density": 0.035,
+        "type": "noise"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoTitleBar",
+        "NoResize",
+        "NoMove",
+        "NoCollapse",
+        "NoScrollbar",
+        "NoSavedSettings"
+      ],
+      "initialPos": {
+        "x": 0,
+        "y": 0
+      },
+      "initialSize": {
+        "x": 1280,
+        "y": 720
+      },
+      "sizeCond": "Always",
+      "title": "{{PROJECT_NAME}}"
+    },
+    "style": {
+      "vars": {
+        "WindowPadding": {
+          "x": 28,
+          "y": 22
+        },
+        "WindowRounding": 0
+      }
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": 0,
+      "name": "tab",
+      "type": "int"
+    },
+    {
+      "default": "",
+      "name": "query",
+      "type": "string"
+    },
+    {
+      "default": 3,
+      "name": "unread",
+      "type": "int"
+    },
+    {
+      "default": 4,
+      "name": "rating",
+      "type": "float"
+    },
+    {
+      "default": 0.62,
+      "name": "download",
+      "type": "float"
+    },
+    {
+      "default": 62,
+      "name": "downloadPct",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "name": "sort",
+      "type": "int"
+    },
+    {
+      "default": false,
+      "name": "paletteOpen",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "name": "paletteItem",
+      "type": "int"
+    }
+  ]
+}

@@ -1,0 +1,615 @@
+{
+  "$defs": {
+    "Animation": {
+      "$ref": "#/$defs/AnimationFields",
+      "description": "One animation inside an animation set. category may be left out and comes from the set.",
+      "required": [
+        "name",
+        "duration",
+        "tracks"
+      ],
+      "type": "object",
+      "unevaluatedProperties": false
+    },
+    "AnimationFields": {
+      "properties": {
+        "category": {
+          "$ref": "#/$defs/Category"
+        },
+        "credit": {
+          "description": "Where the keyframes come from, for example \"animate.css (MIT)\".",
+          "type": "string"
+        },
+        "delay": {
+          "description": "Seconds before the first iteration.",
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        },
+        "description": {
+          "description": "One line for the builder Library. Required for bundled presets.",
+          "type": "string"
+        },
+        "direction": {
+          "description": "Same meaning as CSS animation-direction.",
+          "enum": [
+            "normal",
+            "reverse",
+            "alternate",
+            "alternate-reverse"
+          ]
+        },
+        "duration": {
+          "description": "Seconds per iteration.",
+          "exclusiveMinimum": 0,
+          "maximum": 60,
+          "type": "number"
+        },
+        "ease": {
+          "$ref": "#/$defs/Ease",
+          "description": "Ease for keyframes that don't set one. Defaults to Linear."
+        },
+        "fill": {
+          "description": "Same meaning as CSS animation-fill-mode. Defaults to both.",
+          "enum": [
+            "none",
+            "forwards",
+            "backwards",
+            "both"
+          ]
+        },
+        "iterations": {
+          "description": "How many times it plays, 0 repeats forever. Defaults to 0 for loops and 1 otherwise.",
+          "maximum": 1000,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "name": {
+          "description": "PascalCase and unique across all animations. Bundled presets become imb::presets::<Name>().",
+          "maxLength": 48,
+          "pattern": "^[A-Z][A-Za-z0-9]*$",
+          "type": "string"
+        },
+        "origin": {
+          "additionalProperties": false,
+          "description": "Pivot for scale, rotate and skew as a fraction of the item rect. Defaults to the center.",
+          "properties": {
+            "x": {
+              "maximum": 2,
+              "minimum": -1,
+              "type": "number"
+            },
+            "y": {
+              "maximum": 2,
+              "minimum": -1,
+              "type": "number"
+            }
+          },
+          "required": [
+            "x",
+            "y"
+          ],
+          "type": "object"
+        },
+        "revealDir": {
+          "description": "Edge the visible area is anchored to while reveal is below 1: left grows to the right from the left edge, up grows down from the top, center grows from the middle.",
+          "enum": [
+            "left",
+            "right",
+            "up",
+            "down",
+            "center"
+          ]
+        },
+        "tags": {
+          "description": "Search words for the Library.",
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "tracks": {
+          "additionalProperties": false,
+          "description": "Animated properties, each running t from 0 to 1 over one iteration.",
+          "minProperties": 1,
+          "properties": {
+            "glow": {
+              "description": "Strength of the accent glow drawn behind the item.",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "ease": {
+                    "$ref": "#/$defs/Ease",
+                    "description": "Ease for the segment from this keyframe to the next one."
+                  },
+                  "t": {
+                    "description": "Position in the iteration, 0..1. Must increase; the first keyframe is 0 and the last is 1.",
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "v": {
+                    "maximum": 1.0,
+                    "minimum": 0.0,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "t",
+                  "v"
+                ],
+                "type": "object"
+              },
+              "maxItems": 64,
+              "minItems": 2,
+              "type": "array"
+            },
+            "opacity": {
+              "description": "Multiplies the item alpha.",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "ease": {
+                    "$ref": "#/$defs/Ease",
+                    "description": "Ease for the segment from this keyframe to the next one."
+                  },
+                  "t": {
+                    "description": "Position in the iteration, 0..1. Must increase; the first keyframe is 0 and the last is 1.",
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "v": {
+                    "maximum": 1.0,
+                    "minimum": 0.0,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "t",
+                  "v"
+                ],
+                "type": "object"
+              },
+              "maxItems": 64,
+              "minItems": 2,
+              "type": "array"
+            },
+            "reveal": {
+              "description": "Visible fraction of the item, clipped toward the revealDir edge.",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "ease": {
+                    "$ref": "#/$defs/Ease",
+                    "description": "Ease for the segment from this keyframe to the next one."
+                  },
+                  "t": {
+                    "description": "Position in the iteration, 0..1. Must increase; the first keyframe is 0 and the last is 1.",
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "v": {
+                    "maximum": 1.0,
+                    "minimum": 0.0,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "t",
+                  "v"
+                ],
+                "type": "object"
+              },
+              "maxItems": 64,
+              "minItems": 2,
+              "type": "array"
+            },
+            "rotate": {
+              "description": "Rotation around origin in degrees.",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "ease": {
+                    "$ref": "#/$defs/Ease",
+                    "description": "Ease for the segment from this keyframe to the next one."
+                  },
+                  "t": {
+                    "description": "Position in the iteration, 0..1. Must increase; the first keyframe is 0 and the last is 1.",
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "v": {
+                    "maximum": 720.0,
+                    "minimum": -720.0,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "t",
+                  "v"
+                ],
+                "type": "object"
+              },
+              "maxItems": 64,
+              "minItems": 2,
+              "type": "array"
+            },
+            "scale": {
+              "description": "Uniform scale around origin.",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "ease": {
+                    "$ref": "#/$defs/Ease",
+                    "description": "Ease for the segment from this keyframe to the next one."
+                  },
+                  "t": {
+                    "description": "Position in the iteration, 0..1. Must increase; the first keyframe is 0 and the last is 1.",
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "v": {
+                    "maximum": 3.0,
+                    "minimum": 0.0,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "t",
+                  "v"
+                ],
+                "type": "object"
+              },
+              "maxItems": 64,
+              "minItems": 2,
+              "type": "array"
+            },
+            "scaleX": {
+              "description": "Horizontal scale around origin.",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "ease": {
+                    "$ref": "#/$defs/Ease",
+                    "description": "Ease for the segment from this keyframe to the next one."
+                  },
+                  "t": {
+                    "description": "Position in the iteration, 0..1. Must increase; the first keyframe is 0 and the last is 1.",
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "v": {
+                    "maximum": 3.0,
+                    "minimum": 0.0,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "t",
+                  "v"
+                ],
+                "type": "object"
+              },
+              "maxItems": 64,
+              "minItems": 2,
+              "type": "array"
+            },
+            "scaleY": {
+              "description": "Vertical scale around origin.",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "ease": {
+                    "$ref": "#/$defs/Ease",
+                    "description": "Ease for the segment from this keyframe to the next one."
+                  },
+                  "t": {
+                    "description": "Position in the iteration, 0..1. Must increase; the first keyframe is 0 and the last is 1.",
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "v": {
+                    "maximum": 3.0,
+                    "minimum": 0.0,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "t",
+                  "v"
+                ],
+                "type": "object"
+              },
+              "maxItems": 64,
+              "minItems": 2,
+              "type": "array"
+            },
+            "shadow": {
+              "description": "Strength of the drop shadow drawn behind the item.",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "ease": {
+                    "$ref": "#/$defs/Ease",
+                    "description": "Ease for the segment from this keyframe to the next one."
+                  },
+                  "t": {
+                    "description": "Position in the iteration, 0..1. Must increase; the first keyframe is 0 and the last is 1.",
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "v": {
+                    "maximum": 1.0,
+                    "minimum": 0.0,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "t",
+                  "v"
+                ],
+                "type": "object"
+              },
+              "maxItems": 64,
+              "minItems": 2,
+              "type": "array"
+            },
+            "skewX": {
+              "description": "Horizontal skew in degrees.",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "ease": {
+                    "$ref": "#/$defs/Ease",
+                    "description": "Ease for the segment from this keyframe to the next one."
+                  },
+                  "t": {
+                    "description": "Position in the iteration, 0..1. Must increase; the first keyframe is 0 and the last is 1.",
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "v": {
+                    "maximum": 85.0,
+                    "minimum": -85.0,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "t",
+                  "v"
+                ],
+                "type": "object"
+              },
+              "maxItems": 64,
+              "minItems": 2,
+              "type": "array"
+            },
+            "skewY": {
+              "description": "Vertical skew in degrees.",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "ease": {
+                    "$ref": "#/$defs/Ease",
+                    "description": "Ease for the segment from this keyframe to the next one."
+                  },
+                  "t": {
+                    "description": "Position in the iteration, 0..1. Must increase; the first keyframe is 0 and the last is 1.",
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "v": {
+                    "maximum": 85.0,
+                    "minimum": -85.0,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "t",
+                  "v"
+                ],
+                "type": "object"
+              },
+              "maxItems": 64,
+              "minItems": 2,
+              "type": "array"
+            },
+            "textReveal": {
+              "description": "Fraction of characters text widgets show.",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "ease": {
+                    "$ref": "#/$defs/Ease",
+                    "description": "Ease for the segment from this keyframe to the next one."
+                  },
+                  "t": {
+                    "description": "Position in the iteration, 0..1. Must increase; the first keyframe is 0 and the last is 1.",
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "v": {
+                    "maximum": 1.0,
+                    "minimum": 0.0,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "t",
+                  "v"
+                ],
+                "type": "object"
+              },
+              "maxItems": 64,
+              "minItems": 2,
+              "type": "array"
+            },
+            "tint": {
+              "description": "Multiplies vertex colors, #rrggbbaa.",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "ease": {
+                    "$ref": "#/$defs/Ease",
+                    "description": "Ease for the segment from this keyframe to the next one."
+                  },
+                  "t": {
+                    "description": "Position in the iteration, 0..1. Must increase; the first keyframe is 0 and the last is 1.",
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "v": {
+                    "pattern": "^#[0-9a-fA-F]{8}$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "t",
+                  "v"
+                ],
+                "type": "object"
+              },
+              "maxItems": 64,
+              "minItems": 2,
+              "type": "array"
+            },
+            "translateX": {
+              "description": "Horizontal offset in pixels at 100% DPI (scaled by FontSize / 13).",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "ease": {
+                    "$ref": "#/$defs/Ease",
+                    "description": "Ease for the segment from this keyframe to the next one."
+                  },
+                  "t": {
+                    "description": "Position in the iteration, 0..1. Must increase; the first keyframe is 0 and the last is 1.",
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "v": {
+                    "maximum": 4096.0,
+                    "minimum": -4096.0,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "t",
+                  "v"
+                ],
+                "type": "object"
+              },
+              "maxItems": 64,
+              "minItems": 2,
+              "type": "array"
+            },
+            "translateY": {
+              "description": "Vertical offset in pixels at 100% DPI (scaled by FontSize / 13).",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "ease": {
+                    "$ref": "#/$defs/Ease",
+                    "description": "Ease for the segment from this keyframe to the next one."
+                  },
+                  "t": {
+                    "description": "Position in the iteration, 0..1. Must increase; the first keyframe is 0 and the last is 1.",
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "v": {
+                    "maximum": 4096.0,
+                    "minimum": -4096.0,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "t",
+                  "v"
+                ],
+                "type": "object"
+              },
+              "maxItems": 64,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "trigger": {
+          "description": "Trigger used when a node adds this animation without naming one. Defaults from the category.",
+          "enum": [
+            "enter",
+            "exit",
+            "hover",
+            "press",
+            "focus",
+            "loop",
+            "change",
+            "attention"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Category": {
+      "description": "Library group. entrance ends at identity and exit starts there; hover, press, attention, change and loop start at identity, attention and change also end there; loops end where they start (rotate may add full turns). tools/gen_motion_presets.py checks these.",
+      "enum": [
+        "entrance",
+        "exit",
+        "attention",
+        "hover",
+        "press",
+        "loop",
+        "text",
+        "change",
+        "stagger"
+      ]
+    },
+    "Ease": {
+      "description": "An imb::Ease name, cubic-bezier(x1, y1, x2, y2), steps(n) or spring(stiffness, damping).",
+      "pattern": "^(?:Linear|InQuad|OutQuad|InOutQuad|InCubic|OutCubic|InOutCubic|OutBack|InBack|OutElastic|OutBounce|OutExpo|InSine|OutSine|InOutSine|InQuart|OutQuart|InOutQuart|InQuint|OutQuint|InOutQuint|InExpo|InOutExpo|InCirc|OutCirc|InOutCirc|InOutBack|InElastic|InOutElastic|InBounce|InOutBounce|cubic-bezier\\([ \\t]*[-+]?(?:[0-9]+\\.?[0-9]*|\\.[0-9]+)(?:[eE][-+]?[0-9]+)?[ \\t]*,[ \\t]*[-+]?(?:[0-9]+\\.?[0-9]*|\\.[0-9]+)(?:[eE][-+]?[0-9]+)?[ \\t]*,[ \\t]*[-+]?(?:[0-9]+\\.?[0-9]*|\\.[0-9]+)(?:[eE][-+]?[0-9]+)?[ \\t]*,[ \\t]*[-+]?(?:[0-9]+\\.?[0-9]*|\\.[0-9]+)(?:[eE][-+]?[0-9]+)?[ \\t]*\\)|steps\\([ \\t]*[0-9]+[ \\t]*\\)|spring\\([ \\t]*[-+]?(?:[0-9]+\\.?[0-9]*|\\.[0-9]+)(?:[eE][-+]?[0-9]+)?[ \\t]*,[ \\t]*[-+]?(?:[0-9]+\\.?[0-9]*|\\.[0-9]+)(?:[eE][-+]?[0-9]+)?[ \\t]*\\))$",
+      "type": "string"
+    }
+  },
+  "$id": "https://raw.githubusercontent.com/fezura/ImForge/main/schemas/animation.schema.json",
+  "$ref": "#/$defs/AnimationFields",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "animations/<Name>.imanim.json: one keyframe animation played by imb::BeginMotion. Bundled presets use the same fields inside animation sets.",
+  "properties": {
+    "kind": {
+      "const": "animation",
+      "description": "File kind discriminator."
+    },
+    "schemaVersion": {
+      "const": 1,
+      "description": "File format version; always 1."
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "kind",
+    "name",
+    "category",
+    "duration",
+    "tracks"
+  ],
+  "title": "ImForge animation",
+  "type": "object",
+  "unevaluatedProperties": false
+}

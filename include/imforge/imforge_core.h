@@ -149,12 +149,33 @@ struct Transition {
     std::string ease = "OutCubic";
     float stiffness = 0, damping = 0;
 };
+struct MotionSpec {
+    std::string preset, custom, trigger = "enter", on;
+    float duration_scale = 1, delay = 0, stagger = 0;
+    int iterations = -1;
+    const std::string& Name() const { return preset.empty() ? custom : preset; }
+};
 struct AnimSpec {
     std::vector<Transition> transitions;
     std::string enter_preset, exit_preset;
     float enter_duration = 0.25f, exit_duration = 0.2f, stagger = 0;
-    bool Empty() const { return transitions.empty() && enter_preset.empty() && exit_preset.empty(); }
+    std::vector<MotionSpec> motions;
+    bool Empty() const { return transitions.empty() && enter_preset.empty() && exit_preset.empty() && motions.empty(); }
 };
+
+// set by imforge_interp.h (motion registry); without it preset names aren't checked
+using MotionPresetFn = bool (*)(const char* name);
+inline MotionPresetFn& MotionPresetResolver() {
+    static MotionPresetFn fn = nullptr;
+    return fn;
+}
+
+inline bool IsMotionTriggerName(const std::string& t) {
+    static const char* const kNames[] = {"enter", "exit", "hover", "press", "focus", "loop", "change", "attention"};
+    for (const char* k : kNames)
+        if (t == k) return true;
+    return false;
+}
 struct FxSpec {
     std::string type;
     Json params;
@@ -275,6 +296,8 @@ struct Project {
     std::vector<Component> components;
     std::vector<std::string> libraries;
     std::vector<std::string> panel_files, component_files, theme_files;
+    std::vector<std::string> animation_files;
+    std::vector<Json> animations;
     const WidgetCatalog* widget_catalog = nullptr;
 
     static int ParseVersion(const std::string& v) {
@@ -309,6 +332,11 @@ struct Project {
     const Component* FindComponent(const std::string& cname) const {
         for (const auto& c : components)
             if (c.name == cname) return &c;
+        return nullptr;
+    }
+    const Json* FindAnimation(const std::string& aname) const {
+        for (const Json& a : animations)
+            if (a.IsObject() && a["name"].IsString() && a["name"].AsString() == aname) return &a;
         return nullptr;
     }
 };

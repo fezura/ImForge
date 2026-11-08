@@ -1,0 +1,42 @@
+{
+  "components": [],
+  "dependencies": [
+    "essentials"
+  ],
+  "description": "ImForge gaming: previews and editors for overlay and config menus (crosshair, box preview, radar, profiles, hotkeys, overlay labels, player rows).",
+  "headers": [
+    "imb_gaming.h",
+    "imb_game_core.h",
+    "imb_game_esp.h",
+    "imb_game_crosshair.h",
+    "imb_game_radar.h",
+    "imb_game_config.h",
+    "imb_game_nav.h",
+    "imb_game_overlay.h",
+    "imb_game_players.h"
+  ],
+  "kind": "imblib",
+  "license": "MIT",
+  "minImGuiVersion": 18500,
+  "name": "gaming",
+  "schemaVersion": 1,
+  "version": "0.2.0",
+  "widgets": [
+    "widgets/EspBoxPreview.imw.json",
+    "widgets/CrosshairPreview.imw.json",
+    "widgets/CrosshairEditor.imw.json",
+    "widgets/FovCirclePreview.imw.json",
+    "widgets/RadarMiniMap.imw.json",
+    "widgets/ProfileSlots.imw.json",
+    "widgets/HotkeyList.imw.json",
+    "widgets/Watermark.imw.json",
+    "widgets/FpsPingCounter.imw.json",
+    "widgets/PlayerListRow.imw.json",
+    "widgets/TeamColorPicker.imw.json",
+    "widgets/IconRailNav.imw.json",
+    "widgets/CategoryCard.imw.json",
+    "widgets/HealthArmorBar.imw.json",
+    "widgets/KillFeedEntry.imw.json",
+    "widgets/NotificationBanner.imw.json"
+  ]
+}

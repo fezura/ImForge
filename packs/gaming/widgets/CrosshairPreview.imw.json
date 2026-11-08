@@ -1,0 +1,173 @@
+{
+  "bindings": [
+    {
+      "name": "gap",
+      "required": false,
+      "types": [
+        "float"
+      ]
+    },
+    {
+      "name": "length",
+      "required": false,
+      "types": [
+        "float"
+      ]
+    },
+    {
+      "name": "thickness",
+      "required": false,
+      "types": [
+        "float"
+      ]
+    },
+    {
+      "name": "dot",
+      "required": false,
+      "types": [
+        "bool"
+      ]
+    },
+    {
+      "name": "outline",
+      "required": false,
+      "types": [
+        "bool"
+      ]
+    },
+    {
+      "name": "tStyle",
+      "required": false,
+      "types": [
+        "bool"
+      ]
+    },
+    {
+      "name": "color",
+      "required": false,
+      "types": [
+        "vec4"
+      ]
+    }
+  ],
+  "call": "imb::game::CrosshairPreviewFields({label}, {gap}, {length}, {thickness}, {dot}, {outline}, {tStyle}, {color}, {size})",
+  "category": "Gaming",
+  "container": false,
+  "events": [
+    "onClick"
+  ],
+  "icon": "fa-crosshairs",
+  "include": "imb_gaming.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "CrosshairPreview",
+  "preview": [
+    {
+      "fill": "#2c3648ff",
+      "h": 110,
+      "rounding": 6,
+      "shape": "rect",
+      "stroke": "#3a4150ff",
+      "w": 110,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#000000d9",
+      "h": 5,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 14,
+      "x": 36,
+      "y": 53
+    },
+    {
+      "fill": "#000000d9",
+      "h": 5,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 14,
+      "x": 60,
+      "y": 53
+    },
+    {
+      "fill": "#000000d9",
+      "h": 14,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 5,
+      "x": 53,
+      "y": 36
+    },
+    {
+      "fill": "#000000d9",
+      "h": 14,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 5,
+      "x": 53,
+      "y": 60
+    },
+    {
+      "fill": "#4dff73ff",
+      "h": 3,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 12,
+      "x": 37,
+      "y": 54
+    },
+    {
+      "fill": "#4dff73ff",
+      "h": 3,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 12,
+      "x": 61,
+      "y": 54
+    },
+    {
+      "fill": "#4dff73ff",
+      "h": 12,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 3,
+      "x": 54,
+      "y": 37
+    },
+    {
+      "fill": "#4dff73ff",
+      "h": 12,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 3,
+      "x": 54,
+      "y": 61
+    },
+    {
+      "color": "#ffffff99",
+      "shape": "text",
+      "text": "3x",
+      "x": 90,
+      "y": 92
+    }
+  ],
+  "props": [
+    {
+      "default": "Crosshair",
+      "hint": "ImGui id, not shown",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": {
+        "h": "auto",
+        "w": "auto"
+      },
+      "name": "size",
+      "type": "size"
+    }
+  ],
+  "returns": "clicked",
+  "schemaVersion": 1
+}

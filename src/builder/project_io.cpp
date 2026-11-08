@@ -191,6 +191,7 @@ bool IsProjectDir(const std::string& dir) {
 std::string DefaultPanelFile(const std::string& name) { return "panels/" + SanitizeFileStem(name) + ".imb.json"; }
 std::string DefaultComponentFile(const std::string& name) { return "components/" + SanitizeFileStem(name) + ".imc.json"; }
 std::string DefaultThemeFile(const std::string& name) { return "themes/" + SanitizeFileStem(name) + ".theme.json"; }
+std::string DefaultAnimationFile(const std::string& name) { return "animations/" + SanitizeFileStem(name) + ".imanim.json"; }
 
 bool LoadProject(const std::string& dir_in, Project& out, Error* err) {
     std::string dir = NormalizePath(dir_in);
@@ -200,9 +201,10 @@ bool LoadProject(const std::string& dir_in, Project& out, Error* err) {
     p.dir = dir;
     p.widget_catalog = out.widget_catalog;
     if (!ProjectFromJson(pj, p, err)) return false;
-    for (const std::vector<std::string>* files : {&p.theme_files, &p.component_files, &p.panel_files})
+    for (const std::vector<std::string>* files : {&p.theme_files, &p.component_files, &p.panel_files, &p.animation_files})
         for (const std::string& f : *files)
             if (!IsSafeRelativePath(f)) return Fail(err, "imforge.json: unsafe file path \"" + SanitizeFileStem(f.substr(0, 80)) + "\"");
+    if (p.animation_files.size() > 2048) return Fail(err, "imforge.json: more than 2048 animation files");
     LoadedOutputDirs()[CanonicalString(dir)] = p.codegen.output_dir;
     for (const std::string& f : p.theme_files) {
         Json tj;
@@ -228,6 +230,12 @@ bool LoadProject(const std::string& dir_in, Project& out, Error* err) {
         if (!PanelFromJson(pnj, pn, err)) return false;
         p.panels.push_back(std::move(pn));
     }
+    for (const std::string& f : p.animation_files) {
+        Json aj;
+        if (!ReadJsonFile(JoinPath(dir, f), aj, err)) return false;
+        if (!aj.IsObject() || !aj["name"].IsString()) return Fail(err, f + ": expected an animation object with a \"name\"");
+        p.animations.push_back(std::move(aj));
+    }
     out = std::move(p);
     return true;
 }
@@ -241,6 +249,8 @@ bool SaveProject(const Project& project_in, Error* err, std::vector<std::string>
         if (c.file.empty()) c.file = DefaultComponentFile(c.name);
     for (Theme& t : project.themes)
         if (t.file.empty()) t.file = DefaultThemeFile(t.name);
+    project.animation_files.clear();
+    for (const Json& a : project.animations) project.animation_files.push_back(DefaultAnimationFile(a["name"].AsString("")));
     auto write = [&](const std::string& rel, const Json& j) {
         bool changed = false;
         std::string path = SafeJoin(project.dir, rel);
@@ -256,6 +266,12 @@ bool SaveProject(const Project& project_in, Error* err, std::vector<std::string>
         if (!write(c.file, ComponentToJson(c))) return false;
     for (const Panel& p : project.panels)
         if (!write(p.file, PanelToJson(p))) return false;
+    for (size_t i = 0; i < project.animations.size(); ++i) {
+        Json a = project.animations[i];
+        a.Set("schemaVersion", Json(1));
+        a.Set("kind", Json("animation"));
+        if (!write(project.animation_files[i], a)) return false;
+    }
     return true;
 }
 

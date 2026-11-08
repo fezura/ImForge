@@ -1,0 +1,97 @@
+{
+  "bindings": [
+    {
+      "name": "value",
+      "required": true,
+      "types": [
+        "float[2]",
+        "vec2"
+      ]
+    }
+  ],
+  "call": "imb::ctl::RangeSlider({label}, {value}, {min}, {max}, {format})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-sliders",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "RangeSlider",
+  "preview": [
+    {
+      "fill": "#2a3140ff",
+      "h": 4,
+      "rounding": 2,
+      "shape": "rect",
+      "w": 140,
+      "x": 6,
+      "y": 9
+    },
+    {
+      "fill": "#4296faff",
+      "h": 4,
+      "rounding": 2,
+      "shape": "rect",
+      "w": 70,
+      "x": 40,
+      "y": 9
+    },
+    {
+      "fill": "#ffffffff",
+      "r": 6,
+      "shape": "circle",
+      "stroke": "#4296faff",
+      "x": 40,
+      "y": 11
+    },
+    {
+      "fill": "#ffffffff",
+      "r": 6,
+      "shape": "circle",
+      "stroke": "#4296faff",
+      "x": 110,
+      "y": 11
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "25 - 75",
+      "x": 156,
+      "y": 4
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 214,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "Range",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": 0,
+      "name": "min",
+      "type": "float"
+    },
+    {
+      "default": 100,
+      "name": "max",
+      "type": "float"
+    },
+    {
+      "default": "%.0f",
+      "name": "format",
+      "type": "string"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

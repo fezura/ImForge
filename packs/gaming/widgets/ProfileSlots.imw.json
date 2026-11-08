@@ -1,0 +1,265 @@
+{
+  "bindings": [
+    {
+      "name": "names",
+      "required": false,
+      "types": [
+        "vector<string>"
+      ]
+    },
+    {
+      "name": "selected",
+      "required": false,
+      "types": [
+        "int"
+      ]
+    },
+    {
+      "name": "action",
+      "required": false,
+      "types": [
+        "int"
+      ]
+    }
+  ],
+  "call": "imb::game::ProfileSlotsList({label}, {names}, imb::game::CountOf({names:count}), {slots}, {selected}, {active}, {action})",
+  "category": "Gaming",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-floppy-disk",
+  "include": "imb_gaming.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "ProfileSlots",
+  "preview": [
+    {
+      "fill": "#4296fa38",
+      "h": 26,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 240,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#00000000",
+      "r": 7,
+      "shape": "circle",
+      "stroke": "#4296faff",
+      "x": 16,
+      "y": 13
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "1",
+      "x": 13,
+      "y": 6
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Default",
+      "x": 32,
+      "y": 6
+    },
+    {
+      "fill": "#2a2f3aff",
+      "h": 26,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 240,
+      "x": 0,
+      "y": 29
+    },
+    {
+      "fill": "#00000000",
+      "r": 7,
+      "shape": "circle",
+      "stroke": "#4296faff",
+      "x": 16,
+      "y": 42
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "2",
+      "x": 13,
+      "y": 35
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Ranked",
+      "x": 32,
+      "y": 35
+    },
+    {
+      "fill": "#2a2f3aff",
+      "h": 26,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 240,
+      "x": 0,
+      "y": 58
+    },
+    {
+      "fill": "#00000000",
+      "r": 7,
+      "shape": "circle",
+      "stroke": "#4296faff",
+      "x": 16,
+      "y": 71
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "3",
+      "x": 13,
+      "y": 64
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Casual",
+      "x": 32,
+      "y": 64
+    },
+    {
+      "fill": "#2a2f3aff",
+      "h": 26,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 240,
+      "x": 0,
+      "y": 87
+    },
+    {
+      "fill": "#00000000",
+      "r": 7,
+      "shape": "circle",
+      "stroke": "#8a93a680",
+      "x": 16,
+      "y": 100
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "4",
+      "x": 13,
+      "y": 93
+    },
+    {
+      "color": "#8a93a6ff",
+      "shape": "text",
+      "text": "Empty slot",
+      "x": 32,
+      "y": 93
+    },
+    {
+      "fill": "#4296faff",
+      "h": 16,
+      "rounding": 1,
+      "shape": "rect",
+      "w": 3,
+      "x": 0,
+      "y": 5
+    },
+    {
+      "fill": "#48d6782e",
+      "h": 14,
+      "rounding": 7,
+      "shape": "rect",
+      "w": 46,
+      "x": 186,
+      "y": 6
+    },
+    {
+      "color": "#48d678ff",
+      "shape": "text",
+      "text": "ACTIVE",
+      "x": 190,
+      "y": 6
+    },
+    {
+      "fill": "#4296fa38",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "stroke": "#4296fa80",
+      "w": 76,
+      "x": 0,
+      "y": 120
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Load",
+      "x": 24,
+      "y": 124
+    },
+    {
+      "fill": "#48d67838",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "stroke": "#48d67880",
+      "w": 76,
+      "x": 82,
+      "y": 120
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Save",
+      "x": 106,
+      "y": 124
+    },
+    {
+      "fill": "#ec484838",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "stroke": "#ec484880",
+      "w": 76,
+      "x": 164,
+      "y": 120
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Delete",
+      "x": 182,
+      "y": 124
+    }
+  ],
+  "props": [
+    {
+      "default": "Profiles",
+      "hint": "ImGui id, not shown",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": [
+        "Default",
+        "Ranked",
+        "Casual",
+        " "
+      ],
+      "hint": "slot names when 'names' isn't bound, a blank name is an empty slot",
+      "name": "slots",
+      "type": "stringList"
+    },
+    {
+      "default": "0",
+      "hint": "index of the loaded profile, -1 for none",
+      "name": "active",
+      "type": "expr"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

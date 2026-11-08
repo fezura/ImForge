@@ -1,0 +1,270 @@
+{
+  "credit": "Catppuccin palette (MIT)",
+  "description": "Catppuccin Mocha: soft pastels on a cozy dark base, with borderless panels and rounded corners. Mauve leads, with blue and lavender as support.",
+  "fonts": [
+    {
+      "family": "Nunito",
+      "role": "ui",
+      "size": 16
+    },
+    {
+      "family": "Nunito",
+      "role": "heading",
+      "size": 20,
+      "weight": "Bold"
+    },
+    {
+      "family": "JetBrains Mono",
+      "role": "mono",
+      "size": 14
+    }
+  ],
+  "fx": {
+    "accentGlow": 0.3,
+    "windowBlur": 0,
+    "windowShadow": 0.4
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "Lift",
+    "button.press": "SoftPress",
+    "list": {
+      "preset": "StaggerFadeUp",
+      "stagger": 0.05
+    },
+    "window": "PopIn",
+    "window.exit": "PopOut"
+  },
+  "name": "CatppuccinMocha",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Button": "#cba6f7ff",
+        "ButtonActive": "#af8fd4ff",
+        "ButtonHovered": "#d2b2f8ff",
+        "Text": "#11111bff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#313244ff",
+        "ChildBg": "#181825ff"
+      },
+      "vars": {
+        "ChildBorderSize": 0,
+        "ChildRounding": 12,
+        "WindowPadding": {
+          "x": 14,
+          "y": 12
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#f38ba88c",
+        "Button": "#f38ba838",
+        "ButtonActive": "#f38ba875",
+        "ButtonHovered": "#f38ba857",
+        "CheckMark": "#f38ba8ff",
+        "SliderGrab": "#f38ba8ff",
+        "SliderGrabActive": "#f38ba8ff",
+        "Text": "#fad1dcff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#cba6f780",
+        "Button": "#00000000",
+        "ButtonActive": "#cba6f73d",
+        "ButtonHovered": "#cba6f724",
+        "Text": "#cba6f7ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "heading": {
+      "colors": {
+        "Text": "#b4befeff"
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#a6adc8ff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#a6e3a18c",
+        "Button": "#a6e3a129",
+        "ButtonActive": "#a6e3a15c",
+        "ButtonHovered": "#a6e3a142",
+        "CheckMark": "#a6e3a1ff",
+        "SliderGrab": "#a6e3a1ff",
+        "SliderGrabActive": "#a6e3a1ff",
+        "Text": "#b8e9b4ff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#f9e2af8c",
+        "Button": "#f9e2af29",
+        "ButtonActive": "#f9e2af5c",
+        "ButtonHovered": "#f9e2af42",
+        "CheckMark": "#f9e2afff",
+        "SliderGrab": "#f9e2afff",
+        "SliderGrabActive": "#f9e2afff",
+        "Text": "#fae5b7ff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "pastel",
+    "cozy",
+    "rounded"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#45475aff",
+      "BorderShadow": "#00000000",
+      "Button": "#313244ff",
+      "ButtonActive": "#585b70ff",
+      "ButtonHovered": "#45475aff",
+      "CheckMark": "#cba6f7ff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#11111bff",
+      "DockingPreview": "#cba6f7b2",
+      "DragDropTarget": "#fab387e6",
+      "FrameBg": "#313244ff",
+      "FrameBgActive": "#585b70ff",
+      "FrameBgHovered": "#45475aff",
+      "Header": "#cba6f733",
+      "HeaderActive": "#cba6f766",
+      "HeaderHovered": "#cba6f74c",
+      "InputTextCursor": "#f5e0dcff",
+      "MenuBarBg": "#181825ff",
+      "ModalWindowDimBg": "#11111bb2",
+      "NavCursor": "#b4befeff",
+      "NavWindowingDimBg": "#11111b33",
+      "NavWindowingHighlight": "#cdd6f4b2",
+      "PlotHistogram": "#cba6f7ff",
+      "PlotHistogramHovered": "#f5c2e7ff",
+      "PlotLines": "#89b4faff",
+      "PlotLinesHovered": "#fab387ff",
+      "PopupBg": "#181825fa",
+      "ResizeGrip": "#cba6f72e",
+      "ResizeGripActive": "#cba6f7e6",
+      "ResizeGripHovered": "#cba6f78c",
+      "ScrollbarBg": "#00000000",
+      "ScrollbarGrab": "#45475aff",
+      "ScrollbarGrabActive": "#6c7086ff",
+      "ScrollbarGrabHovered": "#585b70ff",
+      "Separator": "#45475aff",
+      "SeparatorActive": "#cba6f7ff",
+      "SeparatorHovered": "#cba6f7b2",
+      "SliderGrab": "#cba6f7ff",
+      "SliderGrabActive": "#b4befeff",
+      "Tab": "#181825ff",
+      "TabDimmed": "#11111bff",
+      "TabDimmedSelected": "#181825ff",
+      "TabDimmedSelectedOverline": "#cba6f773",
+      "TabHovered": "#45475aff",
+      "TabSelected": "#313244ff",
+      "TabSelectedOverline": "#cba6f7ff",
+      "TableBorderLight": "#313244ff",
+      "TableBorderStrong": "#45475aff",
+      "TableHeaderBg": "#181825ff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#ffffff08",
+      "Text": "#cdd6f4ff",
+      "TextDisabled": "#7f849cff",
+      "TextLink": "#89b4faff",
+      "TextSelectedBg": "#9399b240",
+      "TitleBg": "#11111bff",
+      "TitleBgActive": "#181825ff",
+      "TitleBgCollapsed": "#11111bcc",
+      "WindowBg": "#1e1e2eff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 6,
+        "y": 3
+      },
+      "ChildBorderSize": 0,
+      "ChildRounding": 10,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 0,
+      "FramePadding": {
+        "x": 8,
+        "y": 4
+      },
+      "FrameRounding": 6,
+      "GrabMinSize": 10,
+      "GrabRounding": 6,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 20,
+      "ItemInnerSpacing": {
+        "x": 6,
+        "y": 4
+      },
+      "ItemSpacing": {
+        "x": 8,
+        "y": 6
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 10,
+      "ScrollbarRounding": 9,
+      "ScrollbarSize": 13,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 1,
+      "SeparatorTextPadding": {
+        "x": 16,
+        "y": 3
+      },
+      "TabBarBorderSize": 0,
+      "TabBarOverlineSize": 0,
+      "TabBorderSize": 0,
+      "TabRounding": 6,
+      "WindowBorderSize": 0,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 64
+      },
+      "WindowPadding": {
+        "x": 10,
+        "y": 10
+      },
+      "WindowRounding": 10,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Catppuccin Mocha",
+  "widgetStyle": {
+    "accent": "#cba6f7ff",
+    "accent2": "#89b4faff",
+    "danger": "#f38ba8ff",
+    "success": "#a6e3a1ff",
+    "warning": "#f9e2afff"
+  }
+}

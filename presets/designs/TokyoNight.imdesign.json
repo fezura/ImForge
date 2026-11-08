@@ -1,0 +1,271 @@
+{
+  "credit": "Tokyo Night palette (MIT)",
+  "description": "Tokyo Night's deep indigo with electric blue and violet accents, like a city after dark. Primary actions glow a little blue.",
+  "fonts": [
+    {
+      "family": "Sora",
+      "role": "ui",
+      "size": 15
+    },
+    {
+      "family": "Sora",
+      "role": "heading",
+      "size": 19,
+      "weight": "SemiBold"
+    },
+    {
+      "family": "JetBrains Mono",
+      "role": "mono",
+      "size": 13
+    }
+  ],
+  "fx": {
+    "accentGlow": 0.25,
+    "windowBlur": 0,
+    "windowShadow": 0.3
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "GlowUp",
+    "button.press": "GlowPress",
+    "list": {
+      "preset": "StaggerScaleIn",
+      "stagger": 0.04
+    },
+    "window": "FadeInUp",
+    "window.exit": "FadeOutDown"
+  },
+  "name": "TokyoNight",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Button": "#7aa2f7ff",
+        "ButtonActive": "#bb9af7ff",
+        "ButtonHovered": "#7bb4faff",
+        "Text": "#1a1b26ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#414868ff",
+        "ChildBg": "#24283bff"
+      },
+      "vars": {
+        "ChildBorderSize": 1,
+        "ChildRounding": 8,
+        "WindowPadding": {
+          "x": 12,
+          "y": 10
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#f7768e8c",
+        "Button": "#f7768e38",
+        "ButtonActive": "#f7768e75",
+        "ButtonHovered": "#f7768e57",
+        "CheckMark": "#f7768eff",
+        "SliderGrab": "#f7768eff",
+        "SliderGrabActive": "#f7768eff",
+        "Text": "#fbc0cbff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#7aa2f780",
+        "Button": "#00000000",
+        "ButtonActive": "#7aa2f73d",
+        "ButtonHovered": "#7aa2f724",
+        "Text": "#82a8f7ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#bb9af7ff",
+        "Text": "#bb9af7ff"
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#9aa5ceff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#9ece6a8c",
+        "Button": "#9ece6a29",
+        "ButtonActive": "#9ece6a5c",
+        "ButtonHovered": "#9ece6a42",
+        "CheckMark": "#9ece6aff",
+        "SliderGrab": "#9ece6aff",
+        "SliderGrabActive": "#9ece6aff",
+        "Text": "#b5da8eff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#e0af688c",
+        "Button": "#e0af6829",
+        "ButtonActive": "#e0af685c",
+        "ButtonHovered": "#e0af6842",
+        "CheckMark": "#e0af68ff",
+        "SliderGrab": "#e0af68ff",
+        "SliderGrabActive": "#e0af68ff",
+        "Text": "#e8c48fff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "blue",
+    "neon",
+    "editor"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#414868cc",
+      "BorderShadow": "#00000000",
+      "Button": "#31364fff",
+      "ButtonActive": "#3e4d73ff",
+      "ButtonHovered": "#414868ff",
+      "CheckMark": "#7aa2f7ff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#14141cff",
+      "DockingPreview": "#7aa2f7b2",
+      "DragDropTarget": "#ff9e64e6",
+      "FrameBg": "#24283bff",
+      "FrameBgActive": "#414868ff",
+      "FrameBgHovered": "#31364fff",
+      "Header": "#7aa2f72e",
+      "HeaderActive": "#7aa2f761",
+      "HeaderHovered": "#7aa2f747",
+      "InputTextCursor": "#7dcfffff",
+      "MenuBarBg": "#161720ff",
+      "ModalWindowDimBg": "#12131b99",
+      "NavCursor": "#7dcfffff",
+      "NavWindowingDimBg": "#12131b33",
+      "NavWindowingHighlight": "#c0caf5b2",
+      "PlotHistogram": "#7aa2f7ff",
+      "PlotHistogramHovered": "#bb9af7ff",
+      "PlotLines": "#7dcfffff",
+      "PlotLinesHovered": "#ff9e64ff",
+      "PopupBg": "#24283bfa",
+      "ResizeGrip": "#7aa2f72e",
+      "ResizeGripActive": "#7aa2f7e6",
+      "ResizeGripHovered": "#7aa2f78c",
+      "ScrollbarBg": "#00000000",
+      "ScrollbarGrab": "#414868ff",
+      "ScrollbarGrabActive": "#7aa2f7ff",
+      "ScrollbarGrabHovered": "#565f89ff",
+      "Separator": "#414868ff",
+      "SeparatorActive": "#7aa2f7ff",
+      "SeparatorHovered": "#7aa2f7b2",
+      "SliderGrab": "#7aa2f7ff",
+      "SliderGrabActive": "#7dcfffff",
+      "Tab": "#1f2230ff",
+      "TabDimmed": "#1c1e2bff",
+      "TabDimmedSelected": "#202232ff",
+      "TabDimmedSelectedOverline": "#7aa2f773",
+      "TabHovered": "#414868ff",
+      "TabSelected": "#24283bff",
+      "TabSelectedOverline": "#7aa2f7ff",
+      "TableBorderLight": "#2d3147ff",
+      "TableBorderStrong": "#414868ff",
+      "TableHeaderBg": "#24283bff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#ffffff08",
+      "Text": "#c0caf5ff",
+      "TextDisabled": "#69729cff",
+      "TextLink": "#7dcfffff",
+      "TextSelectedBg": "#7aa2f74c",
+      "TitleBg": "#14141cff",
+      "TitleBgActive": "#24283bff",
+      "TitleBgCollapsed": "#14141ccc",
+      "WindowBg": "#1a1b26ff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 6,
+        "y": 3
+      },
+      "ChildBorderSize": 1,
+      "ChildRounding": 8,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 1,
+      "FramePadding": {
+        "x": 8,
+        "y": 4
+      },
+      "FrameRounding": 4,
+      "GrabMinSize": 10,
+      "GrabRounding": 4,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 20,
+      "ItemInnerSpacing": {
+        "x": 6,
+        "y": 4
+      },
+      "ItemSpacing": {
+        "x": 8,
+        "y": 6
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 8,
+      "ScrollbarRounding": 4,
+      "ScrollbarSize": 13,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 2,
+      "SeparatorTextPadding": {
+        "x": 16,
+        "y": 3
+      },
+      "TabBarBorderSize": 1,
+      "TabBarOverlineSize": 2,
+      "TabBorderSize": 0,
+      "TabRounding": 4,
+      "WindowBorderSize": 1,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 64
+      },
+      "WindowPadding": {
+        "x": 10,
+        "y": 10
+      },
+      "WindowRounding": 8,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Tokyo Night",
+  "widgetStyle": {
+    "accent": "#7aa2f7ff",
+    "accent2": "#bb9af7ff",
+    "danger": "#f7768eff",
+    "success": "#9ece6aff",
+    "warning": "#e0af68ff"
+  }
+}

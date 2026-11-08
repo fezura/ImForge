@@ -1,0 +1,66 @@
+{
+  "bindings": [
+    {
+      "name": "value",
+      "required": true,
+      "types": [
+        "bool"
+      ]
+    }
+  ],
+  "call": "imb::ctl::SwitchToggle({label}, {value}, imb::ctl::SwitchKind::{kind})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-toggle-on",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "SwitchToggle",
+  "preview": [
+    {
+      "fill": "#4296faff",
+      "h": 19,
+      "rounding": 9.5,
+      "shape": "rect",
+      "w": 33,
+      "x": 0,
+      "y": 2
+    },
+    {
+      "fill": "#ffffffff",
+      "r": 7.5,
+      "shape": "circle",
+      "x": 23.5,
+      "y": 11.5
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 41,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "Enabled",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": "Ios",
+      "name": "kind",
+      "type": "enum",
+      "values": [
+        "Ios",
+        "Square",
+        "Icons"
+      ]
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

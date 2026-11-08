@@ -1,0 +1,260 @@
+{
+  "$defs": {
+    "MotionRef": {
+      "anyOf": [
+        {
+          "$ref": "node.schema.json#/$defs/Identifier"
+        },
+        {
+          "additionalProperties": false,
+          "anyOf": [
+            {
+              "required": [
+                "preset"
+              ]
+            },
+            {
+              "required": [
+                "custom"
+              ]
+            }
+          ],
+          "properties": {
+            "custom": {
+              "$ref": "node.schema.json#/$defs/Identifier",
+              "description": "Custom animation of the project."
+            },
+            "delay": {
+              "maximum": 30,
+              "minimum": 0,
+              "type": "number"
+            },
+            "durationScale": {
+              "exclusiveMinimum": 0,
+              "maximum": 10,
+              "type": "number"
+            },
+            "iterations": {
+              "minimum": -1,
+              "type": "integer"
+            },
+            "preset": {
+              "$ref": "node.schema.json#/$defs/Identifier"
+            },
+            "stagger": {
+              "maximum": 5,
+              "minimum": 0,
+              "type": "number"
+            },
+            "trigger": {
+              "enum": [
+                "enter",
+                "exit",
+                "hover",
+                "press",
+                "focus",
+                "loop",
+                "change",
+                "attention"
+              ]
+            }
+          },
+          "type": "object"
+        }
+      ],
+      "description": "A preset name from presets/animations, or an object with playback options."
+    }
+  },
+  "$id": "https://raw.githubusercontent.com/fezura/ImForge/main/schemas/design.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "presets/designs/<Name>.imdesign.json: a theme plus style classes, fonts, window effects and default motions that the builder applies in one step.",
+  "properties": {
+    "credit": {
+      "description": "Attribution when the palette comes from another project, for example \"Nord palette (MIT)\". Empty for original designs.",
+      "maxLength": 200,
+      "type": "string"
+    },
+    "description": {
+      "description": "One or two sentences about the look.",
+      "maxLength": 400,
+      "type": "string"
+    },
+    "fonts": {
+      "description": "Font suggestions by role. Families are matched by name; missing font files fall back to the bundled Inter and JetBrains Mono.",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "family": {
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          },
+          "file": {
+            "description": "Optional font file relative to the project.",
+            "maxLength": 260,
+            "type": "string"
+          },
+          "role": {
+            "description": "ui (or default/body) replaces the default font; any other role adds or updates a font named after it, like Heading or Mono.",
+            "pattern": "^[a-z][a-z0-9_-]*$",
+            "type": "string"
+          },
+          "size": {
+            "maximum": 96,
+            "minimum": 6,
+            "type": "number"
+          },
+          "weight": {
+            "description": "Regular, Medium, SemiBold, Bold or a number like 600.",
+            "maxLength": 32,
+            "type": "string"
+          }
+        },
+        "required": [
+          "role",
+          "family"
+        ],
+        "type": "object"
+      },
+      "maxItems": 8,
+      "type": "array"
+    },
+    "fx": {
+      "additionalProperties": false,
+      "description": "Effects added to panel windows and accent buttons. 0 removes the effect.",
+      "properties": {
+        "accentGlow": {
+          "description": "Glow strength on nodes with the accent-button or accent class.",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "windowBlur": {
+          "description": "Backdrop blur behind windows: 0 to 1 is a strength, larger values are a radius in pixels.",
+          "maximum": 64,
+          "minimum": 0,
+          "type": "number"
+        },
+        "windowShadow": {
+          "description": "Drop shadow strength under windows.",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "kind": {
+      "const": "design",
+      "description": "File kind discriminator."
+    },
+    "motions": {
+      "additionalProperties": {
+        "$ref": "#/$defs/MotionRef"
+      },
+      "description": "Default motions keyed by target, optionally with a trigger: window, window.exit, button.hover, button.press, list, or a lowercase widget type such as checkbox.change.",
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9_]*(\\.(enter|exit|hover|press|focus|loop|change|attention))?$"
+      },
+      "type": "object"
+    },
+    "name": {
+      "$ref": "node.schema.json#/$defs/Identifier",
+      "description": "PascalCase name, same as the file name. Also used as the theme name when the design is applied."
+    },
+    "schemaVersion": {
+      "const": 1,
+      "description": "File format version; always 1."
+    },
+    "styleClasses": {
+      "additionalProperties": {
+        "$ref": "node.schema.json#/$defs/StyleOverride"
+      },
+      "description": "Style classes merged into the project by name. accent-button, ghost-button, danger, card, muted and heading are the common set templates use.",
+      "propertyNames": {
+        "$ref": "node.schema.json#/$defs/StyleClassName"
+      },
+      "type": "object"
+    },
+    "tags": {
+      "description": "Lowercase search tags such as dark, light, neon or gaming.",
+      "items": {
+        "pattern": "^[a-z0-9][a-z0-9-]*$",
+        "type": "string"
+      },
+      "maxItems": 16,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "theme": {
+      "additionalProperties": false,
+      "description": "Same content as a themes/<Name>.theme.json file.",
+      "properties": {
+        "colors": {
+          "$ref": "node.schema.json#/$defs/ColorMap",
+          "description": "ImGuiCol name to #rrggbbaa."
+        },
+        "vars": {
+          "$ref": "node.schema.json#/$defs/StyleVarMap",
+          "description": "ImGuiStyleVar name to a number or {x, y}."
+        }
+      },
+      "required": [
+        "colors"
+      ],
+      "type": "object"
+    },
+    "title": {
+      "description": "Name shown in the Library.",
+      "maxLength": 64,
+      "minLength": 1,
+      "type": "string"
+    },
+    "widgetStyle": {
+      "additionalProperties": {
+        "$ref": "node.schema.json#/$defs/Color"
+      },
+      "description": "Semantic colors for pack widgets. The five listed ones are required; extra names are allowed.",
+      "properties": {
+        "accent": {
+          "$ref": "node.schema.json#/$defs/Color",
+          "description": "Main accent."
+        },
+        "accent2": {
+          "$ref": "node.schema.json#/$defs/Color",
+          "description": "Secondary accent."
+        },
+        "danger": {
+          "$ref": "node.schema.json#/$defs/Color",
+          "description": "Destructive or error state."
+        },
+        "success": {
+          "$ref": "node.schema.json#/$defs/Color",
+          "description": "Positive state."
+        },
+        "warning": {
+          "$ref": "node.schema.json#/$defs/Color",
+          "description": "Warning state."
+        }
+      },
+      "required": [
+        "accent",
+        "accent2",
+        "success",
+        "warning",
+        "danger"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "kind",
+    "name",
+    "title",
+    "theme"
+  ],
+  "title": "ImForge design",
+  "type": "object"
+}

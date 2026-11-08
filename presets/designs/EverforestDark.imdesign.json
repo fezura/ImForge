@@ -1,0 +1,265 @@
+{
+  "credit": "Everforest palette (MIT)",
+  "description": "Everforest's soft greens and warm beige on a mossy gray, made for long and comfortable sessions. Borderless panels, rounded frames and calm motion.",
+  "fonts": [
+    {
+      "family": "Work Sans",
+      "role": "ui",
+      "size": 15
+    },
+    {
+      "family": "Work Sans",
+      "role": "heading",
+      "size": 19,
+      "weight": "SemiBold"
+    }
+  ],
+  "fx": {
+    "accentGlow": 0,
+    "windowBlur": 0,
+    "windowShadow": 0.3
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "Lift",
+    "button.press": "PushIn",
+    "list": {
+      "preset": "StaggerFadeUp",
+      "stagger": 0.05
+    },
+    "window": "FadeInUp",
+    "window.exit": "FadeOutDown"
+  },
+  "name": "EverforestDark",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Button": "#a7c080ff",
+        "ButtonActive": "#83c092ff",
+        "ButtonHovered": "#b0c68dff",
+        "Text": "#2d353bff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#3d484dff",
+        "ChildBg": "#232a2eff"
+      },
+      "vars": {
+        "ChildBorderSize": 0,
+        "ChildRounding": 10,
+        "WindowPadding": {
+          "x": 14,
+          "y": 12
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#e67e808c",
+        "Button": "#e67e8038",
+        "ButtonActive": "#e67e8075",
+        "ButtonHovered": "#e67e8057",
+        "CheckMark": "#e67e80ff",
+        "SliderGrab": "#e67e80ff",
+        "SliderGrabActive": "#e67e80ff",
+        "Text": "#f8d8d9ff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#a7c08080",
+        "Button": "#00000000",
+        "ButtonActive": "#a7c0803d",
+        "ButtonHovered": "#a7c08024",
+        "Text": "#bccf9eff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "heading": {
+      "colors": {
+        "Text": "#a7c080ff"
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#9da9a0ff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#83c0928c",
+        "Button": "#83c09229",
+        "ButtonActive": "#83c0925c",
+        "ButtonHovered": "#83c09242",
+        "CheckMark": "#83c092ff",
+        "SliderGrab": "#83c092ff",
+        "SliderGrabActive": "#83c092ff",
+        "Text": "#cbe5d1ff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#dbbc7f8c",
+        "Button": "#dbbc7f29",
+        "ButtonActive": "#dbbc7f5c",
+        "ButtonHovered": "#dbbc7f42",
+        "CheckMark": "#dbbc7fff",
+        "SliderGrab": "#dbbc7fff",
+        "SliderGrabActive": "#dbbc7fff",
+        "Text": "#f1e6ceff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "green",
+    "warm",
+    "calm"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#475258ff",
+      "BorderShadow": "#00000000",
+      "Button": "#343f44ff",
+      "ButtonActive": "#425047ff",
+      "ButtonHovered": "#3d484dff",
+      "CheckMark": "#a7c080ff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#1e2427ff",
+      "DockingPreview": "#a7c080b2",
+      "DragDropTarget": "#dbbc7fe6",
+      "FrameBg": "#343f44ff",
+      "FrameBgActive": "#475258ff",
+      "FrameBgHovered": "#3d484dff",
+      "Header": "#384241ff",
+      "HeaderActive": "#425047ff",
+      "HeaderHovered": "#3e4b45ff",
+      "InputTextCursor": "#a7c080ff",
+      "MenuBarBg": "#232a2eff",
+      "ModalWindowDimBg": "#20252999",
+      "NavCursor": "#a7c080ff",
+      "NavWindowingDimBg": "#20252933",
+      "NavWindowingHighlight": "#d3c6aab2",
+      "PlotHistogram": "#a7c080ff",
+      "PlotHistogramHovered": "#dbbc7fff",
+      "PlotLines": "#7fbbb3ff",
+      "PlotLinesHovered": "#e69875ff",
+      "PopupBg": "#232a2efa",
+      "ResizeGrip": "#a7c0802e",
+      "ResizeGripActive": "#a7c080e6",
+      "ResizeGripHovered": "#a7c0808c",
+      "ScrollbarBg": "#00000000",
+      "ScrollbarGrab": "#475258ff",
+      "ScrollbarGrabActive": "#56635fff",
+      "ScrollbarGrabHovered": "#4f585eff",
+      "Separator": "#475258ff",
+      "SeparatorActive": "#a7c080ff",
+      "SeparatorHovered": "#a7c080b2",
+      "SliderGrab": "#a7c080ff",
+      "SliderGrabActive": "#83c092ff",
+      "Tab": "#232a2eff",
+      "TabDimmed": "#232a2eff",
+      "TabDimmedSelected": "#2d353bff",
+      "TabDimmedSelectedOverline": "#a7c08073",
+      "TabHovered": "#3d484dff",
+      "TabSelected": "#343f44ff",
+      "TabSelectedOverline": "#a7c080ff",
+      "TableBorderLight": "#3d484dff",
+      "TableBorderStrong": "#475258ff",
+      "TableHeaderBg": "#343f44ff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#d3c6aa08",
+      "Text": "#d3c6aaff",
+      "TextDisabled": "#859289ff",
+      "TextLink": "#7fbbb3ff",
+      "TextSelectedBg": "#543a48ff",
+      "TitleBg": "#232a2eff",
+      "TitleBgActive": "#343f44ff",
+      "TitleBgCollapsed": "#232a2ecc",
+      "WindowBg": "#2d353bff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 6,
+        "y": 3
+      },
+      "ChildBorderSize": 0,
+      "ChildRounding": 8,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 0,
+      "FramePadding": {
+        "x": 9,
+        "y": 5
+      },
+      "FrameRounding": 4,
+      "GrabMinSize": 10,
+      "GrabRounding": 4,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 20,
+      "ItemInnerSpacing": {
+        "x": 6,
+        "y": 4
+      },
+      "ItemSpacing": {
+        "x": 9,
+        "y": 7
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 8,
+      "ScrollbarRounding": 6,
+      "ScrollbarSize": 13,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 2,
+      "SeparatorTextPadding": {
+        "x": 16,
+        "y": 3
+      },
+      "TabBarBorderSize": 0,
+      "TabBarOverlineSize": 1,
+      "TabBorderSize": 0,
+      "TabRounding": 4,
+      "WindowBorderSize": 0,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 64
+      },
+      "WindowPadding": {
+        "x": 10,
+        "y": 10
+      },
+      "WindowRounding": 8,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Everforest Dark",
+  "widgetStyle": {
+    "accent": "#a7c080ff",
+    "accent2": "#7fbbb3ff",
+    "danger": "#e67e80ff",
+    "success": "#83c092ff",
+    "warning": "#dbbc7fff"
+  }
+}

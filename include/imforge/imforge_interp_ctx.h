@@ -137,7 +137,7 @@ inline void Interpreter::AddDiagnostic(Diagnostic::Level level, const std::strin
 inline bool DrawCtx::HasEvent(const char* event) const {
     for (const auto& e : node.events)
         if (e.first == event && (e.second.handler || !e.second.actions.empty())) return true;
-    return false;
+    return opts.animations && interp_motion::Listens(node, event);
 }
 
 inline std::string DrawCtx::ScopeKey() const {
@@ -387,11 +387,16 @@ inline float DrawCtx::GetFloat(const char* prop, float def) const {
 
 inline std::string DrawCtx::GetString(const char* prop, const char* def) const {
     const PropValue* pv = node.Prop(prop);
-    if (pv && pv->raw.IsString()) return Interpolate(pv->raw.AsString());
+    std::string out;
     Value v;
-    if (!GetValue(prop, v, Value::Kind::String)) return def ? def : "";
-    if (!pv && v.IsString()) return Interpolate(v.s);
-    return v.ToString();
+    if (pv && pv->raw.IsString()) out = Interpolate(pv->raw.AsString());
+    else if (!GetValue(prop, v, Value::Kind::String)) out = def ? def : "";
+    else if (!pv && v.IsString()) out = Interpolate(v.s);
+    else out = v.ToString();
+    // typewriter style motions cut the "text" prop of whatever widget draws it
+    if (motion_id != 0 && std::strcmp(prop, "text") == 0)
+        return interp_motion::RevealText(out, imb::MotionTextReveal(motion_id));
+    return out;
 }
 
 inline ImVec4 DrawCtx::GetColor(const char* prop, ImVec4 def) const {
@@ -704,6 +709,7 @@ inline ImTextureID DrawCtx::GetTexture(const char* slot) const {
 
 inline void DrawCtx::FireEvent(const char* event) {
     FlushShadows();
+    interp_motion::TriggerFor(*this, event);
     const EventSpec* ev = nullptr;
     for (const auto& e : node.events)
         if (e.first == event) ev = &e.second;

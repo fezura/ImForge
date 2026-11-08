@@ -8,6 +8,14 @@
       "description": "Name of the theme applied by default.",
       "type": "string"
     },
+    "animations": {
+      "description": "Custom animation files (.imanim.json, kind animation) relative to the project; nodes use them through motion.custom.",
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
     "binding": {
       "additionalProperties": false,
       "description": "Reflection / binding tool settings.",
@@ -330,23 +338,12 @@
     },
     "styleClasses": {
       "additionalProperties": {
-        "additionalProperties": false,
-        "description": "Style class.",
-        "properties": {
-          "colors": {
-            "$ref": "node.schema.json#/$defs/ColorMap",
-            "description": "PushStyleColor overrides."
-          },
-          "vars": {
-            "$ref": "node.schema.json#/$defs/StyleVarMap",
-            "description": "PushStyleVar overrides."
-          }
-        },
-        "type": "object"
+        "$ref": "node.schema.json#/$defs/StyleOverride",
+        "description": "Style class."
       },
       "description": "Named style overrides referenced by node.style.classes.",
       "propertyNames": {
-        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+        "$ref": "node.schema.json#/$defs/StyleClassName"
       },
       "type": "object"
     },

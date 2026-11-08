@@ -1,0 +1,97 @@
+{
+  "bindings": [
+    {
+      "name": "mask",
+      "required": true,
+      "types": [
+        "int"
+      ]
+    }
+  ],
+  "call": "imb::ctl::ToggleButtonGroup({label}, {mask}, {items:array}, {items:count})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-bold",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "ToggleButtonGroup",
+  "preview": [
+    {
+      "fill": "#4296faff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 26,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#262d3aff",
+      "h": 22,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 26,
+      "x": 26,
+      "y": 0
+    },
+    {
+      "fill": "#262d3aff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 26,
+      "x": 52,
+      "y": 0
+    },
+    {
+      "color": "#ffffffff",
+      "shape": "text",
+      "text": "B",
+      "x": 9,
+      "y": 4
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "I",
+      "x": 37,
+      "y": 4
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "U",
+      "x": 61,
+      "y": 4
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 86,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "Style",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": [
+        "B",
+        "I",
+        "U"
+      ],
+      "name": "items",
+      "type": "stringList"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

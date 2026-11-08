@@ -1,0 +1,58 @@
+{
+  "bindings": [
+    {
+      "name": "state",
+      "required": true,
+      "types": [
+        "int"
+      ]
+    }
+  ],
+  "call": "imb::ctl::TriCheckbox({label}, {state})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-square-minus",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "TriCheckbox",
+  "preview": [
+    {
+      "fill": "#4296faff",
+      "h": 18,
+      "rounding": 3,
+      "shape": "rect",
+      "w": 18,
+      "x": 2,
+      "y": 2
+    },
+    {
+      "shape": "line",
+      "stroke": "#ffffffff",
+      "thickness": 2,
+      "x": 6,
+      "x2": 16,
+      "y": 11,
+      "y2": 11
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 28,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "Select all",
+      "name": "label",
+      "type": "string"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

@@ -1,0 +1,88 @@
+{
+  "bindings": [
+    {
+      "name": "tags",
+      "required": true,
+      "types": [
+        "string"
+      ]
+    }
+  ],
+  "call": "imb::ctl::TagInput({label}, {tags})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-tag",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "TagInput",
+  "preview": [
+    {
+      "fill": "#262d3aff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 200,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#4296fa4d",
+      "h": 18,
+      "rounding": 9,
+      "shape": "rect",
+      "w": 46,
+      "x": 2,
+      "y": 2
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "red",
+      "x": 8,
+      "y": 4
+    },
+    {
+      "fill": "#4296fa4d",
+      "h": 18,
+      "rounding": 9,
+      "shape": "rect",
+      "w": 56,
+      "x": 52,
+      "y": 2
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "green",
+      "x": 58,
+      "y": 4
+    },
+    {
+      "color": "#8a8f9cff",
+      "shape": "text",
+      "text": "Add tag",
+      "x": 114,
+      "y": 4
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 208,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "Tags",
+      "name": "label",
+      "type": "string"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

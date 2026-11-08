@@ -1,0 +1,271 @@
+{
+  "credit": "Nord palette (MIT)",
+  "description": "Nord's arctic blues on slate gray, with frost colored accents and framed inputs. Low contrast surfaces that stay easy on the eyes for long sessions.",
+  "fonts": [
+    {
+      "family": "Inter",
+      "role": "ui",
+      "size": 15
+    },
+    {
+      "family": "Inter",
+      "role": "heading",
+      "size": 18,
+      "weight": "SemiBold"
+    },
+    {
+      "family": "JetBrains Mono",
+      "role": "mono",
+      "size": 13
+    }
+  ],
+  "fx": {
+    "accentGlow": 0,
+    "windowBlur": 0,
+    "windowShadow": 0.2
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "Brighten",
+    "button.press": "Sink",
+    "list": {
+      "preset": "StaggerFadeLeft",
+      "stagger": 0.04
+    },
+    "window": "FadeInUp",
+    "window.exit": "FadeOutDown"
+  },
+  "name": "Nord",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Button": "#88c0d0ff",
+        "ButtonActive": "#81a1c1ff",
+        "ButtonHovered": "#8fbcbbff",
+        "Text": "#2e3440ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#434c5eff",
+        "ChildBg": "#3b4252ff"
+      },
+      "vars": {
+        "ChildBorderSize": 1,
+        "ChildRounding": 6,
+        "WindowPadding": {
+          "x": 12,
+          "y": 10
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#bf616a8c",
+        "Button": "#bf616a29",
+        "ButtonActive": "#bf616a5c",
+        "ButtonHovered": "#bf616a42",
+        "CheckMark": "#bf616aff",
+        "SliderGrab": "#bf616aff",
+        "SliderGrabActive": "#bf616aff",
+        "Text": "#e2b6baff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#88c0d080",
+        "Button": "#00000000",
+        "ButtonActive": "#88c0d03d",
+        "ButtonHovered": "#88c0d024",
+        "Text": "#a5cfdbff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#4c566aff",
+        "Text": "#eceff4ff"
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#aab1beff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#a3be8c8c",
+        "Button": "#a3be8c29",
+        "ButtonActive": "#a3be8c5c",
+        "ButtonHovered": "#a3be8c42",
+        "CheckMark": "#a3be8cff",
+        "SliderGrab": "#a3be8cff",
+        "SliderGrabActive": "#a3be8cff",
+        "Text": "#dae5d1ff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#ebcb8b8c",
+        "Button": "#ebcb8b29",
+        "ButtonActive": "#ebcb8b5c",
+        "ButtonHovered": "#ebcb8b42",
+        "CheckMark": "#ebcb8bff",
+        "SliderGrab": "#ebcb8bff",
+        "SliderGrabActive": "#ebcb8bff",
+        "Text": "#f8edd8ff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "cool",
+    "calm",
+    "editor"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#4c566aff",
+      "BorderShadow": "#00000000",
+      "Button": "#434c5eff",
+      "ButtonActive": "#51627cff",
+      "ButtonHovered": "#4c566aff",
+      "CheckMark": "#88c0d0ff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#262b34ff",
+      "DockingPreview": "#88c0d0b2",
+      "DragDropTarget": "#ebcb8be6",
+      "FrameBg": "#434c5eff",
+      "FrameBgActive": "#51637eff",
+      "FrameBgHovered": "#4c566aff",
+      "Header": "#5e81ac4c",
+      "HeaderActive": "#5e81ac8c",
+      "HeaderHovered": "#5e81ac73",
+      "InputTextCursor": "#d8dee9ff",
+      "MenuBarBg": "#3b4252ff",
+      "ModalWindowDimBg": "#1e222a99",
+      "NavCursor": "#88c0d0ff",
+      "NavWindowingDimBg": "#20242d33",
+      "NavWindowingHighlight": "#d8dee9b2",
+      "PlotHistogram": "#88c0d0ff",
+      "PlotHistogramHovered": "#8fbcbbff",
+      "PlotLines": "#81a1c1ff",
+      "PlotLinesHovered": "#d08770ff",
+      "PopupBg": "#3b4252fa",
+      "ResizeGrip": "#88c0d02e",
+      "ResizeGripActive": "#88c0d0e6",
+      "ResizeGripHovered": "#88c0d08c",
+      "ScrollbarBg": "#00000000",
+      "ScrollbarGrab": "#434c5eff",
+      "ScrollbarGrabActive": "#5e81acff",
+      "ScrollbarGrabHovered": "#4c566aff",
+      "Separator": "#4c566aff",
+      "SeparatorActive": "#88c0d0ff",
+      "SeparatorHovered": "#81a1c1ff",
+      "SliderGrab": "#81a1c1ff",
+      "SliderGrabActive": "#88c0d0ff",
+      "Tab": "#3b4252ff",
+      "TabDimmed": "#343b49ff",
+      "TabDimmedSelected": "#3b4252ff",
+      "TabDimmedSelectedOverline": "#4c566aff",
+      "TabHovered": "#4c566aff",
+      "TabSelected": "#434c5eff",
+      "TabSelectedOverline": "#88c0d0ff",
+      "TableBorderLight": "#434c5eff",
+      "TableBorderStrong": "#4c566aff",
+      "TableHeaderBg": "#3b4252ff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#eceff408",
+      "Text": "#d8dee9ff",
+      "TextDisabled": "#939baaff",
+      "TextLink": "#88c0d0ff",
+      "TextSelectedBg": "#5e81ac8c",
+      "TitleBg": "#2e3440ff",
+      "TitleBgActive": "#3b4252ff",
+      "TitleBgCollapsed": "#2e3440cc",
+      "WindowBg": "#2e3440ff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 6,
+        "y": 3
+      },
+      "ChildBorderSize": 1,
+      "ChildRounding": 6,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 1,
+      "FramePadding": {
+        "x": 8,
+        "y": 4
+      },
+      "FrameRounding": 4,
+      "GrabMinSize": 10,
+      "GrabRounding": 4,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 20,
+      "ItemInnerSpacing": {
+        "x": 6,
+        "y": 4
+      },
+      "ItemSpacing": {
+        "x": 8,
+        "y": 6
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 6,
+      "ScrollbarRounding": 4,
+      "ScrollbarSize": 13,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 1,
+      "SeparatorTextPadding": {
+        "x": 16,
+        "y": 3
+      },
+      "TabBarBorderSize": 1,
+      "TabBarOverlineSize": 2,
+      "TabBorderSize": 0,
+      "TabRounding": 4,
+      "WindowBorderSize": 1,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 64
+      },
+      "WindowPadding": {
+        "x": 10,
+        "y": 10
+      },
+      "WindowRounding": 6,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Nord",
+  "widgetStyle": {
+    "accent": "#88c0d0ff",
+    "accent2": "#81a1c1ff",
+    "danger": "#bf616aff",
+    "success": "#a3be8cff",
+    "warning": "#ebcb8bff"
+  }
+}

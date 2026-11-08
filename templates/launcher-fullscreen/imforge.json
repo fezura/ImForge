@@ -1,0 +1,214 @@
+{
+  "activeTheme": "SynthwaveSunset",
+  "binding": {
+    "compileCommands": "",
+    "includePaths": [],
+    "types": [],
+    "typesJson": ""
+  },
+  "codegen": {
+    "baseFontSize": 16,
+    "cppStandard": 17,
+    "dpiMode": "fontSize",
+    "functionCase": "pascal",
+    "indent": 4,
+    "markers": true,
+    "namespace": "launcher",
+    "outputDir": "generated",
+    "runtimeHeader": "imb_runtime.h",
+    "splitHeader": true,
+    "stdString": true,
+    "useTabs": false,
+    "variableCase": "snake"
+  },
+  "components": [],
+  "features": {
+    "animations": true,
+    "docking": false,
+    "dpiScaling": true,
+    "drawlistFx": true,
+    "iconFonts": true,
+    "shaderFx": false
+  },
+  "fonts": [
+    {
+      "file": "fonts/Inter-Regular.ttf",
+      "mergeIcons": "fontawesome6",
+      "name": "Default",
+      "ranges": "default",
+      "size": 16
+    },
+    {
+      "file": "fonts/Inter-Bold.ttf",
+      "mergeIcons": "fontawesome6",
+      "name": "Bold",
+      "ranges": "default",
+      "size": 16
+    },
+    {
+      "file": "fonts/Inter-Bold.ttf",
+      "mergeIcons": "fontawesome6",
+      "name": "Title",
+      "ranges": "default",
+      "size": 24
+    },
+    {
+      "file": "fonts/Inter-Bold.ttf",
+      "mergeIcons": "fontawesome6",
+      "name": "Display",
+      "ranges": "default",
+      "size": 34
+    },
+    {
+      "file": "fonts/Inter-Regular.ttf",
+      "mergeIcons": "fontawesome6",
+      "name": "Small",
+      "ranges": "default",
+      "size": 13
+    }
+  ],
+  "imgui": {
+    "branch": "master",
+    "version": "1.91.9"
+  },
+  "kind": "project",
+  "libraries": [],
+  "live": {
+    "enabled": true,
+    "pipeName": "ImForge",
+    "shmName": "ImForge",
+    "tcpPort": 7777,
+    "transport": "tcp"
+  },
+  "name": "{{PROJECT_NAME}}",
+  "panels": [
+    "panels/Launcher.imb.json"
+  ],
+  "platform": {
+    "renderer": "gl3",
+    "window": "sdl3"
+  },
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent_button": {
+      "colors": {
+        "Border": "#ff7a3dcc",
+        "Button": "#ff7a3dff",
+        "ButtonActive": "#ff3d8bff",
+        "ButtonHovered": "#ff9560ff",
+        "Text": "#140a1fff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#4a2463ff",
+        "ChildBg": "#1d0f2cff"
+      },
+      "vars": {
+        "ChildBorderSize": 0,
+        "ChildRounding": 8,
+        "WindowPadding": {
+          "x": 12,
+          "y": 10
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#ff3d5a8c",
+        "Button": "#ff3d5a29",
+        "ButtonActive": "#ff3d5a6b",
+        "ButtonHovered": "#ff3d5a47",
+        "CheckMark": "#ff3d5aff",
+        "SliderGrab": "#ff3d5aff",
+        "SliderGrabActive": "#ff3d5aff",
+        "Text": "#ff5f78ff"
+      }
+    },
+    "ghost_button": {
+      "colors": {
+        "Border": "#ff7a3d80",
+        "Button": "#ff7a3d00",
+        "ButtonActive": "#ff7a3d42",
+        "ButtonHovered": "#ff7a3d24",
+        "Text": "#ff7a3dff"
+      },
+      "vars": {
+        "FrameBorderSize": 1
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#ff3d8b99",
+        "Text": "#ff9a66ff"
+      },
+      "vars": {
+        "SeparatorTextBorderSize": 2
+      }
+    },
+    "hero": {
+      "colors": {
+        "Border": "#ff7a3d55",
+        "ChildBg": "#00000000"
+      },
+      "vars": {
+        "ChildBorderSize": 1,
+        "ChildRounding": 14,
+        "WindowPadding": {
+          "x": 26,
+          "y": 22
+        }
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#a88aa8ff"
+      }
+    },
+    "play_button": {
+      "colors": {
+        "Button": "#ff7a3dff",
+        "ButtonActive": "#ff3d8bff",
+        "ButtonHovered": "#ff3d8bff",
+        "Text": "#1a0b14ff"
+      },
+      "vars": {
+        "FramePadding": {
+          "x": 18,
+          "y": 10
+        },
+        "FrameRounding": 22
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#3dffc88c",
+        "Button": "#3dffc829",
+        "ButtonActive": "#3dffc86b",
+        "ButtonHovered": "#3dffc847",
+        "CheckMark": "#3dffc8ff",
+        "SliderGrab": "#3dffc8ff",
+        "SliderGrabActive": "#3dffc8ff",
+        "Text": "#3dffc8ff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#ffd23d8c",
+        "Button": "#ffd23d29",
+        "ButtonActive": "#ffd23d6b",
+        "ButtonHovered": "#ffd23d47",
+        "CheckMark": "#ffd23dff",
+        "SliderGrab": "#ffd23dff",
+        "SliderGrabActive": "#ffd23dff",
+        "Text": "#ffd23dff"
+      }
+    }
+  },
+  "themes": [
+    "themes/SynthwaveSunset.theme.json"
+  ]
+}

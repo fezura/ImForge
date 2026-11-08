@@ -1,0 +1,696 @@
+{
+  "kind": "panel",
+  "name": "Hud",
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "FadeInDown"
+                }
+              ]
+            },
+            "id": "watermark",
+            "layout": {
+              "anchor": "TopLeft",
+              "offset": {
+                "x": 16,
+                "y": 14
+              }
+            },
+            "props": {
+              "extra": "ranked",
+              "fps": false,
+              "text": "{{PROJECT_NAME}}"
+            },
+            "type": "Watermark"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "delay": 0.1,
+                  "preset": "ZoomInSoft"
+                }
+              ]
+            },
+            "id": "radar",
+            "layout": {
+              "anchor": "TopLeft",
+              "offset": {
+                "x": 16,
+                "y": 56
+              }
+            },
+            "props": {
+              "label": "Radar",
+              "rings": 3,
+              "size": {
+                "h": 168,
+                "w": 168
+              },
+              "zoom": 1.2
+            },
+            "type": "RadarMiniMap"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "delay": 0.05,
+                      "preset": "FadeInDown"
+                    }
+                  ]
+                },
+                "id": "perf",
+                "props": {
+                  "fps": "state.fps",
+                  "label": "perf",
+                  "ping": "state.ping"
+                },
+                "type": "FpsPingCounter"
+              }
+            ],
+            "id": "perf_box",
+            "layout": {
+              "anchor": "TopRight",
+              "offset": {
+                "x": -16,
+                "y": 14
+              }
+            },
+            "props": {
+              "flags": [
+                "NoScrollbar",
+                "NoBackground"
+              ],
+              "size": {
+                "h": 32,
+                "w": 210
+              }
+            },
+            "style": {
+              "vars": {
+                "WindowPadding": {
+                  "x": 0,
+                  "y": 0
+                }
+              }
+            },
+            "type": "Child"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "StaggerFadeLeft",
+                      "stagger": 0.08
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "id": "kill_1",
+                    "props": {
+                      "age": "1.2",
+                      "flags": "1",
+                      "killer": "Viper",
+                      "label": "k1",
+                      "previewLoop": false,
+                      "victim": "Rook",
+                      "weapon": "AR-7"
+                    },
+                    "type": "KillFeedEntry"
+                  },
+                  {
+                    "id": "kill_2",
+                    "props": {
+                      "age": "2.4",
+                      "flags": "0",
+                      "killer": "You",
+                      "killerTeam": "0",
+                      "label": "k2",
+                      "previewLoop": false,
+                      "victim": "Halo",
+                      "victimTeam": "1",
+                      "weapon": "SMG"
+                    },
+                    "type": "KillFeedEntry"
+                  },
+                  {
+                    "id": "kill_3",
+                    "props": {
+                      "age": "3.1",
+                      "flags": "2",
+                      "killer": "Mako",
+                      "killerTeam": "1",
+                      "label": "k3",
+                      "previewLoop": false,
+                      "victim": "Juno",
+                      "victimTeam": "0",
+                      "weapon": "DMR"
+                    },
+                    "type": "KillFeedEntry"
+                  }
+                ],
+                "id": "killfeed",
+                "props": {
+                  "spacing": 4
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "killfeed_box",
+            "layout": {
+              "anchor": "TopRight",
+              "offset": {
+                "x": -16,
+                "y": 56
+              }
+            },
+            "props": {
+              "flags": [
+                "NoScrollbar",
+                "NoBackground"
+              ],
+              "size": {
+                "h": 92,
+                "w": 320
+              }
+            },
+            "style": {
+              "vars": {
+                "WindowPadding": {
+                  "x": 0,
+                  "y": 0
+                }
+              }
+            },
+            "type": "Child"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "delay": 0.3,
+                      "preset": "BackInDown"
+                    },
+                    {
+                      "on": "onClick",
+                      "preset": "Alert",
+                      "trigger": "attention"
+                    }
+                  ]
+                },
+                "id": "zone_banner",
+                "props": {
+                  "action": "",
+                  "kind": "Warning",
+                  "label": "zone",
+                  "text": "Zone closes in 0:45"
+                },
+                "type": "NotificationBanner"
+              }
+            ],
+            "id": "banner_box",
+            "layout": {
+              "anchor": "Top",
+              "offset": {
+                "x": 0,
+                "y": 14
+              }
+            },
+            "props": {
+              "flags": [
+                "NoScrollbar",
+                "NoBackground"
+              ],
+              "size": {
+                "h": 52,
+                "w": 360
+              }
+            },
+            "style": {
+              "vars": {
+                "WindowPadding": {
+                  "x": 0,
+                  "y": 0
+                }
+              }
+            },
+            "type": "Child"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "delay": 0.2,
+                  "preset": "ZoomIn"
+                }
+              ]
+            },
+            "font": "Display",
+            "id": "crosshair",
+            "layout": {
+              "anchor": "Center",
+              "offset": {
+                "x": -12,
+                "y": -20
+              }
+            },
+            "props": {
+              "color": "#8fd14fff",
+              "text": "{icon:fa-plus}"
+            },
+            "type": "Text"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "FadeIn"
+                },
+                {
+                  "preset": "LoopHeartbeat",
+                  "trigger": "loop"
+                }
+              ]
+            },
+            "font": "Bold",
+            "id": "low_hp",
+            "layout": {
+              "anchor": "Center",
+              "offset": {
+                "x": -64,
+                "y": 48
+              }
+            },
+            "props": {
+              "color": "#d9534fff",
+              "text": "{icon:fa-triangle-exclamation}  LOW HEALTH"
+            },
+            "type": "Text",
+            "visibleIf": "state.health < 30"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "delay": 0.2,
+                      "preset": "FadeInUp"
+                    }
+                  ]
+                },
+                "id": "keys",
+                "props": {
+                  "keySize": 24,
+                  "label": "##keys",
+                  "mouse": true
+                },
+                "type": "KeyOverlay"
+              }
+            ],
+            "id": "keys_box",
+            "layout": {
+              "anchor": "Bottom",
+              "offset": {
+                "x": 0,
+                "y": -24
+              }
+            },
+            "props": {
+              "flags": [
+                "NoScrollbar",
+                "NoBackground"
+              ],
+              "size": {
+                "h": 112,
+                "w": 170
+              }
+            },
+            "style": {
+              "vars": {
+                "WindowPadding": {
+                  "x": 0,
+                  "y": 0
+                }
+              }
+            },
+            "type": "Child"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "delay": 0.1,
+                      "preset": "FadeInLeft"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "font": "Bold",
+                        "id": "callsign",
+                        "props": {
+                          "text": "{icon:fa-user-shield}  {{PROJECT_NAME}}"
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "id": "squad_dot",
+                        "props": {
+                          "label": "squad 3/4",
+                          "status": "Online"
+                        },
+                        "type": "StatusDot"
+                      }
+                    ],
+                    "id": "vitals_head",
+                    "props": {
+                      "spacing": 12
+                    },
+                    "type": "HStack"
+                  },
+                  {
+                    "id": "hp_bar",
+                    "props": {
+                      "armor": "state.armor",
+                      "health": "state.health",
+                      "label": "hp"
+                    },
+                    "type": "HealthArmorBar"
+                  }
+                ],
+                "id": "vitals",
+                "props": {
+                  "spacing": 6
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "vitals_box",
+            "layout": {
+              "anchor": "BottomLeft",
+              "offset": {
+                "x": 24,
+                "y": -24
+              }
+            },
+            "props": {
+              "flags": [
+                "NoScrollbar",
+                "NoBackground"
+              ],
+              "size": {
+                "h": 64,
+                "w": 340
+              }
+            },
+            "style": {
+              "vars": {
+                "WindowPadding": {
+                  "x": 0,
+                  "y": 0
+                }
+              }
+            },
+            "type": "Child"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "delay": 0.15,
+                      "preset": "FadeInRight"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "FadeInUp"
+                            }
+                          ]
+                        },
+                        "font": "Display",
+                        "id": "ammo",
+                        "props": {
+                          "text": "{state.ammo}"
+                        },
+                        "style": {
+                          "classes": [
+                            "hud_big"
+                          ]
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "font": "Bold",
+                        "id": "ammo_reserve",
+                        "props": {
+                          "text": "/ {state.reserve}"
+                        },
+                        "style": {
+                          "classes": [
+                            "hud_dim"
+                          ]
+                        },
+                        "type": "Text"
+                      }
+                    ],
+                    "id": "ammo_row",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "HStack"
+                  },
+                  {
+                    "font": "Small",
+                    "id": "weapon_name",
+                    "props": {
+                      "text": "{icon:fa-gun}  AR-7  |  AUTO"
+                    },
+                    "style": {
+                      "classes": [
+                        "hud_dim"
+                      ]
+                    },
+                    "type": "Text"
+                  },
+                  {
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "PulseGlow",
+                              "trigger": "loop"
+                            }
+                          ]
+                        },
+                        "id": "ability_ring",
+                        "props": {
+                          "color": "#b5c36aff",
+                          "fraction": "state.cooldown",
+                          "label": "##ability",
+                          "radius": 18,
+                          "showValue": false,
+                          "thickness": 4
+                        },
+                        "type": "RingProgress"
+                      },
+                      {
+                        "children": [
+                          {
+                            "font": "Bold",
+                            "id": "ability_name",
+                            "props": {
+                              "text": "Smoke"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "children": [
+                              {
+                                "id": "ability_key",
+                                "props": {
+                                  "keys": "Q"
+                                },
+                                "type": "Kbd"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "ability_hint",
+                                "props": {
+                                  "text": "ready in 4s"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "hud_dim"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "ability_key_row",
+                            "props": {
+                              "spacing": 6
+                            },
+                            "type": "HStack"
+                          }
+                        ],
+                        "id": "ability_text",
+                        "props": {
+                          "spacing": 2
+                        },
+                        "type": "VStack"
+                      }
+                    ],
+                    "id": "ability_row",
+                    "props": {
+                      "spacing": 10
+                    },
+                    "type": "HStack"
+                  }
+                ],
+                "id": "ammo_block",
+                "props": {
+                  "spacing": 6
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "ammo_box",
+            "layout": {
+              "anchor": "BottomRight",
+              "offset": {
+                "x": -24,
+                "y": -24
+              }
+            },
+            "props": {
+              "flags": [
+                "NoScrollbar",
+                "NoBackground"
+              ],
+              "size": {
+                "h": 132,
+                "w": 230
+              }
+            },
+            "style": {
+              "vars": {
+                "WindowPadding": {
+                  "x": 0,
+                  "y": 0
+                }
+              }
+            },
+            "type": "Child"
+          }
+        ],
+        "id": "hud",
+        "props": {
+          "size": {
+            "h": "fill",
+            "w": "fill"
+          }
+        },
+        "type": "Canvas"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoTitleBar",
+        "NoResize",
+        "NoMove",
+        "NoScrollbar",
+        "NoCollapse",
+        "NoBackground",
+        "NoInputs",
+        "NoSavedSettings",
+        "NoBringToFrontOnFocus"
+      ],
+      "initialPos": {
+        "x": 0,
+        "y": 0
+      },
+      "initialSize": {
+        "x": 1280,
+        "y": 720
+      },
+      "sizeCond": "Always",
+      "title": "{{PROJECT_NAME}} HUD"
+    },
+    "style": {
+      "vars": {
+        "WindowBorderSize": 0,
+        "WindowPadding": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": 72,
+      "name": "health",
+      "type": "float"
+    },
+    {
+      "default": 40,
+      "name": "armor",
+      "type": "float"
+    },
+    {
+      "default": 24,
+      "name": "ammo",
+      "type": "int"
+    },
+    {
+      "default": 90,
+      "name": "reserve",
+      "type": "int"
+    },
+    {
+      "default": 0.35,
+      "name": "cooldown",
+      "type": "float"
+    },
+    {
+      "default": 144,
+      "name": "fps",
+      "type": "float"
+    },
+    {
+      "default": 23,
+      "name": "ping",
+      "type": "float"
+    }
+  ]
+}

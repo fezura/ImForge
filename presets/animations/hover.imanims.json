@@ -1,0 +1,627 @@
+{
+  "animations": [
+    {
+      "category": "hover",
+      "credit": "",
+      "delay": 0,
+      "description": "Rises a few pixels and drops a soft shadow under it.",
+      "direction": "normal",
+      "duration": 0.18,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "Lift",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "lift",
+        "shadow",
+        "card"
+      ],
+      "tracks": {
+        "shadow": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0.5
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": -3
+          }
+        ]
+      },
+      "trigger": "hover"
+    },
+    {
+      "category": "hover",
+      "credit": "",
+      "delay": 0,
+      "description": "Scales up a little while the cursor is over it.",
+      "direction": "normal",
+      "duration": 0.16,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "Grow",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "subtle"
+      ],
+      "tracks": {
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1.04
+          }
+        ]
+      },
+      "trigger": "hover"
+    },
+    {
+      "category": "hover",
+      "credit": "",
+      "delay": 0,
+      "description": "Pulls in a touch, nice for icons in a tight toolbar.",
+      "direction": "normal",
+      "duration": 0.15,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "HoverShrink",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "subtle",
+        "icon"
+      ],
+      "tracks": {
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0.95
+          }
+        ]
+      },
+      "trigger": "hover"
+    },
+    {
+      "category": "hover",
+      "credit": "",
+      "delay": 0,
+      "description": "Tilts three degrees counterclockwise.",
+      "direction": "normal",
+      "duration": 0.18,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "TiltLeft",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "rotate",
+        "playful"
+      ],
+      "tracks": {
+        "rotate": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": -3
+          }
+        ]
+      },
+      "trigger": "hover"
+    },
+    {
+      "category": "hover",
+      "credit": "",
+      "delay": 0,
+      "description": "Tilts three degrees clockwise.",
+      "direction": "normal",
+      "duration": 0.18,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "TiltRight",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "rotate",
+        "playful"
+      ],
+      "tracks": {
+        "rotate": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 3
+          }
+        ]
+      },
+      "trigger": "hover"
+    },
+    {
+      "category": "hover",
+      "credit": "",
+      "delay": 0,
+      "description": "Brings up the accent glow and lifts by a pixel.",
+      "direction": "normal",
+      "duration": 0.2,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "GlowUp",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "glow",
+        "accent"
+      ],
+      "tracks": {
+        "glow": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0.45
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": -1
+          }
+        ]
+      },
+      "trigger": "hover"
+    },
+    {
+      "category": "hover",
+      "credit": "",
+      "delay": 0,
+      "description": "Adds a faint glow and a hint of scale so the item looks lit.",
+      "direction": "normal",
+      "duration": 0.16,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "Brighten",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "glow",
+        "scale",
+        "subtle"
+      ],
+      "tracks": {
+        "glow": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0.3
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1.02
+          }
+        ]
+      },
+      "trigger": "hover"
+    },
+    {
+      "category": "hover",
+      "credit": "",
+      "delay": 0,
+      "description": "Floats up two pixels over a light shadow.",
+      "direction": "normal",
+      "duration": 0.22,
+      "ease": "OutSine",
+      "fill": "both",
+      "iterations": 1,
+      "name": "HoverFloat",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "float",
+        "shadow",
+        "card"
+      ],
+      "tracks": {
+        "shadow": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0.35
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": -2
+          }
+        ]
+      },
+      "trigger": "hover"
+    },
+    {
+      "category": "hover",
+      "credit": "",
+      "delay": 0,
+      "description": "Springs up to a slightly bigger size with a small bounce.",
+      "direction": "normal",
+      "duration": 0.24,
+      "ease": "spring(300,18)",
+      "fill": "both",
+      "iterations": 1,
+      "name": "PopHover",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "spring",
+        "scale",
+        "playful"
+      ],
+      "tracks": {
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1.06
+          }
+        ]
+      },
+      "trigger": "hover"
+    },
+    {
+      "category": "hover",
+      "credit": "",
+      "delay": 0,
+      "description": "Slides three pixels to the right, good for links and next buttons.",
+      "direction": "normal",
+      "duration": 0.16,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "NudgeRight",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "translate",
+        "link"
+      ],
+      "tracks": {
+        "translateX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 3
+          }
+        ]
+      },
+      "trigger": "hover"
+    },
+    {
+      "category": "hover",
+      "credit": "",
+      "delay": 0,
+      "description": "Leans forward with a slight skew.",
+      "direction": "normal",
+      "duration": 0.18,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "Slant",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "skew",
+        "dynamic"
+      ],
+      "tracks": {
+        "skewX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": -4
+          }
+        ]
+      },
+      "trigger": "hover"
+    },
+    {
+      "category": "hover",
+      "credit": "",
+      "delay": 0,
+      "description": "Turns on a strong accent glow behind the item.",
+      "direction": "normal",
+      "duration": 0.22,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "SpotlightHover",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "glow",
+        "focus"
+      ],
+      "tracks": {
+        "glow": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0.6
+          }
+        ]
+      },
+      "trigger": "hover"
+    },
+    {
+      "category": "hover",
+      "credit": "",
+      "delay": 0,
+      "description": "Settles down a little, as if waiting for the click.",
+      "direction": "normal",
+      "duration": 0.14,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "PressReady",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "button"
+      ],
+      "tracks": {
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0.98
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "hover"
+    },
+    {
+      "category": "hover",
+      "credit": "",
+      "delay": 0,
+      "description": "Lifts and grows at the same time, for cards that should feel picked up.",
+      "direction": "normal",
+      "duration": 0.22,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "Raise",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "lift",
+        "scale",
+        "shadow"
+      ],
+      "tracks": {
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1.03
+          }
+        ],
+        "shadow": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0.6
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": -4
+          }
+        ]
+      },
+      "trigger": "hover"
+    },
+    {
+      "category": "hover",
+      "credit": "",
+      "delay": 0,
+      "description": "Tips two degrees with a small overshoot.",
+      "direction": "normal",
+      "duration": 0.2,
+      "ease": "OutBack",
+      "fill": "both",
+      "iterations": 1,
+      "name": "WobbleReady",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "rotate",
+        "playful"
+      ],
+      "tracks": {
+        "rotate": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 2
+          }
+        ]
+      },
+      "trigger": "hover"
+    },
+    {
+      "category": "hover",
+      "credit": "",
+      "delay": 0,
+      "description": "Stretches a bit wider, which suits pill buttons.",
+      "direction": "normal",
+      "duration": 0.18,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "Widen",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "button"
+      ],
+      "tracks": {
+        "scaleX": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1.05
+          }
+        ]
+      },
+      "trigger": "hover"
+    }
+  ],
+  "category": "hover",
+  "kind": "animationSet",
+  "schemaVersion": 1
+}

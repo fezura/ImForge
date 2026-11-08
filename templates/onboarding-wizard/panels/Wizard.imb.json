@@ -1,0 +1,919 @@
+{
+  "kind": "panel",
+  "name": "Wizard",
+  "root": {
+    "anim": {
+      "motions": [
+        {
+          "preset": "ZoomInSoft"
+        },
+        {
+          "preset": "FadeOutDown",
+          "trigger": "exit"
+        }
+      ]
+    },
+    "bind": {
+      "open": "state.open"
+    },
+    "children": [
+      {
+        "children": [
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "FadeInDown"
+                }
+              ]
+            },
+            "bind": {
+              "current": "state.step"
+            },
+            "id": "steps",
+            "props": {
+              "label": "##steps",
+              "steps": [
+                "Welcome",
+                "Look",
+                "Controls",
+                "Profile",
+                "Done"
+              ]
+            },
+            "type": "ProgressSteps"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "SlideInRight"
+                        },
+                        {
+                          "delay": 0.1,
+                          "preset": "StaggerFadeUp",
+                          "stagger": 0.05
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "TextRiseIn"
+                            }
+                          ]
+                        },
+                        "font": "Display",
+                        "id": "w_title",
+                        "props": {
+                          "text": "Welcome to {{PROJECT_NAME}}"
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "id": "w_sub",
+                        "props": {
+                          "text": "Four quick steps and you're in. You can change all of this later in Settings.",
+                          "wrapped": true
+                        },
+                        "style": {
+                          "classes": [
+                            "muted"
+                          ]
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "id": "w_gap",
+                        "props": {
+                          "size": {
+                            "h": 6,
+                            "w": 1
+                          }
+                        },
+                        "type": "Dummy"
+                      },
+                      {
+                        "children": [
+                          {
+                            "font": "Title",
+                            "id": "w_f1_icon",
+                            "props": {
+                              "color": "#8839efff",
+                              "text": "{icon:fa-wand-magic-sparkles}"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "children": [
+                              {
+                                "font": "Bold",
+                                "id": "w_f1_title",
+                                "props": {
+                                  "text": "Pick a look"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "id": "w_f1_sub",
+                                "props": {
+                                  "text": "Light, dark and an accent color you like"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "w_f1_text",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          }
+                        ],
+                        "id": "w_f1",
+                        "props": {
+                          "spacing": 14
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "children": [
+                          {
+                            "font": "Title",
+                            "id": "w_f2_icon",
+                            "props": {
+                              "color": "#1e66f5ff",
+                              "text": "{icon:fa-keyboard}"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "children": [
+                              {
+                                "font": "Bold",
+                                "id": "w_f2_title",
+                                "props": {
+                                  "text": "Set your keys"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "id": "w_f2_sub",
+                                "props": {
+                                  "text": "Shortcuts for the things you do most"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "w_f2_text",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          }
+                        ],
+                        "id": "w_f2",
+                        "props": {
+                          "spacing": 14
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "children": [
+                          {
+                            "font": "Title",
+                            "id": "w_f3_icon",
+                            "props": {
+                              "color": "#40a02bff",
+                              "text": "{icon:fa-user}"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "children": [
+                              {
+                                "font": "Bold",
+                                "id": "w_f3_title",
+                                "props": {
+                                  "text": "Make it yours"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "id": "w_f3_sub",
+                                "props": {
+                                  "text": "A name, an avatar and a few interests"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "w_f3_text",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          }
+                        ],
+                        "id": "w_f3",
+                        "props": {
+                          "spacing": 14
+                        },
+                        "type": "HStack"
+                      }
+                    ],
+                    "id": "step_0",
+                    "props": {
+                      "spacing": 12
+                    },
+                    "type": "VStack",
+                    "visibleIf": "state.step == 0"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "SlideInRight"
+                        },
+                        {
+                          "delay": 0.1,
+                          "preset": "StaggerFadeUp",
+                          "stagger": 0.05
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "font": "Title",
+                        "id": "l_title",
+                        "props": {
+                          "text": "How should it look?"
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "ValueFlip",
+                              "trigger": "change"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "index": "state.themeMode"
+                        },
+                        "id": "l_mode",
+                        "props": {
+                          "items": [
+                            "Light",
+                            "Dark",
+                            "System"
+                          ],
+                          "label": "Theme"
+                        },
+                        "type": "SegmentedControl"
+                      },
+                      {
+                        "bind": {
+                          "selected": "state.accent"
+                        },
+                        "id": "l_accent",
+                        "props": {
+                          "colors": [
+                            "#8839efff",
+                            "#1e66f5ff",
+                            "#179299ff",
+                            "#40a02bff",
+                            "#df8e1dff",
+                            "#fe640bff",
+                            "#d20f39ff",
+                            "#ea76cbff"
+                          ],
+                          "columns": 8,
+                          "label": "Accent"
+                        },
+                        "type": "ColorPalette"
+                      },
+                      {
+                        "bind": {
+                          "value": "state.scale"
+                        },
+                        "id": "l_scale",
+                        "props": {
+                          "format": "%.0f%%",
+                          "label": "Text size",
+                          "max": 140,
+                          "min": 80,
+                          "ticks": 4
+                        },
+                        "type": "TickSlider"
+                      },
+                      {
+                        "bind": {
+                          "value": "state.reduceMotion"
+                        },
+                        "id": "l_motion",
+                        "props": {
+                          "label": "Reduce motion"
+                        },
+                        "type": "SwitchToggle"
+                      }
+                    ],
+                    "id": "step_1",
+                    "props": {
+                      "spacing": 12
+                    },
+                    "type": "VStack",
+                    "visibleIf": "state.step == 1"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "SlideInRight"
+                        },
+                        {
+                          "delay": 0.1,
+                          "preset": "StaggerFadeUp",
+                          "stagger": 0.05
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "font": "Title",
+                        "id": "k_title",
+                        "props": {
+                          "text": "Your shortcuts"
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "id": "k_sub",
+                        "props": {
+                          "text": "Click a key to record a new one. Escape cancels."
+                        },
+                        "style": {
+                          "classes": [
+                            "muted"
+                          ]
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "bind": {
+                          "chord": "state.keySearch"
+                        },
+                        "id": "k_open",
+                        "props": {
+                          "label": "Open quick search"
+                        },
+                        "type": "KeyChordPicker"
+                      },
+                      {
+                        "bind": {
+                          "chord": "state.keyHide"
+                        },
+                        "id": "k_hide",
+                        "props": {
+                          "label": "Hide window"
+                        },
+                        "type": "KeyChordPicker"
+                      },
+                      {
+                        "bind": {
+                          "value": "state.pointer"
+                        },
+                        "id": "k_speed",
+                        "props": {
+                          "format": "%.1fx",
+                          "label": "Pointer speed",
+                          "max": 2,
+                          "min": 0.5
+                        },
+                        "type": "Knob"
+                      }
+                    ],
+                    "id": "step_2",
+                    "props": {
+                      "spacing": 12
+                    },
+                    "type": "VStack",
+                    "visibleIf": "state.step == 2"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "SlideInRight"
+                        },
+                        {
+                          "delay": 0.1,
+                          "preset": "StaggerFadeUp",
+                          "stagger": 0.05
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "font": "Title",
+                        "id": "p_title",
+                        "props": {
+                          "text": "About you"
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "children": [
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "LoopFloat",
+                                  "trigger": "loop"
+                                }
+                              ]
+                            },
+                            "id": "p_avatar",
+                            "props": {
+                              "name": "{state.name}",
+                              "size": 56,
+                              "status": "Online"
+                            },
+                            "type": "Avatar"
+                          },
+                          {
+                            "children": [
+                              {
+                                "bind": {
+                                  "value": "state.name"
+                                },
+                                "id": "p_name",
+                                "props": {
+                                  "hint": "What should we call you?",
+                                  "label": "Name"
+                                },
+                                "type": "InputText"
+                              },
+                              {
+                                "bind": {
+                                  "tags": "state.tags"
+                                },
+                                "id": "p_tags",
+                                "props": {
+                                  "label": "Interests"
+                                },
+                                "type": "TagInput"
+                              }
+                            ],
+                            "id": "p_fields",
+                            "props": {
+                              "spacing": 8
+                            },
+                            "type": "VStack"
+                          }
+                        ],
+                        "id": "p_row",
+                        "props": {
+                          "spacing": 16
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "bind": {
+                          "value": "state.stats"
+                        },
+                        "id": "p_stats",
+                        "props": {
+                          "label": "Share anonymous usage stats"
+                        },
+                        "type": "SwitchToggle"
+                      }
+                    ],
+                    "id": "step_3",
+                    "props": {
+                      "spacing": 12
+                    },
+                    "type": "VStack",
+                    "visibleIf": "state.step == 3"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "SlideInRight"
+                        },
+                        {
+                          "delay": 0.1,
+                          "preset": "StaggerFadeUp",
+                          "stagger": 0.05
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "id": "d_gap",
+                        "props": {
+                          "size": {
+                            "h": 20,
+                            "w": 1
+                          }
+                        },
+                        "type": "Dummy"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "delay": 0.1,
+                              "preset": "JackInTheBox"
+                            }
+                          ]
+                        },
+                        "font": "Display",
+                        "id": "d_icon",
+                        "props": {
+                          "color": "#40a02bff",
+                          "text": "{icon:fa-circle-check}"
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "delay": 0.3,
+                              "preset": "WaveIn"
+                            }
+                          ]
+                        },
+                        "font": "Title",
+                        "id": "d_title",
+                        "props": {
+                          "text": "You're all set, {state.name}"
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "id": "d_sub",
+                        "props": {
+                          "text": "Everything is saved. Press Finish to jump in."
+                        },
+                        "style": {
+                          "classes": [
+                            "muted"
+                          ]
+                        },
+                        "type": "Text"
+                      }
+                    ],
+                    "id": "step_4",
+                    "props": {
+                      "spacing": 12
+                    },
+                    "type": "VStack",
+                    "visibleIf": "state.step == 4"
+                  }
+                ],
+                "id": "pages_stack",
+                "props": {
+                  "spacing": 0
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "pages",
+            "props": {
+              "childFlags": [
+                "AlwaysUseWindowPadding"
+              ],
+              "size": {
+                "h": "fill-56",
+                "w": "fill"
+              }
+            },
+            "style": {
+              "colors": {
+                "ChildBg": "#00000000"
+              },
+              "vars": {
+                "WindowPadding": {
+                  "x": 6,
+                  "y": 14
+                }
+              }
+            },
+            "type": "Child"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "Lift",
+                      "trigger": "hover"
+                    },
+                    {
+                      "preset": "PressDown",
+                      "trigger": "press"
+                    }
+                  ]
+                },
+                "enabledIf": "state.step > 0",
+                "events": {
+                  "onClick": {
+                    "actions": [
+                      {
+                        "target": "state.step",
+                        "type": "set",
+                        "value": {
+                          "expr": "state.step - 1"
+                        }
+                      }
+                    ]
+                  }
+                },
+                "id": "back",
+                "props": {
+                  "label": "{icon:fa-arrow-left}  Back",
+                  "size": {
+                    "h": 36,
+                    "w": 110
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "ghost_button"
+                  ]
+                },
+                "type": "Button"
+              },
+              {
+                "id": "footer_fill",
+                "props": {
+                  "size": {
+                    "h": 1,
+                    "w": "fill"
+                  }
+                },
+                "type": "Dummy"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "Dim",
+                      "trigger": "press"
+                    }
+                  ]
+                },
+                "events": {
+                  "onClick": {
+                    "actions": [
+                      {
+                        "target": "state.step",
+                        "type": "set",
+                        "value": 4
+                      }
+                    ]
+                  }
+                },
+                "id": "skip",
+                "props": {
+                  "label": "Skip",
+                  "size": {
+                    "h": 36,
+                    "w": 80
+                  }
+                },
+                "type": "Button",
+                "visibleIf": "state.step < 4"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "NudgeRight",
+                      "trigger": "hover"
+                    },
+                    {
+                      "preset": "ClickBounce",
+                      "trigger": "press"
+                    },
+                    {
+                      "on": "onClick",
+                      "preset": "SuccessGlow",
+                      "trigger": "change"
+                    }
+                  ]
+                },
+                "events": {
+                  "onClick": {
+                    "actions": [
+                      {
+                        "target": "state.step",
+                        "type": "set",
+                        "value": {
+                          "expr": "state.step + 1"
+                        }
+                      }
+                    ]
+                  }
+                },
+                "id": "next",
+                "props": {
+                  "label": "Next  {icon:fa-arrow-right}",
+                  "size": {
+                    "h": 36,
+                    "w": 120
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "accent_button"
+                  ]
+                },
+                "type": "Button",
+                "visibleIf": "state.step < 4"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "PopIn"
+                    },
+                    {
+                      "preset": "GlowPress",
+                      "trigger": "press"
+                    },
+                    {
+                      "preset": "Ripple",
+                      "trigger": "loop"
+                    }
+                  ]
+                },
+                "events": {
+                  "onClick": {
+                    "actions": [
+                      {
+                        "target": "state.open",
+                        "type": "set",
+                        "value": false
+                      }
+                    ],
+                    "handler": true
+                  }
+                },
+                "id": "finish",
+                "props": {
+                  "label": "Finish",
+                  "size": {
+                    "h": 36,
+                    "w": 120
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "accent_button"
+                  ]
+                },
+                "type": "Button",
+                "visibleIf": "state.step == 4"
+              }
+            ],
+            "id": "footer",
+            "props": {
+              "spacing": 8
+            },
+            "type": "HStack"
+          }
+        ],
+        "id": "stack",
+        "props": {
+          "spacing": 10
+        },
+        "type": "VStack"
+      }
+    ],
+    "fx": [
+      {
+        "color": "#4c4f6940",
+        "offset": {
+          "x": 0,
+          "y": 8
+        },
+        "rounding": 10,
+        "size": 24,
+        "type": "shadow"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoCollapse",
+        "NoResize",
+        "NoScrollbar"
+      ],
+      "initialSize": {
+        "x": 660,
+        "y": 520
+      },
+      "sizeCond": "Always",
+      "title": "Welcome"
+    },
+    "style": {
+      "vars": {
+        "WindowPadding": {
+          "x": 22,
+          "y": 18
+        }
+      }
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": true,
+      "name": "open",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "name": "step",
+      "type": "int"
+    },
+    {
+      "default": 2,
+      "name": "themeMode",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "name": "accent",
+      "type": "int"
+    },
+    {
+      "default": 100,
+      "name": "scale",
+      "type": "float"
+    },
+    {
+      "default": false,
+      "name": "reduceMotion",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "name": "keySearch",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "name": "keyHide",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "name": "pointer",
+      "type": "float"
+    },
+    {
+      "default": "Alex",
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "default": "design,games",
+      "name": "tags",
+      "type": "string"
+    },
+    {
+      "default": true,
+      "name": "stats",
+      "type": "bool"
+    }
+  ]
+}

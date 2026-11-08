@@ -1,0 +1,270 @@
+{
+  "credit": "One Dark palette (MIT)",
+  "description": "The One Dark editor palette: neutral gray blue, soft white text and the familiar syntax colors as accents. Inputs are sunken and tabs work like editor tabs.",
+  "fonts": [
+    {
+      "family": "Inter",
+      "role": "ui",
+      "size": 14
+    },
+    {
+      "family": "Inter",
+      "role": "heading",
+      "size": 17,
+      "weight": "Bold"
+    },
+    {
+      "family": "JetBrains Mono",
+      "role": "mono",
+      "size": 14
+    }
+  ],
+  "fx": {
+    "accentGlow": 0,
+    "windowBlur": 0,
+    "windowShadow": 0.15
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "Brighten",
+    "button.press": "PushIn",
+    "list": {
+      "preset": "StaggerFadeDown",
+      "stagger": 0.03
+    },
+    "window": "FadeIn",
+    "window.exit": "FadeOut"
+  },
+  "name": "OneDark",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Button": "#61afefff",
+        "ButtonActive": "#56b6c2ff",
+        "ButtonHovered": "#74b9f1ff",
+        "Text": "#282c34ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#3b4048ff",
+        "ChildBg": "#2c323cff"
+      },
+      "vars": {
+        "ChildBorderSize": 1,
+        "ChildRounding": 4,
+        "WindowPadding": {
+          "x": 10,
+          "y": 8
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#e06c758c",
+        "Button": "#e06c7529",
+        "ButtonActive": "#e06c755c",
+        "ButtonHovered": "#e06c7542",
+        "CheckMark": "#e06c75ff",
+        "SliderGrab": "#e06c75ff",
+        "SliderGrabActive": "#e06c75ff",
+        "Text": "#efb3b7ff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#61afef66",
+        "Button": "#00000000",
+        "ButtonActive": "#61afef3d",
+        "ButtonHovered": "#61afef24",
+        "Text": "#84c1f3ff"
+      },
+      "vars": {
+        "FrameBorderSize": 1
+      }
+    },
+    "heading": {
+      "colors": {
+        "Text": "#d1d5dcff"
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#979da7ff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#98c3798c",
+        "Button": "#98c37929",
+        "ButtonActive": "#98c3795c",
+        "ButtonHovered": "#98c37942",
+        "CheckMark": "#98c379ff",
+        "SliderGrab": "#98c379ff",
+        "SliderGrabActive": "#98c379ff",
+        "Text": "#c9e0b9ff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#e5c07b8c",
+        "Button": "#e5c07b29",
+        "ButtonActive": "#e5c07b5c",
+        "ButtonHovered": "#e5c07b42",
+        "CheckMark": "#e5c07bff",
+        "SliderGrab": "#e5c07bff",
+        "SliderGrabActive": "#e5c07bff",
+        "Text": "#f2e0bdff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "editor",
+    "neutral",
+    "compact"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#3b4048ff",
+      "BorderShadow": "#00000000",
+      "Button": "#3b4048ff",
+      "ButtonActive": "#344557ff",
+      "ButtonHovered": "#3e4452ff",
+      "CheckMark": "#61afefff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#1c1f24ff",
+      "DockingPreview": "#61afefb2",
+      "DragDropTarget": "#e5c07be6",
+      "FrameBg": "#20232aff",
+      "FrameBgActive": "#3e4452ff",
+      "FrameBgHovered": "#2c323cff",
+      "Header": "#61afef1c",
+      "HeaderActive": "#61afef33",
+      "HeaderHovered": "#61afef29",
+      "InputTextCursor": "#61afefff",
+      "MenuBarBg": "#23272eff",
+      "ModalWindowDimBg": "#1c1f2499",
+      "NavCursor": "#61afefff",
+      "NavWindowingDimBg": "#1c1f2433",
+      "NavWindowingHighlight": "#abb2bfb2",
+      "PlotHistogram": "#56b6c2ff",
+      "PlotHistogramHovered": "#e5c07bff",
+      "PlotLines": "#61afefff",
+      "PlotLinesHovered": "#d19a66ff",
+      "PopupBg": "#2c323cfa",
+      "ResizeGrip": "#61afef2e",
+      "ResizeGripActive": "#61afefe6",
+      "ResizeGripHovered": "#61afef8c",
+      "ScrollbarBg": "#00000000",
+      "ScrollbarGrab": "#3e4452ff",
+      "ScrollbarGrabActive": "#5c6370ff",
+      "ScrollbarGrabHovered": "#4b5263ff",
+      "Separator": "#3b4048ff",
+      "SeparatorActive": "#61afefff",
+      "SeparatorHovered": "#61afefb2",
+      "SliderGrab": "#61afefff",
+      "SliderGrabActive": "#56b6c2ff",
+      "Tab": "#22252cff",
+      "TabDimmed": "#20232aff",
+      "TabDimmedSelected": "#282c34ff",
+      "TabDimmedSelectedOverline": "#61afef73",
+      "TabHovered": "#2c323cff",
+      "TabSelected": "#282c34ff",
+      "TabSelectedOverline": "#61afefff",
+      "TableBorderLight": "#333840ff",
+      "TableBorderStrong": "#3b4048ff",
+      "TableHeaderBg": "#2c323cff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#ffffff08",
+      "Text": "#abb2bfff",
+      "TextDisabled": "#757c89ff",
+      "TextLink": "#61afefff",
+      "TextSelectedBg": "#61afef33",
+      "TitleBg": "#20232aff",
+      "TitleBgActive": "#2c323cff",
+      "TitleBgCollapsed": "#20232acc",
+      "WindowBg": "#282c34ff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 4,
+        "y": 2
+      },
+      "ChildBorderSize": 1,
+      "ChildRounding": 4,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 1,
+      "FramePadding": {
+        "x": 7,
+        "y": 3
+      },
+      "FrameRounding": 3,
+      "GrabMinSize": 8,
+      "GrabRounding": 3,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 16,
+      "ItemInnerSpacing": {
+        "x": 4,
+        "y": 4
+      },
+      "ItemSpacing": {
+        "x": 6,
+        "y": 4
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 4,
+      "ScrollbarRounding": 3,
+      "ScrollbarSize": 12,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 2,
+      "SeparatorTextPadding": {
+        "x": 16,
+        "y": 3
+      },
+      "TabBarBorderSize": 1,
+      "TabBarOverlineSize": 2,
+      "TabBorderSize": 0,
+      "TabRounding": 3,
+      "WindowBorderSize": 1,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 64
+      },
+      "WindowPadding": {
+        "x": 8,
+        "y": 8
+      },
+      "WindowRounding": 4,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "One Dark",
+  "widgetStyle": {
+    "accent": "#61afefff",
+    "accent2": "#c678ddff",
+    "danger": "#e06c75ff",
+    "success": "#98c379ff",
+    "warning": "#e5c07bff"
+  }
+}

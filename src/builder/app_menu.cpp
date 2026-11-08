@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <cstring>
 
 #include "imgui.h"
 
@@ -40,6 +41,7 @@ void App::HandleShortcuts(bool& quit) {
     if (Chord(ImGuiKey_F5, true)) ctx_.PushLive(false);
     if (Chord(ImGuiMod_Shift | ImGuiKey_F5, true)) ctx_.PushLive(true);
     if (Chord(ImGuiMod_Ctrl | ImGuiMod_Shift | ImGuiKey_P, true)) ctx_.SetPickerMode(!ctx_.PickerMode());
+    if (Chord(ImGuiMod_Ctrl | ImGuiKey_L)) ctx_.OpenPanel("Library");
     if (Chord(ImGuiMod_Ctrl | ImGuiKey_Z)) ctx_.Undo();
     if (Chord(ImGuiMod_Ctrl | ImGuiKey_Y) || Chord(ImGuiMod_Ctrl | ImGuiMod_Shift | ImGuiKey_Z)) ctx_.Redo();
     if (has_sel && Chord(ImGuiKey_Delete)) ctx_.DeleteSelection();
@@ -146,7 +148,8 @@ void App::DrawEditMenu() {
 void App::DrawViewMenu() {
     for (auto& p : ctx_.panels) {
         if (!p->show_in_view_menu) continue;
-        if (ImGui::MenuItem(p->Name(), nullptr, &p->open) && p->open) ImGui::SetWindowFocus(p->Name());
+        const char* shortcut = std::strcmp(p->Name(), "Library") == 0 ? "Ctrl+L" : nullptr;
+        if (ImGui::MenuItem(p->Name(), shortcut, &p->open) && p->open) ImGui::SetWindowFocus(p->Name());
     }
     ImGui::Separator();
     if (ImGui::MenuItem("Reset Layout")) layout_dirty_ = true;

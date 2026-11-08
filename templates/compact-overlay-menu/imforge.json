@@ -1,0 +1,173 @@
+{
+  "activeTheme": "MinimalMono",
+  "binding": {
+    "compileCommands": "",
+    "includePaths": [],
+    "types": [
+      "OverlayConfig"
+    ],
+    "typesJson": "types.json"
+  },
+  "codegen": {
+    "baseFontSize": 16,
+    "cppStandard": 17,
+    "dpiMode": "fontSize",
+    "functionCase": "pascal",
+    "indent": 4,
+    "markers": true,
+    "namespace": "overlay",
+    "outputDir": "generated",
+    "runtimeHeader": "imb_runtime.h",
+    "splitHeader": true,
+    "stdString": true,
+    "useTabs": false,
+    "variableCase": "snake"
+  },
+  "components": [],
+  "features": {
+    "animations": true,
+    "docking": false,
+    "dpiScaling": true,
+    "drawlistFx": true,
+    "iconFonts": true,
+    "shaderFx": false
+  },
+  "fonts": [
+    {
+      "file": "fonts/Inter-Regular.ttf",
+      "mergeIcons": "fontawesome6",
+      "name": "Default",
+      "ranges": "default",
+      "size": 14
+    },
+    {
+      "file": "fonts/Inter-Bold.ttf",
+      "mergeIcons": "fontawesome6",
+      "name": "Bold",
+      "ranges": "default",
+      "size": 16
+    },
+    {
+      "file": "fonts/Inter-Regular.ttf",
+      "mergeIcons": "fontawesome6",
+      "name": "Small",
+      "ranges": "default",
+      "size": 13
+    }
+  ],
+  "imgui": {
+    "branch": "master",
+    "version": "1.91.9"
+  },
+  "kind": "project",
+  "libraries": [],
+  "live": {
+    "enabled": true,
+    "pipeName": "ImForge",
+    "shmName": "ImForge",
+    "tcpPort": 7777,
+    "transport": "tcp"
+  },
+  "name": "{{PROJECT_NAME}}",
+  "panels": [
+    "panels/Overlay.imb.json"
+  ],
+  "platform": {
+    "renderer": "dx11",
+    "window": "win32"
+  },
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent_button": {
+      "colors": {
+        "Border": "#f2f2f2cc",
+        "Button": "#f2f2f2ff",
+        "ButtonActive": "#c8c8c8ff",
+        "ButtonHovered": "#ffffffff",
+        "Text": "#0e0e0eff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#2e2e2eff",
+        "ChildBg": "#131313ff"
+      },
+      "vars": {
+        "ChildBorderSize": 1,
+        "ChildRounding": 3,
+        "WindowPadding": {
+          "x": 10,
+          "y": 8
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#e6a8a88c",
+        "Button": "#e6a8a81a",
+        "ButtonActive": "#e6a8a847",
+        "ButtonHovered": "#e6a8a82e",
+        "CheckMark": "#e6a8a8ff",
+        "SliderGrab": "#e6a8a8ff",
+        "SliderGrabActive": "#e6a8a8ff",
+        "Text": "#e6a8a8ff"
+      }
+    },
+    "ghost_button": {
+      "colors": {
+        "Border": "#ffffff80",
+        "Button": "#ffffff00",
+        "ButtonActive": "#ffffff24",
+        "ButtonHovered": "#ffffff12",
+        "Text": "#e8e8e8ff"
+      },
+      "vars": {
+        "FrameBorderSize": 1
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#ffffff33",
+        "Text": "#ffffffff"
+      },
+      "vars": {
+        "SeparatorTextBorderSize": 1
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#7d7d7dff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#bfe0c78c",
+        "Button": "#bfe0c71a",
+        "ButtonActive": "#bfe0c747",
+        "ButtonHovered": "#bfe0c72e",
+        "CheckMark": "#bfe0c7ff",
+        "SliderGrab": "#bfe0c7ff",
+        "SliderGrabActive": "#bfe0c7ff",
+        "Text": "#bfe0c7ff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#e6d6a88c",
+        "Button": "#e6d6a81a",
+        "ButtonActive": "#e6d6a847",
+        "ButtonHovered": "#e6d6a82e",
+        "CheckMark": "#e6d6a8ff",
+        "SliderGrab": "#e6d6a8ff",
+        "SliderGrabActive": "#e6d6a8ff",
+        "Text": "#e6d6a8ff"
+      }
+    }
+  },
+  "themes": [
+    "themes/MinimalMono.theme.json"
+  ]
+}

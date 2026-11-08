@@ -1,0 +1,88 @@
+{
+  "bindings": [
+    {
+      "name": "color",
+      "required": true,
+      "types": [
+        "vec4",
+        "float[4]"
+      ]
+    }
+  ],
+  "call": "imb::ctl::ColorPickerMini({label}, {color})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-eye-dropper",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "ColorPickerMini",
+  "preview": [
+    {
+      "fill": "#3498dbff",
+      "h": 132,
+      "rounding": 0,
+      "shape": "rect",
+      "stroke": "#3c4456ff",
+      "w": 132,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#ff00ffff",
+      "h": 132,
+      "rounding": 7,
+      "shape": "rect",
+      "w": 15,
+      "x": 136,
+      "y": 0
+    },
+    {
+      "fill": "#cccccc80",
+      "h": 132,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 15,
+      "x": 155,
+      "y": 0
+    },
+    {
+      "fill": "#3498dbff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "stroke": "#3c4456ff",
+      "w": 35,
+      "x": 0,
+      "y": 136
+    },
+    {
+      "fill": "#262d3aff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 131,
+      "x": 39,
+      "y": 136
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "#3498dbff",
+      "x": 45,
+      "y": 140
+    }
+  ],
+  "props": [
+    {
+      "default": "Color",
+      "name": "label",
+      "type": "string"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

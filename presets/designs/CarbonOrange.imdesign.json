@@ -1,0 +1,266 @@
+{
+  "credit": "",
+  "description": "Carbon black with safety orange, like a race car dash. Square tabs with a thick orange underline, condensed headings and quick, punchy motion.",
+  "fonts": [
+    {
+      "family": "Barlow",
+      "role": "ui",
+      "size": 15
+    },
+    {
+      "family": "Saira Condensed",
+      "role": "heading",
+      "size": 20,
+      "weight": "Bold"
+    }
+  ],
+  "fx": {
+    "accentGlow": 0.4,
+    "windowBlur": 0,
+    "windowShadow": 0.4
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "SpotlightHover",
+    "button.press": "Squish",
+    "list": {
+      "preset": "StaggerSlideRight",
+      "stagger": 0.03
+    },
+    "window": "LightSpeedInRight",
+    "window.exit": "LightSpeedOutRight"
+  },
+  "name": "CarbonOrange",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Button": "#ff8a1fff",
+        "ButtonActive": "#e0791bff",
+        "ButtonHovered": "#ff9e2fff",
+        "Text": "#0f1012ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#2b2f35ff",
+        "ChildBg": "#16181bff"
+      },
+      "vars": {
+        "ChildBorderSize": 1,
+        "ChildRounding": 2,
+        "WindowPadding": {
+          "x": 10,
+          "y": 8
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#ff4d4d8c",
+        "Button": "#ff4d4d38",
+        "ButtonActive": "#ff4d4d75",
+        "ButtonHovered": "#ff4d4d57",
+        "CheckMark": "#ff4d4dff",
+        "SliderGrab": "#ff4d4dff",
+        "SliderGrabActive": "#ff4d4dff",
+        "Text": "#ff9f9fff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#ff8a1f8c",
+        "Button": "#00000000",
+        "ButtonActive": "#ff8a1f3d",
+        "ButtonHovered": "#ff8a1f24",
+        "Text": "#ff8a1fff"
+      },
+      "vars": {
+        "FrameBorderSize": 1
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#ff8a1fff",
+        "Text": "#ff8a1fff"
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#8c9299ff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#45d4838c",
+        "Button": "#45d48329",
+        "ButtonActive": "#45d4835c",
+        "ButtonHovered": "#45d48342",
+        "CheckMark": "#45d483ff",
+        "SliderGrab": "#45d483ff",
+        "SliderGrabActive": "#45d483ff",
+        "Text": "#54d78dff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#ffc24d8c",
+        "Button": "#ffc24d29",
+        "ButtonActive": "#ffc24d5c",
+        "ButtonHovered": "#ffc24d42",
+        "CheckMark": "#ffc24dff",
+        "SliderGrab": "#ffc24dff",
+        "SliderGrabActive": "#ffc24dff",
+        "Text": "#ffc24dff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "orange",
+    "industrial",
+    "gaming"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#2b2f35ff",
+      "BorderShadow": "#00000000",
+      "Button": "#1f2226ff",
+      "ButtonActive": "#69492cff",
+      "ButtonHovered": "#292d32ff",
+      "CheckMark": "#ff8a1fff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#0a0b0dff",
+      "DockingPreview": "#ff8a1fb2",
+      "DragDropTarget": "#ffc24de6",
+      "FrameBg": "#1f2226ff",
+      "FrameBgActive": "#493b2fff",
+      "FrameBgHovered": "#292d32ff",
+      "Header": "#ff8a1f29",
+      "HeaderActive": "#ff8a1f5c",
+      "HeaderHovered": "#ff8a1f42",
+      "InputTextCursor": "#ff8a1fff",
+      "MenuBarBg": "#16181bff",
+      "ModalWindowDimBg": "#0a0b0d99",
+      "NavCursor": "#ff8a1fff",
+      "NavWindowingDimBg": "#0a0b0d33",
+      "NavWindowingHighlight": "#eef0f2b2",
+      "PlotHistogram": "#ff8a1fff",
+      "PlotHistogramHovered": "#ffc24dff",
+      "PlotLines": "#ffc24dff",
+      "PlotLinesHovered": "#ff8a1fff",
+      "PopupBg": "#16181bfa",
+      "ResizeGrip": "#ff8a1f2e",
+      "ResizeGripActive": "#ff8a1fe6",
+      "ResizeGripHovered": "#ff8a1f8c",
+      "ScrollbarBg": "#00000000",
+      "ScrollbarGrab": "#2b2f35ff",
+      "ScrollbarGrabActive": "#ff8a1fff",
+      "ScrollbarGrabHovered": "#3a3f46ff",
+      "Separator": "#2b2f35ff",
+      "SeparatorActive": "#ff8a1fff",
+      "SeparatorHovered": "#ff8a1fb2",
+      "SliderGrab": "#ff8a1fff",
+      "SliderGrabActive": "#ffc24dff",
+      "Tab": "#16181bff",
+      "TabDimmed": "#121416ff",
+      "TabDimmedSelected": "#181a1dff",
+      "TabDimmedSelectedOverline": "#ff8a1f80",
+      "TabHovered": "#292d32ff",
+      "TabSelected": "#1f2226ff",
+      "TabSelectedOverline": "#ff8a1fff",
+      "TableBorderLight": "#1e2125ff",
+      "TableBorderStrong": "#2b2f35ff",
+      "TableHeaderBg": "#16181bff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#ffffff08",
+      "Text": "#eef0f2ff",
+      "TextDisabled": "#696f76ff",
+      "TextLink": "#ffc24dff",
+      "TextSelectedBg": "#ff8a1f4c",
+      "TitleBg": "#0a0b0dff",
+      "TitleBgActive": "#16181bff",
+      "TitleBgCollapsed": "#0a0b0dcc",
+      "WindowBg": "#0f1012ff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 4,
+        "y": 2
+      },
+      "ChildBorderSize": 1,
+      "ChildRounding": 4,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 1,
+      "FramePadding": {
+        "x": 6,
+        "y": 3
+      },
+      "FrameRounding": 2,
+      "GrabMinSize": 10,
+      "GrabRounding": 2,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 16,
+      "ItemInnerSpacing": {
+        "x": 4,
+        "y": 4
+      },
+      "ItemSpacing": {
+        "x": 6,
+        "y": 4
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 4,
+      "ScrollbarRounding": 0,
+      "ScrollbarSize": 10,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 2,
+      "SeparatorTextPadding": {
+        "x": 16,
+        "y": 3
+      },
+      "TabBarBorderSize": 2,
+      "TabBarOverlineSize": 3,
+      "TabBorderSize": 0,
+      "TabRounding": 0,
+      "WindowBorderSize": 1,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 64
+      },
+      "WindowPadding": {
+        "x": 8,
+        "y": 8
+      },
+      "WindowRounding": 4,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Carbon Orange",
+  "widgetStyle": {
+    "accent": "#ff8a1fff",
+    "accent2": "#ffc24dff",
+    "danger": "#ff4d4dff",
+    "success": "#45d483ff",
+    "warning": "#ffc24dff"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "bindings": [],
+  "call": "imb::disp::RadialGauge({label}, (float)({value}), {min}, {max}, {warnFrom}, {dangerFrom}, {radius}, {format})",
+  "category": "Display",
+  "container": false,
+  "events": [],
+  "icon": "fa-gauge-high",
+  "include": "imb_display.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "RadialGauge",
+  "preview": [
+    {
+      "fill": "#00000000",
+      "r": 46,
+      "shape": "circle",
+      "stroke": "#2a2f3aff",
+      "thickness": 6,
+      "x": 52,
+      "y": 52
+    },
+    {
+      "shape": "line",
+      "stroke": "#4f8cffff",
+      "thickness": 6,
+      "x": 14,
+      "x2": 30,
+      "y": 78,
+      "y2": 14
+    },
+    {
+      "shape": "line",
+      "stroke": "#4f8cffff",
+      "thickness": 6,
+      "x": 30,
+      "x2": 70,
+      "y": 14,
+      "y2": 10
+    },
+    {
+      "shape": "line",
+      "stroke": "#e6e6e6ff",
+      "thickness": 3,
+      "x": 52,
+      "x2": 78,
+      "y": 52,
+      "y2": 30
+    },
+    {
+      "fill": "#e6e6e6ff",
+      "r": 5,
+      "shape": "circle",
+      "x": 52,
+      "y": 52
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "62",
+      "x": 45,
+      "y": 66
+    },
+    {
+      "color": "#8a91a0ff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 36,
+      "y": 84
+    }
+  ],
+  "props": [
+    {
+      "default": "Speed",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": "62",
+      "hint": "number or expression",
+      "name": "value",
+      "type": "expr"
+    },
+    {
+      "default": 0,
+      "name": "min",
+      "type": "float"
+    },
+    {
+      "default": 100,
+      "name": "max",
+      "type": "float"
+    },
+    {
+      "default": 70,
+      "hint": "yellow zone starts here, >= max turns zones off",
+      "name": "warnFrom",
+      "type": "float"
+    },
+    {
+      "default": 90,
+      "hint": "red zone starts here",
+      "name": "dangerFrom",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "hint": "0 scales with the font",
+      "max": 512,
+      "min": 0,
+      "name": "radius",
+      "type": "float"
+    },
+    {
+      "default": "%.0f",
+      "name": "format",
+      "type": "string"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

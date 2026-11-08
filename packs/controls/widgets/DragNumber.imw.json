@@ -1,0 +1,111 @@
+{
+  "bindings": [
+    {
+      "name": "value",
+      "required": true,
+      "types": [
+        "float"
+      ]
+    },
+    {
+      "name": "unit",
+      "required": false,
+      "types": [
+        "int"
+      ]
+    }
+  ],
+  "call": "imb::ctl::DragNumber({label}, {value}, {units:array}, {units:count}, {unit}, {speed}, {min}, {max}, {format})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-arrows-left-right",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "DragNumber",
+  "preview": [
+    {
+      "fill": "#262d3aff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 120,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "12.50",
+      "x": 44,
+      "y": 4
+    },
+    {
+      "fill": "#262d3aff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 34,
+      "x": 126,
+      "y": 0
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "m",
+      "x": 132,
+      "y": 4
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 168,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "Distance",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": 0.1,
+      "hint": "per pixel, in the first unit",
+      "name": "speed",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "name": "min",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "hint": "min = max means no limit",
+      "name": "max",
+      "type": "float"
+    },
+    {
+      "default": "%.2f",
+      "name": "format",
+      "type": "string"
+    },
+    {
+      "default": [
+        "m",
+        "cm:0.01",
+        "km:1000"
+      ],
+      "hint": "name, name:scale or name:scale:speed",
+      "name": "units",
+      "type": "stringList"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

@@ -277,6 +277,7 @@ void EmitNodeBody(EmitCtx& ctx, const Node& n) {
         }
     }
     std::string visible = n.visible_if.empty() ? std::string("true") : ctx.Expr(n.visible_if);
+    std::string enter_call, vis = visible;
     if (src) {
         const std::string& in_name = src->enter_preset.empty() ? src->exit_preset : src->enter_preset;
         const std::string& out_name = src->exit_preset.empty() ? src->enter_preset : src->exit_preset;
@@ -286,7 +287,7 @@ void EmitNodeBody(EmitCtx& ctx, const Node& n) {
         if (!TryPresetFromName(out_name.c_str(), &out))
             ctx.Diag(Diagnostic::Level::Warning, &n, "anim", "unknown exit preset '" + out_name + "'");
         ctx.uses_runtime = true;
-        std::string vis = visible, preset = std::string("imb::Preset::") + PresetName(in), dur = FloatLitOf(src->enter_duration);
+        std::string preset = std::string("imb::Preset::") + PresetName(in), dur = FloatLitOf(src->enter_duration);
         if (!n.visible_if.empty()) {
             vis = ctx.Local(n, "visible");
             w.Line("const bool " + vis + " = " + visible + ";");
@@ -294,7 +295,27 @@ void EmitNodeBody(EmitCtx& ctx, const Node& n) {
             if (src->exit_duration != src->enter_duration) dur = vis + " ? " + FloatLitOf(src->enter_duration) + " : " + FloatLitOf(src->exit_duration);
         }
         std::string extra = delay > 0 ? ", " + FloatLitOf(delay) : std::string();
-        w.Line("if (imb::BeginEnter(ImGui::GetID(" + ctx.Id(n) + "), " + vis + ", " + dur + ", " + preset + extra + ")) {");
+        enter_call = "imb::BeginEnter(ImGui::GetID(" + ctx.Id(n) + "), " + vis + ", " + dur + ", " + preset + extra + ")";
+    }
+    // motions wrap everything else (also the legacy enter), so an exit motion keeps drawing the node
+    // after its visibleIf went false
+    const MotionMode motion = DeclareMotion(ctx, n, n.visible_if.empty() ? std::string() : vis);
+    if (motion == MotionMode::Outer && src) {
+        std::string m = ctx.Local(n, "motion"), e = ctx.Local(n, "entered");
+        w.Line("const bool " + m + " = " + MotionBeginCall(ctx, n) + ";");
+        w.Line("const bool " + e + " = " + enter_call + ";");
+        w.Line("if (" + m + " || " + e + ") {");
+        w.Indent();
+        ++close_braces;
+        d.after.push_back("if (" + m + ") imb::EndMotion();");
+        d.after.push_back("if (" + e + ") imb::EndEnter();");
+    } else if (motion == MotionMode::Outer) {
+        w.Line("if (" + MotionBeginCall(ctx, n) + ") {");
+        w.Indent();
+        d.after.push_back("imb::EndMotion();");
+        ++close_braces;
+    } else if (src) {
+        w.Line("if (" + enter_call + ") {");
         w.Indent();
         d.after.push_back("imb::EndEnter();");
         ++close_braces;
@@ -326,7 +347,7 @@ void EmitNodeBody(EmitCtx& ctx, const Node& n) {
             ctx.Diag(Diagnostic::Level::Warning, &n, "font", "unknown font '" + n.font + "' ignored");
         } else {
             ctx.Include("\"imforge_fonts.h\"");
-            std::string font = "Font_" + SanitizeIdentifier(n.font);
+            std::string font = "Font_" + SanitizeIdentifier(n.font) + "()";
             w.Line(PushFontLine(font));
             d.after.push_back("ImGui::PopFont();");
         }
@@ -364,12 +385,20 @@ void EmitNodeBody(EmitCtx& ctx, const Node& n) {
             --close_braces;
             continue;
         }
+        if (l == "imb::EndMotion();") {
+            w.Line(l);
+            w.Unindent();
+            w.Line("}");
+            --close_braces;
+            continue;
+        }
         w.Line(l);
     }
     while (close_braces-- > 0) {
         w.Unindent();
         w.Line("}");
     }
+    ForgetMotion(ctx, n);
 }
 
 void EmitWindowFx(EmitCtx& ctx, const Node& n) {
@@ -409,11 +438,13 @@ void EmitNode(EmitCtx& ctx, const Node& n) {
 void EmitChildren(EmitCtx& ctx, const Node& n) {
     const Node* saved = ctx.parent;
     ctx.parent = &n;
+    const bool motion = OpenContentMotion(ctx, n);
     for (size_t i = 0; i < n.children.size(); ++i) {
         ChildPrefix(ctx, n, n.children[i], i);
         EmitNode(ctx, n.children[i]);
         ChildSuffix(ctx, n, n.children[i], i);
     }
+    if (motion) CloseContentMotion(ctx);
     ctx.parent = saved;
 }
 

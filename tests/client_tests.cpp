@@ -6,6 +6,7 @@
 #endif
 #define IMFORGE_BACKEND_NAME "headless"
 #include "imforge/imforge_client.h"
+#include "font_test_util.h"
 #include "imgui_headless.h"
 #include "live_test_builder.h"
 
@@ -132,6 +133,7 @@ struct App {
         io.MousePos = mouse;
         io.MouseDown[0] = down;
 #endif
+        live::PreNewFrame();
         ui.BeginFrame();
         live::NewFrame();
         if (live::DebugPanelCount() > 0) ImGui::SetNextWindowPos(ImVec2(20.0f, 20.0f), ImGuiCond_Always);
@@ -388,4 +390,183 @@ TEST_CASE("live attach end-to-end over tcp loopback") {
 
     live::Disconnect();
     builder.t->Close();
+}
+
+namespace {
+
+const char* kWiggleJson = R"({"name":"ClientWiggle","category":"attention","duration":0.5,
+  "tracks":{"rotate":[{"t":0,"v":0},{"t":0.5,"v":6},{"t":1,"v":0}]}})";
+
+const char* kMotionPanelJson = R"({
+  "schemaVersion": 1, "kind": "panel", "name": "MainMenu",
+  "params": [{"name": "player", "type": "Player"}, {"name": "cfg", "type": "Settings"}],
+  "root": {"id": "window", "type": "Window", "props": {"title": "Main Menu", "initialSize": {"x": 400, "y": 300}},
+           "children": [
+             {"id": "txt_hp", "type": "Text", "props": {"text": "HP"},
+              "anim": {"motions": [{"custom": "ClientWiggle", "trigger": "loop"}]}}
+           ]}
+})";
+
+bool Logged(const char* needle) {
+    for (const auto& e : g_log)
+        if (e.second.find(needle) != std::string::npos) return true;
+    return false;
+}
+
+}  // namespace
+
+TEST_CASE("animations message registers custom animations over the paired link") {
+    App app;
+    Builder builder;
+    REQUIRE(builder.Listen());
+    live::SetLogCallback(&LogSink);
+    g_log.clear();
+    REQUIRE(live::Connect(builder.Url().c_str()));
+    REQUIRE(PumpUntil(builder, app, [&] { return live::IsConnected() && builder.pair.Established(); }));
+    REQUIRE(PumpUntil(builder, app, [&] { return builder.First(msg::kClientInfo) != nullptr; }));
+
+    CHECK(imb::FindAnim("ClientWiggle") == nullptr);
+    builder.Send(MsgProject(ParseOrFail(kProjectJson)));
+    builder.Send(MsgAnimations({ParseOrFail(kWiggleJson)}));
+    builder.Send(MsgPanel(ParseOrFail(kMotionPanelJson)));
+    REQUIRE(Sync(builder, app));
+    PumpFrames(builder, app, 3);
+    const imb::AnimDef* def = imb::FindAnim("ClientWiggle");
+    REQUIRE(def != nullptr);
+    CHECK(def->duration == doctest::Approx(0.5f));
+    CHECK(Logged("1 custom animations registered"));
+    CHECK_FALSE(Logged("unknown custom animation"));
+    ImVec2 mn, mx;
+    CHECK(live::DebugItemRect("MainMenu", "txt_hp", &mn, &mx));
+
+    {
+        INFO("a new project message keeps the animations, a newer definition replaces the old one");
+        builder.Send(MsgProject(ParseOrFail(kProjectJson)));
+        REQUIRE(Sync(builder, app));
+        PumpFrames(builder, app, 2);
+        CHECK_FALSE(Logged("unknown custom animation"));
+        Json slower = ParseOrFail(kWiggleJson);
+        slower.Set("duration", 2.0);
+        builder.Send(MsgAnimations({slower}));
+        REQUIRE(Sync(builder, app));
+        def = imb::FindAnim("ClientWiggle");
+        REQUIRE(def != nullptr);
+        CHECK(def->duration == doctest::Approx(2.0f));
+    }
+
+    {
+        INFO("caps: more than 2048 entries refuse the message, an oversized track drops that entry");
+        std::vector<Json> many(kProtocolMaxAnimations + 1, ParseOrFail(kWiggleJson));
+        builder.Send(MsgAnimations(many));
+        REQUIRE(Sync(builder, app));
+        CHECK(Logged("animations message refused"));
+        CHECK(imb::FindAnim("ClientWiggle")->duration == doctest::Approx(2.0f));
+
+        Json keys = Json::Array();
+        for (size_t i = 0; i <= kProtocolMaxAnimKeys; ++i) {
+            Json k = Json::Object();
+            k.Set("t", (double)i / (double)kProtocolMaxAnimKeys);
+            k.Set("v", 0);
+            keys.Push(k);
+        }
+        Json tracks = Json::Object();
+        tracks.Set("rotate", keys);
+        Json big = ParseOrFail(kWiggleJson);
+        big.Set("name", "TooManyKeys");
+        big.Set("tracks", tracks);
+        Json bad = ParseOrFail(kWiggleJson);
+        bad.Set("name", "NotValid");
+        bad.Set("duration", -1);
+        builder.Send(MsgAnimations({big, bad}));
+        REQUIRE(Sync(builder, app));
+        CHECK(Logged("1 animations dropped"));
+        CHECK(Logged("bad animation"));
+        CHECK(imb::FindAnim("TooManyKeys") == nullptr);
+        CHECK(imb::FindAnim("NotValid") == nullptr);
+    }
+
+    {
+        INFO("an unsealed animations frame on the paired link is a security drop, nothing registered");
+        Json evil = ParseOrFail(kWiggleJson);
+        evil.Set("name", "Unsealed");
+        builder.SendPlain(MsgAnimations({evil}));
+        REQUIRE(PumpUntil(builder, app, [&] { return !live::IsPaired(); }, 3000));
+        PumpFrames(builder, app, 2);
+        CHECK(imb::FindAnim("Unsealed") == nullptr);
+        CHECK(std::string(live::LastError()).compare(0, 9, "security:") == 0);
+    }
+
+    live::Disconnect();
+    builder.t->Close();
+}
+
+namespace {
+int g_tex_rebuilds = 0;
+void RebuildFontTexture() {
+    ++g_tex_rebuilds;
+    unsigned char* px = nullptr;
+    int w = 0, h = 0;
+    ImGui::GetIO().Fonts->GetTexDataAsRGBA32(&px, &w, &h);
+}
+}  // namespace
+
+TEST_CASE("project fonts reach the app over the paired link and are not sent again after a reconnect") {
+    namespace cd = live::client_detail;
+    App app;
+    Builder builder;
+    REQUIRE(builder.Listen());
+    live::SetLogCallback(&LogSink);
+    g_log.clear();
+    g_tex_rebuilds = 0;
+    cd::Get().font_state = cd::FontState();
+    live::SetFontTextureRebuild(&RebuildFontTexture);
+    REQUIRE(live::Connect(builder.Url().c_str()));
+    REQUIRE(PumpUntil(builder, app, [&] { return live::IsConnected() && builder.pair.Established(); }));
+    REQUIRE(PumpUntil(builder, app, [&] { return builder.First(msg::kClientInfo) != nullptr; }));
+    CHECK_FALSE((*builder.First(msg::kClientInfo))["fonts"].IsArray());
+
+    std::vector<unsigned char> font = test::MakeTinyFont().bytes;
+    font.resize(kProtocolFontChunk + 5000, 0);
+    std::string hash = cd::FontHash(font.data(), font.size());
+    for (size_t off = 0; off < font.size(); off += kProtocolFontChunk) {
+        size_t n = font.size() - off < kProtocolFontChunk ? font.size() - off : kProtocolFontChunk;
+        REQUIRE(builder.Send(MsgFontData(hash, font.size(), off, font.data() + off, n)));
+    }
+    FontSpecMsg spec;
+    spec.name = "Default";
+    spec.size = 24.0f;
+    spec.ranges = "default";
+    spec.file = hash;
+    builder.Send(MsgFonts({spec}));
+    builder.Send(MsgProject(ParseOrFail(kProjectJson)));
+    builder.Send(MsgPanel(ParseOrFail(kPanelJson)));
+    REQUIRE(Sync(builder, app));
+    PumpFrames(builder, app, 3);
+    CHECK(g_tex_rebuilds == 1);
+    ImFont* f = cd::Get().interp.hooks.font("Default");
+    REQUIRE(f != nullptr);
+    CHECK(cd::FontInAtlas(f));
+    ImVec2 mn, mx;
+    REQUIRE(live::DebugItemRect("MainMenu", "txt_hp", &mn, &mx));
+    CHECK(mx.y - mn.y >= 23.0f);
+    CHECK(Logged("loaded 1 project font"));
+
+    size_t infos = builder.Count(msg::kClientInfo);
+    builder.Drop();
+    REQUIRE(PumpUntil(builder, app, [&] { return builder.Count(msg::kClientInfo) > infos; }, 8000));
+    const Json& again = (*builder.Last(msg::kClientInfo))["fonts"];
+    REQUIRE(again.IsArray());
+    REQUIRE(again.Size() == 1);
+    CHECK(again[0].AsString() == hash);
+    builder.Send(MsgFonts({spec}));
+    REQUIRE(Sync(builder, app));
+    PumpFrames(builder, app, 2);
+    CHECK(g_tex_rebuilds == 1);
+    CHECK(cd::Get().interp.hooks.font("Default") == f);
+
+    live::Disconnect();
+    builder.t->Close();
+    live::SetFontTextureRebuild(nullptr);
+    live::SetLogCallback(nullptr);
+    cd::Get().font_state = cd::FontState();
 }

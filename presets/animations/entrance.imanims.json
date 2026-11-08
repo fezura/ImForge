@@ -1,0 +1,3195 @@
+{
+  "animations": [
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades in from fully transparent.",
+      "direction": "normal",
+      "duration": 0.4,
+      "ease": "OutQuad",
+      "fill": "both",
+      "iterations": 1,
+      "name": "FadeIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "subtle"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades in while rising into place.",
+      "direction": "normal",
+      "duration": 0.45,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "FadeInUp",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "slide",
+        "subtle"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.7,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 24
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades in while dropping into place.",
+      "direction": "normal",
+      "duration": 0.45,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "FadeInDown",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "slide",
+        "subtle"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.7,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": -24
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades in while sliding over from the left.",
+      "direction": "normal",
+      "duration": 0.45,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "FadeInLeft",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "slide",
+        "subtle"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.7,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": -24
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades in while sliding over from the right.",
+      "direction": "normal",
+      "duration": 0.45,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "FadeInRight",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "slide",
+        "subtle"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.7,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 24
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades in on a long rise from well below.",
+      "direction": "normal",
+      "duration": 0.6,
+      "ease": "OutQuart",
+      "fill": "both",
+      "iterations": 1,
+      "name": "FadeInUpBig",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "slide",
+        "big"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 120
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades in on a long drop from well above.",
+      "direction": "normal",
+      "duration": 0.6,
+      "ease": "OutQuart",
+      "fill": "both",
+      "iterations": 1,
+      "name": "FadeInDownBig",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "slide",
+        "big"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": -120
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades in on a long slide from far left.",
+      "direction": "normal",
+      "duration": 0.6,
+      "ease": "OutQuart",
+      "fill": "both",
+      "iterations": 1,
+      "name": "FadeInLeftBig",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "slide",
+        "big"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": -120
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades in on a long slide from far right.",
+      "direction": "normal",
+      "duration": 0.6,
+      "ease": "OutQuart",
+      "fill": "both",
+      "iterations": 1,
+      "name": "FadeInRightBig",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "slide",
+        "big"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 120
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades in diagonally from the top left.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "FadeInTopLeft",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "diagonal",
+        "slide"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.7,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": -24
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": -24
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades in diagonally from the top right.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "FadeInTopRight",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "diagonal",
+        "slide"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.7,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 24
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": -24
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades in diagonally from the bottom left.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "FadeInBottomLeft",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "diagonal",
+        "slide"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.7,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": -24
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 24
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Fades in diagonally from the bottom right.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "FadeInBottomRight",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "diagonal",
+        "slide"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.7,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 24
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 24
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Grows from a small size while fading in.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "ZoomIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "zoom",
+        "scale",
+        "fade"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.5,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 0.3
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Zooms up from below and overshoots a touch.",
+      "direction": "normal",
+      "duration": 0.7,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "ZoomInUp",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "zoom",
+        "slide",
+        "fade"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "ease": "OutQuad",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "ease": "cubic-bezier(0.55,0.055,0.675,0.19)",
+            "t": 0,
+            "v": 0.1
+          },
+          {
+            "ease": "cubic-bezier(0.175,0.885,0.32,1)",
+            "t": 0.6,
+            "v": 0.475
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateY": [
+          {
+            "ease": "cubic-bezier(0.55,0.055,0.675,0.19)",
+            "t": 0,
+            "v": 120
+          },
+          {
+            "ease": "cubic-bezier(0.175,0.885,0.32,1)",
+            "t": 0.6,
+            "v": -12
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Zooms down from above and overshoots a touch.",
+      "direction": "normal",
+      "duration": 0.7,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "ZoomInDown",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "zoom",
+        "slide",
+        "fade"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "ease": "OutQuad",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "ease": "cubic-bezier(0.55,0.055,0.675,0.19)",
+            "t": 0,
+            "v": 0.1
+          },
+          {
+            "ease": "cubic-bezier(0.175,0.885,0.32,1)",
+            "t": 0.6,
+            "v": 0.475
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateY": [
+          {
+            "ease": "cubic-bezier(0.55,0.055,0.675,0.19)",
+            "t": 0,
+            "v": -120
+          },
+          {
+            "ease": "cubic-bezier(0.175,0.885,0.32,1)",
+            "t": 0.6,
+            "v": 12
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Zooms in from the left and overshoots a touch.",
+      "direction": "normal",
+      "duration": 0.7,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "ZoomInLeft",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "zoom",
+        "slide",
+        "fade"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "ease": "OutQuad",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "ease": "cubic-bezier(0.55,0.055,0.675,0.19)",
+            "t": 0,
+            "v": 0.1
+          },
+          {
+            "ease": "cubic-bezier(0.175,0.885,0.32,1)",
+            "t": 0.6,
+            "v": 0.475
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateX": [
+          {
+            "ease": "cubic-bezier(0.55,0.055,0.675,0.19)",
+            "t": 0,
+            "v": -120
+          },
+          {
+            "ease": "cubic-bezier(0.175,0.885,0.32,1)",
+            "t": 0.6,
+            "v": 8
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Zooms in from the right and overshoots a touch.",
+      "direction": "normal",
+      "duration": 0.7,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "ZoomInRight",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "zoom",
+        "slide",
+        "fade"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "ease": "OutQuad",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "ease": "cubic-bezier(0.55,0.055,0.675,0.19)",
+            "t": 0,
+            "v": 0.1
+          },
+          {
+            "ease": "cubic-bezier(0.175,0.885,0.32,1)",
+            "t": 0.6,
+            "v": 0.475
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateX": [
+          {
+            "ease": "cubic-bezier(0.55,0.055,0.675,0.19)",
+            "t": 0,
+            "v": 120
+          },
+          {
+            "ease": "cubic-bezier(0.175,0.885,0.32,1)",
+            "t": 0.6,
+            "v": -8
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "",
+      "delay": 0,
+      "description": "A gentle zoom from just under full size.",
+      "direction": "normal",
+      "duration": 0.35,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "ZoomInSoft",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "zoom",
+        "subtle",
+        "fade"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 0.92
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Pops in with a springy overshoot.",
+      "direction": "normal",
+      "duration": 0.75,
+      "ease": "cubic-bezier(0.215,0.61,0.355,1)",
+      "fill": "both",
+      "iterations": 1,
+      "name": "BounceIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "bounce",
+        "playful",
+        "scale"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 0.3
+          },
+          {
+            "t": 0.2,
+            "v": 1.1
+          },
+          {
+            "t": 0.4,
+            "v": 0.9
+          },
+          {
+            "t": 0.6,
+            "v": 1.03
+          },
+          {
+            "t": 0.8,
+            "v": 0.97
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Bounces up from below and settles.",
+      "direction": "normal",
+      "duration": 0.8,
+      "ease": "cubic-bezier(0.215,0.61,0.355,1)",
+      "fill": "both",
+      "iterations": 1,
+      "name": "BounceInUp",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "bounce",
+        "playful",
+        "slide"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scaleY": [
+          {
+            "t": 0,
+            "v": 1.6
+          },
+          {
+            "t": 0.6,
+            "v": 0.9
+          },
+          {
+            "t": 0.75,
+            "v": 0.95
+          },
+          {
+            "t": 0.9,
+            "v": 0.985
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 120
+          },
+          {
+            "t": 0.6,
+            "v": -16
+          },
+          {
+            "t": 0.75,
+            "v": 6
+          },
+          {
+            "t": 0.9,
+            "v": -3
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Bounces down from above and settles.",
+      "direction": "normal",
+      "duration": 0.8,
+      "ease": "cubic-bezier(0.215,0.61,0.355,1)",
+      "fill": "both",
+      "iterations": 1,
+      "name": "BounceInDown",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "bounce",
+        "playful",
+        "slide"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scaleY": [
+          {
+            "t": 0,
+            "v": 1.6
+          },
+          {
+            "t": 0.6,
+            "v": 0.9
+          },
+          {
+            "t": 0.75,
+            "v": 0.95
+          },
+          {
+            "t": 0.9,
+            "v": 0.985
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": -120
+          },
+          {
+            "t": 0.6,
+            "v": 16
+          },
+          {
+            "t": 0.75,
+            "v": -6
+          },
+          {
+            "t": 0.9,
+            "v": 3
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Bounces in from the left and settles.",
+      "direction": "normal",
+      "duration": 0.8,
+      "ease": "cubic-bezier(0.215,0.61,0.355,1)",
+      "fill": "both",
+      "iterations": 1,
+      "name": "BounceInLeft",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "bounce",
+        "playful",
+        "slide"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scaleX": [
+          {
+            "t": 0,
+            "v": 1.6
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 0.75,
+            "v": 0.98
+          },
+          {
+            "t": 0.9,
+            "v": 0.995
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": -120
+          },
+          {
+            "t": 0.6,
+            "v": 16
+          },
+          {
+            "t": 0.75,
+            "v": -6
+          },
+          {
+            "t": 0.9,
+            "v": 3
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Bounces in from the right and settles.",
+      "direction": "normal",
+      "duration": 0.8,
+      "ease": "cubic-bezier(0.215,0.61,0.355,1)",
+      "fill": "both",
+      "iterations": 1,
+      "name": "BounceInRight",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "bounce",
+        "playful",
+        "slide"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scaleX": [
+          {
+            "t": 0,
+            "v": 1.6
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 0.75,
+            "v": 0.98
+          },
+          {
+            "t": 0.9,
+            "v": 0.995
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 120
+          },
+          {
+            "t": 0.6,
+            "v": -16
+          },
+          {
+            "t": 0.75,
+            "v": 6
+          },
+          {
+            "t": 0.9,
+            "v": -3
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Rises at reduced size, then scales up to full.",
+      "direction": "normal",
+      "duration": 0.75,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "BackInUp",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "back",
+        "slide",
+        "scale"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.8,
+            "v": 0.7
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 0.7
+          },
+          {
+            "ease": "OutBack",
+            "t": 0.8,
+            "v": 0.7
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 120
+          },
+          {
+            "t": 0.8,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Drops in at reduced size, then scales up to full.",
+      "direction": "normal",
+      "duration": 0.75,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "BackInDown",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "back",
+        "slide",
+        "scale"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.8,
+            "v": 0.7
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 0.7
+          },
+          {
+            "ease": "OutBack",
+            "t": 0.8,
+            "v": 0.7
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": -120
+          },
+          {
+            "t": 0.8,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Slides in from the left small, then scales up to full.",
+      "direction": "normal",
+      "duration": 0.75,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "BackInLeft",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "back",
+        "slide",
+        "scale"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.8,
+            "v": 0.7
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 0.7
+          },
+          {
+            "ease": "OutBack",
+            "t": 0.8,
+            "v": 0.7
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": -120
+          },
+          {
+            "t": 0.8,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Slides in from the right small, then scales up to full.",
+      "direction": "normal",
+      "duration": 0.75,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "BackInRight",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "back",
+        "slide",
+        "scale"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.8,
+            "v": 0.7
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 0.7
+          },
+          {
+            "ease": "OutBack",
+            "t": 0.8,
+            "v": 0.7
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 120
+          },
+          {
+            "t": 0.8,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Flips in around the horizontal axis.",
+      "direction": "normal",
+      "duration": 0.7,
+      "ease": "InOutSine",
+      "fill": "both",
+      "iterations": 1,
+      "name": "FlipInX",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "flip",
+        "playful"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scaleY": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.4,
+            "v": 1.08
+          },
+          {
+            "t": 0.6,
+            "v": 0.96
+          },
+          {
+            "t": 0.8,
+            "v": 1.02
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "skewX": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 10
+          },
+          {
+            "t": 0.4,
+            "v": -4
+          },
+          {
+            "t": 0.6,
+            "v": 2
+          },
+          {
+            "t": 0.8,
+            "v": -1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Flips in around the vertical axis.",
+      "direction": "normal",
+      "duration": 0.7,
+      "ease": "InOutSine",
+      "fill": "both",
+      "iterations": 1,
+      "name": "FlipInY",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "flip",
+        "playful"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scaleX": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.4,
+            "v": 1.08
+          },
+          {
+            "t": 0.6,
+            "v": 0.96
+          },
+          {
+            "t": 0.8,
+            "v": 1.02
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "skewY": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 10
+          },
+          {
+            "t": 0.4,
+            "v": -4
+          },
+          {
+            "t": 0.6,
+            "v": 2
+          },
+          {
+            "t": 0.8,
+            "v": -1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Spins into place while fading in.",
+      "direction": "normal",
+      "duration": 0.7,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "RotateIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "rotate",
+        "spin",
+        "fade"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "rotate": [
+          {
+            "t": 0,
+            "v": -200
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Swings down into place around its bottom left corner.",
+      "direction": "normal",
+      "duration": 0.6,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "RotateInDownLeft",
+      "origin": {
+        "x": 0,
+        "y": 1
+      },
+      "revealDir": "left",
+      "tags": [
+        "rotate",
+        "pivot",
+        "fade"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "rotate": [
+          {
+            "t": 0,
+            "v": -45
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Swings down into place around its bottom right corner.",
+      "direction": "normal",
+      "duration": 0.6,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "RotateInDownRight",
+      "origin": {
+        "x": 1,
+        "y": 1
+      },
+      "revealDir": "left",
+      "tags": [
+        "rotate",
+        "pivot",
+        "fade"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "rotate": [
+          {
+            "t": 0,
+            "v": 45
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Swings up into place around its bottom left corner.",
+      "direction": "normal",
+      "duration": 0.6,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "RotateInUpLeft",
+      "origin": {
+        "x": 0,
+        "y": 1
+      },
+      "revealDir": "left",
+      "tags": [
+        "rotate",
+        "pivot",
+        "fade"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "rotate": [
+          {
+            "t": 0,
+            "v": 45
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Swings up into place around its bottom right corner.",
+      "direction": "normal",
+      "duration": 0.6,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "RotateInUpRight",
+      "origin": {
+        "x": 1,
+        "y": 1
+      },
+      "revealDir": "left",
+      "tags": [
+        "rotate",
+        "pivot",
+        "fade"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "rotate": [
+          {
+            "t": 0,
+            "v": -90
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Rolls in from the left like a wheel.",
+      "direction": "normal",
+      "duration": 0.7,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "RollIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "rotate",
+        "slide",
+        "playful"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "rotate": [
+          {
+            "t": 0,
+            "v": -120
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": -100
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Streaks in from the left and wobbles straight.",
+      "direction": "normal",
+      "duration": 0.6,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "LightSpeedInLeft",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "skew",
+        "slide",
+        "fast"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "skewX": [
+          {
+            "t": 0,
+            "v": 30
+          },
+          {
+            "ease": "InOutSine",
+            "t": 0.6,
+            "v": -16
+          },
+          {
+            "ease": "InOutSine",
+            "t": 0.8,
+            "v": 5
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": -120
+          },
+          {
+            "t": 0.6,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Streaks in from the right and wobbles straight.",
+      "direction": "normal",
+      "duration": 0.6,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "LightSpeedInRight",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "skew",
+        "slide",
+        "fast"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "skewX": [
+          {
+            "t": 0,
+            "v": -30
+          },
+          {
+            "ease": "InOutSine",
+            "t": 0.6,
+            "v": 16
+          },
+          {
+            "ease": "InOutSine",
+            "t": 0.8,
+            "v": -5
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 120
+          },
+          {
+            "t": 0.6,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Springs up from its bottom edge with a little wobble.",
+      "direction": "normal",
+      "duration": 0.75,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "JackInTheBox",
+      "origin": {
+        "x": 0.5,
+        "y": 1
+      },
+      "revealDir": "left",
+      "tags": [
+        "playful",
+        "rotate",
+        "scale"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.5,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "rotate": [
+          {
+            "ease": "OutQuad",
+            "t": 0,
+            "v": 30
+          },
+          {
+            "ease": "InOutSine",
+            "t": 0.5,
+            "v": -10
+          },
+          {
+            "ease": "InOutSine",
+            "t": 0.7,
+            "v": 3
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 0.1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "",
+      "delay": 0,
+      "description": "Comes into focus out of a soft glow.",
+      "direction": "normal",
+      "duration": 0.45,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "BlurIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "glow",
+        "soft"
+      ],
+      "tracks": {
+        "glow": [
+          {
+            "t": 0,
+            "v": 0.6
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 1.06
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "",
+      "delay": 0,
+      "description": "Wipes in starting at the left edge.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "OutQuart",
+      "fill": "both",
+      "iterations": 1,
+      "name": "ClipRevealLeft",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "reveal",
+        "wipe",
+        "clip"
+      ],
+      "tracks": {
+        "reveal": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "",
+      "delay": 0,
+      "description": "Wipes in starting at the right edge.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "OutQuart",
+      "fill": "both",
+      "iterations": 1,
+      "name": "ClipRevealRight",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "right",
+      "tags": [
+        "reveal",
+        "wipe",
+        "clip"
+      ],
+      "tracks": {
+        "reveal": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "",
+      "delay": 0,
+      "description": "Wipes in starting at the top edge.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "OutQuart",
+      "fill": "both",
+      "iterations": 1,
+      "name": "ClipRevealUp",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "up",
+      "tags": [
+        "reveal",
+        "wipe",
+        "clip"
+      ],
+      "tracks": {
+        "reveal": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "",
+      "delay": 0,
+      "description": "Wipes in starting at the bottom edge.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "OutQuart",
+      "fill": "both",
+      "iterations": 1,
+      "name": "ClipRevealDown",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "down",
+      "tags": [
+        "reveal",
+        "wipe",
+        "clip"
+      ],
+      "tracks": {
+        "reveal": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "",
+      "delay": 0,
+      "description": "Opens out from the middle with a clip wipe.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "OutQuart",
+      "fill": "both",
+      "iterations": 1,
+      "name": "ClipRevealCenter",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "center",
+      "tags": [
+        "reveal",
+        "wipe",
+        "clip"
+      ],
+      "tracks": {
+        "reveal": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Slides up into place with no fade.",
+      "direction": "normal",
+      "duration": 0.45,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "SlideInUp",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "slide",
+        "simple"
+      ],
+      "tracks": {
+        "translateY": [
+          {
+            "t": 0,
+            "v": 40
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Slides down into place with no fade.",
+      "direction": "normal",
+      "duration": 0.45,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "SlideInDown",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "slide",
+        "simple"
+      ],
+      "tracks": {
+        "translateY": [
+          {
+            "t": 0,
+            "v": -40
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Slides in from the left with no fade.",
+      "direction": "normal",
+      "duration": 0.45,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "SlideInLeft",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "slide",
+        "simple"
+      ],
+      "tracks": {
+        "translateX": [
+          {
+            "t": 0,
+            "v": -40
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Slides in from the right with no fade.",
+      "direction": "normal",
+      "duration": 0.45,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "SlideInRight",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "slide",
+        "simple"
+      ],
+      "tracks": {
+        "translateX": [
+          {
+            "t": 0,
+            "v": 40
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "",
+      "delay": 0,
+      "description": "Pops in on a quick spring.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "PopIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "spring",
+        "scale",
+        "playful"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.4,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "ease": "spring(320,20)",
+            "t": 0,
+            "v": 0.6
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "",
+      "delay": 0,
+      "description": "Drops in from above and bounces to rest.",
+      "direction": "normal",
+      "duration": 0.7,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "DropIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "spring",
+        "bounce",
+        "drop"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.3,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateY": [
+          {
+            "ease": "spring(240,12)",
+            "t": 0,
+            "v": -40
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "",
+      "delay": 0,
+      "description": "Swings in from its top edge like a hanging sign.",
+      "direction": "normal",
+      "duration": 0.8,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "SwingIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0
+      },
+      "revealDir": "left",
+      "tags": [
+        "swing",
+        "rotate",
+        "playful"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.3,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "rotate": [
+          {
+            "ease": "OutQuad",
+            "t": 0,
+            "v": 20
+          },
+          {
+            "ease": "InOutSine",
+            "t": 0.35,
+            "v": -10
+          },
+          {
+            "ease": "InOutSine",
+            "t": 0.6,
+            "v": 5
+          },
+          {
+            "ease": "InOutSine",
+            "t": 0.8,
+            "v": -2
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "",
+      "delay": 0,
+      "description": "Rises in with a slight tilt that straightens out.",
+      "direction": "normal",
+      "duration": 0.55,
+      "ease": "OutQuart",
+      "fill": "both",
+      "iterations": 1,
+      "name": "TiltIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "tilt",
+        "rotate",
+        "slide"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "rotate": [
+          {
+            "t": 0,
+            "v": -8
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 20
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "",
+      "delay": 0,
+      "description": "Fades in lit up, then the glow dies down.",
+      "direction": "normal",
+      "duration": 0.7,
+      "ease": "OutQuad",
+      "fill": "both",
+      "iterations": 1,
+      "name": "GlowIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "glow",
+        "fade",
+        "highlight"
+      ],
+      "tracks": {
+        "glow": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.25,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "opacity": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.35,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "",
+      "delay": 0,
+      "description": "Scales up from half size around the center.",
+      "direction": "normal",
+      "duration": 0.4,
+      "ease": "OutSine",
+      "fill": "both",
+      "iterations": 1,
+      "name": "ScaleUpCenter",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "simple"
+      ],
+      "tracks": {
+        "scale": [
+          {
+            "t": 0,
+            "v": 0.5
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "",
+      "delay": 0,
+      "description": "Shrinks down from double size while fading in.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "PuffIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "fade",
+        "dramatic"
+      ],
+      "tracks": {
+        "glow": [
+          {
+            "t": 0,
+            "v": 0.4
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 2
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "entrance",
+      "credit": "",
+      "delay": 0,
+      "description": "Opens as a thin line that grows tall, then wide.",
+      "direction": "normal",
+      "duration": 0.7,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "Unfold",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "unfold",
+        "dialog"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.15,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scaleX": [
+          {
+            "t": 0,
+            "v": 0.04
+          },
+          {
+            "ease": "InOutCubic",
+            "t": 0.45,
+            "v": 0.04
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scaleY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.45,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    }
+  ],
+  "category": "entrance",
+  "kind": "animationSet",
+  "schemaVersion": 1
+}

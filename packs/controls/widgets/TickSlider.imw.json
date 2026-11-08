@@ -1,0 +1,116 @@
+{
+  "bindings": [
+    {
+      "name": "value",
+      "required": true,
+      "types": [
+        "float"
+      ]
+    }
+  ],
+  "call": "imb::ctl::TickSlider({label}, {value}, {min}, {max}, {ticks}, {format})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-ruler-horizontal",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "TickSlider",
+  "preview": [
+    {
+      "fill": "#2a3140ff",
+      "h": 4,
+      "rounding": 2,
+      "shape": "rect",
+      "w": 160,
+      "x": 6,
+      "y": 9
+    },
+    {
+      "fill": "#4296faff",
+      "h": 4,
+      "rounding": 2,
+      "shape": "rect",
+      "w": 96,
+      "x": 6,
+      "y": 9
+    },
+    {
+      "fill": "#ffffffff",
+      "r": 7,
+      "shape": "circle",
+      "stroke": "#4296faff",
+      "x": 102,
+      "y": 11
+    },
+    {
+      "fill": "#8a8f9cff",
+      "r": 1.5,
+      "shape": "circle",
+      "x": 22,
+      "y": 11
+    },
+    {
+      "fill": "#8a8f9cff",
+      "r": 1.5,
+      "shape": "circle",
+      "x": 38,
+      "y": 11
+    },
+    {
+      "fill": "#8a8f9cff",
+      "r": 1.5,
+      "shape": "circle",
+      "x": 134,
+      "y": 11
+    },
+    {
+      "fill": "#8a8f9cff",
+      "r": 1.5,
+      "shape": "circle",
+      "x": 150,
+      "y": 11
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 176,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "Quality",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": 0,
+      "name": "min",
+      "type": "float"
+    },
+    {
+      "default": 10,
+      "name": "max",
+      "type": "float"
+    },
+    {
+      "default": 11,
+      "max": 101,
+      "min": 2,
+      "name": "ticks",
+      "type": "int"
+    },
+    {
+      "default": "%.0f",
+      "name": "format",
+      "type": "string"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

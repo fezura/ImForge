@@ -508,9 +508,10 @@ void CanvasPanel::DrawViewport(EditorContext& ctx, const Panel& panel, Node& roo
         ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, ImGui::GetStyle().WindowRounding);
         ImGui::PushStyleVar(ImGuiStyleVar_ChildBorderSize, 0.0f);
 #if IMGUI_VERSION_NUM >= 19000
-        bool shown = ImGui::BeginChild("canvas", frame_size, ImGuiChildFlags_None, cflags);
+        // a border-less child drops WindowPadding unless asked, the live window keeps the theme's
+        bool shown = ImGui::BeginChild("canvas", frame_size, ImGuiChildFlags_AlwaysUseWindowPadding, cflags);
 #else
-        bool shown = ImGui::BeginChild("canvas", frame_size, false, cflags);
+        bool shown = ImGui::BeginChild("canvas", frame_size, false, cflags | ImGuiWindowFlags_AlwaysUseWindowPadding);
 #endif
         ImGui::PopStyleVar(2);
         ImGui::PopStyleColor();

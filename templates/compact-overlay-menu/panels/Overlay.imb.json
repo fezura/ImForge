@@ -1,0 +1,736 @@
+{
+  "kind": "panel",
+  "name": "Overlay",
+  "params": [
+    {
+      "name": "cfg",
+      "type": "OverlayConfig"
+    }
+  ],
+  "root": {
+    "anim": {
+      "motions": [
+        {
+          "preset": "FadeInDown"
+        },
+        {
+          "preset": "FadeOutUp",
+          "trigger": "exit"
+        }
+      ]
+    },
+    "bind": {
+      "open": "state.open"
+    },
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "id": "logo",
+                "props": {
+                  "color": "#9e9e9eff",
+                  "text": "{icon:fa-terminal}"
+                },
+                "type": "Text"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "TrackingIn"
+                    }
+                  ]
+                },
+                "font": "Bold",
+                "id": "title",
+                "props": {
+                  "text": "{{PROJECT_NAME}}"
+                },
+                "type": "Text"
+              },
+              {
+                "id": "header_fill",
+                "props": {
+                  "size": {
+                    "h": 1,
+                    "w": "fill"
+                  }
+                },
+                "type": "Dummy"
+              },
+              {
+                "id": "toggle_key",
+                "props": {
+                  "keys": "Ins"
+                },
+                "tooltip": "Show or hide this overlay",
+                "type": "Kbd"
+              }
+            ],
+            "id": "header",
+            "props": {
+              "spacing": 8
+            },
+            "type": "HStack"
+          },
+          {
+            "id": "head_div",
+            "props": {
+              "look": "Fade"
+            },
+            "type": "Divider"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "StaggerFadeLeft",
+                      "stagger": 0.035
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "NudgeRight",
+                          "trigger": "hover"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "SuccessGlow",
+                              "trigger": "change"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "cfg.aim"
+                        },
+                        "id": "aim",
+                        "props": {
+                          "label": "Aim assist"
+                        },
+                        "type": "SwitchToggle"
+                      },
+                      {
+                        "id": "aim_fill",
+                        "props": {
+                          "size": {
+                            "h": 1,
+                            "w": "fill"
+                          }
+                        },
+                        "type": "Dummy"
+                      },
+                      {
+                        "id": "aim_key",
+                        "props": {
+                          "keys": "F1"
+                        },
+                        "type": "Kbd"
+                      }
+                    ],
+                    "id": "aim_row",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "HStack"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "NudgeRight",
+                          "trigger": "hover"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "SuccessGlow",
+                              "trigger": "change"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "cfg.trigger"
+                        },
+                        "id": "trigger",
+                        "props": {
+                          "label": "Triggerbot"
+                        },
+                        "type": "SwitchToggle"
+                      },
+                      {
+                        "id": "trigger_fill",
+                        "props": {
+                          "size": {
+                            "h": 1,
+                            "w": "fill"
+                          }
+                        },
+                        "type": "Dummy"
+                      },
+                      {
+                        "id": "trigger_key",
+                        "props": {
+                          "keys": "F2"
+                        },
+                        "type": "Kbd"
+                      }
+                    ],
+                    "id": "trigger_row",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "HStack"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "NudgeRight",
+                          "trigger": "hover"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "SuccessGlow",
+                              "trigger": "change"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "cfg.rcs"
+                        },
+                        "id": "rcs",
+                        "props": {
+                          "label": "Recoil control"
+                        },
+                        "type": "SwitchToggle"
+                      },
+                      {
+                        "id": "rcs_fill",
+                        "props": {
+                          "size": {
+                            "h": 1,
+                            "w": "fill"
+                          }
+                        },
+                        "type": "Dummy"
+                      },
+                      {
+                        "id": "rcs_key",
+                        "props": {
+                          "keys": "F3"
+                        },
+                        "type": "Kbd"
+                      }
+                    ],
+                    "id": "rcs_row",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "HStack"
+                  },
+                  {
+                    "bind": {
+                      "value": "cfg.fov"
+                    },
+                    "id": "fov",
+                    "props": {
+                      "format": "%.0f",
+                      "label": "FOV",
+                      "max": 15,
+                      "min": 1,
+                      "ticks": 8
+                    },
+                    "type": "TickSlider"
+                  }
+                ],
+                "id": "sec_combat_rows",
+                "props": {
+                  "spacing": 6
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "sec_combat",
+            "props": {
+              "defaultOpen": true,
+              "label": "Combat"
+            },
+            "type": "CollapsingHeader"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "StaggerFadeLeft",
+                      "stagger": 0.035
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "NudgeRight",
+                          "trigger": "hover"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "SuccessGlow",
+                              "trigger": "change"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "cfg.esp"
+                        },
+                        "id": "esp",
+                        "props": {
+                          "label": "Player boxes"
+                        },
+                        "type": "SwitchToggle"
+                      },
+                      {
+                        "id": "esp_fill",
+                        "props": {
+                          "size": {
+                            "h": 1,
+                            "w": "fill"
+                          }
+                        },
+                        "type": "Dummy"
+                      },
+                      {
+                        "id": "esp_key",
+                        "props": {
+                          "keys": "F5"
+                        },
+                        "type": "Kbd"
+                      }
+                    ],
+                    "id": "esp_row",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "HStack"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "NudgeRight",
+                          "trigger": "hover"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "SuccessGlow",
+                              "trigger": "change"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "cfg.glow"
+                        },
+                        "id": "glow",
+                        "props": {
+                          "label": "Glow"
+                        },
+                        "type": "SwitchToggle"
+                      },
+                      {
+                        "id": "glow_fill",
+                        "props": {
+                          "size": {
+                            "h": 1,
+                            "w": "fill"
+                          }
+                        },
+                        "type": "Dummy"
+                      },
+                      {
+                        "id": "glow_key",
+                        "props": {
+                          "keys": "F6"
+                        },
+                        "type": "Kbd"
+                      }
+                    ],
+                    "id": "glow_row",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "HStack"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "NudgeRight",
+                          "trigger": "hover"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "SuccessGlow",
+                              "trigger": "change"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "cfg.radar"
+                        },
+                        "id": "radar",
+                        "props": {
+                          "label": "Radar"
+                        },
+                        "type": "SwitchToggle"
+                      },
+                      {
+                        "id": "radar_fill",
+                        "props": {
+                          "size": {
+                            "h": 1,
+                            "w": "fill"
+                          }
+                        },
+                        "type": "Dummy"
+                      },
+                      {
+                        "id": "radar_key",
+                        "props": {
+                          "keys": "F7"
+                        },
+                        "type": "Kbd"
+                      }
+                    ],
+                    "id": "radar_row",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "HStack"
+                  },
+                  {
+                    "bind": {
+                      "value": "cfg.glowStrength"
+                    },
+                    "id": "glow_strength",
+                    "props": {
+                      "label": "Glow strength",
+                      "max": 10,
+                      "min": 1,
+                      "step": 1
+                    },
+                    "type": "Stepper"
+                  }
+                ],
+                "id": "sec_visuals_rows",
+                "props": {
+                  "spacing": 6
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "sec_visuals",
+            "props": {
+              "defaultOpen": true,
+              "label": "Visuals"
+            },
+            "type": "CollapsingHeader"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "StaggerFadeLeft",
+                      "stagger": 0.035
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "NudgeRight",
+                          "trigger": "hover"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "SuccessGlow",
+                              "trigger": "change"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "cfg.bhop"
+                        },
+                        "id": "bhop",
+                        "props": {
+                          "label": "Bunny hop"
+                        },
+                        "type": "SwitchToggle"
+                      },
+                      {
+                        "id": "bhop_fill",
+                        "props": {
+                          "size": {
+                            "h": 1,
+                            "w": "fill"
+                          }
+                        },
+                        "type": "Dummy"
+                      },
+                      {
+                        "id": "bhop_key",
+                        "props": {
+                          "keys": "Space"
+                        },
+                        "type": "Kbd"
+                      }
+                    ],
+                    "id": "bhop_row",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "HStack"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "NudgeRight",
+                          "trigger": "hover"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "SuccessGlow",
+                              "trigger": "change"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "cfg.strafe"
+                        },
+                        "id": "strafe",
+                        "props": {
+                          "label": "Auto strafe"
+                        },
+                        "type": "SwitchToggle"
+                      },
+                      {
+                        "id": "strafe_fill",
+                        "props": {
+                          "size": {
+                            "h": 1,
+                            "w": "fill"
+                          }
+                        },
+                        "type": "Dummy"
+                      },
+                      {
+                        "id": "strafe_key",
+                        "props": {
+                          "keys": "Alt"
+                        },
+                        "type": "Kbd"
+                      }
+                    ],
+                    "id": "strafe_row",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "HStack"
+                  }
+                ],
+                "id": "sec_movement_rows",
+                "props": {
+                  "spacing": 6
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "sec_movement",
+            "props": {
+              "label": "Movement"
+            },
+            "type": "CollapsingHeader"
+          },
+          {
+            "id": "foot_div",
+            "props": {
+              "look": "Dotted"
+            },
+            "type": "Divider"
+          },
+          {
+            "children": [
+              {
+                "id": "perf",
+                "props": {
+                  "fps": "state.fps",
+                  "graph": false,
+                  "label": "perf",
+                  "ping": "state.ping"
+                },
+                "type": "FpsPingCounter"
+              },
+              {
+                "id": "footer_fill",
+                "props": {
+                  "size": {
+                    "h": 1,
+                    "w": "fill"
+                  }
+                },
+                "type": "Dummy"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "Twinkle",
+                      "trigger": "loop"
+                    }
+                  ]
+                },
+                "id": "state_dot",
+                "props": {
+                  "label": "safe",
+                  "status": "Online"
+                },
+                "type": "StatusDot"
+              }
+            ],
+            "id": "footer",
+            "props": {
+              "spacing": 8
+            },
+            "type": "HStack"
+          }
+        ],
+        "id": "stack",
+        "props": {
+          "spacing": 6
+        },
+        "type": "VStack"
+      }
+    ],
+    "fx": [
+      {
+        "color": "#00000099",
+        "offset": {
+          "x": 0,
+          "y": 3
+        },
+        "rounding": 4,
+        "size": 14,
+        "type": "shadow"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoTitleBar",
+        "NoCollapse",
+        "NoScrollbar",
+        "AlwaysAutoResize",
+        "NoSavedSettings"
+      ],
+      "initialPos": {
+        "x": 24,
+        "y": 24
+      },
+      "initialSize": {
+        "x": 300,
+        "y": 372
+      },
+      "sizeCond": "FirstUseEver",
+      "title": "{{PROJECT_NAME}}"
+    },
+    "style": {
+      "vars": {
+        "WindowPadding": {
+          "x": 12,
+          "y": 10
+        }
+      }
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": true,
+      "name": "open",
+      "type": "bool"
+    },
+    {
+      "default": 240,
+      "name": "fps",
+      "type": "float"
+    },
+    {
+      "default": 18,
+      "name": "ping",
+      "type": "float"
+    }
+  ]
+}

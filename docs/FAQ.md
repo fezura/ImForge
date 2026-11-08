@@ -66,8 +66,9 @@ command list or render pass info; the sample apps show the exact calls.
 
 ### Why C++17 for the builder when my project is C++14?
 
-The builder is a separate program. Generated code and the client header follow the C++
-standard you pick in the wizard (14, 17 or 20).
+The builder is a separate program. Generated code builds as C++14, 17 or 20, and so does the
+client header as long as `IMFORGE_LIVE` is off. Live attach and `imforge_reflect.h` need
+C++17, so a C++14 project has to build its dev configuration as C++17 to use them.
 
 ### Will there be macOS support?
 

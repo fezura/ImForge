@@ -6,7 +6,9 @@
 
 namespace imforge {
 
+// kEaseCount covers the 0.1 transition eases (node schema enum), kEaseCountAll every imb::Ease
 const int kEaseCount = 12;
+const int kEaseCountAll = 31;
 const int kPresetCount = 10;
 const int kTransitionTriggerCount = 6;
 
@@ -24,6 +26,25 @@ inline const char* EaseName(imb::Ease e) {
     case imb::Ease::OutElastic: return "OutElastic";
     case imb::Ease::OutBounce: return "OutBounce";
     case imb::Ease::OutExpo: return "OutExpo";
+    case imb::Ease::InSine: return "InSine";
+    case imb::Ease::OutSine: return "OutSine";
+    case imb::Ease::InOutSine: return "InOutSine";
+    case imb::Ease::InQuart: return "InQuart";
+    case imb::Ease::OutQuart: return "OutQuart";
+    case imb::Ease::InOutQuart: return "InOutQuart";
+    case imb::Ease::InQuint: return "InQuint";
+    case imb::Ease::OutQuint: return "OutQuint";
+    case imb::Ease::InOutQuint: return "InOutQuint";
+    case imb::Ease::InExpo: return "InExpo";
+    case imb::Ease::InOutExpo: return "InOutExpo";
+    case imb::Ease::InCirc: return "InCirc";
+    case imb::Ease::OutCirc: return "OutCirc";
+    case imb::Ease::InOutCirc: return "InOutCirc";
+    case imb::Ease::InOutBack: return "InOutBack";
+    case imb::Ease::InElastic: return "InElastic";
+    case imb::Ease::InOutElastic: return "InOutElastic";
+    case imb::Ease::InBounce: return "InBounce";
+    case imb::Ease::InOutBounce: return "InOutBounce";
     }
     return "OutCubic";
 }
@@ -47,7 +68,7 @@ inline const char* PresetName(imb::Preset p) {
 // *out is left alone on failure
 inline bool TryEaseFromName(const char* name, imb::Ease* out) {
     if (!name || !out) return false;
-    for (int i = 0; i < kEaseCount; ++i) {
+    for (int i = 0; i < kEaseCountAll; ++i) {
         imb::Ease e = static_cast<imb::Ease>(i);
         if (std::strcmp(EaseName(e), name) == 0) {
             *out = e;

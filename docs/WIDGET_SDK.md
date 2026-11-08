@@ -62,6 +62,14 @@ optional `:modifier` picks a different form:
 | `{children}` | where child code goes, in containers |
 | `{id}` | the node id as a string literal |
 
+`call` and `callEnd` get pasted into the user's exported source, so the builder only accepts a
+single call such as `ns::Function(args)` whose arguments are `{placeholders}`, literals and
+plain operators. Semicolons, braces outside placeholders, `#`, comments, backslashes, backticks
+and newlines are refused, and so is a lambda body. If you need a block, split it into a begin
+and end pair and use `callEnd`. `include` must be a plain header name (`[A-Za-z0-9_./-]`, ending
+in `.h` or `.hpp`, no `..`, no leading slash). A manifest that breaks these rules fails to load
+with a message saying which field.
+
 The interpreter reads the same manifest to resolve values at run time and hands them to your
 registered draw function.
 

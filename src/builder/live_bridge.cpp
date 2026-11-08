@@ -5,6 +5,7 @@
 #include <cstdio>
 #include <filesystem>
 
+#include "bundled_packs.h"
 #include "editor_context.h"
 #include "project_io.h"
 
@@ -615,8 +616,9 @@ std::vector<LiveIssue> LiveBridge::Troubleshoot(const EditorContext& ctx) const 
             "The app compiled an older version of these locked blocks. Export the code and rebuild the app.");
     if (ctx.project.widget_catalog) {
         std::string missing;
+        std::set<std::string> used = UsedWidgetTypes(ctx.project);
         for (const CustomWidgetDef& w : ctx.project.widget_catalog->custom)
-            if (!s.HasWidget(w.type)) missing += (missing.empty() ? "" : ", ") + w.type;
+            if (used.count(w.type) && !s.HasWidget(w.type)) missing += (missing.empty() ? "" : ", ") + w.type;
         if (!missing.empty())
             add(Sev::Info, "Custom widgets without a live draw function", missing + ". Call imforge::live::RegisterWidget(type, fn) in the app, otherwise the preview shapes are used.");
     }

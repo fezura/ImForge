@@ -1,0 +1,73 @@
+{
+  "bindings": [
+    {
+      "name": "index",
+      "required": true,
+      "types": [
+        "int",
+        "enum"
+      ]
+    }
+  ],
+  "call": "imb::ctl::PillTabs({label}, {index}, {items:array}, {items:count})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-ellipsis",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "PillTabs",
+  "preview": [
+    {
+      "fill": "#4296faff",
+      "h": 22,
+      "rounding": 11,
+      "shape": "rect",
+      "w": 76,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#ffffffff",
+      "shape": "text",
+      "text": "Overview",
+      "x": 12,
+      "y": 4
+    },
+    {
+      "color": "#8a8f9cff",
+      "shape": "text",
+      "text": "Stats",
+      "x": 90,
+      "y": 4
+    },
+    {
+      "color": "#8a8f9cff",
+      "shape": "text",
+      "text": "Settings",
+      "x": 140,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "##tabs",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": [
+        "Overview",
+        "Stats",
+        "Settings"
+      ],
+      "name": "items",
+      "type": "stringList"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

@@ -1,0 +1,75 @@
+{
+  "bindings": [
+    {
+      "name": "hue",
+      "required": true,
+      "types": [
+        "float"
+      ]
+    },
+    {
+      "name": "sat",
+      "required": true,
+      "types": [
+        "float"
+      ]
+    },
+    {
+      "name": "val",
+      "required": true,
+      "types": [
+        "float"
+      ]
+    }
+  ],
+  "call": "imb::ctl::SatValBox({label}, {hue:value}, {sat}, {val})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-square",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "SatValBox",
+  "preview": [
+    {
+      "fill": "#ff3b30ff",
+      "h": 132,
+      "rounding": 0,
+      "shape": "rect",
+      "stroke": "#3c4456ff",
+      "w": 132,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#00000080",
+      "h": 66,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 132,
+      "x": 0,
+      "y": 66
+    },
+    {
+      "fill": "#ff6b60ff",
+      "r": 5,
+      "shape": "circle",
+      "stroke": "#ffffffff",
+      "thickness": 2,
+      "x": 100,
+      "y": 30
+    }
+  ],
+  "props": [
+    {
+      "default": "##sv",
+      "name": "label",
+      "type": "string"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

@@ -1,0 +1,150 @@
+{
+  "bindings": [
+    {
+      "name": "open",
+      "required": false,
+      "types": [
+        "bool"
+      ]
+    },
+    {
+      "name": "selected",
+      "required": true,
+      "types": [
+        "int"
+      ]
+    }
+  ],
+  "call": "imb::ctl::CommandPalette({label}, {open}, {items:array}, {items:count}, {selected}, {hints:array}, {hints:count})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onClick"
+  ],
+  "icon": "fa-terminal",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "CommandPalette",
+  "preview": [
+    {
+      "fill": "#1c212bff",
+      "h": 96,
+      "rounding": 8,
+      "shape": "rect",
+      "stroke": "#3c4456ff",
+      "w": 240,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "r": 4.5,
+      "shape": "circle",
+      "stroke": "#4296faff",
+      "thickness": 1.4,
+      "x": 14,
+      "y": 13
+    },
+    {
+      "color": "#8a8f9cff",
+      "shape": "text",
+      "text": "Type a command",
+      "x": 26,
+      "y": 6
+    },
+    {
+      "shape": "line",
+      "stroke": "#3c4456ff",
+      "thickness": 1,
+      "x": 0,
+      "x2": 240,
+      "y": 26,
+      "y2": 26
+    },
+    {
+      "fill": "#4296fa40",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 228,
+      "x": 6,
+      "y": 30
+    },
+    {
+      "fill": "#4296faff",
+      "h": 14,
+      "rounding": 1,
+      "shape": "rect",
+      "w": 2.5,
+      "x": 6,
+      "y": 34
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "New File",
+      "x": 14,
+      "y": 34
+    },
+    {
+      "color": "#8a8f9cff",
+      "shape": "text",
+      "text": "Ctrl+N",
+      "x": 190,
+      "y": 34
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Open File",
+      "x": 14,
+      "y": 56
+    },
+    {
+      "color": "#8a8f9cff",
+      "shape": "text",
+      "text": "Ctrl+O",
+      "x": 190,
+      "y": 56
+    },
+    {
+      "color": "#8a8f9cff",
+      "shape": "text",
+      "text": "2 of 5",
+      "x": 14,
+      "y": 78
+    }
+  ],
+  "props": [
+    {
+      "default": "##commands",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": [
+        "New File",
+        "Open File",
+        "Save File",
+        "Toggle Sidebar",
+        "Settings"
+      ],
+      "name": "items",
+      "type": "stringList"
+    },
+    {
+      "default": [
+        "Ctrl+N",
+        "Ctrl+O",
+        "Ctrl+S",
+        "Ctrl+B",
+        ""
+      ],
+      "hint": "shortcut text per item",
+      "name": "hints",
+      "type": "stringList"
+    }
+  ],
+  "returns": "clicked",
+  "schemaVersion": 1
+}

@@ -51,7 +51,13 @@ Result GenerateStyles(const Project&, const Options&);
 Result GenerateFonts(const Project&, const Options&);
 Result GenerateReflection(const Project&, const Options&);
 Result GenerateDevGlue(const Project&, const Options&);
+// imforge_animations.h with the project's custom animations; no file when the project has none
+Result GenerateAnimations(const Project&, const Options&);
 Result GenerateAll(const Project&, const Options&);
+
+// shipped runtime headers the generated files include (bare names like "imb_motion.h", sorted),
+// for the exporter to copy next to the output
+std::vector<std::string> RuntimeHeadersFor(const Result&);
 
 std::string EmitExpression(const Panel&, const std::string& expr, const Options&);
 std::string EmitSize(const SizeSpec& w, const SizeSpec& h, const Options&);

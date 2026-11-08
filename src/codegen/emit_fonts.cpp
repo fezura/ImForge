@@ -79,14 +79,10 @@ Result GenerateFonts(const Project& project, const Options& opts) {
     }
     if (opts.features_icons)
         for (const IconSet* s : used_sets) w.Line(std::string("#include \"") + s->header + "\"");
-    if (opts.settings.cpp_standard < 17) {
-        Diagnostic d;
-        d.level = Diagnostic::Level::Warning;
-        d.message = "imforge_fonts.h uses inline variables (C++17); cppStandard is " + std::to_string(opts.settings.cpp_standard);
-        r.diagnostics.push_back(d);
-    }
     OpenNamespace(w, opts);
-    for (const FontSpec& f : project.fonts) w.Line("inline ImFont* Font_" + SanitizeIdentifier(f.name) + " = nullptr;");
+    // accessors instead of inline variables so the header stays C++14
+    for (const FontSpec& f : project.fonts)
+        w.Line("inline ImFont*& Font_" + SanitizeIdentifier(f.name) + "() { static ImFont* f = nullptr; return f; }");
     w.Line("inline void LoadFonts(ImGuiIO& io, float scale = 1.0f) {");
     {
         Writer::Scope s = w.Scoped();
@@ -99,7 +95,7 @@ Result GenerateFonts(const Project& project, const Options& opts) {
         }
         if (!used_sets.empty()) w.Line("#endif");
         for (const FontSpec& f : project.fonts) {
-            std::string var = "Font_" + SanitizeIdentifier(f.name);
+            std::string var = "Font_" + SanitizeIdentifier(f.name) + "()";
             std::string size = FloatLitOf(f.size) + " * scale";
             std::string file = CppStringLiteral(f.file);
             const RangeInfo* ri = nullptr;
@@ -151,7 +147,7 @@ Result GenerateFonts(const Project& project, const Options& opts) {
             }
             w.Line("}");
         }
-        if (!project.fonts.empty()) w.Line("io.FontDefault = Font_" + SanitizeIdentifier(project.fonts[0].name) + ";");
+        if (!project.fonts.empty()) w.Line("io.FontDefault = Font_" + SanitizeIdentifier(project.fonts[0].name) + "();");
         w.UserSlot("fonts_extra");
     }
     w.Line("}");

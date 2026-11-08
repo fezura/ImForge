@@ -1,0 +1,1615 @@
+{
+  "kind": "panel",
+  "name": "Controls",
+  "params": [
+    {
+      "name": "ctl",
+      "type": "ControlsDemo"
+    }
+  ],
+  "root": {
+    "anim": {
+      "motions": [
+        {
+          "preset": "FadeInUpBig"
+        },
+        {
+          "preset": "FadeOutDownBig",
+          "trigger": "exit"
+        }
+      ]
+    },
+    "bind": {
+      "open": "state.open"
+    },
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "ClipRevealCenter"
+                    }
+                  ]
+                },
+                "id": "banner",
+                "props": {
+                  "c0": "#00e5ffcc",
+                  "c1": "#ff2bd6cc",
+                  "centered": true,
+                  "height": 44,
+                  "label": "ImForge 0.2 showcase"
+                },
+                "type": "GradientHeader"
+              },
+              {
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "Typewriter"
+                        }
+                      ]
+                    },
+                    "font": "Title",
+                    "id": "headline",
+                    "props": {
+                      "text": "Controls, motion presets and designs in one project"
+                    },
+                    "type": "Text"
+                  },
+                  {
+                    "id": "subhead_fill",
+                    "props": {
+                      "size": {
+                        "h": 1,
+                        "w": "fill"
+                      }
+                    },
+                    "type": "Dummy"
+                  },
+                  {
+                    "id": "busy",
+                    "props": {
+                      "color": "#00e5ffff",
+                      "label": "##busy",
+                      "radius": 8,
+                      "thickness": 2
+                    },
+                    "type": "Spinner"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "delay": 0.6,
+                          "preset": "GlitchIn"
+                        },
+                        {
+                          "preset": "NeonFlicker",
+                          "trigger": "loop"
+                        }
+                      ]
+                    },
+                    "font": "Bold",
+                    "id": "glitch",
+                    "props": {
+                      "color": "#ff2bd6ff",
+                      "text": "NeonCyber"
+                    },
+                    "type": "Text"
+                  }
+                ],
+                "id": "subhead",
+                "props": {
+                  "spacing": 10
+                },
+                "type": "HStack"
+              }
+            ],
+            "id": "header",
+            "props": {
+              "spacing": 8
+            },
+            "type": "VStack"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "delay": 0.2,
+                  "preset": "FadeInDown"
+                }
+              ]
+            },
+            "bind": {
+              "index": "state.tab"
+            },
+            "id": "tabs",
+            "props": {
+              "label": "##tabs",
+              "labels": [
+                "Inputs",
+                "Pickers",
+                "Choices"
+              ]
+            },
+            "type": "AnimatedTabBar"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "StaggerFadeUp",
+                  "stagger": 0.06
+                }
+              ]
+            },
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "SpotlightHover",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "FadeInLeft"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "HeartBeat",
+                              "trigger": "attention"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "ctl.enabled"
+                        },
+                        "id": "sw_ios",
+                        "props": {
+                          "kind": "Ios",
+                          "label": "Ios switch"
+                        },
+                        "type": "SwitchToggle"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "FlashHighlight",
+                              "trigger": "change"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "ctl.square"
+                        },
+                        "id": "sw_square",
+                        "props": {
+                          "kind": "Square",
+                          "label": "Square switch"
+                        },
+                        "type": "SwitchToggle"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "Tick",
+                              "trigger": "change"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "ctl.icons"
+                        },
+                        "id": "sw_icons",
+                        "props": {
+                          "kind": "Icons",
+                          "label": "Icon switch"
+                        },
+                        "type": "SwitchToggle"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "Jello",
+                              "trigger": "attention"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "ctl.legacy"
+                        },
+                        "id": "ess_toggle",
+                        "props": {
+                          "label": "Essentials toggle",
+                          "onColor": "#3dff9aff"
+                        },
+                        "type": "Toggle"
+                      },
+                      {
+                        "children": [
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "on": "onChange",
+                                  "preset": "Swing",
+                                  "trigger": "attention"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "value": "ctl.visible"
+                            },
+                            "id": "it_eye",
+                            "props": {
+                              "iconOff": "fa-eye-slash",
+                              "iconOn": "fa-eye",
+                              "label": "##eye"
+                            },
+                            "type": "IconToggle"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "on": "onChange",
+                                  "preset": "Buzz",
+                                  "trigger": "attention"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "value": "ctl.locked"
+                            },
+                            "id": "it_lock",
+                            "props": {
+                              "iconOff": "fa-lock-open",
+                              "iconOn": "fa-lock",
+                              "label": "##lock"
+                            },
+                            "type": "IconToggle"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "on": "onChange",
+                                  "preset": "Twist",
+                                  "trigger": "attention"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "state": "ctl.tri"
+                            },
+                            "id": "tri",
+                            "props": {
+                              "label": "Select all"
+                            },
+                            "type": "TriCheckbox"
+                          }
+                        ],
+                        "id": "icon_toggles",
+                        "props": {
+                          "spacing": 12
+                        },
+                        "type": "HStack"
+                      }
+                    ],
+                    "id": "card_toggles_body",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "card_toggles",
+                "props": {
+                  "size": {
+                    "h": "auto",
+                    "w": "fill"
+                  },
+                  "title": "Toggles"
+                },
+                "type": "SectionCard"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "SpotlightHover",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "FadeInRight"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "CountBump",
+                              "trigger": "change"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "ctl.quality"
+                        },
+                        "id": "ticks",
+                        "props": {
+                          "format": "%.0f",
+                          "label": "Quality",
+                          "max": 10,
+                          "min": 0,
+                          "ticks": 11
+                        },
+                        "type": "TickSlider"
+                      },
+                      {
+                        "bind": {
+                          "value": "ctl.range"
+                        },
+                        "id": "range",
+                        "props": {
+                          "label": "Range",
+                          "max": 100,
+                          "min": 0
+                        },
+                        "type": "RangeSlider"
+                      },
+                      {
+                        "bind": {
+                          "value": "ctl.levels"
+                        },
+                        "id": "range_int",
+                        "props": {
+                          "label": "Level range",
+                          "max": 60,
+                          "min": 1
+                        },
+                        "type": "RangeSliderInt"
+                      },
+                      {
+                        "children": [
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "TiltLeft",
+                                  "trigger": "hover"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "value": "ctl.gain"
+                            },
+                            "id": "knob_gain",
+                            "props": {
+                              "label": "Gain",
+                              "max": 1,
+                              "min": 0
+                            },
+                            "type": "Knob"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "TiltRight",
+                                  "trigger": "hover"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "value": "ctl.pan"
+                            },
+                            "id": "knob_pan",
+                            "props": {
+                              "label": "Pan",
+                              "max": 1,
+                              "min": -1
+                            },
+                            "type": "Knob"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "on": "onChange",
+                                  "preset": "NudgeUp",
+                                  "trigger": "change"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "value": "ctl.count"
+                            },
+                            "id": "stepper",
+                            "props": {
+                              "label": "Count",
+                              "max": 10,
+                              "min": 0,
+                              "step": 1
+                            },
+                            "type": "Stepper"
+                          }
+                        ],
+                        "id": "knobs",
+                        "props": {
+                          "spacing": 14
+                        },
+                        "type": "HStack"
+                      }
+                    ],
+                    "id": "card_sliders_body",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "card_sliders",
+                "props": {
+                  "size": {
+                    "h": "auto",
+                    "w": "fill"
+                  },
+                  "title": "Sliders"
+                },
+                "type": "SectionCard"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "SpotlightHover",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "FadeInUp"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "ValuePop",
+                              "trigger": "change"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "unit": "ctl.unit",
+                          "value": "ctl.distance"
+                        },
+                        "id": "drag_units",
+                        "props": {
+                          "label": "Distance",
+                          "units": [
+                            "m",
+                            "cm:0.01",
+                            "km:1000"
+                          ]
+                        },
+                        "type": "DragNumber"
+                      },
+                      {
+                        "bind": {
+                          "value": "ctl.offset"
+                        },
+                        "id": "vec2",
+                        "props": {
+                          "label": "Offset"
+                        },
+                        "type": "Vec2Edit"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "NudgeDown",
+                              "trigger": "change"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "ctl.rotation"
+                        },
+                        "id": "vec3",
+                        "props": {
+                          "label": "Rotation"
+                        },
+                        "type": "Vec3Edit"
+                      },
+                      {
+                        "bind": {
+                          "text": "ctl.query"
+                        },
+                        "id": "search",
+                        "props": {
+                          "hint": "Search widgets",
+                          "label": "##search"
+                        },
+                        "type": "SearchField"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "Nudge",
+                              "trigger": "attention"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "tags": "ctl.tags"
+                        },
+                        "id": "tags",
+                        "props": {
+                          "label": "Tags"
+                        },
+                        "type": "TagInput"
+                      }
+                    ],
+                    "id": "card_fields_body",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "card_fields",
+                "props": {
+                  "size": {
+                    "h": "auto",
+                    "w": "fill"
+                  },
+                  "title": "Fields"
+                },
+                "type": "SectionCard"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "SpotlightHover",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "FadeInDown"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "RubberBand",
+                              "trigger": "attention"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "chord": "ctl.chord"
+                        },
+                        "id": "chord",
+                        "props": {
+                          "label": "Shortcut"
+                        },
+                        "type": "KeyChordPicker"
+                      },
+                      {
+                        "bind": {
+                          "key": "ctl.menuKey"
+                        },
+                        "id": "keybind",
+                        "props": {
+                          "label": "Menu key"
+                        },
+                        "type": "KeybindPicker"
+                      },
+                      {
+                        "id": "hotkey_label",
+                        "props": {
+                          "key": "ctl.menuKey",
+                          "text": "Toggle menu"
+                        },
+                        "type": "HotkeyLabel"
+                      }
+                    ],
+                    "id": "card_keys_body",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "card_keys",
+                "props": {
+                  "size": {
+                    "h": "auto",
+                    "w": "fill"
+                  },
+                  "title": "Keys"
+                },
+                "type": "SectionCard"
+              }
+            ],
+            "id": "page_inputs",
+            "props": {
+              "columns": 2,
+              "flags": [
+                "SizingStretchSame"
+              ]
+            },
+            "type": "Grid",
+            "visibleIf": "state.tab == 0"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "StaggerScaleIn",
+                  "stagger": 0.07
+                }
+              ]
+            },
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "SpotlightHover",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "BackInLeft"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "Pulse",
+                              "trigger": "attention"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "color": "ctl.color",
+                          "selected": "ctl.swatch"
+                        },
+                        "id": "palette",
+                        "props": {
+                          "columns": 8,
+                          "label": "##palette"
+                        },
+                        "type": "ColorPalette"
+                      },
+                      {
+                        "bind": {
+                          "colors": "ctl.teamColors",
+                          "selected": "ctl.team"
+                        },
+                        "id": "swatches",
+                        "props": {
+                          "count": 4,
+                          "label": "Team colors"
+                        },
+                        "type": "ColorSwatchRow"
+                      },
+                      {
+                        "bind": {
+                          "color": "ctl.accent"
+                        },
+                        "id": "mini",
+                        "props": {
+                          "label": "Accent"
+                        },
+                        "type": "ColorPickerMini"
+                      }
+                    ],
+                    "id": "card_palette_body",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "card_palette",
+                "props": {
+                  "size": {
+                    "h": "auto",
+                    "w": "fill"
+                  },
+                  "title": "Palette and swatches"
+                },
+                "type": "SectionCard"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "SpotlightHover",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "BackInRight"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "bind": {
+                          "hue": "ctl.hue"
+                        },
+                        "id": "hue",
+                        "props": {
+                          "label": "##hue"
+                        },
+                        "type": "HueStrip"
+                      },
+                      {
+                        "bind": {
+                          "hue": "ctl.hue",
+                          "sat": "ctl.sat",
+                          "val": "ctl.val"
+                        },
+                        "id": "satval",
+                        "props": {
+                          "label": "##sv"
+                        },
+                        "type": "SatValBox"
+                      }
+                    ],
+                    "id": "card_hsv_body",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "card_hsv",
+                "props": {
+                  "size": {
+                    "h": "auto",
+                    "w": "fill"
+                  },
+                  "title": "Hue and value"
+                },
+                "type": "SectionCard"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "SpotlightHover",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "FlipInX"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "bind": {
+                          "stops": "ctl.stops"
+                        },
+                        "id": "gradient",
+                        "props": {
+                          "label": "Ramp"
+                        },
+                        "type": "GradientEditor"
+                      }
+                    ],
+                    "id": "card_gradient_body",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "card_gradient",
+                "props": {
+                  "size": {
+                    "h": "auto",
+                    "w": "fill"
+                  },
+                  "title": "Gradient"
+                },
+                "type": "SectionCard"
+              }
+            ],
+            "id": "page_pickers",
+            "props": {
+              "columns": 2,
+              "flags": [
+                "SizingStretchSame"
+              ]
+            },
+            "type": "Grid",
+            "visibleIf": "state.tab == 1"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "StaggerPop",
+                  "stagger": 0.07
+                }
+              ]
+            },
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "SpotlightHover",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "BounceInLeft"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "ValueFlip",
+                              "trigger": "change"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "index": "ctl.view"
+                        },
+                        "id": "segmented",
+                        "props": {
+                          "items": [
+                            "List",
+                            "Grid",
+                            "Cards"
+                          ],
+                          "label": "View"
+                        },
+                        "type": "SegmentedControl"
+                      },
+                      {
+                        "bind": {
+                          "index": "ctl.pill"
+                        },
+                        "id": "pills",
+                        "props": {
+                          "items": [
+                            "Overview",
+                            "Stats",
+                            "Settings"
+                          ],
+                          "label": "##pills"
+                        },
+                        "type": "PillTabs"
+                      },
+                      {
+                        "bind": {
+                          "mask": "ctl.style"
+                        },
+                        "id": "tbg",
+                        "props": {
+                          "items": [
+                            "B",
+                            "I",
+                            "U"
+                          ],
+                          "label": "Style"
+                        },
+                        "type": "ToggleButtonGroup"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "Wiggle",
+                              "trigger": "attention"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "mask": "ctl.chips"
+                        },
+                        "id": "chips",
+                        "props": {
+                          "items": [
+                            "Aim",
+                            "ESP",
+                            "Radar",
+                            "Misc"
+                          ],
+                          "label": "##chips"
+                        },
+                        "type": "Chips"
+                      }
+                    ],
+                    "id": "card_select_body",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "card_select",
+                "props": {
+                  "size": {
+                    "h": "auto",
+                    "w": "fill"
+                  },
+                  "title": "Selection"
+                },
+                "type": "SectionCard"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "SpotlightHover",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "BounceInRight"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "bind": {
+                          "current": "ctl.weapon"
+                        },
+                        "id": "dropdown",
+                        "props": {
+                          "icons": [
+                            "fa-gun",
+                            "fa-hand",
+                            "fa-utensils"
+                          ],
+                          "items": [
+                            "Rifle",
+                            "Pistol",
+                            "Knife"
+                          ],
+                          "label": "Weapon"
+                        },
+                        "type": "IconDropdown"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "Tada",
+                              "trigger": "attention"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "ctl.rating"
+                        },
+                        "id": "stars",
+                        "props": {
+                          "label": "Rating",
+                          "max": 5
+                        },
+                        "type": "RatingStars"
+                      },
+                      {
+                        "children": [
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "Raise",
+                                  "trigger": "hover"
+                                },
+                                {
+                                  "preset": "SoftPress",
+                                  "trigger": "press"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "selected": "ctl.saveMode"
+                            },
+                            "id": "split",
+                            "props": {
+                              "items": [
+                                "Save",
+                                "Save as",
+                                "Save all"
+                              ],
+                              "label": "Save##split"
+                            },
+                            "type": "SplitButton"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "GlowUp",
+                                  "trigger": "hover"
+                                },
+                                {
+                                  "preset": "GlowPress",
+                                  "trigger": "press"
+                                }
+                              ]
+                            },
+                            "events": {
+                              "onClick": {
+                                "actions": [
+                                  {
+                                    "target": "state.paletteOpen",
+                                    "type": "set",
+                                    "value": true
+                                  }
+                                ]
+                              }
+                            },
+                            "id": "glow_button",
+                            "props": {
+                              "color": "#00e5ffff",
+                              "label": "Command palette",
+                              "size": {
+                                "h": "auto",
+                                "w": 160
+                              }
+                            },
+                            "type": "GlowButton"
+                          }
+                        ],
+                        "id": "action_row",
+                        "props": {
+                          "spacing": 10
+                        },
+                        "type": "HStack"
+                      }
+                    ],
+                    "id": "card_menus_body",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "card_menus",
+                "props": {
+                  "size": {
+                    "h": "auto",
+                    "w": "fill"
+                  },
+                  "title": "Menus and actions"
+                },
+                "type": "SectionCard"
+              }
+            ],
+            "id": "page_choices",
+            "props": {
+              "columns": 2,
+              "flags": [
+                "SizingStretchSame"
+              ]
+            },
+            "type": "Grid",
+            "visibleIf": "state.tab == 2"
+          },
+          {
+            "id": "div",
+            "props": {
+              "look": "Fade"
+            },
+            "type": "Divider"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "TrackingIn"
+                    }
+                  ]
+                },
+                "font": "Bold",
+                "id": "buttons_title",
+                "props": {
+                  "text": "Hover and press presets"
+                },
+                "type": "Text"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "StaggerUnfold",
+                      "stagger": 0.03
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "Lift",
+                          "trigger": "hover"
+                        },
+                        {
+                          "preset": "Squish",
+                          "trigger": "press"
+                        }
+                      ]
+                    },
+                    "id": "btn_lift",
+                    "props": {
+                      "label": "Lift / Squish",
+                      "size": {
+                        "h": 30,
+                        "w": "fill"
+                      }
+                    },
+                    "style": {
+                      "classes": [
+                        "ghost_button"
+                      ]
+                    },
+                    "tooltip": "hover: Lift, press: Squish",
+                    "type": "Button"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "Grow",
+                          "trigger": "hover"
+                        },
+                        {
+                          "preset": "Shrink",
+                          "trigger": "press"
+                        }
+                      ]
+                    },
+                    "id": "btn_grow",
+                    "props": {
+                      "label": "Grow / Shrink",
+                      "size": {
+                        "h": 30,
+                        "w": "fill"
+                      }
+                    },
+                    "style": {
+                      "classes": [
+                        "ghost_button"
+                      ]
+                    },
+                    "tooltip": "hover: Grow, press: Shrink",
+                    "type": "Button"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "Widen",
+                          "trigger": "hover"
+                        },
+                        {
+                          "preset": "Flatten",
+                          "trigger": "press"
+                        }
+                      ]
+                    },
+                    "id": "btn_widen",
+                    "props": {
+                      "label": "Widen / Flatten",
+                      "size": {
+                        "h": 30,
+                        "w": "fill"
+                      }
+                    },
+                    "style": {
+                      "classes": [
+                        "ghost_button"
+                      ]
+                    },
+                    "tooltip": "hover: Widen, press: Flatten",
+                    "type": "Button"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "Slant",
+                          "trigger": "hover"
+                        },
+                        {
+                          "preset": "Sink",
+                          "trigger": "press"
+                        }
+                      ]
+                    },
+                    "id": "btn_slant",
+                    "props": {
+                      "label": "Slant / Sink",
+                      "size": {
+                        "h": 30,
+                        "w": "fill"
+                      }
+                    },
+                    "style": {
+                      "classes": [
+                        "ghost_button"
+                      ]
+                    },
+                    "tooltip": "hover: Slant, press: Sink",
+                    "type": "Button"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "PopHover",
+                          "trigger": "hover"
+                        },
+                        {
+                          "preset": "PushIn",
+                          "trigger": "press"
+                        }
+                      ]
+                    },
+                    "id": "btn_pophover",
+                    "props": {
+                      "label": "PopHover / PushIn",
+                      "size": {
+                        "h": 30,
+                        "w": "fill"
+                      }
+                    },
+                    "style": {
+                      "classes": [
+                        "ghost_button"
+                      ]
+                    },
+                    "tooltip": "hover: PopHover, press: PushIn",
+                    "type": "Button"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "Brighten",
+                          "trigger": "hover"
+                        },
+                        {
+                          "preset": "Recess",
+                          "trigger": "press"
+                        }
+                      ]
+                    },
+                    "id": "btn_brighten",
+                    "props": {
+                      "label": "Brighten / Recess",
+                      "size": {
+                        "h": 30,
+                        "w": "fill"
+                      }
+                    },
+                    "style": {
+                      "classes": [
+                        "ghost_button"
+                      ]
+                    },
+                    "tooltip": "hover: Brighten, press: Recess",
+                    "type": "Button"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "WobbleReady",
+                          "trigger": "hover"
+                        },
+                        {
+                          "preset": "Dim",
+                          "trigger": "press"
+                        }
+                      ]
+                    },
+                    "id": "btn_wobbleready",
+                    "props": {
+                      "label": "WobbleReady / Dim",
+                      "size": {
+                        "h": 30,
+                        "w": "fill"
+                      }
+                    },
+                    "style": {
+                      "classes": [
+                        "ghost_button"
+                      ]
+                    },
+                    "tooltip": "hover: WobbleReady, press: Dim",
+                    "type": "Button"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "HoverShrink",
+                          "trigger": "hover"
+                        },
+                        {
+                          "preset": "ClickBounce",
+                          "trigger": "press"
+                        }
+                      ]
+                    },
+                    "id": "btn_hovershrink",
+                    "props": {
+                      "label": "HoverShrink / ClickBounce",
+                      "size": {
+                        "h": 30,
+                        "w": "fill"
+                      }
+                    },
+                    "style": {
+                      "classes": [
+                        "ghost_button"
+                      ]
+                    },
+                    "tooltip": "hover: HoverShrink, press: ClickBounce",
+                    "type": "Button"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "PressReady",
+                          "trigger": "hover"
+                        },
+                        {
+                          "preset": "Tilt",
+                          "trigger": "press"
+                        }
+                      ]
+                    },
+                    "id": "btn_pressready",
+                    "props": {
+                      "label": "PressReady / Tilt",
+                      "size": {
+                        "h": 30,
+                        "w": "fill"
+                      }
+                    },
+                    "style": {
+                      "classes": [
+                        "ghost_button"
+                      ]
+                    },
+                    "tooltip": "hover: PressReady, press: Tilt",
+                    "type": "Button"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "HoverFloat",
+                          "trigger": "hover"
+                        },
+                        {
+                          "preset": "PressDown",
+                          "trigger": "press"
+                        }
+                      ]
+                    },
+                    "id": "btn_hoverfloat",
+                    "props": {
+                      "label": "HoverFloat / PressDown",
+                      "size": {
+                        "h": 30,
+                        "w": "fill"
+                      }
+                    },
+                    "style": {
+                      "classes": [
+                        "ghost_button"
+                      ]
+                    },
+                    "tooltip": "hover: HoverFloat, press: PressDown",
+                    "type": "Button"
+                  }
+                ],
+                "id": "button_grid",
+                "props": {
+                  "columns": 5,
+                  "flags": [
+                    "SizingStretchSame"
+                  ]
+                },
+                "type": "Grid"
+              }
+            ],
+            "id": "buttons",
+            "props": {
+              "spacing": 8
+            },
+            "type": "VStack"
+          }
+        ],
+        "id": "stack",
+        "props": {
+          "spacing": 10
+        },
+        "type": "VStack"
+      },
+      {
+        "bind": {
+          "open": "state.paletteOpen",
+          "selected": "state.command"
+        },
+        "id": "palette_popup",
+        "props": {
+          "hints": [
+            "1",
+            "2",
+            "3",
+            "R",
+            ""
+          ],
+          "items": [
+            "Open controls",
+            "Open monitor",
+            "Open arena",
+            "Replay motions",
+            "Reset values"
+          ],
+          "label": "##commands"
+        },
+        "type": "CommandPalette"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoCollapse"
+      ],
+      "initialSize": {
+        "x": 1000,
+        "y": 760
+      },
+      "sizeCond": "FirstUseEver",
+      "title": "Controls  |  NeonCyber"
+    },
+    "style": {
+      "classes": [
+        "design_neoncyber"
+      ],
+      "vars": {
+        "WindowPadding": {
+          "x": 16,
+          "y": 14
+        }
+      }
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": true,
+      "name": "open",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "name": "tab",
+      "type": "int"
+    },
+    {
+      "default": false,
+      "name": "paletteOpen",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "name": "command",
+      "type": "int"
+    }
+  ]
+}

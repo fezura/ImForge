@@ -191,8 +191,20 @@ Result GenerateStyles(const Project& project, const Options& opts) {
     OpenNamespace(w, opts);
     const std::string& m = opts.settings.dpi_mode;
     std::string scale = m == "variable" ? "imb_scale" : (m == "none" ? "1.0f" : "imb_s");
+    std::vector<std::pair<std::string, std::string>> taken;
     for (const auto& sc : project.style_classes) {
         std::string id = SanitizeIdentifier(sc.first);
+        const std::pair<std::string, std::string>* clash = nullptr;
+        for (const auto& t : taken)
+            if (t.second == id) clash = &t;
+        if (clash) {
+            Diagnostic d;
+            d.level = Diagnostic::Level::Error;
+            d.message = "style classes '" + clash->first + "' and '" + sc.first + "' both become Style_" + id + ", rename one";
+            r.diagnostics.push_back(d);
+            continue;
+        }
+        taken.emplace_back(sc.first, id);
         std::vector<std::pair<std::string, Vec4>> colors;
         std::vector<std::pair<std::string, Json>> vars;
         ExpandClass(project, sc.first, colors, vars, 0);

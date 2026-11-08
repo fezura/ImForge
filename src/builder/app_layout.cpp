@@ -14,7 +14,7 @@ namespace imforge::builder {
 
 namespace {
 
-constexpr int kLayoutVersion = 2;
+constexpr int kLayoutVersion = 3;
 
 void VSep() {
     ImGui::SameLine();
@@ -57,7 +57,7 @@ bool StatusPill(const char* id, const char* text, const ImVec4& col, bool pulse)
 }
 
 short TabOrder(const char* name) {
-    static const char* const kOrder[] = {"Hierarchy", "Panels",           "Palette", "Components",  "Canvas",        "CodeView",
+    static const char* const kOrder[] = {"Hierarchy", "Panels",           "Palette", "Components",  "Canvas",        "Library",       "CodeView",
                                          "Panel Settings", "Project Settings", "Fonts",   "Properties",  "Theme Editor", "Style Classes",
                                          "Log",       "Diagnostics",      "Conflicts", "Live",       "Anim Timeline"};
     for (short i = 0; i < (short)(sizeof(kOrder) / sizeof(kOrder[0])); ++i)
@@ -248,7 +248,7 @@ void App::DrawStatusBar() {
 
             const float sp = st.ItemSpacing.x;
             const float fps_w = ImGui::CalcTextSize("0000 fps").x;
-            const float right_w = StatusPillWidth(diag) + sp + StatusPillWidth(live) + sp * 1.5f + fps_w + st.WindowPadding.x + sp;
+            const float right_w = StatusPillWidth("Library") + sp + StatusPillWidth(diag) + sp + StatusPillWidth(live) + sp * 1.5f + fps_w + st.WindowPadding.x + sp;
             const float right_x = ImGui::GetWindowWidth() - right_w;
             const float limit_x = ImGui::GetWindowPos().x + right_x - sp * 2.0f;
 
@@ -309,6 +309,9 @@ void App::DrawStatusBar() {
             }
 
             ImGui::SameLine(right_x);
+            if (StatusPill("##status_lib", "Library", c.accent, false)) ctx_.OpenPanel("Library");
+            ui::Tooltip("Animations, designs, widgets and templates (Ctrl+L)");
+            ImGui::SameLine(0, sp);
             const ImVec4 diag_col = errors ? c.error : warnings ? c.warning : c.success;
             if (StatusPill("##status_diag", diag, diag_col, false)) ctx_.OpenPanel("Diagnostics");
             if (ImGui::IsItemHovered(ImGuiHoveredFlags_DelayShort))

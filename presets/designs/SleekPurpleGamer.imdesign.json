@@ -1,0 +1,269 @@
+{
+  "credit": "",
+  "description": "Soft rounded panels in deep violet with lilac highlights. Frames get a thin outline, windows don't, and the accent glows a little.",
+  "fonts": [
+    {
+      "family": "Inter",
+      "role": "ui",
+      "size": 15,
+      "weight": "Regular"
+    },
+    {
+      "family": "Exo 2",
+      "role": "heading",
+      "size": 20,
+      "weight": "Bold"
+    }
+  ],
+  "fx": {
+    "accentGlow": 0.5,
+    "windowBlur": 0,
+    "windowShadow": 0.6
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "Lift",
+    "button.press": "Squish",
+    "checkbox.change": "ValuePop",
+    "list": "StaggerFadeUp",
+    "window": "PopIn",
+    "window.exit": "PopOut"
+  },
+  "name": "SleekPurpleGamer",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Border": "#7c4ff0cc",
+        "Button": "#7c4ff0ff",
+        "ButtonActive": "#6a3fd8ff",
+        "ButtonHovered": "#8255f2ff",
+        "Text": "#ffffffff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#2b2440ff",
+        "ChildBg": "#15111fff"
+      },
+      "vars": {
+        "ChildBorderSize": 0,
+        "ChildRounding": 10,
+        "WindowPadding": {
+          "x": 14,
+          "y": 12
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#f2445f8c",
+        "Button": "#f2445f29",
+        "ButtonActive": "#f2445f6b",
+        "ButtonHovered": "#f2445f47",
+        "CheckMark": "#f2445fff",
+        "SliderGrab": "#f2445fff",
+        "SliderGrabActive": "#f2445fff",
+        "Text": "#f1657eff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#c38bff80",
+        "Button": "#c38bff00",
+        "ButtonActive": "#c38bff42",
+        "ButtonHovered": "#c38bff24",
+        "Text": "#c38bffff"
+      },
+      "vars": {
+        "FrameBorderSize": 1
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#8a5cf599",
+        "Text": "#c38bffff"
+      },
+      "vars": {
+        "SeparatorTextBorderSize": 2
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#8c84a8ff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#3ad29f8c",
+        "Button": "#3ad29f29",
+        "ButtonActive": "#3ad29f6b",
+        "ButtonHovered": "#3ad29f47",
+        "CheckMark": "#3ad29fff",
+        "SliderGrab": "#3ad29fff",
+        "SliderGrabActive": "#3ad29fff",
+        "Text": "#3ad29fff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#f7bd2b8c",
+        "Button": "#f7bd2b29",
+        "ButtonActive": "#f7bd2b6b",
+        "ButtonHovered": "#f7bd2b47",
+        "CheckMark": "#f7bd2bff",
+        "SliderGrab": "#f7bd2bff",
+        "SliderGrabActive": "#f7bd2bff",
+        "Text": "#f7bd2bff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "purple",
+    "gaming",
+    "rounded"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#2b2440ff",
+      "BorderShadow": "#00000000",
+      "Button": "#36275bff",
+      "ButtonActive": "#593d9cff",
+      "ButtonHovered": "#47327bff",
+      "CheckMark": "#c38bffff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#0a080fff",
+      "DockingPreview": "#8a5cf599",
+      "DragDropTarget": "#f7bd2be6",
+      "FrameBg": "#1e1830ff",
+      "FrameBgActive": "#3b2c62ff",
+      "FrameBgHovered": "#2a2142ff",
+      "Header": "#8a5cf538",
+      "HeaderActive": "#8a5cf580",
+      "HeaderHovered": "#8a5cf559",
+      "InputTextCursor": "#8a5cf5ff",
+      "MenuBarBg": "#15111fff",
+      "ModalWindowDimBg": "#07060b99",
+      "NavCursor": "#8a5cf5ff",
+      "NavWindowingDimBg": "#07060b40",
+      "NavWindowingHighlight": "#ece8f8b2",
+      "PlotHistogram": "#8a5cf5ff",
+      "PlotHistogramHovered": "#c38bffff",
+      "PlotLines": "#c38bffff",
+      "PlotLinesHovered": "#f7bd2bff",
+      "PopupBg": "#181325fa",
+      "ResizeGrip": "#8a5cf52e",
+      "ResizeGripActive": "#8a5cf5e6",
+      "ResizeGripHovered": "#8a5cf58c",
+      "ScrollbarBg": "#00000000",
+      "ScrollbarGrab": "#373148ff",
+      "ScrollbarGrabActive": "#6444b0ff",
+      "ScrollbarGrabHovered": "#4b465cff",
+      "Separator": "#2b2440ff",
+      "SeparatorActive": "#8a5cf5ff",
+      "SeparatorHovered": "#8a5cf5a6",
+      "SliderGrab": "#8a5cf5ff",
+      "SliderGrabActive": "#c38bffff",
+      "Tab": "#1e1830ff",
+      "TabDimmed": "#181326ff",
+      "TabDimmedSelected": "#35255eff",
+      "TabDimmedSelectedOverline": "#c38bff73",
+      "TabHovered": "#3e2c6eff",
+      "TabSelected": "#4a3384ff",
+      "TabSelectedOverline": "#c38bffff",
+      "TableBorderLight": "#1f1a2fff",
+      "TableBorderStrong": "#2b2440ff",
+      "TableHeaderBg": "#15111fff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#ece8f808",
+      "Text": "#ece8f8ff",
+      "TextDisabled": "#8c84a8ff",
+      "TextLink": "#c38bffff",
+      "TextSelectedBg": "#8a5cf552",
+      "TitleBg": "#0e0b16ff",
+      "TitleBgActive": "#1a1428ff",
+      "TitleBgCollapsed": "#0e0b16bf",
+      "WindowBg": "#0e0b16ff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 6,
+        "y": 3
+      },
+      "ChildBorderSize": 0,
+      "ChildRounding": 8,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 1,
+      "FramePadding": {
+        "x": 8,
+        "y": 4
+      },
+      "FrameRounding": 6,
+      "GrabMinSize": 12,
+      "GrabRounding": 6,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 20,
+      "ItemInnerSpacing": {
+        "x": 6,
+        "y": 4
+      },
+      "ItemSpacing": {
+        "x": 8,
+        "y": 6
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 8,
+      "ScrollbarRounding": 12,
+      "ScrollbarSize": 12,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 2,
+      "SeparatorTextPadding": {
+        "x": 16,
+        "y": 3
+      },
+      "TabBarBorderSize": 0,
+      "TabBarOverlineSize": 0,
+      "TabBorderSize": 0,
+      "TabRounding": 6,
+      "WindowBorderSize": 0,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 48
+      },
+      "WindowPadding": {
+        "x": 12,
+        "y": 12
+      },
+      "WindowRounding": 10,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Sleek Purple Gamer",
+  "widgetStyle": {
+    "accent": "#8a5cf5ff",
+    "accent2": "#c38bffff",
+    "danger": "#f2445fff",
+    "success": "#3ad29fff",
+    "warning": "#f7bd2bff"
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "bindings": [
+    {
+      "name": "hue",
+      "required": true,
+      "types": [
+        "float"
+      ]
+    }
+  ],
+  "call": "imb::ctl::HueStrip({label}, {hue})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-rainbow",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "HueStrip",
+  "preview": [
+    {
+      "fill": "#ff0000ff",
+      "h": 15,
+      "rounding": 7,
+      "shape": "rect",
+      "w": 30,
+      "x": 0,
+      "y": 4
+    },
+    {
+      "fill": "#ffff00ff",
+      "h": 15,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 30,
+      "x": 30,
+      "y": 4
+    },
+    {
+      "fill": "#00ff00ff",
+      "h": 15,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 30,
+      "x": 60,
+      "y": 4
+    },
+    {
+      "fill": "#00ffffff",
+      "h": 15,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 30,
+      "x": 90,
+      "y": 4
+    },
+    {
+      "fill": "#0000ffff",
+      "h": 15,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 30,
+      "x": 120,
+      "y": 4
+    },
+    {
+      "fill": "#ff00ffff",
+      "h": 15,
+      "rounding": 7,
+      "shape": "rect",
+      "w": 30,
+      "x": 150,
+      "y": 4
+    },
+    {
+      "fill": "#ffffffff",
+      "h": 19,
+      "rounding": 2,
+      "shape": "rect",
+      "stroke": "#00000078",
+      "w": 5,
+      "x": 58,
+      "y": 2
+    }
+  ],
+  "props": [
+    {
+      "default": "##hue",
+      "name": "label",
+      "type": "string"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

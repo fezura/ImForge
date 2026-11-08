@@ -399,8 +399,19 @@ int main(int argc, char** argv)
     // ImForge: connect to the builder (non-blocking, reconnects automatically).
     const char* url = argc > 1 ? argv[1] : "tcp://127.0.0.1:7777";
     imforge::live::SetAppName("ImForge demo (sdl3+vulkan)");
+    imforge::live::RegisterBundledPacks();
     imforge::live::Connect(url);
     DemoSetUrl(url);
+
+    // ImForge: project fonts from the builder land in the atlas in PreNewFrame(), this recreates the
+    // font texture afterwards, once the GPU is done with the old one (1.92 backends do it themselves).
+#if IMGUI_VERSION_NUM < 19200
+    imforge::live::SetFontTextureRebuild([] {
+        vkDeviceWaitIdle(g_Device);
+        ImGui_ImplVulkan_DestroyFontsTexture();
+        ImGui_ImplVulkan_CreateFontsTexture();
+    });
+#endif
 
 #ifdef DEMO_HAS_FX
     // ImForge: shader fx (blur behind windows) for this backend.
@@ -455,6 +466,8 @@ int main(int argc, char** argv)
 #endif
         }
 
+        // ImForge: load project fonts the builder sent, before the backend NewFrame locks the atlas.
+        imforge::live::PreNewFrame();
         ImGui_ImplVulkan_NewFrame();
         ImGui_ImplSDL3_NewFrame();
         ImGui::NewFrame();

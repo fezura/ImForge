@@ -5,6 +5,7 @@
 #include <cstring>
 
 #include "emit_internal.h"
+#include "imforge/imforge_widgets.h"
 
 namespace imforge {
 namespace codegen {
@@ -21,9 +22,31 @@ const FileOut* Result::Find(const std::string& path) const {
     return nullptr;
 }
 
+namespace {
+
+// the namespace and runtime header from the project file are pasted into every generated file
+bool IsSafeNamespace(const std::string& s) {
+    if (s.empty()) return true;
+    size_t i = 0;
+    for (;;) {
+        size_t start = i;
+        while (i < s.size() && ((s[i] >= 'A' && s[i] <= 'Z') || (s[i] >= 'a' && s[i] <= 'z') || s[i] == '_' ||
+                                (i > start && s[i] >= '0' && s[i] <= '9')))
+            ++i;
+        if (i == start || IsCppKeyword(s.substr(start, i - start))) return false;
+        if (i == s.size()) return true;
+        if (s.compare(i, 2, "::") != 0) return false;
+        i += 2;
+    }
+}
+
+}  // namespace
+
 Options OptionsFromProject(const Project& p) {
     Options o;
     o.settings = p.codegen;
+    if (!IsSafeNamespace(o.settings.nmspace)) o.settings.nmspace = "ui";
+    if (!IsSafeIncludeName(o.settings.runtime_header)) o.settings.runtime_header = "imb_runtime.h";
     o.imgui_version = p.ImGuiVersionNum();
     if (o.imgui_version <= 0) o.imgui_version = 19190;
     o.features_animations = p.Feature("animations", true);
@@ -147,7 +170,15 @@ void InsertUnusedVoids(Writer& w, size_t offset, const ParamList& params, size_t
 
 void WriteFileHead(Writer& w, const std::string& file_marker) {
     w.Line(kGeneratedBanner);
-    if (w.MarkersOn()) w.Line("// @imb:file " + file_marker);
+    if (!w.MarkersOn()) return;
+    // panel and theme names come from project files: a newline, a trailing backslash or a ??/ trigraph
+    // would end the comment and let the rest of the name become code
+    std::string safe = file_marker;
+    for (char& c : safe) {
+        unsigned char u = static_cast<unsigned char>(c);
+        if (u < 0x20 || u == 0x7F || c == '\\' || c == '?') c = '_';
+    }
+    w.Line("// @imb:file " + safe);
 }
 
 void WriteIncludes(Writer& w, const std::vector<std::string>& includes) {
@@ -191,12 +222,28 @@ bool LoadTypes(const Project& project, const Options& opts, TypesDb& db, std::ve
     return false;
 }
 
+// a::b is written as nested blocks, `namespace a::b` needs C++17
 void OpenNamespace(Writer& w, const Options& opts) {
-    if (!opts.settings.nmspace.empty()) w.Line("namespace " + opts.settings.nmspace + " {");
+    const std::string& ns = opts.settings.nmspace;
+    if (ns.empty()) return;
+    std::string line = "namespace ";
+    for (size_t i = 0; i < ns.size(); ++i) {
+        if (ns.compare(i, 2, "::") == 0) {
+            line += " { namespace ";
+            ++i;
+        } else {
+            line += ns[i];
+        }
+    }
+    w.Line(line + " {");
 }
 
 void CloseNamespace(Writer& w, const Options& opts) {
-    if (!opts.settings.nmspace.empty()) w.Line("}  // namespace " + opts.settings.nmspace);
+    const std::string& ns = opts.settings.nmspace;
+    if (ns.empty()) return;
+    std::string braces = "}";
+    for (size_t at = ns.find("::"); at != std::string::npos; at = ns.find("::", at + 2)) braces += "}";
+    w.Line(braces + "  // namespace " + ns);
 }
 
 // panel
@@ -313,9 +360,14 @@ Result GeneratePanel(const Project& project, const Panel& panel, const Options& 
     src.UserSlot("before_draw");
     EmitNode(ctx, panel.root);
     src.UserSlot("after_draw");
+    if (ctx.uses_custom_anims || (ctx.opts.features_animations && UsesCustomAnimations(project, panel.root))) {
+        ctx.Include("\"imforge_animations.h\"");
+        src.InsertAt(void_off, src.IndentString() + "imforge_anim::RegisterAnimations();\n");
+    }
     InsertUnusedVoids(src, void_off, params, void_off);
     src.Unindent();
     src.Line("}");
+    if (ctx.uses_text_reveal) src.InsertAt(0, TextRevealHelper(src));
 
     bool needs_string = false;
     for (const StateVar& v : panel.state) StateCppType(v.type, needs_string);
@@ -417,8 +469,49 @@ void Merge(Result& into, Result&& part) {
 
 }  // namespace
 
+std::vector<std::string> RuntimeHeadersFor(const Result& r) {
+    static const char* const kMotion[] = {"imb_motion.h", "imb_runtime.h", "imb_anim.h", "imb_effects.h"};
+    std::vector<std::string> out;
+    auto add = [&](const std::string& h) {
+        if (std::find(out.begin(), out.end(), h) == out.end()) out.push_back(h);
+    };
+    for (const FileOut& f : r.files) {
+        size_t pos = 0;
+        while ((pos = f.content.find("#include \"", pos)) != std::string::npos) {
+            size_t start = pos + 10, end = f.content.find('"', start);
+            pos = start;
+            if (end == std::string::npos) break;
+            std::string inc = f.content.substr(start, end - start);
+            size_t slash = inc.find_last_of("/\\");
+            std::string base = slash == std::string::npos ? inc : inc.substr(slash + 1);
+            if (base == "imb_motion.h") {
+                for (const char* h : kMotion) add(h);
+            } else if (base == "imb_motion_presets.h") {
+                add(base);
+                for (const char* h : kMotion) add(h);
+            }
+        }
+    }
+    std::sort(out.begin(), out.end());
+    return out;
+}
+
 Result GenerateAll(const Project& project, const Options& opts) {
     Result r;
+    if (!IsSafeNamespace(opts.settings.nmspace) || !IsSafeIncludeName(opts.settings.runtime_header)) {
+        Diagnostic d;
+        d.level = Diagnostic::Level::Error;
+        d.message = "codegen.namespace must be a C++ namespace name and codegen.runtimeHeader a plain header name";
+        r.diagnostics.push_back(d);
+        return r;
+    }
+    if (!IsSafeNamespace(project.codegen.nmspace) || !IsSafeIncludeName(project.codegen.runtime_header)) {
+        Diagnostic d;
+        d.level = Diagnostic::Level::Warning;
+        d.message = "codegen.namespace or codegen.runtimeHeader is not usable in C++ code, using \"" + opts.settings.nmspace +
+                    "\" and \"" + opts.settings.runtime_header + "\"";
+        r.diagnostics.push_back(d);
+    }
     for (const Panel& p : project.panels) Merge(r, GeneratePanel(project, p, opts));
     Merge(r, GenerateComponents(project, opts));
     for (const Theme& t : project.themes) Merge(r, GenerateTheme(project, t, opts));
@@ -426,6 +519,7 @@ Result GenerateAll(const Project& project, const Options& opts) {
     if (!project.fonts.empty()) Merge(r, GenerateFonts(project, opts));
     if (!project.binding_types.empty() || !project.types_json.empty() || opts.types) Merge(r, GenerateReflection(project, opts));
     if (project.live.enabled) Merge(r, GenerateDevGlue(project, opts));
+    if (!project.animations.empty()) Merge(r, GenerateAnimations(project, opts));
     std::stable_sort(r.files.begin(), r.files.end(), [](const FileOut& a, const FileOut& b) { return a.path < b.path; });
     return r;
 }

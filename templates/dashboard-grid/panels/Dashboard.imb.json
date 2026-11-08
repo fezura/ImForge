@@ -1,0 +1,1152 @@
+{
+  "kind": "panel",
+  "name": "Dashboard",
+  "params": [
+    {
+      "name": "stats",
+      "type": "Stats"
+    }
+  ],
+  "root": {
+    "anim": {
+      "motions": [
+        {
+          "preset": "FadeIn"
+        }
+      ]
+    },
+    "children": [
+      {
+        "children": [
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "FadeInDown"
+                }
+              ]
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "TextRiseIn"
+                        }
+                      ]
+                    },
+                    "font": "Title",
+                    "id": "title",
+                    "props": {
+                      "text": "{{PROJECT_NAME}}"
+                    },
+                    "type": "Text"
+                  },
+                  {
+                    "bind": {
+                      "clicked": "state.crumb"
+                    },
+                    "id": "crumbs",
+                    "props": {
+                      "items": [
+                        "Fleet",
+                        "eu-west",
+                        "node-07"
+                      ],
+                      "label": "##crumbs"
+                    },
+                    "type": "Breadcrumbs"
+                  }
+                ],
+                "id": "title_block",
+                "props": {
+                  "spacing": 2
+                },
+                "type": "VStack"
+              },
+              {
+                "id": "header_fill",
+                "props": {
+                  "size": {
+                    "h": 1,
+                    "w": "fill"
+                  }
+                },
+                "type": "Dummy"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "on": "onChange",
+                      "preset": "Refresh",
+                      "trigger": "change"
+                    }
+                  ]
+                },
+                "bind": {
+                  "index": "state.range"
+                },
+                "id": "range",
+                "props": {
+                  "items": [
+                    "1h",
+                    "24h",
+                    "7d",
+                    "30d"
+                  ],
+                  "label": "##range"
+                },
+                "type": "SegmentedControl"
+              },
+              {
+                "children": [
+                  {
+                    "bind": {
+                      "text": "state.query"
+                    },
+                    "id": "search",
+                    "props": {
+                      "hint": "Search nodes",
+                      "label": "##search"
+                    },
+                    "type": "SearchField"
+                  }
+                ],
+                "id": "search_box",
+                "props": {
+                  "flags": [
+                    "NoScrollbar",
+                    "NoBackground"
+                  ],
+                  "size": {
+                    "h": 32,
+                    "w": 220
+                  }
+                },
+                "style": {
+                  "vars": {
+                    "WindowPadding": {
+                      "x": 0,
+                      "y": 0
+                    }
+                  }
+                },
+                "type": "Child"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "Grow",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "id": "me",
+                "props": {
+                  "name": "Sam Ortiz",
+                  "size": 30,
+                  "status": "Online"
+                },
+                "type": "Avatar"
+              }
+            ],
+            "id": "header",
+            "props": {
+              "spacing": 12
+            },
+            "type": "HStack"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "StaggerPop",
+                  "stagger": 0.06
+                }
+              ]
+            },
+            "children": [
+              {
+                "bind": {
+                  "spark": "stats.players"
+                },
+                "id": "kpi_players",
+                "props": {
+                  "delta": "state.playersDelta",
+                  "format": "%.0f",
+                  "title": "Players online",
+                  "value": "state.players"
+                },
+                "type": "StatCard"
+              },
+              {
+                "bind": {
+                  "spark": "stats.matches"
+                },
+                "id": "kpi_matches",
+                "props": {
+                  "delta": "state.matchesDelta",
+                  "format": "%.0f",
+                  "title": "Matches / hour",
+                  "value": "state.matches"
+                },
+                "type": "StatCard"
+              },
+              {
+                "bind": {
+                  "spark": "stats.latency"
+                },
+                "id": "kpi_latency",
+                "props": {
+                  "delta": "state.latencyDelta",
+                  "format": "%.0f ms",
+                  "title": "Median latency",
+                  "value": "state.latency"
+                },
+                "type": "StatCard"
+              },
+              {
+                "bind": {
+                  "spark": "stats.errors"
+                },
+                "id": "kpi_errors",
+                "props": {
+                  "delta": "state.errorsDelta",
+                  "format": "%.2f %%",
+                  "title": "Error rate",
+                  "value": "state.errors"
+                },
+                "type": "StatCard"
+              }
+            ],
+            "id": "kpis",
+            "props": {
+              "columns": 4,
+              "flags": [
+                "SizingStretchSame"
+              ]
+            },
+            "type": "Grid"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "SpotlightHover",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "delay": 0.15,
+                          "preset": "FadeInUp"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "id": "card_frames_icon",
+                            "props": {
+                              "text": "{icon:fa-stopwatch}"
+                            },
+                            "style": {
+                              "classes": [
+                                "heading"
+                              ]
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "font": "Bold",
+                            "id": "card_frames_title",
+                            "props": {
+                              "text": "Frame time"
+                            },
+                            "type": "Text"
+                          }
+                        ],
+                        "id": "card_frames_head",
+                        "props": {
+                          "spacing": 8
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "bind": {
+                          "samples": "stats.frameMs"
+                        },
+                        "id": "frames",
+                        "props": {
+                          "budgetMs": 16.67,
+                          "label": "##frames",
+                          "size": {
+                            "h": 120,
+                            "w": "fill"
+                          }
+                        },
+                        "type": "FrameGraph"
+                      }
+                    ],
+                    "id": "card_frames_body",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "card_frames",
+                "props": {
+                  "childFlags": [
+                    "AlwaysUseWindowPadding"
+                  ],
+                  "size": {
+                    "h": 190,
+                    "w": "fill"
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "card"
+                  ]
+                },
+                "type": "Child"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "SpotlightHover",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "delay": 0.2,
+                          "preset": "FadeInUp"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "id": "card_load_icon",
+                            "props": {
+                              "text": "{icon:fa-gauge-high}"
+                            },
+                            "style": {
+                              "classes": [
+                                "heading"
+                              ]
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "font": "Bold",
+                            "id": "card_load_title",
+                            "props": {
+                              "text": "Load"
+                            },
+                            "type": "Text"
+                          }
+                        ],
+                        "id": "card_load_head",
+                        "props": {
+                          "spacing": 8
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "children": [
+                          {
+                            "id": "cpu",
+                            "props": {
+                              "dangerFrom": 90,
+                              "format": "%.0f%%",
+                              "label": "CPU",
+                              "max": 100,
+                              "radius": 52,
+                              "value": "state.cpu",
+                              "warnFrom": 70
+                            },
+                            "type": "RadialGauge"
+                          },
+                          {
+                            "children": [
+                              {
+                                "id": "mem",
+                                "props": {
+                                  "color": "#bb9af7ff",
+                                  "fraction": "state.memory",
+                                  "label": "##mem",
+                                  "radius": 26,
+                                  "thickness": 6
+                                },
+                                "type": "RingProgress"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "mem_label",
+                                "props": {
+                                  "text": "memory"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "load_side",
+                            "props": {
+                              "spacing": 4
+                            },
+                            "type": "VStack"
+                          }
+                        ],
+                        "id": "load_row",
+                        "props": {
+                          "spacing": 14
+                        },
+                        "type": "HStack"
+                      }
+                    ],
+                    "id": "card_load_body",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "card_load",
+                "props": {
+                  "childFlags": [
+                    "AlwaysUseWindowPadding"
+                  ],
+                  "size": {
+                    "h": 190,
+                    "w": "fill"
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "card"
+                  ]
+                },
+                "type": "Child"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "SpotlightHover",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "delay": 0.25,
+                          "preset": "FadeInUp"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "id": "card_requests_icon",
+                            "props": {
+                              "text": "{icon:fa-chart-column}"
+                            },
+                            "style": {
+                              "classes": [
+                                "heading"
+                              ]
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "font": "Bold",
+                            "id": "card_requests_title",
+                            "props": {
+                              "text": "Requests"
+                            },
+                            "type": "Text"
+                          }
+                        ],
+                        "id": "card_requests_head",
+                        "props": {
+                          "spacing": 8
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "bind": {
+                          "values": "stats.requests"
+                        },
+                        "id": "requests",
+                        "props": {
+                          "label": "##req",
+                          "labels": [
+                            "Mon",
+                            "Tue",
+                            "Wed",
+                            "Thu",
+                            "Fri",
+                            "Sat",
+                            "Sun"
+                          ],
+                          "size": {
+                            "h": 120,
+                            "w": "fill"
+                          }
+                        },
+                        "type": "MiniBars"
+                      }
+                    ],
+                    "id": "card_requests_body",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "card_requests",
+                "props": {
+                  "childFlags": [
+                    "AlwaysUseWindowPadding"
+                  ],
+                  "size": {
+                    "h": 190,
+                    "w": "fill"
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "card"
+                  ]
+                },
+                "type": "Child"
+              }
+            ],
+            "id": "row2",
+            "props": {
+              "columns": 3,
+              "flags": [
+                "SizingStretchSame"
+              ]
+            },
+            "type": "Grid"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "SpotlightHover",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "delay": 0.3,
+                          "preset": "FadeInUp"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "id": "card_nodes_icon",
+                            "props": {
+                              "text": "{icon:fa-server}"
+                            },
+                            "style": {
+                              "classes": [
+                                "heading"
+                              ]
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "font": "Bold",
+                            "id": "card_nodes_title",
+                            "props": {
+                              "text": "Nodes"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "id": "card_nodes_head_fill",
+                            "props": {
+                              "size": {
+                                "h": 1,
+                                "w": "fill"
+                              }
+                            },
+                            "type": "Dummy"
+                          },
+                          {
+                            "id": "nodes_count",
+                            "props": {
+                              "count": "4",
+                              "kind": "Count",
+                              "text": "4"
+                            },
+                            "type": "Badge"
+                          }
+                        ],
+                        "id": "card_nodes_head",
+                        "props": {
+                          "spacing": 8
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "delay": 0.3,
+                              "preset": "StaggerFadeLeft",
+                              "stagger": 0.06
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "Brighten",
+                                  "trigger": "hover"
+                                }
+                              ]
+                            },
+                            "children": [
+                              {
+                                "id": "node_1_dot",
+                                "props": {
+                                  "label": "node-07",
+                                  "status": "Online"
+                                },
+                                "type": "StatusDot"
+                              },
+                              {
+                                "id": "node_1_region",
+                                "props": {
+                                  "text": "eu-west"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "id": "node_1_fill",
+                                "props": {
+                                  "size": {
+                                    "h": 1,
+                                    "w": "fill"
+                                  }
+                                },
+                                "type": "Dummy"
+                              },
+                              {
+                                "id": "node_1_badge",
+                                "props": {
+                                  "color": "#9ece6aff",
+                                  "kind": "Pill",
+                                  "text": "healthy"
+                                },
+                                "type": "Badge"
+                              }
+                            ],
+                            "id": "node_1",
+                            "props": {
+                              "spacing": 10
+                            },
+                            "type": "HStack"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "Brighten",
+                                  "trigger": "hover"
+                                }
+                              ]
+                            },
+                            "children": [
+                              {
+                                "id": "node_2_dot",
+                                "props": {
+                                  "label": "node-12",
+                                  "status": "Busy"
+                                },
+                                "type": "StatusDot"
+                              },
+                              {
+                                "id": "node_2_region",
+                                "props": {
+                                  "text": "eu-west"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "id": "node_2_fill",
+                                "props": {
+                                  "size": {
+                                    "h": 1,
+                                    "w": "fill"
+                                  }
+                                },
+                                "type": "Dummy"
+                              },
+                              {
+                                "id": "node_2_badge",
+                                "props": {
+                                  "color": "#e0af68ff",
+                                  "kind": "Pill",
+                                  "text": "draining"
+                                },
+                                "type": "Badge"
+                              }
+                            ],
+                            "id": "node_2",
+                            "props": {
+                              "spacing": 10
+                            },
+                            "type": "HStack"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "Brighten",
+                                  "trigger": "hover"
+                                }
+                              ]
+                            },
+                            "children": [
+                              {
+                                "id": "node_3_dot",
+                                "props": {
+                                  "label": "node-03",
+                                  "status": "Online"
+                                },
+                                "type": "StatusDot"
+                              },
+                              {
+                                "id": "node_3_region",
+                                "props": {
+                                  "text": "us-east"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "id": "node_3_fill",
+                                "props": {
+                                  "size": {
+                                    "h": 1,
+                                    "w": "fill"
+                                  }
+                                },
+                                "type": "Dummy"
+                              },
+                              {
+                                "id": "node_3_badge",
+                                "props": {
+                                  "color": "#9ece6aff",
+                                  "kind": "Pill",
+                                  "text": "healthy"
+                                },
+                                "type": "Badge"
+                              }
+                            ],
+                            "id": "node_3",
+                            "props": {
+                              "spacing": 10
+                            },
+                            "type": "HStack"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "Brighten",
+                                  "trigger": "hover"
+                                }
+                              ]
+                            },
+                            "children": [
+                              {
+                                "id": "node_4_dot",
+                                "props": {
+                                  "label": "node-21",
+                                  "status": "Offline"
+                                },
+                                "type": "StatusDot"
+                              },
+                              {
+                                "id": "node_4_region",
+                                "props": {
+                                  "text": "ap-south"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "id": "node_4_fill",
+                                "props": {
+                                  "size": {
+                                    "h": 1,
+                                    "w": "fill"
+                                  }
+                                },
+                                "type": "Dummy"
+                              },
+                              {
+                                "id": "node_4_badge",
+                                "props": {
+                                  "color": "#f7768eff",
+                                  "kind": "Pill",
+                                  "text": "down"
+                                },
+                                "type": "Badge"
+                              }
+                            ],
+                            "id": "node_4",
+                            "props": {
+                              "spacing": 10
+                            },
+                            "type": "HStack"
+                          }
+                        ],
+                        "id": "node_list",
+                        "props": {
+                          "spacing": 8
+                        },
+                        "type": "VStack"
+                      }
+                    ],
+                    "id": "card_nodes_body",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "card_nodes",
+                "props": {
+                  "childFlags": [
+                    "AlwaysUseWindowPadding"
+                  ],
+                  "size": {
+                    "h": "fill",
+                    "w": "fill"
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "card"
+                  ]
+                },
+                "type": "Child"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "SpotlightHover",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "delay": 0.35,
+                          "preset": "FadeInUp"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "id": "card_activity_icon",
+                            "props": {
+                              "text": "{icon:fa-code-branch}"
+                            },
+                            "style": {
+                              "classes": [
+                                "heading"
+                              ]
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "font": "Bold",
+                            "id": "card_activity_title",
+                            "props": {
+                              "text": "Deploy timeline"
+                            },
+                            "type": "Text"
+                          }
+                        ],
+                        "id": "card_activity_head",
+                        "props": {
+                          "spacing": 8
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "bind": {
+                          "markers": "stats.deploys",
+                          "time": "state.time"
+                        },
+                        "id": "timeline",
+                        "props": {
+                          "duration": "30",
+                          "label": "##timeline"
+                        },
+                        "type": "TimelineScrubber"
+                      },
+                      {
+                        "bind": {
+                          "values": "stats.throughput"
+                        },
+                        "id": "throughput",
+                        "props": {
+                          "color": "#7aa2f7ff",
+                          "label": "##tp",
+                          "size": {
+                            "h": 42,
+                            "w": "fill"
+                          }
+                        },
+                        "type": "Sparkline"
+                      },
+                      {
+                        "children": [
+                          {
+                            "id": "sync",
+                            "props": {
+                              "indeterminate": true,
+                              "label": "##sync",
+                              "size": {
+                                "h": 6,
+                                "w": 160
+                              }
+                            },
+                            "type": "LoadingBar"
+                          },
+                          {
+                            "font": "Small",
+                            "id": "sync_text",
+                            "props": {
+                              "text": "syncing metrics"
+                            },
+                            "style": {
+                              "classes": [
+                                "muted"
+                              ]
+                            },
+                            "type": "Text"
+                          }
+                        ],
+                        "id": "activity_foot",
+                        "props": {
+                          "spacing": 10
+                        },
+                        "type": "HStack"
+                      }
+                    ],
+                    "id": "card_activity_body",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "card_activity",
+                "props": {
+                  "childFlags": [
+                    "AlwaysUseWindowPadding"
+                  ],
+                  "size": {
+                    "h": "fill",
+                    "w": "fill"
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "card"
+                  ]
+                },
+                "type": "Child"
+              }
+            ],
+            "id": "row3",
+            "props": {
+              "columns": 2,
+              "flags": [
+                "SizingStretchSame"
+              ]
+            },
+            "type": "Grid"
+          }
+        ],
+        "id": "page",
+        "props": {
+          "spacing": 12
+        },
+        "type": "VStack"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoCollapse",
+        "NoScrollbar"
+      ],
+      "initialSize": {
+        "x": 1180,
+        "y": 720
+      },
+      "sizeCond": "FirstUseEver",
+      "title": "{{PROJECT_NAME}}"
+    },
+    "style": {
+      "vars": {
+        "CellPadding": {
+          "x": 6,
+          "y": 6
+        },
+        "WindowPadding": {
+          "x": 18,
+          "y": 16
+        }
+      }
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": 1,
+      "name": "range",
+      "type": "int"
+    },
+    {
+      "default": -1,
+      "name": "crumb",
+      "type": "int"
+    },
+    {
+      "default": "",
+      "name": "query",
+      "type": "string"
+    },
+    {
+      "default": 12840,
+      "name": "players",
+      "type": "float"
+    },
+    {
+      "default": 6.2,
+      "name": "playersDelta",
+      "type": "float"
+    },
+    {
+      "default": 2315,
+      "name": "matches",
+      "type": "float"
+    },
+    {
+      "default": 3.4,
+      "name": "matchesDelta",
+      "type": "float"
+    },
+    {
+      "default": 38,
+      "name": "latency",
+      "type": "float"
+    },
+    {
+      "default": -4.1,
+      "name": "latencyDelta",
+      "type": "float"
+    },
+    {
+      "default": 0.42,
+      "name": "errors",
+      "type": "float"
+    },
+    {
+      "default": -0.8,
+      "name": "errorsDelta",
+      "type": "float"
+    },
+    {
+      "default": 64,
+      "name": "cpu",
+      "type": "float"
+    },
+    {
+      "default": 0.58,
+      "name": "memory",
+      "type": "float"
+    },
+    {
+      "default": 12,
+      "name": "time",
+      "type": "float"
+    }
+  ]
+}

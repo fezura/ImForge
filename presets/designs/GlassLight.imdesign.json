@@ -1,0 +1,269 @@
+{
+  "credit": "",
+  "description": "Frosted white panels over a pale backdrop, with a soft bevel on inputs and centered titles. Reads like a modern desktop app.",
+  "fonts": [
+    {
+      "family": "Figtree",
+      "role": "ui",
+      "size": 15,
+      "weight": "Regular"
+    },
+    {
+      "family": "Figtree",
+      "role": "heading",
+      "size": 19,
+      "weight": "Bold"
+    }
+  ],
+  "fx": {
+    "accentGlow": 0,
+    "windowBlur": 0.8,
+    "windowShadow": 0.4
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "HoverFloat",
+    "button.press": "PressDown",
+    "list": "StaggerFadeUp",
+    "window": "FadeInUp",
+    "window.exit": "FadeOutDown"
+  },
+  "name": "GlassLight",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Border": "#3461f5cc",
+        "Button": "#3461f5ff",
+        "ButtonActive": "#2448c8ff",
+        "ButtonHovered": "#2b55e6ff",
+        "Text": "#ffffffff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#ffffffcc",
+        "ChildBg": "#ffffffa6"
+      },
+      "vars": {
+        "ChildBorderSize": 1,
+        "ChildRounding": 12,
+        "WindowPadding": {
+          "x": 16,
+          "y": 12
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#d93b5b8c",
+        "Button": "#d93b5b29",
+        "ButtonActive": "#d93b5b6b",
+        "ButtonHovered": "#d93b5b47",
+        "CheckMark": "#d93b5bff",
+        "SliderGrab": "#d93b5bff",
+        "SliderGrabActive": "#d93b5bff",
+        "Text": "#702c45ff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#3d6bff80",
+        "Button": "#3d6bff00",
+        "ButtonActive": "#3d6bff2e",
+        "ButtonHovered": "#3d6bff1a",
+        "Text": "#2c4699ff"
+      },
+      "vars": {
+        "FrameBorderSize": 1
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#3d6bff59",
+        "Text": "#0f1424ff"
+      },
+      "vars": {
+        "SeparatorTextBorderSize": 1
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#4d566eff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#1f9d6b8c",
+        "Button": "#1f9d6b29",
+        "ButtonActive": "#1f9d6b6b",
+        "ButtonHovered": "#1f9d6b47",
+        "CheckMark": "#1f9d6bff",
+        "SliderGrab": "#1f9d6bff",
+        "SliderGrabActive": "#1f9d6bff",
+        "Text": "#1c5249ff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#c27c0e8c",
+        "Button": "#c27c0e29",
+        "ButtonActive": "#c27c0e6b",
+        "ButtonHovered": "#c27c0e47",
+        "CheckMark": "#c27c0eff",
+        "SliderGrab": "#c27c0eff",
+        "SliderGrabActive": "#c27c0eff",
+        "Text": "#5d4524ff"
+      }
+    }
+  },
+  "tags": [
+    "light",
+    "glass",
+    "translucent",
+    "blur",
+    "modern"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#1a20331f",
+      "BorderShadow": "#ffffff99",
+      "Button": "#3d6bff1f",
+      "ButtonActive": "#3d6bff59",
+      "ButtonHovered": "#3d6bff40",
+      "CheckMark": "#3d6bffff",
+      "ChildBg": "#ffffff40",
+      "DockingEmptyBg": "#e9eef7ff",
+      "DockingPreview": "#3d6bff66",
+      "DragDropTarget": "#c27c0ee6",
+      "FrameBg": "#ffffffcc",
+      "FrameBgActive": "#dce5ffff",
+      "FrameBgHovered": "#e8eeffff",
+      "Header": "#3d6bff24",
+      "HeaderActive": "#3d6bff52",
+      "HeaderHovered": "#3d6bff38",
+      "InputTextCursor": "#3d6bffff",
+      "MenuBarBg": "#ffffff59",
+      "ModalWindowDimBg": "#1a203340",
+      "NavCursor": "#3d6bffff",
+      "NavWindowingDimBg": "#1a203320",
+      "NavWindowingHighlight": "#1a2033b3",
+      "PlotHistogram": "#3d6bffff",
+      "PlotHistogramHovered": "#8a5cffff",
+      "PlotLines": "#535c75ff",
+      "PlotLinesHovered": "#8a5cffff",
+      "PopupBg": "#f7f9fdf2",
+      "ResizeGrip": "#1a20331a",
+      "ResizeGripActive": "#3d6bffe6",
+      "ResizeGripHovered": "#3d6bff8c",
+      "ScrollbarBg": "#00000000",
+      "ScrollbarGrab": "#1a203333",
+      "ScrollbarGrabActive": "#1a203373",
+      "ScrollbarGrabHovered": "#1a20334d",
+      "Separator": "#1a203324",
+      "SeparatorActive": "#3d6bffff",
+      "SeparatorHovered": "#3d6bffa6",
+      "SliderGrab": "#3d6bffff",
+      "SliderGrabActive": "#6a3fe6ff",
+      "Tab": "#ffffff66",
+      "TabDimmed": "#ffffff40",
+      "TabDimmedSelected": "#ffffffa6",
+      "TabDimmedSelectedOverline": "#3d6bff73",
+      "TabHovered": "#3d6bff24",
+      "TabSelected": "#ffffffe6",
+      "TabSelectedOverline": "#3d6bffff",
+      "TableBorderLight": "#1a203314",
+      "TableBorderStrong": "#1a203326",
+      "TableHeaderBg": "#ffffff8c",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#1a203308",
+      "Text": "#1a2033ff",
+      "TextDisabled": "#535c75ff",
+      "TextLink": "#2448c8ff",
+      "TextSelectedBg": "#3d6bff40",
+      "TitleBg": "#e4e9f3d9",
+      "TitleBgActive": "#f7f9fde6",
+      "TitleBgCollapsed": "#e4e9f3b3",
+      "WindowBg": "#eef2fad9"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 6,
+        "y": 3
+      },
+      "ChildBorderSize": 1,
+      "ChildRounding": 12,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 1,
+      "FramePadding": {
+        "x": 10,
+        "y": 6
+      },
+      "FrameRounding": 8,
+      "GrabMinSize": 12,
+      "GrabRounding": 8,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 20,
+      "ItemInnerSpacing": {
+        "x": 6,
+        "y": 4
+      },
+      "ItemSpacing": {
+        "x": 10,
+        "y": 8
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 12,
+      "ScrollbarRounding": 12,
+      "ScrollbarSize": 12,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 1,
+      "SeparatorTextPadding": {
+        "x": 16,
+        "y": 3
+      },
+      "TabBarBorderSize": 0,
+      "TabBarOverlineSize": 0,
+      "TabBorderSize": 0,
+      "TabRounding": 8,
+      "WindowBorderSize": 1,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 48
+      },
+      "WindowPadding": {
+        "x": 16,
+        "y": 14
+      },
+      "WindowRounding": 14,
+      "WindowTitleAlign": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Glass Light",
+  "widgetStyle": {
+    "accent": "#3d6bffff",
+    "accent2": "#8a5cffff",
+    "danger": "#d93b5bff",
+    "success": "#1f9d6bff",
+    "warning": "#c27c0eff"
+  }
+}

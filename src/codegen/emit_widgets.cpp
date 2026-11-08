@@ -1,3 +1,4 @@
+#include "emit_internal.h"
 #include "emit_widgets_util.h"
 
 namespace imforge {
@@ -8,6 +9,16 @@ namespace {
 
 bool PlainLiteral(const FmtArgs& t) { return t.IsLiteral() && t.fmt.find('%') == std::string::npos; }
 
+// typewriter style motions: format into a buffer and cut it like the interpreter does
+std::string RevealBuffer(EmitCtx& ctx, const Node& n, const std::string& reveal, const std::string& printf_args) {
+    std::string buf = Local(ctx, n, "txt");
+    NeedInclude(ctx, "<cstdio>");
+    Line(ctx, "char " + buf + "[1024];");
+    Line(ctx, "std::snprintf(" + buf + ", sizeof(" + buf + "), " + printf_args + ");");
+    Line(ctx, "ImbTextReveal(" + buf + ", " + reveal + ");");
+    return buf;
+}
+
 void EmitText(EmitCtx& ctx, const Node& n) {
     FmtArgs t = ctx.Text(n, "text", "Text");
     bool bullet = Bool(ctx, n, "bullet", false);
@@ -16,6 +27,11 @@ void EmitText(EmitCtx& ctx, const Node& n) {
     bool has_color = RawProp(n, "color") != nullptr;
     std::string color = has_color ? Color(ctx, n, "color", "#ffffffff") : std::string();
     std::string fa = t.CallArgs();
+    std::string reveal = MotionTextReveal(ctx, n), buf;
+    if (!reveal.empty()) {
+        buf = RevealBuffer(ctx, n, reveal, fa);
+        fa = "\"%s\", " + buf;
+    }
     if (bullet || wrapped) {
         bool push = disabled || has_color;
         if (push)
@@ -28,6 +44,8 @@ void EmitText(EmitCtx& ctx, const Node& n) {
         Line(ctx, "ImGui::TextDisabled(" + fa + ");");
     } else if (has_color) {
         Line(ctx, "ImGui::TextColored(" + color + ", " + fa + ");");
+    } else if (!buf.empty()) {
+        Line(ctx, "ImGui::TextUnformatted(" + buf + ");");
     } else if (PlainLiteral(t)) {
         Line(ctx, "ImGui::TextUnformatted(" + t.fmt + ");");
     } else {
@@ -37,6 +55,8 @@ void EmitText(EmitCtx& ctx, const Node& n) {
 
 void EmitSeparatorText(EmitCtx& ctx, const Node& n) {
     std::string text = Str(ctx, n, "text", "Section");
+    std::string reveal = MotionTextReveal(ctx, n);
+    if (!reveal.empty()) text = RevealBuffer(ctx, n, reveal, "\"%s\", " + text);
     if (Version(ctx) >= 18950) {
         Line(ctx, "ImGui::SeparatorText(" + text + ");");
         return;

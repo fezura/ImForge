@@ -1,0 +1,91 @@
+{
+  "kind": "component",
+  "name": "Panel",
+  "params": [
+    {
+      "default": "Panel",
+      "name": "title",
+      "type": "string"
+    },
+    {
+      "default": "fa-square",
+      "name": "icon",
+      "type": "string"
+    }
+  ],
+  "root": {
+    "anim": {
+      "motions": [
+        {
+          "preset": "SpotlightHover",
+          "trigger": "hover"
+        }
+      ]
+    },
+    "children": [
+      {
+        "anim": {
+          "motions": [
+            {
+              "delay": 0.15,
+              "preset": "FadeIn"
+            }
+          ]
+        },
+        "children": [
+          {
+            "children": [
+              {
+                "font": "Bold",
+                "id": "panel_title",
+                "props": {
+                  "text": {
+                    "param": "title"
+                  }
+                },
+                "type": "Text"
+              }
+            ],
+            "id": "panel_head",
+            "props": {
+              "spacing": 8
+            },
+            "type": "HStack"
+          },
+          {
+            "id": "slot_content",
+            "props": {
+              "name": "content"
+            },
+            "type": "Slot"
+          }
+        ],
+        "id": "panel_body",
+        "props": {
+          "spacing": 8
+        },
+        "type": "VStack"
+      }
+    ],
+    "id": "panel_card",
+    "props": {
+      "childFlags": [
+        "AlwaysUseWindowPadding"
+      ],
+      "size": {
+        "h": 180,
+        "w": "fill"
+      }
+    },
+    "style": {
+      "classes": [
+        "card"
+      ]
+    },
+    "type": "Child"
+  },
+  "schemaVersion": 1,
+  "slots": [
+    "content"
+  ]
+}

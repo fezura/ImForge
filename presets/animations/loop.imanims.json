@@ -1,0 +1,1379 @@
+{
+  "animations": [
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Swells and settles slowly, like calm breathing.",
+      "direction": "normal",
+      "duration": 3.2,
+      "ease": "InOutSine",
+      "fill": "none",
+      "iterations": 0,
+      "name": "Breathe",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "calm",
+        "idle"
+      ],
+      "tracks": {
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.5,
+            "v": 1.025
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Drifts up and down on a slow sine wave.",
+      "direction": "normal",
+      "duration": 3,
+      "ease": "InOutSine",
+      "fill": "none",
+      "iterations": 0,
+      "name": "LoopFloat",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "float",
+        "idle",
+        "calm"
+      ],
+      "tracks": {
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.5,
+            "v": -4
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Bobs up and down at a quick, bouncy pace.",
+      "direction": "normal",
+      "duration": 1.2,
+      "ease": "InOutSine",
+      "fill": "none",
+      "iterations": 0,
+      "name": "LoopBob",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "bounce",
+        "idle",
+        "playful"
+      ],
+      "tracks": {
+        "translateY": [
+          {
+            "ease": "OutQuad",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "ease": "InQuad",
+            "t": 0.5,
+            "v": -3
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Turns a full circle at a steady pace, made for loading icons.",
+      "direction": "normal",
+      "duration": 1.2,
+      "ease": "Linear",
+      "fill": "none",
+      "iterations": 0,
+      "name": "Spin",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "rotate",
+        "loading"
+      ],
+      "tracks": {
+        "rotate": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 360
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "A slow full turn for badges, gears and other decoration.",
+      "direction": "normal",
+      "duration": 4,
+      "ease": "Linear",
+      "fill": "none",
+      "iterations": 0,
+      "name": "SpinSlow",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "rotate",
+        "calm"
+      ],
+      "tracks": {
+        "rotate": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 360
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Spins counterclockwise at loader speed.",
+      "direction": "normal",
+      "duration": 1.2,
+      "ease": "Linear",
+      "fill": "none",
+      "iterations": 0,
+      "name": "SpinReverse",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "rotate",
+        "loading"
+      ],
+      "tracks": {
+        "rotate": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": -360
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Swings from its top edge like a hanging sign.",
+      "direction": "normal",
+      "duration": 2,
+      "ease": "InOutSine",
+      "fill": "none",
+      "iterations": 0,
+      "name": "Pendulum",
+      "origin": {
+        "x": 0.5,
+        "y": 0
+      },
+      "revealDir": "left",
+      "tags": [
+        "rotate",
+        "swing"
+      ],
+      "tracks": {
+        "rotate": [
+          {
+            "ease": "OutSine",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "ease": "InSine",
+            "t": 0.25,
+            "v": 8
+          },
+          {
+            "ease": "OutSine",
+            "t": 0.5,
+            "v": 0
+          },
+          {
+            "ease": "InSine",
+            "t": 0.75,
+            "v": -8
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Traces a small circle a few pixels across.",
+      "direction": "normal",
+      "duration": 3,
+      "ease": "InOutSine",
+      "fill": "none",
+      "iterations": 0,
+      "name": "Orbit",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "translate",
+        "idle",
+        "playful"
+      ],
+      "tracks": {
+        "translateX": [
+          {
+            "ease": "OutSine",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "ease": "InSine",
+            "t": 0.25,
+            "v": 3
+          },
+          {
+            "ease": "OutSine",
+            "t": 0.5,
+            "v": 0
+          },
+          {
+            "ease": "InSine",
+            "t": 0.75,
+            "v": -3
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateY": [
+          {
+            "ease": "InSine",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "ease": "OutSine",
+            "t": 0.25,
+            "v": -3
+          },
+          {
+            "ease": "InSine",
+            "t": 0.5,
+            "v": -6
+          },
+          {
+            "ease": "OutSine",
+            "t": 0.75,
+            "v": -3
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Runs a cool then warm tint across it with a soft glow in between.",
+      "direction": "normal",
+      "duration": 2.4,
+      "ease": "InOutSine",
+      "fill": "none",
+      "iterations": 0,
+      "name": "Shimmer",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "tint",
+        "glow",
+        "premium"
+      ],
+      "tracks": {
+        "glow": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.35,
+            "v": 0.4
+          },
+          {
+            "t": 0.7,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "tint": [
+          {
+            "t": 0,
+            "v": "#ffffffff"
+          },
+          {
+            "t": 0.2,
+            "v": "#dbe6ffff"
+          },
+          {
+            "t": 0.35,
+            "v": "#ffffffff"
+          },
+          {
+            "t": 0.5,
+            "v": "#fff1d6ff"
+          },
+          {
+            "t": 0.7,
+            "v": "#ffffffff"
+          },
+          {
+            "t": 1,
+            "v": "#ffffffff"
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Glows like a neon tube that stutters off every so often.",
+      "direction": "normal",
+      "duration": 2.5,
+      "ease": "Linear",
+      "fill": "none",
+      "iterations": 0,
+      "name": "NeonFlicker",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "glow",
+        "flicker",
+        "retro"
+      ],
+      "tracks": {
+        "glow": [
+          {
+            "ease": "steps(1)",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.04,
+            "v": 0.55
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.1,
+            "v": 0.1
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.13,
+            "v": 0.55
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.17,
+            "v": 0.25
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.19,
+            "v": 0.55
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.62,
+            "v": 0.05
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.66,
+            "v": 0.55
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.97,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "opacity": [
+          {
+            "ease": "steps(1)",
+            "t": 0,
+            "v": 1
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.1,
+            "v": 0.5
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.13,
+            "v": 1
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.17,
+            "v": 0.75
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.19,
+            "v": 1
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.62,
+            "v": 0.45
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.66,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Fades the accent glow in and out.",
+      "direction": "normal",
+      "duration": 2,
+      "ease": "InOutSine",
+      "fill": "none",
+      "iterations": 0,
+      "name": "PulseGlow",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "glow",
+        "pulse",
+        "status"
+      ],
+      "tracks": {
+        "glow": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.5,
+            "v": 0.5
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Rolls through soft hues, best on white or light content.",
+      "direction": "normal",
+      "duration": 4,
+      "ease": "Linear",
+      "fill": "none",
+      "iterations": 0,
+      "name": "ColorCycle",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "tint",
+        "color",
+        "fun"
+      ],
+      "tracks": {
+        "tint": [
+          {
+            "t": 0,
+            "v": "#ffffffff"
+          },
+          {
+            "t": 0.14,
+            "v": "#ff9e9eff"
+          },
+          {
+            "t": 0.28,
+            "v": "#ffd98aff"
+          },
+          {
+            "t": 0.43,
+            "v": "#a6f5b5ff"
+          },
+          {
+            "t": 0.57,
+            "v": "#8fe3ffff"
+          },
+          {
+            "t": 0.71,
+            "v": "#a3b1ffff"
+          },
+          {
+            "t": 0.86,
+            "v": "#e6a3ffff"
+          },
+          {
+            "t": 1,
+            "v": "#ffffffff"
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "animate.css (MIT)",
+      "delay": 0,
+      "description": "Beats twice and rests, like a heart.",
+      "direction": "normal",
+      "duration": 1.3,
+      "ease": "InOutQuad",
+      "fill": "none",
+      "iterations": 0,
+      "name": "LoopHeartbeat",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "pulse",
+        "love"
+      ],
+      "tracks": {
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.14,
+            "v": 1.08
+          },
+          {
+            "t": 0.28,
+            "v": 1
+          },
+          {
+            "t": 0.42,
+            "v": 1.08
+          },
+          {
+            "t": 0.7,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Wiggles for a moment, then waits before the next round.",
+      "direction": "normal",
+      "duration": 2,
+      "ease": "InOutSine",
+      "fill": "none",
+      "iterations": 0,
+      "name": "LoopWiggle",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "rotate",
+        "playful",
+        "notify"
+      ],
+      "tracks": {
+        "rotate": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.08,
+            "v": -4
+          },
+          {
+            "t": 0.16,
+            "v": 4
+          },
+          {
+            "t": 0.24,
+            "v": -3
+          },
+          {
+            "t": 0.32,
+            "v": 3
+          },
+          {
+            "t": 0.4,
+            "v": -1
+          },
+          {
+            "t": 0.46,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Hard on and off blink with the rhythm of a text cursor.",
+      "direction": "normal",
+      "duration": 1.1,
+      "ease": "Linear",
+      "fill": "none",
+      "iterations": 0,
+      "name": "CursorBlink",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "opacity",
+        "cursor"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "ease": "steps(1)",
+            "t": 0,
+            "v": 1
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.5,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Floats above the surface, the shadow growing as it rises.",
+      "direction": "normal",
+      "duration": 3,
+      "ease": "InOutSine",
+      "fill": "none",
+      "iterations": 0,
+      "name": "Hovering",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "float",
+        "shadow",
+        "idle"
+      ],
+      "tracks": {
+        "shadow": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.5,
+            "v": 0.4
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.5,
+            "v": -5
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Shakes by about a pixel in an uneven pattern.",
+      "direction": "normal",
+      "duration": 1,
+      "ease": "Linear",
+      "fill": "none",
+      "iterations": 0,
+      "name": "Jitter",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "translate",
+        "shake",
+        "glitch"
+      ],
+      "tracks": {
+        "translateX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.1,
+            "v": 1
+          },
+          {
+            "t": 0.2,
+            "v": -0.5
+          },
+          {
+            "t": 0.3,
+            "v": 0.8
+          },
+          {
+            "t": 0.42,
+            "v": -1
+          },
+          {
+            "t": 0.5,
+            "v": 0.4
+          },
+          {
+            "t": 0.61,
+            "v": -0.7
+          },
+          {
+            "t": 0.7,
+            "v": 1
+          },
+          {
+            "t": 0.8,
+            "v": -0.4
+          },
+          {
+            "t": 0.9,
+            "v": 0.6
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.12,
+            "v": -0.6
+          },
+          {
+            "t": 0.23,
+            "v": 0.8
+          },
+          {
+            "t": 0.35,
+            "v": -1
+          },
+          {
+            "t": 0.46,
+            "v": 0.3
+          },
+          {
+            "t": 0.58,
+            "v": 0.9
+          },
+          {
+            "t": 0.67,
+            "v": -0.5
+          },
+          {
+            "t": 0.79,
+            "v": 0.7
+          },
+          {
+            "t": 0.88,
+            "v": -0.8
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Bends side to side from the bottom, like a plant in a breeze.",
+      "direction": "normal",
+      "duration": 3.2,
+      "ease": "InOutSine",
+      "fill": "none",
+      "iterations": 0,
+      "name": "Sway",
+      "origin": {
+        "x": 0.5,
+        "y": 1
+      },
+      "revealDir": "left",
+      "tags": [
+        "skew",
+        "calm",
+        "nature"
+      ],
+      "tracks": {
+        "skewX": [
+          {
+            "ease": "OutSine",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "ease": "InSine",
+            "t": 0.25,
+            "v": 3
+          },
+          {
+            "ease": "OutSine",
+            "t": 0.5,
+            "v": 0
+          },
+          {
+            "ease": "InSine",
+            "t": 0.75,
+            "v": -3
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Rocks back and forth on its base.",
+      "direction": "normal",
+      "duration": 1.6,
+      "ease": "InOutSine",
+      "fill": "none",
+      "iterations": 0,
+      "name": "Rock",
+      "origin": {
+        "x": 0.5,
+        "y": 1
+      },
+      "revealDir": "left",
+      "tags": [
+        "rotate",
+        "playful"
+      ],
+      "tracks": {
+        "rotate": [
+          {
+            "ease": "OutQuad",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "ease": "InOutQuad",
+            "t": 0.25,
+            "v": -5
+          },
+          {
+            "ease": "InQuad",
+            "t": 0.75,
+            "v": 5
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Swells out behind a glow ring and fades back, over and over.",
+      "direction": "normal",
+      "duration": 1.8,
+      "ease": "InOutSine",
+      "fill": "none",
+      "iterations": 0,
+      "name": "Ripple",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "glow",
+        "pulse"
+      ],
+      "tracks": {
+        "glow": [
+          {
+            "ease": "OutQuad",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.2,
+            "v": 0.5
+          },
+          {
+            "t": 0.8,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "opacity": [
+          {
+            "ease": "OutQuad",
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.35,
+            "v": 0.75
+          },
+          {
+            "t": 0.8,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "ease": "OutQuad",
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.35,
+            "v": 1.05
+          },
+          {
+            "t": 0.8,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Sweeps a full turn and pings the glow at the start of each pass.",
+      "direction": "normal",
+      "duration": 2.4,
+      "ease": "Linear",
+      "fill": "none",
+      "iterations": 0,
+      "name": "Radar",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "rotate",
+        "glow",
+        "scan"
+      ],
+      "tracks": {
+        "glow": [
+          {
+            "ease": "OutQuad",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "ease": "InOutSine",
+            "t": 0.06,
+            "v": 0.5
+          },
+          {
+            "t": 0.5,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "rotate": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 360
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "A short, firm pulse that repeats every second.",
+      "direction": "normal",
+      "duration": 1,
+      "ease": "InOutQuad",
+      "fill": "none",
+      "iterations": 0,
+      "name": "LoopThrob",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "pulse",
+        "alert"
+      ],
+      "tracks": {
+        "glow": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.5,
+            "v": 0.25
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.5,
+            "v": 1.06
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Wanders a few pixels around its spot, very slowly.",
+      "direction": "normal",
+      "duration": 4,
+      "ease": "InOutSine",
+      "fill": "none",
+      "iterations": 0,
+      "name": "Drift",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "translate",
+        "calm",
+        "ambient"
+      ],
+      "tracks": {
+        "translateX": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.25,
+            "v": 3
+          },
+          {
+            "t": 0.5,
+            "v": 1
+          },
+          {
+            "t": 0.75,
+            "v": -2
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.3,
+            "v": -2
+          },
+          {
+            "t": 0.55,
+            "v": -3
+          },
+          {
+            "t": 0.8,
+            "v": -1
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "loop"
+    },
+    {
+      "category": "loop",
+      "credit": "",
+      "delay": 0,
+      "description": "Dims and shrinks a touch now and then, like a distant star.",
+      "direction": "normal",
+      "duration": 1.6,
+      "ease": "InOutSine",
+      "fill": "none",
+      "iterations": 0,
+      "name": "Twinkle",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "opacity",
+        "scale",
+        "sparkle"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.3,
+            "v": 1
+          },
+          {
+            "t": 0.45,
+            "v": 0.5
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 0.3,
+            "v": 1
+          },
+          {
+            "t": 0.45,
+            "v": 0.92
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "loop"
+    }
+  ],
+  "category": "loop",
+  "kind": "animationSet",
+  "schemaVersion": 1
+}

@@ -268,9 +268,12 @@ void EmitCtx::MarkLiteral(const Node& n, const char* prop) { w.MarkNextLiteral(n
 void EmitCtx::EmitChildren(const Node& n) { codegen::EmitChildren(*this, n); }
 
 void EmitCtx::Include(const std::string& header) {
-    for (const std::string& h : includes)
-        if (h == header) return;
-    includes.push_back(header);
+    if (header.empty()) return;
+    // manifests give bare names like "imb_gaming.h"
+    std::string h = (header[0] == '<' || header[0] == '"') ? header : "\"" + header + "\"";
+    for (const std::string& have : includes)
+        if (have == h) return;
+    includes.push_back(h);
 }
 
 void EmitCtx::Diag(Diagnostic::Level level, const Node* n, const char* prop, const std::string& msg) {

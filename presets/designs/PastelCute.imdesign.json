@@ -1,0 +1,267 @@
+{
+  "credit": "",
+  "description": "Bubblegum pink and sky blue on soft white, with pill shaped controls, bouncy motion and lots of breathing room.",
+  "fonts": [
+    {
+      "family": "Nunito",
+      "role": "ui",
+      "size": 16
+    },
+    {
+      "family": "Fredoka",
+      "role": "heading",
+      "size": 22,
+      "weight": "SemiBold"
+    }
+  ],
+  "fx": {
+    "accentGlow": 0,
+    "windowBlur": 0,
+    "windowShadow": 0.3
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "WobbleReady",
+    "button.press": "ClickBounce",
+    "list": {
+      "preset": "StaggerPop",
+      "stagger": 0.06
+    },
+    "popup": "JackInTheBox",
+    "window": "BounceIn",
+    "window.exit": "BounceOut"
+  },
+  "name": "PastelCute",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Button": "#ff8fbfff",
+        "ButtonActive": "#f77fb2ff",
+        "ButtonHovered": "#ffa5ccff",
+        "Text": "#3a2b42ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#f3d3e2ff",
+        "ChildBg": "#ffffffff"
+      },
+      "vars": {
+        "ChildBorderSize": 1.5,
+        "ChildRounding": 18,
+        "WindowPadding": {
+          "x": 18,
+          "y": 16
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#f2668b8c",
+        "Button": "#f2668b29",
+        "ButtonActive": "#f2668b5c",
+        "ButtonHovered": "#f2668b42",
+        "CheckMark": "#f2668bff",
+        "SliderGrab": "#f2668bff",
+        "SliderGrabActive": "#f2668bff",
+        "Text": "#913d53ff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#ff8fbf99",
+        "Button": "#00000000",
+        "ButtonActive": "#ff8fbf3d",
+        "ButtonHovered": "#ff8fbf24",
+        "Text": "#8f506bff"
+      },
+      "vars": {
+        "FrameBorderSize": 1.5
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#9fd8ffff",
+        "Text": "#c04378ff"
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#7a6884ff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#6fcf978c",
+        "Button": "#6fcf9729",
+        "ButtonActive": "#6fcf975c",
+        "ButtonHovered": "#6fcf9742",
+        "CheckMark": "#6fcf97ff",
+        "SliderGrab": "#6fcf97ff",
+        "SliderGrabActive": "#6fcf97ff",
+        "Text": "#3a6c4fff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#f2b84b8c",
+        "Button": "#f2b84b29",
+        "ButtonActive": "#f2b84b5c",
+        "ButtonHovered": "#f2b84b42",
+        "CheckMark": "#f2b84bff",
+        "SliderGrab": "#f2b84bff",
+        "SliderGrabActive": "#f2b84bff",
+        "Text": "#795c25ff"
+      }
+    }
+  },
+  "tags": [
+    "light",
+    "pastel",
+    "cute",
+    "playful"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#f3d3e2ff",
+      "BorderShadow": "#00000000",
+      "Button": "#fde8f1ff",
+      "ButtonActive": "#fcc1dbff",
+      "ButtonHovered": "#fbd9e8ff",
+      "CheckMark": "#d64a88ff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#fbeef4ff",
+      "DockingPreview": "#ff8fbfb2",
+      "DragDropTarget": "#5fb4eae6",
+      "FrameBg": "#fde8f1ff",
+      "FrameBgActive": "#fccce1ff",
+      "FrameBgHovered": "#fbd9e8ff",
+      "Header": "#ff8fbf38",
+      "HeaderActive": "#ff8fbf73",
+      "HeaderHovered": "#ff8fbf52",
+      "InputTextCursor": "#d64a88ff",
+      "MenuBarBg": "#fdeef5ff",
+      "ModalWindowDimBg": "#4a3b524c",
+      "NavCursor": "#d64a88ff",
+      "NavWindowingDimBg": "#4a3b5233",
+      "NavWindowingHighlight": "#ffffffb2",
+      "PlotHistogram": "#ff8fbfff",
+      "PlotHistogramHovered": "#a98bffff",
+      "PlotLines": "#5fb4eaff",
+      "PlotLinesHovered": "#e8609bff",
+      "PopupBg": "#fffffffa",
+      "ResizeGrip": "#ff8fbf2e",
+      "ResizeGripActive": "#ff8fbfe6",
+      "ResizeGripHovered": "#ff8fbf8c",
+      "ScrollbarBg": "#00000000",
+      "ScrollbarGrab": "#f3d3e2ff",
+      "ScrollbarGrabActive": "#ff8fbfff",
+      "ScrollbarGrabHovered": "#ecbdd3ff",
+      "Separator": "#f3d3e2ff",
+      "SeparatorActive": "#ff8fbfff",
+      "SeparatorHovered": "#ff8fbfb2",
+      "SliderGrab": "#dc4f8eff",
+      "SliderGrabActive": "#d14683ff",
+      "Tab": "#fde8f1ff",
+      "TabDimmed": "#fef0f6ff",
+      "TabDimmedSelected": "#fffbfdff",
+      "TabDimmedSelectedOverline": "#ff8fbf73",
+      "TabHovered": "#fbd9e8ff",
+      "TabSelected": "#ffffffff",
+      "TabSelectedOverline": "#ff8fbfff",
+      "TableBorderLight": "#f8e3ecff",
+      "TableBorderStrong": "#f3d3e2ff",
+      "TableHeaderBg": "#fde8f1ff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#ff8fbf0d",
+      "Text": "#4a3b52ff",
+      "TextDisabled": "#92819bff",
+      "TextLink": "#c2407aff",
+      "TextSelectedBg": "#ff8fbf59",
+      "TitleBg": "#fde8f1ff",
+      "TitleBgActive": "#fbd9e8ff",
+      "TitleBgCollapsed": "#fde8f1cc",
+      "WindowBg": "#fff7fbff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 10,
+        "y": 6
+      },
+      "ChildBorderSize": 1.5,
+      "ChildRounding": 16,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 1.5,
+      "FramePadding": {
+        "x": 14,
+        "y": 7
+      },
+      "FrameRounding": 12,
+      "GrabMinSize": 14,
+      "GrabRounding": 12,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 24,
+      "ItemInnerSpacing": {
+        "x": 8,
+        "y": 6
+      },
+      "ItemSpacing": {
+        "x": 12,
+        "y": 10
+      },
+      "PopupBorderSize": 1.5,
+      "PopupRounding": 14,
+      "ScrollbarRounding": 12,
+      "ScrollbarSize": 14,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 2,
+      "SeparatorTextPadding": {
+        "x": 16,
+        "y": 3
+      },
+      "TabBarBorderSize": 1,
+      "TabBarOverlineSize": 2,
+      "TabBorderSize": 0,
+      "TabRounding": 12,
+      "WindowBorderSize": 1.5,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 64
+      },
+      "WindowPadding": {
+        "x": 16,
+        "y": 16
+      },
+      "WindowRounding": 18,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Pastel Cute",
+  "widgetStyle": {
+    "accent": "#ff8fbfff",
+    "accent2": "#9fd8ffff",
+    "danger": "#f2668bff",
+    "success": "#6fcf97ff",
+    "warning": "#f2b84bff"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "bindings": [
+    {
+      "name": "text",
+      "required": true,
+      "types": [
+        "string"
+      ]
+    }
+  ],
+  "call": "imb::ctl::SearchField({label}, {text}, {hint})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-magnifying-glass",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "SearchField",
+  "preview": [
+    {
+      "fill": "#262d3aff",
+      "h": 22,
+      "rounding": 11,
+      "shape": "rect",
+      "stroke": "#3c4456ff",
+      "w": 200,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "r": 4.5,
+      "shape": "circle",
+      "stroke": "#8a8f9cff",
+      "thickness": 1.4,
+      "x": 11,
+      "y": 10
+    },
+    {
+      "shape": "line",
+      "stroke": "#8a8f9cff",
+      "thickness": 1.4,
+      "x": 14,
+      "x2": 17,
+      "y": 13,
+      "y2": 16
+    },
+    {
+      "color": "#8a8f9cff",
+      "shape": "text",
+      "text": "{hint}",
+      "x": 22,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "##search",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": "Search",
+      "name": "hint",
+      "type": "string"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

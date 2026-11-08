@@ -1,0 +1,80 @@
+{
+  "bindings": [],
+  "call": "imb::disp::SkeletonBlock(imb::disp::SkeletonShape::{shape}, {size}, {lines})",
+  "category": "Display",
+  "container": false,
+  "events": [],
+  "icon": "fa-grip-lines",
+  "include": "imb_display.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "SkeletonBlock",
+  "preview": [
+    {
+      "fill": "#2c313cff",
+      "h": 10,
+      "rounding": 5,
+      "shape": "rect",
+      "w": 200,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#2c313cff",
+      "h": 10,
+      "rounding": 5,
+      "shape": "rect",
+      "w": 200,
+      "x": 0,
+      "y": 17
+    },
+    {
+      "fill": "#2c313cff",
+      "h": 10,
+      "rounding": 5,
+      "shape": "rect",
+      "w": 120,
+      "x": 0,
+      "y": 34
+    },
+    {
+      "fill": "#3a404dff",
+      "h": 10,
+      "rounding": 5,
+      "shape": "rect",
+      "w": 50,
+      "x": 60,
+      "y": 0
+    }
+  ],
+  "props": [
+    {
+      "default": "Line",
+      "name": "shape",
+      "type": "enum",
+      "values": [
+        "Rect",
+        "Line",
+        "Circle"
+      ]
+    },
+    {
+      "default": {
+        "h": "auto",
+        "w": "fill"
+      },
+      "name": "size",
+      "type": "size"
+    },
+    {
+      "default": 3,
+      "hint": "Line shape only",
+      "max": 64,
+      "min": 1,
+      "name": "lines",
+      "type": "int"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

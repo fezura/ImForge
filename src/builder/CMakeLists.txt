@@ -41,6 +41,13 @@ endif()
 
 add_executable(imforge_builder ${IMFORGE_BUILDER_SOURCES})
 target_include_directories(imforge_builder PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
+# every packs/<pack> folder, so bundled_packs.cpp finds imforge_adapters_<pack>.h
+file(GLOB _imforge_pack_dirs LIST_DIRECTORIES true CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/packs/*")
+foreach(_d IN LISTS _imforge_pack_dirs)
+    if(IS_DIRECTORY "${_d}")
+        target_include_directories(imforge_builder PRIVATE "${_d}")
+    endif()
+endforeach()
 target_link_libraries(imforge_builder PRIVATE
     imforge::headers
     imgui
@@ -80,6 +87,10 @@ add_custom_command(TARGET imforge_builder POST_BUILD
     COMMAND "${CMAKE_COMMAND}" -E copy_directory "${IMFORGE_FONTS_RUNTIME_DIR}" "$<TARGET_FILE_DIR:imforge_builder>/fonts"
     COMMENT "Copying fonts next to imforge_builder"
     VERBATIM)
+add_custom_command(TARGET imforge_builder POST_BUILD
+    COMMAND "${CMAKE_COMMAND}" -E copy_directory "${PROJECT_SOURCE_DIR}/packs" "$<TARGET_FILE_DIR:imforge_builder>/packs"
+    COMMENT "Copying widget packs next to imforge_builder"
+    VERBATIM)
 if(IMFORGE_HAVE_LIBCLANG AND IMFORGE_LIBCLANG_DLL)
     add_custom_command(TARGET imforge_builder POST_BUILD
         COMMAND "${CMAKE_COMMAND}" -E copy_if_different "${IMFORGE_LIBCLANG_DLL}" "$<TARGET_FILE_DIR:imforge_builder>"
@@ -89,6 +100,7 @@ endif()
 if(IMFORGE_PACKAGING)
     install(TARGETS imforge_builder RUNTIME DESTINATION bin)
     install(DIRECTORY "${IMFORGE_FONTS_RUNTIME_DIR}/" DESTINATION bin/fonts)
+    install(DIRECTORY "${PROJECT_SOURCE_DIR}/packs/" DESTINATION bin/packs)
     if(IMFORGE_HAVE_LIBCLANG AND IMFORGE_LIBCLANG_DLL)
         install(FILES "${IMFORGE_LIBCLANG_DLL}" DESTINATION bin)
     endif()

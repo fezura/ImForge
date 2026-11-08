@@ -1,0 +1,151 @@
+{
+  "bindings": [],
+  "call": "imb::game::FpsPingCounter({label}, {fps}, {ping}, imb::game::Corner_{corner}, {graph})",
+  "category": "Gaming",
+  "container": false,
+  "events": [],
+  "icon": "fa-gauge",
+  "include": "imb_gaming.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "FpsPingCounter",
+  "preview": [
+    {
+      "fill": "#0d0f14e1",
+      "h": 22,
+      "rounding": 7,
+      "shape": "rect",
+      "stroke": "#3a415099",
+      "w": 170,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#48d678ff",
+      "r": 3,
+      "shape": "circle",
+      "x": 12,
+      "y": 11
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "144",
+      "x": 20,
+      "y": 4
+    },
+    {
+      "color": "#8a93a6ff",
+      "shape": "text",
+      "text": "fps",
+      "x": 46,
+      "y": 5
+    },
+    {
+      "fill": "#48d678bf",
+      "h": 8,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 2,
+      "x": 74,
+      "y": 8
+    },
+    {
+      "fill": "#48d678bf",
+      "h": 10,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 2,
+      "x": 77,
+      "y": 6
+    },
+    {
+      "fill": "#48d678bf",
+      "h": 7,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 2,
+      "x": 80,
+      "y": 9
+    },
+    {
+      "fill": "#48d678bf",
+      "h": 11,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 2,
+      "x": 83,
+      "y": 5
+    },
+    {
+      "fill": "#48d678bf",
+      "h": 9,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 2,
+      "x": 86,
+      "y": 7
+    },
+    {
+      "fill": "#f5be3cff",
+      "r": 3,
+      "shape": "circle",
+      "x": 108,
+      "y": 11
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "62",
+      "x": 116,
+      "y": 4
+    },
+    {
+      "color": "#8a93a6ff",
+      "shape": "text",
+      "text": "ms",
+      "x": 134,
+      "y": 5
+    }
+  ],
+  "props": [
+    {
+      "default": "Perf",
+      "hint": "ImGui id, not shown",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": "-1",
+      "hint": "-1 reads io.Framerate",
+      "name": "fps",
+      "type": "expr"
+    },
+    {
+      "default": "-1",
+      "hint": "ping in ms, -1 hides it",
+      "name": "ping",
+      "type": "expr"
+    },
+    {
+      "default": "None",
+      "hint": "None lays it out inline",
+      "name": "corner",
+      "type": "enum",
+      "values": [
+        "None",
+        "TopLeft",
+        "TopRight",
+        "BottomLeft",
+        "BottomRight"
+      ]
+    },
+    {
+      "default": true,
+      "name": "graph",
+      "type": "bool"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

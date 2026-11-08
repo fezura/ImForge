@@ -1,0 +1,367 @@
+{
+  "enums": {},
+  "kind": "types",
+  "schemaVersion": 1,
+  "structs": {
+    "ArenaConfig": {
+      "fields": [
+        {
+          "ctype": "Bool",
+          "name": "aim",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "esp",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "radar",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "misc",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "box",
+          "type": "bool"
+        },
+        {
+          "ctype": "I32",
+          "name": "boxStyle",
+          "type": "int"
+        },
+        {
+          "ctype": "Bool",
+          "name": "healthBar",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "names",
+          "type": "bool"
+        },
+        {
+          "ctype": "Float",
+          "name": "health",
+          "type": "float"
+        },
+        {
+          "ctype": "Vec4",
+          "name": "enemyColor",
+          "type": "ImVec4"
+        },
+        {
+          "ctype": "Vec4",
+          "name": "allyColor",
+          "type": "ImVec4"
+        },
+        {
+          "ctype": "Float",
+          "name": "gap",
+          "type": "float"
+        },
+        {
+          "ctype": "Float",
+          "name": "length",
+          "type": "float"
+        },
+        {
+          "ctype": "Float",
+          "name": "thickness",
+          "type": "float"
+        },
+        {
+          "ctype": "Bool",
+          "name": "dot",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "outline",
+          "type": "bool"
+        },
+        {
+          "ctype": "Vec4",
+          "name": "xhairColor",
+          "type": "ImVec4"
+        },
+        {
+          "ctype": "Float",
+          "name": "fov",
+          "type": "float"
+        },
+        {
+          "ctype": "Vector",
+          "elem": "float",
+          "name": "blips",
+          "type": "std::vector<float>"
+        },
+        {
+          "ctype": "Float",
+          "name": "yaw",
+          "type": "float"
+        },
+        {
+          "ctype": "I32",
+          "name": "profile",
+          "type": "int"
+        },
+        {
+          "count": 4,
+          "ctype": "IntArray",
+          "name": "hotkeys",
+          "type": "int[4]"
+        }
+      ],
+      "header": "showcase_types.h"
+    },
+    "ControlsDemo": {
+      "fields": [
+        {
+          "ctype": "Bool",
+          "name": "enabled",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "square",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "icons",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "legacy",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "visible",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "locked",
+          "type": "bool"
+        },
+        {
+          "ctype": "I32",
+          "name": "tri",
+          "type": "int"
+        },
+        {
+          "ctype": "Float",
+          "name": "quality",
+          "type": "float"
+        },
+        {
+          "count": 2,
+          "ctype": "FloatArray",
+          "name": "range",
+          "type": "float[2]"
+        },
+        {
+          "count": 2,
+          "ctype": "IntArray",
+          "name": "levels",
+          "type": "int[2]"
+        },
+        {
+          "ctype": "Float",
+          "name": "gain",
+          "type": "float"
+        },
+        {
+          "ctype": "Float",
+          "name": "pan",
+          "type": "float"
+        },
+        {
+          "ctype": "I32",
+          "name": "count",
+          "type": "int"
+        },
+        {
+          "ctype": "Float",
+          "name": "distance",
+          "type": "float"
+        },
+        {
+          "ctype": "I32",
+          "name": "unit",
+          "type": "int"
+        },
+        {
+          "ctype": "Vec2",
+          "name": "offset",
+          "type": "ImVec2"
+        },
+        {
+          "count": 3,
+          "ctype": "FloatArray",
+          "name": "rotation",
+          "type": "float[3]"
+        },
+        {
+          "ctype": "StdString",
+          "name": "query",
+          "type": "std::string"
+        },
+        {
+          "ctype": "StdString",
+          "name": "tags",
+          "type": "std::string"
+        },
+        {
+          "ctype": "I32",
+          "name": "chord",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "menuKey",
+          "type": "int"
+        },
+        {
+          "ctype": "Vec4",
+          "name": "color",
+          "type": "ImVec4"
+        },
+        {
+          "ctype": "I32",
+          "name": "swatch",
+          "type": "int"
+        },
+        {
+          "count": 4,
+          "ctype": "Array",
+          "elem": "ImVec4",
+          "name": "teamColors",
+          "type": "ImVec4[4]"
+        },
+        {
+          "ctype": "I32",
+          "name": "team",
+          "type": "int"
+        },
+        {
+          "ctype": "Vec4",
+          "name": "accent",
+          "type": "ImVec4"
+        },
+        {
+          "ctype": "Float",
+          "name": "hue",
+          "type": "float"
+        },
+        {
+          "ctype": "Float",
+          "name": "sat",
+          "type": "float"
+        },
+        {
+          "ctype": "Float",
+          "name": "val",
+          "type": "float"
+        },
+        {
+          "ctype": "Vector",
+          "elem": "float",
+          "name": "stops",
+          "type": "std::vector<float>"
+        },
+        {
+          "ctype": "I32",
+          "name": "view",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "pill",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "style",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "chips",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "weapon",
+          "type": "int"
+        },
+        {
+          "ctype": "Float",
+          "name": "rating",
+          "type": "float"
+        },
+        {
+          "ctype": "I32",
+          "name": "saveMode",
+          "type": "int"
+        }
+      ],
+      "header": "showcase_types.h"
+    },
+    "MonitorData": {
+      "fields": [
+        {
+          "ctype": "Vector",
+          "elem": "float",
+          "name": "users",
+          "type": "std::vector<float>"
+        },
+        {
+          "ctype": "Vector",
+          "elem": "float",
+          "name": "fps",
+          "type": "std::vector<float>"
+        },
+        {
+          "ctype": "Vector",
+          "elem": "float",
+          "name": "ping",
+          "type": "std::vector<float>"
+        },
+        {
+          "ctype": "Vector",
+          "elem": "float",
+          "name": "load",
+          "type": "std::vector<float>"
+        },
+        {
+          "ctype": "Vector",
+          "elem": "float",
+          "name": "daily",
+          "type": "std::vector<float>"
+        },
+        {
+          "ctype": "Vector",
+          "elem": "float",
+          "name": "frameMs",
+          "type": "std::vector<float>"
+        },
+        {
+          "ctype": "Vector",
+          "elem": "float",
+          "name": "markers",
+          "type": "std::vector<float>"
+        }
+      ],
+      "header": "showcase_types.h"
+    }
+  }
+}

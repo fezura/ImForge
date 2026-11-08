@@ -1,0 +1,268 @@
+{
+  "credit": "",
+  "description": "The light take on the soft clay look. Fields and buttons get a bevel so they read as pressed in or raised, and there is plenty of room around everything.",
+  "fonts": [
+    {
+      "family": "Nunito",
+      "role": "ui",
+      "size": 16,
+      "weight": "Regular"
+    },
+    {
+      "family": "Nunito",
+      "role": "heading",
+      "size": 20,
+      "weight": "Bold"
+    }
+  ],
+  "fx": {
+    "accentGlow": 0,
+    "windowBlur": 0,
+    "windowShadow": 0.35
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "Raise",
+    "button.press": "PushIn",
+    "list": "StaggerScaleIn",
+    "window": "ZoomInSoft",
+    "window.exit": "ShrinkAway"
+  },
+  "name": "NeuLight",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Border": "#3a6cf0cc",
+        "Button": "#3a6cf0ff",
+        "ButtonActive": "#2f5bd0ff",
+        "ButtonHovered": "#3364e8ff",
+        "Text": "#ffffffff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#c3c8d2ff",
+        "ChildBg": "#eceef3ff"
+      },
+      "vars": {
+        "ChildBorderSize": 0,
+        "ChildRounding": 16,
+        "WindowPadding": {
+          "x": 20,
+          "y": 16
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#d645458c",
+        "Button": "#d6454529",
+        "ButtonActive": "#d645456b",
+        "ButtonHovered": "#d6454547",
+        "CheckMark": "#d64545ff",
+        "SliderGrab": "#d64545ff",
+        "SliderGrabActive": "#d64545ff",
+        "Text": "#813c42ff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#3a6cf080",
+        "Button": "#3a6cf000",
+        "ButtonActive": "#3a6cf02e",
+        "ButtonHovered": "#3a6cf01a",
+        "Text": "#3455aaff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#3a6cf059",
+        "Text": "#1a1f29ff"
+      },
+      "vars": {
+        "SeparatorTextBorderSize": 2
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#5f6878ff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#2f9e638c",
+        "Button": "#2f9e6329",
+        "ButtonActive": "#2f9e636b",
+        "ButtonHovered": "#2f9e6347",
+        "CheckMark": "#2f9e63ff",
+        "SliderGrab": "#2f9e63ff",
+        "SliderGrabActive": "#2f9e63ff",
+        "Text": "#2d604fff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#b57a108c",
+        "Button": "#b57a1029",
+        "ButtonActive": "#b57a106b",
+        "ButtonHovered": "#b57a1047",
+        "CheckMark": "#b57a10ff",
+        "SliderGrab": "#b57a10ff",
+        "SliderGrabActive": "#b57a10ff",
+        "Text": "#6a532aff"
+      }
+    }
+  },
+  "tags": [
+    "light",
+    "soft",
+    "neumorphic",
+    "rounded"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#c3c8d2ff",
+      "BorderShadow": "#ffffffff",
+      "Button": "#f3f5f8ff",
+      "ButtonActive": "#d4d9e2ff",
+      "ButtonHovered": "#ffffffff",
+      "CheckMark": "#3a6cf0ff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#dde1e8ff",
+      "DockingPreview": "#3a6cf099",
+      "DragDropTarget": "#b57a10e6",
+      "FrameBg": "#d8dce4ff",
+      "FrameBgActive": "#c6cdd9ff",
+      "FrameBgHovered": "#cdd3deff",
+      "Header": "#3a6cf01f",
+      "HeaderActive": "#3a6cf04d",
+      "HeaderHovered": "#3a6cf033",
+      "InputTextCursor": "#3a6cf0ff",
+      "MenuBarBg": "#e6e9efff",
+      "ModalWindowDimBg": "#2c334040",
+      "NavCursor": "#3a6cf0ff",
+      "NavWindowingDimBg": "#2c334020",
+      "NavWindowingHighlight": "#2c3340b3",
+      "PlotHistogram": "#3a6cf0ff",
+      "PlotHistogramHovered": "#1f9d8fff",
+      "PlotLines": "#1f9d8fff",
+      "PlotLinesHovered": "#b57a10ff",
+      "PopupBg": "#f0f2f6fa",
+      "ResizeGrip": "#2c33401a",
+      "ResizeGripActive": "#3a6cf0e6",
+      "ResizeGripHovered": "#3a6cf08c",
+      "ScrollbarBg": "#d8dce480",
+      "ScrollbarGrab": "#c3c8d2ff",
+      "ScrollbarGrabActive": "#3a6cf0ff",
+      "ScrollbarGrabHovered": "#b3b9c5ff",
+      "Separator": "#c9ced8ff",
+      "SeparatorActive": "#3a6cf0ff",
+      "SeparatorHovered": "#3a6cf0a6",
+      "SliderGrab": "#3a6cf0ff",
+      "SliderGrabActive": "#1f9d8fff",
+      "Tab": "#dde1e8ff",
+      "TabDimmed": "#e1e4ebff",
+      "TabDimmedSelected": "#f1f3f6ff",
+      "TabDimmedSelectedOverline": "#3a6cf073",
+      "TabHovered": "#f0f2f6ff",
+      "TabSelected": "#f7f8faff",
+      "TabSelectedOverline": "#3a6cf0ff",
+      "TableBorderLight": "#d8dce4ff",
+      "TableBorderStrong": "#c3c8d2ff",
+      "TableHeaderBg": "#dde1e8ff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#2c334008",
+      "Text": "#2c3340ff",
+      "TextDisabled": "#5f6878ff",
+      "TextLink": "#2a56d6ff",
+      "TextSelectedBg": "#3a6cf040",
+      "TitleBg": "#dde1e8ff",
+      "TitleBgActive": "#e6e9efff",
+      "TitleBgCollapsed": "#dde1e8bf",
+      "WindowBg": "#e6e9efff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 10,
+        "y": 6
+      },
+      "ChildBorderSize": 0,
+      "ChildRounding": 14,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 1,
+      "FramePadding": {
+        "x": 12,
+        "y": 7
+      },
+      "FrameRounding": 12,
+      "GrabMinSize": 14,
+      "GrabRounding": 12,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 24,
+      "ItemInnerSpacing": {
+        "x": 8,
+        "y": 6
+      },
+      "ItemSpacing": {
+        "x": 12,
+        "y": 10
+      },
+      "PopupBorderSize": 0,
+      "PopupRounding": 14,
+      "ScrollbarRounding": 12,
+      "ScrollbarSize": 12,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 2,
+      "SeparatorTextPadding": {
+        "x": 16,
+        "y": 6
+      },
+      "TabBarBorderSize": 0,
+      "TabBarOverlineSize": 0,
+      "TabBorderSize": 0,
+      "TabRounding": 12,
+      "WindowBorderSize": 0,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 48
+      },
+      "WindowPadding": {
+        "x": 20,
+        "y": 18
+      },
+      "WindowRounding": 16,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Neu Light",
+  "widgetStyle": {
+    "accent": "#3a6cf0ff",
+    "accent2": "#1f9d8fff",
+    "danger": "#d64545ff",
+    "success": "#2f9e63ff",
+    "warning": "#b57a10ff"
+  }
+}

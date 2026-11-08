@@ -326,7 +326,22 @@ struct Validator {
             bool found = false;
             for (const auto& sc : project.style_classes) found = found || sc.first == cls;
             if (!found) Err(n, "style.classes", "unknown style class \"" + cls + "\"");
+            else if (std::string other = ClassIdentifierClash(cls); !other.empty())
+                Err(n, "style.classes", "style classes \"" + cls + "\" and \"" + other + "\" give the same C++ name");
         }
+    }
+
+    // exported code names each class Style_<name>_Push, so names that differ only in punctuation collide
+    static std::string ClassIdentifier(const std::string& name) {
+        std::string id;
+        for (char c : name) id.push_back(((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == '_') ? c : '_');
+        return id;
+    }
+    std::string ClassIdentifierClash(const std::string& cls) const {
+        std::string id = ClassIdentifier(cls);
+        for (const auto& sc : project.style_classes)
+            if (sc.first != cls && ClassIdentifier(sc.first) == id) return sc.first;
+        return std::string();
     }
 
     void CheckAnim(const Node& n, const AnimSpec& a) {
@@ -350,6 +365,36 @@ struct Validator {
             Warn(n, "anim", "unknown enter preset \"" + a.enter_preset + "\"");
         if (!a.exit_preset.empty() && !InPipeList(kPresets, a.exit_preset))
             Warn(n, "anim", "unknown exit preset \"" + a.exit_preset + "\"");
+    }
+
+    void CheckMotions(const Node& n, const WidgetDef* wd) {
+        MotionPresetFn known = MotionPresetResolver();
+        for (const MotionSpec& m : n.anim.motions) {
+            if (m.preset.empty() == m.custom.empty()) {
+                Err(n, "anim", m.preset.empty() ? "motion needs a \"preset\" or \"custom\" animation"
+                                                : "motion \"" + m.preset + "\" sets both \"preset\" and \"custom\"");
+                continue;
+            }
+            const std::string what = "motion \"" + m.Name() + "\"";
+            if (!m.preset.empty() && known && !known(m.preset.c_str()))
+                Warn(n, "anim", "unknown motion preset \"" + m.preset + "\"");
+            if (!m.custom.empty() && !project.FindAnimation(m.custom))
+                Err(n, "anim", "unknown custom animation \"" + m.custom + "\"");
+            if (!IsMotionTriggerName(m.trigger)) Err(n, "anim", what + ": unknown trigger \"" + m.trigger + "\"");
+            if (!(m.duration_scale > 0)) Err(n, "anim", what + ": durationScale must be > 0");
+            if (m.duration_scale > 1000) Err(n, "anim", what + ": durationScale is over 1000");
+            if (m.delay < 0) Err(n, "anim", what + ": negative delay");
+            if (m.delay > 3600) Err(n, "anim", what + ": delay is over 3600 seconds");
+            if (m.stagger < 0) Err(n, "anim", what + ": negative stagger");
+            if (m.stagger > 60) Err(n, "anim", what + ": stagger is over 60 seconds");
+            if (m.iterations < -1) Err(n, "anim", what + ": iterations must be -1 (default), 0 (infinite) or more");
+            if (m.iterations > 1000) Err(n, "anim", what + ": iterations is over 1000");
+            if (!m.on.empty() && wd) {
+                bool found = false;
+                for (int i = 0; i < wd->event_count; ++i) found = found || m.on == wd->events[i];
+                if (!found) Warn(n, "anim", what + ": unknown event \"" + m.on + "\" for " + n.type);
+            }
+        }
     }
 
     void CheckFx(const Node& n, const std::vector<FxSpec>& fx) {
@@ -441,6 +486,7 @@ struct Validator {
         }
         CheckStyle(n, n.style);
         CheckAnim(n, n.anim);
+        CheckMotions(n, wd);
         CheckFx(n, n.fx);
         if (!n.layout.IsDefault()) {
             if (!InPipeList("TopLeft|Top|TopRight|Left|Center|Right|BottomLeft|Bottom|BottomRight", n.layout.anchor))

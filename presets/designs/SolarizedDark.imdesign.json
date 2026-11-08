@@ -1,0 +1,271 @@
+{
+  "credit": "Solarized palette (MIT)",
+  "description": "Ethan Schoonover's Solarized on its dark base, with framed inputs and a compact layout. No glow, no blur, just balanced contrast.",
+  "fonts": [
+    {
+      "family": "Source Sans 3",
+      "role": "ui",
+      "size": 16
+    },
+    {
+      "family": "Source Sans 3",
+      "role": "heading",
+      "size": 19,
+      "weight": "SemiBold"
+    },
+    {
+      "family": "Fira Code",
+      "role": "mono",
+      "size": 14
+    }
+  ],
+  "fx": {
+    "accentGlow": 0,
+    "windowBlur": 0,
+    "windowShadow": 0
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "PressReady",
+    "button.press": "Shrink",
+    "list": {
+      "preset": "StaggerFadeIn",
+      "stagger": 0.03
+    },
+    "window": "FadeIn",
+    "window.exit": "FadeOut"
+  },
+  "name": "SolarizedDark",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Button": "#63abdfff",
+        "ButtonActive": "#5593c0ff",
+        "ButtonHovered": "#79b7e3ff",
+        "Text": "#002b36ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#586e75b2",
+        "ChildBg": "#073642ff"
+      },
+      "vars": {
+        "ChildBorderSize": 1,
+        "ChildRounding": 4,
+        "WindowPadding": {
+          "x": 10,
+          "y": 8
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#dc322f8c",
+        "Button": "#dc322f29",
+        "ButtonActive": "#dc322f5c",
+        "ButtonHovered": "#dc322f42",
+        "CheckMark": "#dc322fff",
+        "SliderGrab": "#dc322fff",
+        "SliderGrabActive": "#dc322fff",
+        "Text": "#eb8886ff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#268bd280",
+        "Button": "#00000000",
+        "ButtonActive": "#268bd23d",
+        "ButtonHovered": "#268bd224",
+        "Text": "#70b2e1ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#b58900ff",
+        "Text": "#bd961eff"
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#93a1a1ff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#8599008c",
+        "Button": "#85990029",
+        "ButtonActive": "#8599005c",
+        "ButtonHovered": "#85990042",
+        "CheckMark": "#859900ff",
+        "SliderGrab": "#859900ff",
+        "SliderGrabActive": "#859900ff",
+        "Text": "#b8c46bff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#b589008c",
+        "Button": "#b5890029",
+        "ButtonActive": "#b589005c",
+        "ButtonHovered": "#b5890042",
+        "CheckMark": "#b58900ff",
+        "SliderGrab": "#b58900ff",
+        "SliderGrabActive": "#b58900ff",
+        "Text": "#d3b866ff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "precise",
+    "compact",
+    "editor"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#586e75d9",
+      "BorderShadow": "#00000000",
+      "Button": "#073642ff",
+      "ButtonActive": "#115170ff",
+      "ButtonHovered": "#19424dff",
+      "CheckMark": "#2aa198ff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#002028ff",
+      "DockingPreview": "#268bd2b2",
+      "DragDropTarget": "#b58900e6",
+      "FrameBg": "#073642ff",
+      "FrameBgActive": "#0f4b66ff",
+      "FrameBgHovered": "#19424dff",
+      "Header": "#268bd22e",
+      "HeaderActive": "#268bd261",
+      "HeaderHovered": "#268bd247",
+      "InputTextCursor": "#bcc1b8ff",
+      "MenuBarBg": "#073642ff",
+      "ModalWindowDimBg": "#001e2699",
+      "NavCursor": "#268bd2ff",
+      "NavWindowingDimBg": "#001e2633",
+      "NavWindowingHighlight": "#bcc1b8b2",
+      "PlotHistogram": "#268bd2ff",
+      "PlotHistogramHovered": "#6c71c4ff",
+      "PlotLines": "#2aa198ff",
+      "PlotLinesHovered": "#cb4b16ff",
+      "PopupBg": "#073642fa",
+      "ResizeGrip": "#268bd22e",
+      "ResizeGripActive": "#268bd2e6",
+      "ResizeGripHovered": "#268bd28c",
+      "ScrollbarBg": "#00000000",
+      "ScrollbarGrab": "#586e75ff",
+      "ScrollbarGrabActive": "#839496ff",
+      "ScrollbarGrabHovered": "#657b83ff",
+      "Separator": "#586e75ff",
+      "SeparatorActive": "#268bd2ff",
+      "SeparatorHovered": "#268bd2b2",
+      "SliderGrab": "#268bd2ff",
+      "SliderGrabActive": "#2aa198ff",
+      "Tab": "#04303cff",
+      "TabDimmed": "#022e39ff",
+      "TabDimmedSelected": "#04313dff",
+      "TabDimmedSelectedOverline": "#268bd273",
+      "TabHovered": "#19424dff",
+      "TabSelected": "#073642ff",
+      "TabSelectedOverline": "#268bd2ff",
+      "TableBorderLight": "#284952ff",
+      "TableBorderStrong": "#586e75ff",
+      "TableHeaderBg": "#073642ff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#ffffff08",
+      "Text": "#bcc1b8ff",
+      "TextDisabled": "#6b7e83ff",
+      "TextLink": "#2aa198ff",
+      "TextSelectedBg": "#268bd259",
+      "TitleBg": "#002b36ff",
+      "TitleBgActive": "#073642ff",
+      "TitleBgCollapsed": "#002b36cc",
+      "WindowBg": "#002b36ff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 4,
+        "y": 2
+      },
+      "ChildBorderSize": 1,
+      "ChildRounding": 4,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 1,
+      "FramePadding": {
+        "x": 6,
+        "y": 3
+      },
+      "FrameRounding": 2,
+      "GrabMinSize": 8,
+      "GrabRounding": 2,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 16,
+      "ItemInnerSpacing": {
+        "x": 4,
+        "y": 4
+      },
+      "ItemSpacing": {
+        "x": 6,
+        "y": 4
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 4,
+      "ScrollbarRounding": 2,
+      "ScrollbarSize": 11,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 1,
+      "SeparatorTextPadding": {
+        "x": 16,
+        "y": 3
+      },
+      "TabBarBorderSize": 1,
+      "TabBarOverlineSize": 1,
+      "TabBorderSize": 0,
+      "TabRounding": 2,
+      "WindowBorderSize": 1,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 64
+      },
+      "WindowPadding": {
+        "x": 8,
+        "y": 8
+      },
+      "WindowRounding": 4,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Solarized Dark",
+  "widgetStyle": {
+    "accent": "#268bd2ff",
+    "accent2": "#2aa198ff",
+    "danger": "#dc322fff",
+    "success": "#859900ff",
+    "warning": "#b58900ff"
+  }
+}

@@ -211,7 +211,7 @@ void EmitSplitComponent(EmitCtx& ctx, const Component& c, const Node& slot, cons
         if (!n.enabled_if.empty() || !n.anim.Empty() || !n.fx.empty() || !n.tooltip.empty())
             ctx.Diag(Diagnostic::Level::Info, &n, nullptr, "enabledIf/anim/fx/tooltip are not generated for slot ancestors");
         if (!n.font.empty()) {
-            std::string font = "Font_" + SanitizeIdentifier(n.font);
+            std::string font = "Font_" + SanitizeIdentifier(n.font) + "()";
             ctx.Include("\"imforge_fonts.h\"");
             w.Line(PushFontLine(font));
             lv.pops.push_back("ImGui::PopFont();");
@@ -291,7 +291,7 @@ Result GenerateComponents(const Project& project, const Options& opts) {
     hdr.opts = &opts;
     src.opts = &opts;
     std::vector<std::string> includes;
-    bool uses_runtime = false, needs_string = false;
+    bool uses_runtime = false, needs_string = false, text_reveal = false;
     std::vector<std::string> decls;
     TypesDb db;
     LoadTypes(project, opts, db, r.diagnostics);
@@ -330,6 +330,7 @@ Result GenerateComponents(const Project& project, const Options& opts) {
             if (!have) includes.push_back(inc);
         }
         uses_runtime = uses_runtime || ctx.uses_runtime;
+        text_reveal = text_reveal || ctx.uses_text_reveal;
         if (ctx.needs_stdlib) {
             bool have = false;
             for (const std::string& h : includes) have = have || h == "\"misc/cpp/imgui_stdlib.h\"";
@@ -337,6 +338,7 @@ Result GenerateComponents(const Project& project, const Options& opts) {
         }
     }
     if (uses_runtime) includes.push_back("\"" + opts.settings.runtime_header + "\"");
+    if (text_reveal) src.InsertAt(0, TextRevealHelper(src));
     includes.push_back("<cfloat>");
     if (needs_string) includes.push_back("<string>");
 

@@ -1,0 +1,127 @@
+{
+  "bindings": [
+    {
+      "name": "radius",
+      "required": false,
+      "types": [
+        "float"
+      ]
+    }
+  ],
+  "call": "imb::game::FovCirclePreview({label}, {radius}, {referenceHeight}, {color:u32}, {filled}, {editable}, {size})",
+  "category": "Gaming",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-circle-dot",
+  "include": "imb_gaming.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "FovCirclePreview",
+  "preview": [
+    {
+      "fill": "#1a1f2bff",
+      "h": 135,
+      "rounding": 6,
+      "shape": "rect",
+      "stroke": "#3a4150ff",
+      "w": 240,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#2c3648ff",
+      "h": 76,
+      "rounding": 6,
+      "shape": "rect",
+      "w": 240,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#ffffff22",
+      "h": 1,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 240,
+      "x": 0,
+      "y": 76
+    },
+    {
+      "fill": "#ffffff14",
+      "r": 40,
+      "shape": "circle",
+      "stroke": "#ffffffd9",
+      "x": 120,
+      "y": 67
+    },
+    {
+      "fill": "#ffffffc8",
+      "h": 1,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 116,
+      "y": 67
+    },
+    {
+      "fill": "#ffffffc8",
+      "h": 9,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 1,
+      "x": 120,
+      "y": 63
+    },
+    {
+      "color": "#ffffffd9",
+      "shape": "text",
+      "text": "120 px",
+      "x": 152,
+      "y": 92
+    }
+  ],
+  "props": [
+    {
+      "default": "FOV",
+      "hint": "ImGui id, not shown",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": 1080,
+      "hint": "screen height the radius is measured on",
+      "max": 4320,
+      "min": 240,
+      "name": "referenceHeight",
+      "type": "float"
+    },
+    {
+      "default": "#ffffffd9",
+      "name": "color",
+      "type": "color"
+    },
+    {
+      "default": true,
+      "name": "filled",
+      "type": "bool"
+    },
+    {
+      "default": true,
+      "hint": "drag the ring to change the radius",
+      "name": "editable",
+      "type": "bool"
+    },
+    {
+      "default": {
+        "h": "auto",
+        "w": "auto"
+      },
+      "name": "size",
+      "type": "size"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

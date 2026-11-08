@@ -238,3 +238,30 @@ TEST_CASE("imblib import never writes through a symlinked project subdirectory")
     CHECK(err.find("outside the project") != std::string::npos);
     CHECK(fs::is_empty(outside.path));
 }
+
+TEST_CASE("imblib import refuses widget manifests that would inject code into exports") {
+    struct Case {
+        const char* include;
+        const char* call;
+    };
+    const Case cases[] = {{"../../x.h", "ns::Ok({label})"},
+                          {"ok.h", "ns::Ok({label}); system(\\\"x\\\")"},
+                          {"ok.h", "ns::Ok({label})\\n#include <x>"},
+                          {"ok.h", "ns::Ok([&]() { x(); })"}};
+    for (const Case& c : cases) {
+        TempDir tmp;
+        std::string err;
+        std::string widget = std::string(R"({"schemaVersion":1,"kind":"widget","name":"Evil","include":")") + c.include +
+                             R"(","call":")" + c.call + R"("})";
+        std::string manifest = R"({"schemaVersion":1,"kind":"imblib","name":"evil","version":"1.0.0","components":[],)"
+                               R"("widgets":["widgets/Evil.imw.json"],"headers":["ok.h"],"dependencies":[]})";
+        std::string zip = MakeZip({{"manifest.json", manifest}, {"widgets/Evil.imw.json", widget}, {"ok.h", "// x"}});
+        INFO(c.call);
+        Spit(tmp.Sub("in/evil.imblib"), zip);
+        Project project;
+        project.dir = tmp.Sub("proj");
+        fs::create_directories(project.dir);
+        CHECK_FALSE(imblib::Import(project, nullptr, tmp.Sub("in/evil.imblib"), &err));
+        CHECK_FALSE(fs::exists(tmp.path / "proj/libs"));
+    }
+}

@@ -1,10 +1,12 @@
 # Third-party components
 
 ImForge itself is MIT licensed (see [LICENSE](LICENSE)). Below is everything else it builds
-against, fetches, downloads or runs, with the exact pin and license. None of it is vendored
-in this repository: libraries are fetched by CMake `FetchContent` at configure time
+against, fetches, downloads or runs, with the exact pin and license. No third-party code is
+vendored in this repository: libraries are fetched by CMake `FetchContent` at configure time
 (`cmake/Dependencies.cmake`), fonts are downloaded at configure time (`cmake/Fonts.cmake`),
-and SDKs are looked up on your machine.
+and SDKs are looked up on your machine. The animation presets and designs do contain values
+taken from other projects; those are listed under
+[Material in the presets](#material-in-the-presets).
 
 A shipped application only depends on Dear ImGui. Generated code and the client header
 (`include/imforge/imforge_client.h`, `imb_runtime.h`) need nothing else, unless the app opts
@@ -33,6 +35,70 @@ builder binary you distribute.
 | Font Awesome 6 Free | `6.7.2` (`fa-solid-900.ttf`) | Icons: CC BY 4.0. Font files: SIL Open Font License 1.1. (Code in the upstream package: MIT; not used.) | https://fontawesome.com and https://github.com/FortAwesome/Font-Awesome | Icon font merged into the builder font atlas; the icon picker; icons referenced by `{icon:name}` in labels. |
 | IconFontCppHeaders | commit `8a381189ecfe58e732466cc52e79ca887dd6a297` (`IconsFontAwesome6.h`) | zlib | https://github.com/juliettef/IconFontCppHeaders | `ICON_FA_*` codepoint macros used by the icon picker and emitted into generated code. |
 
+## Material in the presets
+
+### animate.css
+
+87 of the motion presets in `presets/animations/` (marked with \* in
+[docs/MOTION.md](docs/MOTION.md#presets)) are ports of keyframes from
+[animate.css](https://github.com/animate-css/animate.css) 4.1.0, converted to ImForge's
+keyframe format. The same notice is in the generated `include/imforge/imb_motion_presets.h`,
+which ships with exported code. Only the 4.1.0 release was used; later versions of animate.css
+changed license.
+
+```
+The MIT License (MIT)
+
+Copyright (c) 2020 Daniel Eden
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+### Color palettes
+
+Eleven designs in `presets/designs/` use the published colors of these schemes. All of them
+are MIT licensed; the MIT terms are the same as in the notice above, with the copyright line
+below.
+
+| Palette | Designs | Copyright | URL |
+|---|---|---|---|
+| Catppuccin | `CatppuccinMocha`, `CatppuccinLatte` | Copyright (c) 2021 Catppuccin | https://github.com/catppuccin/palette |
+| Dracula (free spec colors) | `Dracula` | Copyright (c) 2023 Dracula Theme | https://github.com/dracula/dracula-theme |
+| Everforest | `EverforestDark` | Copyright (c) 2019 sainnhe | https://github.com/sainnhe/everforest |
+| Kanagawa | `KanagawaWave` | Copyright (c) 2021 Tommaso Laurenzi | https://github.com/rebelot/kanagawa.nvim |
+| Nord | `Nord` | Copyright (c) 2016-present Sven Greb | https://github.com/nordtheme/nord |
+| One Dark (onedark.vim) | `OneDark` | Copyright (c) 2015 Joshua Dick; based on Atom One Dark, Copyright (c) 2016 GitHub Inc. | https://github.com/joshdick/onedark.vim, https://github.com/atom/one-dark-syntax |
+| Rosé Pine | `RosePine` | Copyright (c) 2023 Rosé Pine | https://github.com/rose-pine/neovim |
+| Solarized | `SolarizedDark`, `SolarizedLight` | Copyright (c) 2011 Ethan Schoonover | https://github.com/altercation/solarized |
+| Tokyo Night | `TokyoNight` | Copyright (c) 2018-present Enkia | https://github.com/enkia/tokyo-night-vscode-theme |
+
+The font families named in the designs (Orbitron, Rajdhani, Nunito and so on) are names only.
+No font files from them are shipped; the builder falls back to the Inter and JetBrains Mono
+files listed above.
+
+### Easing equations
+
+The `In`/`Out`/`InOut` Sine, Quad, Cubic, Quart, Quint, Expo, Circ, Back, Elastic and Bounce
+curves in `include/imforge/imb_anim.h` implement Robert Penner's easing equations, Copyright
+(c) 2001 Robert Penner, which he offers under the MIT License or the 3-Clause BSD License
+(http://robertpenner.com/easing_terms_of_use.html). ImForge uses them under the MIT License.
+
 ## Found on the machine (system libraries and SDKs)
 
 | Component | Version | License | URL | Used for |
@@ -58,4 +124,6 @@ The pins live in `cmake/Dependencies.cmake` (Dear ImGui, SDL3, doctest, miniz),
 `cmake/Fonts.cmake` (fonts and `IconsFontAwesome6.h`), `src/binding/CMakeLists.txt` (libclang
 lookup) and `tools/fx/compile_vulkan_shaders.py` (glslang). When one of them changes, update
 the matching row here. The per-build `THIRD_PARTY.txt` is generated from `cmake/Fonts.cmake`
-and should say the same thing.
+and should say the same thing. When a preset or design takes values from another project, set
+its `credit` field in the JSON and add the project under
+[Material in the presets](#material-in-the-presets).

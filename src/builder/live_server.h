@@ -1,11 +1,14 @@
 #pragma once
 
+#include <functional>
 #include <map>
 #include <memory>
+#include <set>
 #include <string>
 #include <vector>
 
 #include "imforge/imforge_core.h"
+#include "live_fonts.h"
 
 #if __has_include("imforge/imforge_transport.h") && __has_include("imforge/imforge_protocol.h")
 #include "imforge/imforge_protocol.h"
@@ -65,6 +68,9 @@ struct LiveStats {
     size_t bytes_sent = 0, bytes_received = 0;
 };
 
+// resolves and reads the project's font files (set by the app, see LiveFontCache)
+using LiveFontPlanner = std::function<LiveFontPlan(const Project&)>;
+
 class LiveServer {
 public:
     LiveServer();
@@ -92,6 +98,9 @@ public:
     bool PushComponents(const Project& project);
     bool PushWidgets(const Project& project);
     bool PushTheme(const Theme& theme);
+    // font files the app doesn't hold yet (chunked), then the font list; empty projects send nothing
+    bool PushFonts(const Project& project);
+    void SetFontPlanner(LiveFontPlanner fn) { font_planner_ = std::move(fn); }
     bool PushAll(const Project& project);
     bool RemovePanel(const std::string& name);
     bool SetPickerMode(bool picker, const std::string& selected, const std::string& panel);
@@ -120,6 +129,11 @@ private:
     std::unique_ptr<Transport> transport_;
     pairing::Server pair_;
 #endif
+    LiveFontPlanner font_planner_;
+    std::set<std::string> fonts_held_;
+    bool fonts_announced_ = false;
+    bool icons_sent_ = false;
+    std::vector<std::string> font_warnings_, logged_font_warnings_;
     bool require_pairing_ = true;
     uint64_t drop_at_ = 0;
     uint64_t relisten_at_ = 0;

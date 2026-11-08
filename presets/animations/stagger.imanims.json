@@ -1,0 +1,420 @@
+{
+  "animations": [
+    {
+      "category": "stagger",
+      "credit": "",
+      "delay": 0,
+      "description": "Plain fade for list rows, played with a stagger of about 0.04 s.",
+      "direction": "normal",
+      "duration": 0.25,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "StaggerFadeIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "list",
+        "subtle"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "stagger",
+      "credit": "",
+      "delay": 0,
+      "description": "Fades each item up into place when given a stagger like 0.04 s.",
+      "direction": "normal",
+      "duration": 0.3,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "StaggerFadeUp",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "list",
+        "slide"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 12
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "stagger",
+      "credit": "",
+      "delay": 0,
+      "description": "Fades each item down into place when given a stagger like 0.04 s.",
+      "direction": "normal",
+      "duration": 0.3,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "StaggerFadeDown",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "list",
+        "slide"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": -12
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "stagger",
+      "credit": "",
+      "delay": 0,
+      "description": "Each item drifts left as it fades in with a stagger of about 0.04 s.",
+      "direction": "normal",
+      "duration": 0.3,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "StaggerFadeLeft",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "list",
+        "slide"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": 16
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "stagger",
+      "credit": "",
+      "delay": 0,
+      "description": "Slides items in from the left one by one with a 0.04 s stagger.",
+      "direction": "normal",
+      "duration": 0.3,
+      "ease": "OutQuart",
+      "fill": "both",
+      "iterations": 1,
+      "name": "StaggerSlideRight",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "slide",
+        "list",
+        "right"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.5,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateX": [
+          {
+            "t": 0,
+            "v": -32
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "stagger",
+      "credit": "",
+      "delay": 0,
+      "description": "Pops items in with a small overshoot, staggered by about 0.04 s.",
+      "direction": "normal",
+      "duration": 0.3,
+      "ease": "OutBack",
+      "fill": "both",
+      "iterations": 1,
+      "name": "StaggerPop",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "pop",
+        "list",
+        "playful"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 0.85
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "stagger",
+      "credit": "",
+      "delay": 0,
+      "description": "Wipes items in from the left, staggered by about 0.05 s.",
+      "direction": "normal",
+      "duration": 0.35,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "StaggerReveal",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "clip",
+        "list",
+        "reveal"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.3,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "stagger",
+      "credit": "",
+      "delay": 0,
+      "description": "Grows items in slightly from the center with a 0.04 s stagger.",
+      "direction": "normal",
+      "duration": 0.25,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "StaggerScaleIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "list",
+        "subtle"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 0.92
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "stagger",
+      "credit": "",
+      "delay": 0,
+      "description": "Unfolds rows down from their top edge, staggered by about 0.03 s.",
+      "direction": "normal",
+      "duration": 0.3,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "StaggerUnfold",
+      "origin": {
+        "x": 0.5,
+        "y": 0
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "list",
+        "unfold"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scaleY": [
+          {
+            "t": 0,
+            "v": 0.6
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    }
+  ],
+  "category": "stagger",
+  "kind": "animationSet",
+  "schemaVersion": 1
+}

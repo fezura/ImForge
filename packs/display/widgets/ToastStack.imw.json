@@ -1,0 +1,89 @@
+{
+  "bindings": [],
+  "call": "imb::disp::ToastStack(imb::disp::ToastCorner::{corner})",
+  "category": "Display",
+  "container": false,
+  "events": [],
+  "icon": "fa-bell",
+  "include": "imb_display.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "ToastStack",
+  "preview": [
+    {
+      "fill": "#24272fff",
+      "h": 52,
+      "rounding": 8,
+      "shape": "rect",
+      "stroke": "#3a4150ff",
+      "w": 200,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#2ecc7133",
+      "r": 10,
+      "shape": "circle",
+      "x": 20,
+      "y": 20
+    },
+    {
+      "shape": "line",
+      "stroke": "#2ecc71ff",
+      "thickness": 2,
+      "x": 15,
+      "x2": 19,
+      "y": 20,
+      "y2": 24
+    },
+    {
+      "shape": "line",
+      "stroke": "#2ecc71ff",
+      "thickness": 2,
+      "x": 19,
+      "x2": 26,
+      "y": 24,
+      "y2": 16
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Saved",
+      "x": 38,
+      "y": 8
+    },
+    {
+      "color": "#8a91a0ff",
+      "shape": "text",
+      "text": "Config written",
+      "x": 38,
+      "y": 26
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 3,
+      "rounding": 1,
+      "shape": "rect",
+      "w": 120,
+      "x": 6,
+      "y": 47
+    }
+  ],
+  "props": [
+    {
+      "default": "BottomRight",
+      "name": "corner",
+      "type": "enum",
+      "values": [
+        "TopLeft",
+        "TopRight",
+        "BottomLeft",
+        "BottomRight",
+        "TopCenter",
+        "BottomCenter"
+      ]
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

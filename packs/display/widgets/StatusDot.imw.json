@@ -1,0 +1,59 @@
+{
+  "bindings": [],
+  "call": "imb::disp::StatusDot(imb::disp::Status::{status}, {label})",
+  "category": "Display",
+  "container": false,
+  "events": [],
+  "icon": "fa-circle",
+  "include": "imb_display.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "StatusDot",
+  "preview": [
+    {
+      "fill": "#00000000",
+      "r": 9,
+      "shape": "circle",
+      "stroke": "#2ecc7155",
+      "thickness": 2,
+      "x": 8,
+      "y": 11
+    },
+    {
+      "fill": "#2ecc71ff",
+      "r": 5,
+      "shape": "circle",
+      "x": 8,
+      "y": 11
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Online",
+      "x": 20,
+      "y": 3
+    }
+  ],
+  "props": [
+    {
+      "default": "Online",
+      "name": "status",
+      "type": "enum",
+      "values": [
+        "None",
+        "Online",
+        "Away",
+        "Busy",
+        "Offline"
+      ]
+    },
+    {
+      "default": "",
+      "hint": "empty shows the status name, ## hides the text",
+      "name": "label",
+      "type": "string"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

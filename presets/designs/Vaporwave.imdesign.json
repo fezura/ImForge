@@ -1,0 +1,279 @@
+{
+  "credit": "",
+  "description": "Hot pink and cyan over a purple dusk, with centered titles and round slider grabs. Pink outlines tie the panels together.",
+  "fonts": [
+    {
+      "family": "Space Grotesk",
+      "role": "ui",
+      "size": 16,
+      "weight": "Regular"
+    },
+    {
+      "family": "Space Grotesk",
+      "role": "heading",
+      "size": 19,
+      "weight": "Bold"
+    },
+    {
+      "family": "Monoton",
+      "role": "display",
+      "size": 30,
+      "weight": "Regular"
+    }
+  ],
+  "fx": {
+    "accentGlow": 0.65,
+    "windowBlur": 0,
+    "windowShadow": 0.4
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "HoverFloat",
+    "button.press": "SoftPress",
+    "list": "StaggerPop",
+    "window": "PuffIn",
+    "window.exit": "PuffOut"
+  },
+  "name": "Vaporwave",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Border": "#ff6ad5cc",
+        "Button": "#ff6ad5ff",
+        "ButtonActive": "#26d9ffff",
+        "ButtonHovered": "#ff8fe0ff",
+        "Text": "#1a1033ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#ff6ad566",
+        "ChildBg": "#231545ff"
+      },
+      "vars": {
+        "ChildBorderSize": 1,
+        "ChildRounding": 8,
+        "WindowPadding": {
+          "x": 12,
+          "y": 10
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#ff52778c",
+        "Button": "#ff527729",
+        "ButtonActive": "#ff52776b",
+        "ButtonHovered": "#ff527747",
+        "CheckMark": "#ff5277ff",
+        "SliderGrab": "#ff5277ff",
+        "SliderGrabActive": "#ff5277ff",
+        "Text": "#fe7192ff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#26d9ff80",
+        "Button": "#26d9ff00",
+        "ButtonActive": "#26d9ff42",
+        "ButtonHovered": "#26d9ff24",
+        "Text": "#26d9ffff"
+      },
+      "vars": {
+        "FrameBorderSize": 1
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#26d9ff99",
+        "Text": "#ff6ad5ff"
+      },
+      "vars": {
+        "SeparatorTextAlign": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "SeparatorTextBorderSize": 2
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#a99bc9ff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#4dffb88c",
+        "Button": "#4dffb829",
+        "ButtonActive": "#4dffb86b",
+        "ButtonHovered": "#4dffb847",
+        "CheckMark": "#4dffb8ff",
+        "SliderGrab": "#4dffb8ff",
+        "SliderGrabActive": "#4dffb8ff",
+        "Text": "#4dffb8ff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#fff38a8c",
+        "Button": "#fff38a29",
+        "ButtonActive": "#fff38a6b",
+        "ButtonHovered": "#fff38a47",
+        "CheckMark": "#fff38aff",
+        "SliderGrab": "#fff38aff",
+        "SliderGrabActive": "#fff38aff",
+        "Text": "#fff38aff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "pink",
+    "retro",
+    "pastel",
+    "neon"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#ff6ad566",
+      "BorderShadow": "#00000000",
+      "Button": "#4d286cff",
+      "ButtonActive": "#2b689cff",
+      "ButtonHovered": "#6d337fff",
+      "CheckMark": "#26d9ffff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#120b24ff",
+      "DockingPreview": "#ff6ad599",
+      "DragDropTarget": "#fff38ae6",
+      "FrameBg": "#2e1c5aff",
+      "FrameBgActive": "#5e3184ff",
+      "FrameBgHovered": "#3b2572ff",
+      "Header": "#ff6ad533",
+      "HeaderActive": "#ff6ad573",
+      "HeaderHovered": "#ff6ad552",
+      "InputTextCursor": "#ff6ad5ff",
+      "MenuBarBg": "#231545ff",
+      "ModalWindowDimBg": "#0d081a99",
+      "NavCursor": "#26d9ffff",
+      "NavWindowingDimBg": "#0d081a40",
+      "NavWindowingHighlight": "#f8eeffb2",
+      "PlotHistogram": "#ff6ad5ff",
+      "PlotHistogramHovered": "#9d6bffff",
+      "PlotLines": "#26d9ffff",
+      "PlotLinesHovered": "#fff38aff",
+      "PopupBg": "#27174cfa",
+      "ResizeGrip": "#ff6ad52e",
+      "ResizeGripActive": "#ff6ad5e6",
+      "ResizeGripHovered": "#ff6ad58c",
+      "ScrollbarBg": "#150d2999",
+      "ScrollbarGrab": "#4a2f80ff",
+      "ScrollbarGrabActive": "#ff6ad5ff",
+      "ScrollbarGrabHovered": "#6a45b0ff",
+      "Separator": "#4a2f80ff",
+      "SeparatorActive": "#ff6ad5ff",
+      "SeparatorHovered": "#ff6ad5a6",
+      "SliderGrab": "#ff6ad5ff",
+      "SliderGrabActive": "#26d9ffff",
+      "Tab": "#2e1c5aff",
+      "TabDimmed": "#26174aff",
+      "TabDimmedSelected": "#4b2f79ff",
+      "TabDimmedSelectedOverline": "#26d9ff73",
+      "TabHovered": "#5a3399ff",
+      "TabSelected": "#66409eff",
+      "TabSelectedOverline": "#26d9ffff",
+      "TableBorderLight": "#372361ff",
+      "TableBorderStrong": "#4a2f80ff",
+      "TableHeaderBg": "#231545ff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#f8eeff08",
+      "Text": "#f8eeffff",
+      "TextDisabled": "#a99bc9ff",
+      "TextLink": "#26d9ffff",
+      "TextSelectedBg": "#26d9ff4d",
+      "TitleBg": "#150d2aff",
+      "TitleBgActive": "#3a2068ff",
+      "TitleBgCollapsed": "#150d2abf",
+      "WindowBg": "#1a1033ff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 6,
+        "y": 3
+      },
+      "ChildBorderSize": 1,
+      "ChildRounding": 6,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 0,
+      "FramePadding": {
+        "x": 8,
+        "y": 4
+      },
+      "FrameRounding": 4,
+      "GrabMinSize": 12,
+      "GrabRounding": 10,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 20,
+      "ItemInnerSpacing": {
+        "x": 6,
+        "y": 4
+      },
+      "ItemSpacing": {
+        "x": 8,
+        "y": 6
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 8,
+      "ScrollbarRounding": 10,
+      "ScrollbarSize": 12,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 2,
+      "SeparatorTextPadding": {
+        "x": 16,
+        "y": 3
+      },
+      "TabBarBorderSize": 0,
+      "TabBarOverlineSize": 2,
+      "TabBorderSize": 0,
+      "TabRounding": 4,
+      "WindowBorderSize": 1,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 48
+      },
+      "WindowPadding": {
+        "x": 12,
+        "y": 10
+      },
+      "WindowRounding": 8,
+      "WindowTitleAlign": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Vaporwave",
+  "widgetStyle": {
+    "accent": "#ff6ad5ff",
+    "accent2": "#26d9ffff",
+    "danger": "#ff5277ff",
+    "success": "#4dffb8ff",
+    "warning": "#fff38aff"
+  }
+}

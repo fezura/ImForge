@@ -394,6 +394,10 @@ bool Import(Project& project, WidgetCatalog* catalog, const std::string& path, s
         if (catalog) {
             Error we;
             if (!catalog->AddManifest(wj, &we)) return Fail(err, path + ": " + p + ": " + we.message);
+        } else if ((wj["include"].IsString() && !wj["include"].AsString().empty() && !IsSafeIncludeName(wj["include"].AsString())) ||
+                   !IsSafeCallTemplate(wj["call"].AsString()) ||
+                   (wj["callEnd"].IsString() && !wj["callEnd"].AsString().empty() && !IsSafeCallTemplate(wj["callEnd"].AsString()))) {
+            return Fail(err, path + ": " + p + ": unsafe include or call template");
         }
         if (!EndsWith(p, ".json")) {
             res.warnings.push_back(lib + ": widget file " + SafeFileName(p) + " is not a .json file, skipped");

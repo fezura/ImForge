@@ -1,0 +1,142 @@
+{
+  "bindings": [],
+  "call": "imb::disp::KeyOverlay({label}, {keySize}, {mouse})",
+  "category": "Display",
+  "container": false,
+  "events": [],
+  "icon": "fa-gamepad",
+  "include": "imb_display.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "KeyOverlay",
+  "preview": [
+    {
+      "fill": "#4f8cffff",
+      "h": 24,
+      "rounding": 4,
+      "shape": "rect",
+      "stroke": "#3a4150ff",
+      "w": 24,
+      "x": 27,
+      "y": 0
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "W",
+      "x": 35,
+      "y": 5
+    },
+    {
+      "fill": "#2c313cff",
+      "h": 24,
+      "rounding": 4,
+      "shape": "rect",
+      "stroke": "#3a4150ff",
+      "w": 24,
+      "x": 0,
+      "y": 27
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "A",
+      "x": 8,
+      "y": 32
+    },
+    {
+      "fill": "#2c313cff",
+      "h": 24,
+      "rounding": 4,
+      "shape": "rect",
+      "stroke": "#3a4150ff",
+      "w": 24,
+      "x": 27,
+      "y": 27
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "S",
+      "x": 35,
+      "y": 32
+    },
+    {
+      "fill": "#2c313cff",
+      "h": 24,
+      "rounding": 4,
+      "shape": "rect",
+      "stroke": "#3a4150ff",
+      "w": 24,
+      "x": 54,
+      "y": 27
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "D",
+      "x": 62,
+      "y": 32
+    },
+    {
+      "fill": "#2c313cff",
+      "h": 14,
+      "rounding": 4,
+      "shape": "rect",
+      "stroke": "#3a4150ff",
+      "w": 78,
+      "x": 0,
+      "y": 54
+    },
+    {
+      "fill": "#2c313cff",
+      "h": 51,
+      "rounding": 15,
+      "shape": "rect",
+      "stroke": "#3a4150ff",
+      "w": 30,
+      "x": 88,
+      "y": 0
+    },
+    {
+      "shape": "line",
+      "stroke": "#3a4150ff",
+      "thickness": 1,
+      "x": 88,
+      "x2": 118,
+      "y": 23,
+      "y2": 23
+    },
+    {
+      "shape": "line",
+      "stroke": "#3a4150ff",
+      "thickness": 1,
+      "x": 103,
+      "x2": 103,
+      "y": 0,
+      "y2": 23
+    }
+  ],
+  "props": [
+    {
+      "default": "##keys",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": 0,
+      "hint": "0 scales with the font",
+      "max": 256,
+      "min": 0,
+      "name": "keySize",
+      "type": "float"
+    },
+    {
+      "default": true,
+      "name": "mouse",
+      "type": "bool"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

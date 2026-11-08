@@ -325,6 +325,10 @@ inline void Spinner(const char* id, float radius, float thickness, ImU32 color) 
 #endif
 }
 
+inline void Spinner(const char* id, float radius, float thickness, const ImVec4& color) {
+    Spinner(id, radius, thickness, ImGui::ColorConvertFloat4ToU32(color));
+}
+
 inline void HotkeyLabel(const char* text, int key) {
     const ImGuiStyle& st = ImGui::GetStyle();
     ImGui::TextUnformatted(text);

@@ -1,0 +1,278 @@
+{
+  "credit": "",
+  "description": "Muted gold on warm black, roomy spacing and centered titles. Gold hairlines frame every control, and nothing shouts.",
+  "fonts": [
+    {
+      "family": "Manrope",
+      "role": "ui",
+      "size": 15,
+      "weight": "Regular"
+    },
+    {
+      "family": "Cinzel",
+      "role": "heading",
+      "size": 20,
+      "weight": "SemiBold"
+    }
+  ],
+  "fx": {
+    "accentGlow": 0.3,
+    "windowBlur": 0,
+    "windowShadow": 0.5
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "Lift",
+    "button.press": "SoftPress",
+    "list": {
+      "preset": "StaggerFadeUp",
+      "stagger": 0.06
+    },
+    "window": {
+      "durationScale": 1.3,
+      "preset": "FadeInUp"
+    },
+    "window.exit": "FadeOutDown"
+  },
+  "name": "GoldLuxury",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Border": "#d4af37cc",
+        "Button": "#d4af37ff",
+        "ButtonActive": "#b8962aff",
+        "ButtonHovered": "#e2c25aff",
+        "Text": "#0d0b08ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#d4af3759",
+        "ChildBg": "#15120dff"
+      },
+      "vars": {
+        "ChildBorderSize": 1,
+        "ChildRounding": 4,
+        "WindowPadding": {
+          "x": 16,
+          "y": 12
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#d4574a8c",
+        "Button": "#d4574a29",
+        "ButtonActive": "#d4574a6b",
+        "ButtonHovered": "#d4574a47",
+        "CheckMark": "#d4574aff",
+        "SliderGrab": "#d4574aff",
+        "SliderGrabActive": "#d4574aff",
+        "Text": "#da7566ff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#d4af3780",
+        "Button": "#d4af3700",
+        "ButtonActive": "#d4af3742",
+        "ButtonHovered": "#d4af3724",
+        "Text": "#d4af37ff"
+      },
+      "vars": {
+        "FrameBorderSize": 1
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#d4af3780",
+        "Text": "#f3d98bff"
+      },
+      "vars": {
+        "SeparatorTextAlign": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "SeparatorTextBorderSize": 1
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#9c8f73ff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#9fcf7a8c",
+        "Button": "#9fcf7a29",
+        "ButtonActive": "#9fcf7a6b",
+        "ButtonHovered": "#9fcf7a47",
+        "CheckMark": "#9fcf7aff",
+        "SliderGrab": "#9fcf7aff",
+        "SliderGrabActive": "#9fcf7aff",
+        "Text": "#9fcf7aff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#e8b04a8c",
+        "Button": "#e8b04a29",
+        "ButtonActive": "#e8b04a6b",
+        "ButtonHovered": "#e8b04a47",
+        "CheckMark": "#e8b04aff",
+        "SliderGrab": "#e8b04aff",
+        "SliderGrabActive": "#e8b04aff",
+        "Text": "#e8b04aff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "gold",
+    "premium",
+    "elegant"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#d4af3759",
+      "BorderShadow": "#00000000",
+      "Button": "#1f1a12ff",
+      "ButtonActive": "#594a1eff",
+      "ButtonHovered": "#403519ff",
+      "CheckMark": "#d4af37ff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#090806ff",
+      "DockingPreview": "#d4af3799",
+      "DragDropTarget": "#e8b04ae6",
+      "FrameBg": "#1f1a12ff",
+      "FrameBgActive": "#4c3f1eff",
+      "FrameBgHovered": "#2e2619ff",
+      "Header": "#d4af3724",
+      "HeaderActive": "#d4af3752",
+      "HeaderHovered": "#d4af3738",
+      "InputTextCursor": "#d4af37ff",
+      "MenuBarBg": "#15120dff",
+      "ModalWindowDimBg": "#06060499",
+      "NavCursor": "#d4af37ff",
+      "NavWindowingDimBg": "#06060440",
+      "NavWindowingHighlight": "#f4ecd8b2",
+      "PlotHistogram": "#d4af37ff",
+      "PlotHistogramHovered": "#f3d98bff",
+      "PlotLines": "#f3d98bff",
+      "PlotLinesHovered": "#e8b04aff",
+      "PopupBg": "#18150ffa",
+      "ResizeGrip": "#d4af372e",
+      "ResizeGripActive": "#d4af37e6",
+      "ResizeGripHovered": "#d4af378c",
+      "ScrollbarBg": "#00000000",
+      "ScrollbarGrab": "#3a311fff",
+      "ScrollbarGrabActive": "#957b2aff",
+      "ScrollbarGrabHovered": "#4d4129ff",
+      "Separator": "#d4af374d",
+      "SeparatorActive": "#d4af37ff",
+      "SeparatorHovered": "#d4af37a6",
+      "SliderGrab": "#d4af37ff",
+      "SliderGrabActive": "#f3d98bff",
+      "Tab": "#15120dff",
+      "TabDimmed": "#120f0bff",
+      "TabDimmedSelected": "#201b11ff",
+      "TabDimmedSelectedOverline": "#d4af3773",
+      "TabHovered": "#3a3018ff",
+      "TabSelected": "#2a2316ff",
+      "TabSelectedOverline": "#d4af37ff",
+      "TableBorderLight": "#d4af3726",
+      "TableBorderStrong": "#d4af374d",
+      "TableHeaderBg": "#15120dff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#f4ecd808",
+      "Text": "#f4ecd8ff",
+      "TextDisabled": "#9c8f73ff",
+      "TextLink": "#f3d98bff",
+      "TextSelectedBg": "#d4af3740",
+      "TitleBg": "#0d0b08ff",
+      "TitleBgActive": "#1a160fff",
+      "TitleBgCollapsed": "#0d0b08bf",
+      "WindowBg": "#0d0b08ff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 6,
+        "y": 3
+      },
+      "ChildBorderSize": 1,
+      "ChildRounding": 4,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 1,
+      "FramePadding": {
+        "x": 10,
+        "y": 5
+      },
+      "FrameRounding": 3,
+      "GrabMinSize": 9,
+      "GrabRounding": 3,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 22,
+      "ItemInnerSpacing": {
+        "x": 8,
+        "y": 6
+      },
+      "ItemSpacing": {
+        "x": 10,
+        "y": 8
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 4,
+      "ScrollbarRounding": 3,
+      "ScrollbarSize": 10,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 1,
+      "SeparatorTextPadding": {
+        "x": 20,
+        "y": 4
+      },
+      "TabBarBorderSize": 1,
+      "TabBarOverlineSize": 1,
+      "TabBorderSize": 0,
+      "TabRounding": 3,
+      "WindowBorderSize": 1,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 48
+      },
+      "WindowPadding": {
+        "x": 16,
+        "y": 14
+      },
+      "WindowRounding": 6,
+      "WindowTitleAlign": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Gold Luxury",
+  "widgetStyle": {
+    "accent": "#d4af37ff",
+    "accent2": "#f3d98bff",
+    "danger": "#d4574aff",
+    "success": "#9fcf7aff",
+    "warning": "#e8b04aff"
+  }
+}

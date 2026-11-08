@@ -77,7 +77,13 @@ std::string StringProp(EmitCtx& ctx, const Node& n, const PropDef& p, const std:
         for (const std::string& a : t.args) r += ", " + a;
         return r;
     }
-    if (t.IsLiteral()) return t.fmt;
+    if (t.IsLiteral()) {
+        // a plain const char* argument, so '%' must not be doubled the way a printf format needs it
+        const PropValue* pv = n.Prop(p.name);
+        std::string raw = def;
+        if (pv && !pv->raw.IsNull()) raw = pv->raw.IsString() ? pv->raw.AsString() : Value::Infer(pv->raw).ToString();
+        return ctx.CStr(n, p.name, raw, p.name);
+    }
     std::string buf = Local(ctx, n, p.name);
     NeedInclude(ctx, "<cstdio>");
     Line(ctx, "char " + buf + "[128];");
@@ -270,6 +276,7 @@ void EmitOpenWidget(EmitCtx& ctx, const Node& n, const CustomWidgetDef& def, con
     if (!call_end.empty()) Line(ctx, call_end + ";");
     Unindent(ctx);
     Line(ctx, "}");
+    Line(ctx, "ImGui::PopID();");
     if (!track) return;
     if (HasEvent(ctx, n, "onOpen")) {
         Line(ctx, "if (" + open + " && !" + was + ") {");
@@ -295,6 +302,8 @@ bool EmitCustomWidget(EmitCtx& ctx, const Node& n, const CustomWidgetDef& def) {
     if (!def.include.empty()) ctx.Include(def.include.c_str());
     if (def.min_version > ctx.Version())
         Info(ctx, n, "'" + def.type + "' needs IMGUI_VERSION_NUM >= " + std::to_string(def.min_version));
+    // manifest default labels ("##spark") repeat across instances; scope them like the interpreter does
+    Line(ctx, "ImGui::PushID(" + IdLit(ctx, n) + ");");
     bool marker = false, end_marker = false;
     std::string call = Expand(ctx, n, def, def.call, marker);
     std::string call_end = def.manifest["callEnd"].IsString()
@@ -312,15 +321,26 @@ bool EmitCustomWidget(EmitCtx& ctx, const Node& n, const CustomWidgetDef& def) {
             Line(ctx, "}");
         }
         if (!call_end.empty()) Line(ctx, call_end + ";");
+        Line(ctx, "ImGui::PopID();");
         return true;
     }
     if (def.returns == "open") {
         EmitOpenWidget(ctx, n, def, call, call_end);
         return true;
     }
-    EmitCall(ctx, n, call, event);
+    // events run after PopID so OpenPopup targets the same id as the popup's Begin
+    std::string fired = event && HasEvent(ctx, n, event) ? Local(ctx, n, def.returns.c_str()) : std::string();
+    Line(ctx, fired.empty() ? call + ";" : "const bool " + fired + " = " + call + ";");
     if (def.container) Children(ctx, n);
     if (!call_end.empty()) Line(ctx, call_end + ";");
+    Line(ctx, "ImGui::PopID();");
+    if (!fired.empty()) {
+        Line(ctx, "if (" + fired + ") {");
+        Indent(ctx);
+        Fire(ctx, n, event);
+        Unindent(ctx);
+        Line(ctx, "}");
+    }
     return true;
 }
 

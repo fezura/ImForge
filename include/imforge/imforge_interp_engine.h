@@ -136,10 +136,16 @@ inline void Interpreter::DrawPanel(const Panel& panel, PanelInstance& inst, cons
         last_diagnostics.clear();
         diag_frame = frame;
         click_consumed = false;
+        SyncAnimations();
+        for (const std::string& e : anim_errors) AddDiagnostic(Diagnostic::Level::Error, e, panel.name, "", "animations");
     }
     EnsureState(panel, inst);
     DrawCtx root(*this, panel, inst, roots, opts, panel.root);
+    // root ids are usually "window" in every panel and a Window root takes its id outside any window,
+    // so without this all panels of a project share motion and runtime state
+    ImGui::PushID(panel.name.c_str());
     DrawNodeImpl(root);
+    ImGui::PopID();
     inst.first_frame = false;
 }
 
@@ -152,6 +158,9 @@ inline void Interpreter::DrawNode(const Node& node, DrawCtx& parent_ctx) {
 }
 
 inline void Interpreter::DrawChildrenOf(DrawCtx& ctx) {
+    interp_detail::MotionScope* motion = ctx.content_motion;
+    ctx.content_motion = nullptr;
+    if (motion && !interp_motion::BeginScope(ctx, *motion)) return;
     const int n = static_cast<int>(ctx.node.children.size());
     for (int i = 0; i < n; ++i) {
         ctx.next_sibling = i;
@@ -159,6 +168,7 @@ inline void Interpreter::DrawChildrenOf(DrawCtx& ctx) {
         ctx.child_stagger = ctx.node.anim.stagger > 0 ? ctx.node.anim.stagger * static_cast<float>(i) : 0.0f;
         DrawNode(ctx.node.children[static_cast<size_t>(i)], ctx);
     }
+    if (motion) imb::EndMotion();
 }
 
 inline void Interpreter::ApplyTheme(const Theme& theme) {
@@ -199,17 +209,32 @@ inline void Interpreter::DrawNodeImpl(DrawCtx& ctx) {
     ctx.id = ImGui::GetID("##imforge_node");
     NodeRt& rt = Rt(ctx.id);
 
+    // motions wrap everything else so exit motions keep drawing a node whose visibleIf went false
+    MotionScope motion;
+    const interp_motion::Mode motion_mode = interp_motion::Prepare(ctx, motion);
+    const bool outer_motion = motion_mode == interp_motion::Mode::Outer;
+    bool motion_open = false;
+    if (outer_motion) {
+        motion_open = interp_motion::BeginScope(ctx, motion);
+        if (motion_open) ctx.motion_id = ctx.id;
+    } else if (motion_mode == interp_motion::Mode::Content) {
+        ctx.content_motion = &motion;
+    }
+
     const AnimSpec* enter_src = EnterSource(ctx);
-    bool entered = vis;
+    bool entered = outer_motion ? motion_open : vis;
+    bool legacy_open = false;
     if (enter_src) {
         const std::string& preset = vis ? (enter_src->enter_preset.empty() ? enter_src->exit_preset : enter_src->enter_preset)
                                         : (enter_src->exit_preset.empty() ? enter_src->enter_preset : enter_src->exit_preset);
         float dur = vis ? enter_src->enter_duration : enter_src->exit_duration;
-        entered = imb::BeginEnter(ctx.id, vis, dur, PresetFromName(preset.c_str()), ctx.stagger_delay);
+        legacy_open = imb::BeginEnter(ctx.id, vis, dur, PresetFromName(preset.c_str()), ctx.stagger_delay);
+        entered = outer_motion ? (motion_open || legacy_open) : legacy_open;
     }
     if (!entered) {
         rt.visible = false;
         rt.hovered = rt.active = rt.focused = false;
+        ctx.content_motion = nullptr;
         ImGui::PopID();
         return;
     }
@@ -340,12 +365,14 @@ inline void Interpreter::DrawNodeImpl(DrawCtx& ctx) {
         ImGui::PopItemFlag();
 #endif
     }
-    if (enter_src) imb::EndEnter();
+    if (legacy_open) imb::EndEnter();
 
     rt.hovered = container ? item_hovered : ImGui::IsItemHovered();
     rt.active = !container && ImGui::IsItemActive();
     rt.focused = !container && ImGui::IsItemFocused();
     if (!container) rt.seen = true;
+    ctx.content_motion = nullptr;
+    if (motion_open) imb::EndMotion();
 
     if (!n.tooltip.empty() && item_hovered && !ctx.opts.design_mode) {
         std::string tip = ctx.Interpolate(n.tooltip);

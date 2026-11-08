@@ -77,7 +77,14 @@ inline bool LoadProjectDir(const std::string& dir, imforge::Project& p) {
 #ifndef _WIN32
 inline bool HaveGxx() { return std::system("g++ --version >/dev/null 2>&1") == 0; }
 inline bool DirExists(const std::string& p) { return std::system(("test -d '" + p + "'").c_str()) == 0; }
-inline std::string TempRoot() { return std::getenv("TMPDIR") ? std::getenv("TMPDIR") : "/tmp"; }
+// per build dir: two ctest runs from different build dirs must not share (and rm -rf) the same dirs
+inline std::string TempRoot() {
+#ifdef IMFORGE_BINARY_DIR
+    return IMFORGE_BINARY_DIR "/test_tmp";
+#else
+    return std::getenv("TMPDIR") ? std::getenv("TMPDIR") : "/tmp";
+#endif
+}
 inline std::string DepsDir() {
     const char* home = std::getenv("HOME");
     return std::string(home ? home : "") + "/deps";

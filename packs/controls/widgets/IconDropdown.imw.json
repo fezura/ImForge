@@ -1,0 +1,101 @@
+{
+  "bindings": [
+    {
+      "name": "current",
+      "required": true,
+      "types": [
+        "int",
+        "enum"
+      ]
+    }
+  ],
+  "call": "imb::ctl::IconDropdown({label}, {current}, {items:array}, {items:count}, {icons:array}, {icons:count})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-list",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "IconDropdown",
+  "preview": [
+    {
+      "fill": "#262d3aff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 160,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#4296faff",
+      "shape": "text",
+      "text": "R",
+      "x": 8,
+      "y": 4
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Rifle",
+      "x": 24,
+      "y": 4
+    },
+    {
+      "shape": "line",
+      "stroke": "#8a8f9cff",
+      "thickness": 1.4,
+      "x": 142,
+      "x2": 146,
+      "y": 9,
+      "y2": 13
+    },
+    {
+      "shape": "line",
+      "stroke": "#8a8f9cff",
+      "thickness": 1.4,
+      "x": 146,
+      "x2": 150,
+      "y": 13,
+      "y2": 9
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 168,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "Weapon",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": [
+        "Rifle",
+        "Pistol",
+        "Knife"
+      ],
+      "name": "items",
+      "type": "stringList"
+    },
+    {
+      "default": [
+        "R",
+        "P",
+        "K"
+      ],
+      "hint": "one per item, icon font glyphs or fa- names",
+      "name": "icons",
+      "type": "stringList"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

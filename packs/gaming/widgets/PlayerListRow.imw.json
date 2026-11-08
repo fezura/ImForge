@@ -1,0 +1,110 @@
+{
+  "bindings": [],
+  "call": "imb::game::PlayerListRow({label}, {name}, {team}, {health}, {flags}, {ping}, {selected})",
+  "category": "Gaming",
+  "container": false,
+  "events": [
+    "onClick"
+  ],
+  "icon": "fa-user",
+  "include": "imb_gaming.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "PlayerListRow",
+  "preview": [
+    {
+      "fill": "#2a2f3aff",
+      "h": 30,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 300,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#ff5656ff",
+      "h": 22,
+      "rounding": 1,
+      "shape": "rect",
+      "w": 3,
+      "x": 0,
+      "y": 4
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{name}",
+      "x": 12,
+      "y": 8
+    },
+    {
+      "color": "#48d678ff",
+      "shape": "text",
+      "text": "32ms",
+      "x": 200,
+      "y": 8
+    },
+    {
+      "fill": "#00000078",
+      "h": 4,
+      "rounding": 2,
+      "shape": "rect",
+      "w": 52,
+      "x": 244,
+      "y": 13
+    },
+    {
+      "fill": "#48d678ff",
+      "h": 4,
+      "rounding": 2,
+      "shape": "rect",
+      "w": 44,
+      "x": 244,
+      "y": 13
+    }
+  ],
+  "props": [
+    {
+      "default": "player",
+      "hint": "ImGui id, not shown",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": "Player",
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "default": "1",
+      "hint": "0..3 use the pack team colors",
+      "name": "team",
+      "type": "expr"
+    },
+    {
+      "default": "1.0",
+      "hint": "0..1",
+      "name": "health",
+      "type": "expr"
+    },
+    {
+      "default": "0",
+      "hint": "imb::game::PlayerFlag_* bits",
+      "name": "flags",
+      "type": "expr"
+    },
+    {
+      "default": "-1",
+      "hint": "ms, -1 hides it",
+      "name": "ping",
+      "type": "expr"
+    },
+    {
+      "default": "false",
+      "name": "selected",
+      "type": "expr"
+    }
+  ],
+  "returns": "clicked",
+  "schemaVersion": 1
+}

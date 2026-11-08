@@ -1,0 +1,644 @@
+{
+  "kind": "panel",
+  "name": "Console",
+  "root": {
+    "anim": {
+      "motions": [
+        {
+          "preset": "ClipRevealDown"
+        },
+        {
+          "preset": "ClipHideUp",
+          "trigger": "exit"
+        }
+      ]
+    },
+    "bind": {
+      "open": "state.open"
+    },
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "Typewriter"
+                    }
+                  ]
+                },
+                "font": "MonoBig",
+                "id": "banner_line",
+                "props": {
+                  "color": "#33ff66ff",
+                  "text": "{{PROJECT_NAME}} // console build 0.9.4"
+                },
+                "type": "Text"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "delay": 0.8,
+                      "preset": "DecodeIn"
+                    }
+                  ]
+                },
+                "id": "banner_hint",
+                "props": {
+                  "text": "type 'help' for commands, arrows to move, enter to toggle"
+                },
+                "style": {
+                  "classes": [
+                    "muted"
+                  ]
+                },
+                "type": "Text"
+              }
+            ],
+            "id": "banner",
+            "props": {
+              "spacing": 2
+            },
+            "type": "VStack"
+          },
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "delay": 0.6,
+                      "preset": "StaggerFadeIn",
+                      "stagger": 0.12
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "id": "log_0_tag",
+                        "props": {
+                          "color": "#33ff66ff",
+                          "text": "[ ok ]"
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "id": "log_0_msg",
+                        "props": {
+                          "text": "hooks installed (3/3)"
+                        },
+                        "type": "Text"
+                      }
+                    ],
+                    "id": "log_0",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "HStack"
+                  },
+                  {
+                    "children": [
+                      {
+                        "id": "log_1_tag",
+                        "props": {
+                          "color": "#33ff66ff",
+                          "text": "[ ok ]"
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "id": "log_1_msg",
+                        "props": {
+                          "text": "config loaded: default.cfg"
+                        },
+                        "type": "Text"
+                      }
+                    ],
+                    "id": "log_1",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "HStack"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "Jitter",
+                          "trigger": "loop"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "id": "log_2_tag",
+                        "props": {
+                          "color": "#e6ff4dff",
+                          "text": "[warn]"
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "id": "log_2_msg",
+                        "props": {
+                          "text": "overlay is running in windowed mode"
+                        },
+                        "type": "Text"
+                      }
+                    ],
+                    "id": "log_2",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "HStack"
+                  },
+                  {
+                    "children": [
+                      {
+                        "id": "log_3_tag",
+                        "props": {
+                          "color": "#33ff66ff",
+                          "text": "[ ok ]"
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "id": "log_3_msg",
+                        "props": {
+                          "text": "aim, esp and misc modules ready"
+                        },
+                        "type": "Text"
+                      }
+                    ],
+                    "id": "log_3",
+                    "props": {
+                      "spacing": 8
+                    },
+                    "type": "HStack"
+                  }
+                ],
+                "id": "log_lines",
+                "props": {
+                  "spacing": 2
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "log",
+            "props": {
+              "border": true,
+              "childFlags": [
+                "AlwaysUseWindowPadding"
+              ],
+              "size": {
+                "h": 104,
+                "w": "fill"
+              }
+            },
+            "style": {
+              "vars": {
+                "WindowPadding": {
+                  "x": 10,
+                  "y": 8
+                }
+              }
+            },
+            "type": "Child"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "delay": 1,
+                  "preset": "StaggerReveal",
+                  "stagger": 0.07
+                }
+              ]
+            },
+            "children": [
+              {
+                "id": "opt_div",
+                "props": {
+                  "align": "Left",
+                  "label": "modules",
+                  "look": "Dashed"
+                },
+                "type": "Divider"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "Slant",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "on": "onChange",
+                          "preset": "Glimmer",
+                          "trigger": "attention"
+                        }
+                      ]
+                    },
+                    "bind": {
+                      "value": "state.aim"
+                    },
+                    "id": "opt_aim",
+                    "props": {
+                      "kind": "Square",
+                      "label": "aimbot"
+                    },
+                    "type": "SwitchToggle"
+                  },
+                  {
+                    "id": "opt_aim_fill",
+                    "props": {
+                      "size": {
+                        "h": 1,
+                        "w": "fill"
+                      }
+                    },
+                    "type": "Dummy"
+                  },
+                  {
+                    "id": "opt_aim_key",
+                    "props": {
+                      "keys": "F1"
+                    },
+                    "type": "Kbd"
+                  }
+                ],
+                "id": "opt_aim_row",
+                "props": {
+                  "spacing": 8
+                },
+                "type": "HStack"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "Slant",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "on": "onChange",
+                          "preset": "Glimmer",
+                          "trigger": "attention"
+                        }
+                      ]
+                    },
+                    "bind": {
+                      "value": "state.esp"
+                    },
+                    "id": "opt_esp",
+                    "props": {
+                      "kind": "Square",
+                      "label": "esp"
+                    },
+                    "type": "SwitchToggle"
+                  },
+                  {
+                    "id": "opt_esp_fill",
+                    "props": {
+                      "size": {
+                        "h": 1,
+                        "w": "fill"
+                      }
+                    },
+                    "type": "Dummy"
+                  },
+                  {
+                    "id": "opt_esp_key",
+                    "props": {
+                      "keys": "F2"
+                    },
+                    "type": "Kbd"
+                  }
+                ],
+                "id": "opt_esp_row",
+                "props": {
+                  "spacing": 8
+                },
+                "type": "HStack"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "Slant",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "on": "onChange",
+                          "preset": "Glimmer",
+                          "trigger": "attention"
+                        }
+                      ]
+                    },
+                    "bind": {
+                      "value": "state.radar"
+                    },
+                    "id": "opt_radar",
+                    "props": {
+                      "kind": "Square",
+                      "label": "radar"
+                    },
+                    "type": "SwitchToggle"
+                  },
+                  {
+                    "id": "opt_radar_fill",
+                    "props": {
+                      "size": {
+                        "h": 1,
+                        "w": "fill"
+                      }
+                    },
+                    "type": "Dummy"
+                  },
+                  {
+                    "id": "opt_radar_key",
+                    "props": {
+                      "keys": "F3"
+                    },
+                    "type": "Kbd"
+                  }
+                ],
+                "id": "opt_radar_row",
+                "props": {
+                  "spacing": 8
+                },
+                "type": "HStack"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "Slant",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "on": "onChange",
+                          "preset": "Glimmer",
+                          "trigger": "attention"
+                        }
+                      ]
+                    },
+                    "bind": {
+                      "value": "state.bhop"
+                    },
+                    "id": "opt_bhop",
+                    "props": {
+                      "kind": "Square",
+                      "label": "bhop"
+                    },
+                    "type": "SwitchToggle"
+                  },
+                  {
+                    "id": "opt_bhop_fill",
+                    "props": {
+                      "size": {
+                        "h": 1,
+                        "w": "fill"
+                      }
+                    },
+                    "type": "Dummy"
+                  },
+                  {
+                    "id": "opt_bhop_key",
+                    "props": {
+                      "keys": "Space"
+                    },
+                    "type": "Kbd"
+                  }
+                ],
+                "id": "opt_bhop_row",
+                "props": {
+                  "spacing": 8
+                },
+                "type": "HStack"
+              }
+            ],
+            "id": "options",
+            "props": {
+              "spacing": 6
+            },
+            "type": "VStack"
+          },
+          {
+            "children": [
+              {
+                "font": "Bold",
+                "id": "prompt_sign",
+                "props": {
+                  "color": "#33ff66ff",
+                  "text": ">"
+                },
+                "type": "Text"
+              },
+              {
+                "bind": {
+                  "value": "state.command"
+                },
+                "events": {
+                  "onEnter": {
+                    "actions": [
+                      {
+                        "target": "state.command",
+                        "type": "set",
+                        "value": ""
+                      }
+                    ],
+                    "handler": true
+                  }
+                },
+                "id": "command",
+                "props": {
+                  "hint": "command",
+                  "label": "##cmd"
+                },
+                "type": "InputText"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "CursorBlink",
+                      "trigger": "loop"
+                    }
+                  ]
+                },
+                "id": "cursor",
+                "props": {
+                  "color": "#33ff66ff",
+                  "text": "_"
+                },
+                "type": "Text"
+              }
+            ],
+            "id": "prompt",
+            "props": {
+              "spacing": 8
+            },
+            "type": "HStack"
+          },
+          {
+            "id": "foot_div",
+            "props": {
+              "look": "Dotted"
+            },
+            "type": "Divider"
+          },
+          {
+            "children": [
+              {
+                "id": "link",
+                "props": {
+                  "label": "attached to game.exe",
+                  "status": "Online"
+                },
+                "type": "StatusDot"
+              },
+              {
+                "id": "footer_fill",
+                "props": {
+                  "size": {
+                    "h": 1,
+                    "w": "fill"
+                  }
+                },
+                "type": "Dummy"
+              },
+              {
+                "id": "perf",
+                "props": {
+                  "fps": "state.fps",
+                  "graph": false,
+                  "label": "perf",
+                  "ping": "state.ping"
+                },
+                "type": "FpsPingCounter"
+              }
+            ],
+            "id": "footer",
+            "props": {
+              "spacing": 8
+            },
+            "type": "HStack"
+          }
+        ],
+        "id": "stack",
+        "props": {
+          "spacing": 10
+        },
+        "type": "VStack"
+      }
+    ],
+    "fx": [
+      {
+        "color": "#33ff660f",
+        "density": 0.05,
+        "type": "noise"
+      },
+      {
+        "color": "#33ff6633",
+        "rounding": 0,
+        "size": 10,
+        "type": "glow"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoCollapse",
+        "NoScrollbar"
+      ],
+      "initialSize": {
+        "x": 660,
+        "y": 430
+      },
+      "sizeCond": "FirstUseEver",
+      "title": "{{PROJECT_NAME}} :: tty1"
+    },
+    "style": {
+      "vars": {
+        "WindowPadding": {
+          "x": 14,
+          "y": 12
+        }
+      }
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": true,
+      "name": "open",
+      "type": "bool"
+    },
+    {
+      "default": true,
+      "name": "aim",
+      "type": "bool"
+    },
+    {
+      "default": true,
+      "name": "esp",
+      "type": "bool"
+    },
+    {
+      "default": false,
+      "name": "radar",
+      "type": "bool"
+    },
+    {
+      "default": false,
+      "name": "bhop",
+      "type": "bool"
+    },
+    {
+      "default": "",
+      "name": "command",
+      "type": "string"
+    },
+    {
+      "default": 240,
+      "name": "fps",
+      "type": "float"
+    },
+    {
+      "default": 12,
+      "name": "ping",
+      "type": "float"
+    }
+  ]
+}

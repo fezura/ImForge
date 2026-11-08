@@ -11,6 +11,7 @@
 #include "../builder_style.h"
 #include "../ui/canvas_overlay.h"
 #include "../ui/tree_ops.h"
+#include "library_actions.h"
 
 namespace imforge::builder {
 
@@ -38,7 +39,7 @@ bool IsHorizontalFlow(const std::string& type) { return type == "HStack" || type
 
 void CanvasPanel::HandleDragDrop(EditorContext& ctx, Node& root, const ImVec2& region_min, const ImVec2& region_max) {
     const ImGuiPayload* p = ImGui::GetDragDropPayload();
-    if (!p) return;
+    if (!p || AcceptMotionDropRect(ctx, hovered_id_, region_min, region_max)) return;
     const bool is_new = p->IsDataType(kPayloadNew);
     const bool is_node = p->IsDataType(kPayloadNode);
     if (!is_new && !is_node) return;

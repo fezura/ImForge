@@ -1,0 +1,267 @@
+{
+  "credit": "",
+  "description": "Deep crimson on black with an ember orange for checks and links. Compact, with a red glow on the main buttons.",
+  "fonts": [
+    {
+      "family": "Kanit",
+      "role": "ui",
+      "size": 15,
+      "weight": "Regular"
+    },
+    {
+      "family": "Black Ops One",
+      "role": "heading",
+      "size": 20,
+      "weight": "Regular"
+    }
+  ],
+  "fx": {
+    "accentGlow": 0.55,
+    "windowBlur": 0,
+    "windowShadow": 0.7
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "Grow",
+    "button.press": "Shrink",
+    "list": "StaggerFadeDown",
+    "window": "FadeInDown",
+    "window.exit": "FadeOut"
+  },
+  "name": "BloodMoon",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Border": "#b0101ccc",
+        "Button": "#b0101cff",
+        "ButtonActive": "#8a0c15ff",
+        "ButtonHovered": "#c81624ff",
+        "Text": "#ffffffff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#3d1414ff",
+        "ChildBg": "#170808ff"
+      },
+      "vars": {
+        "ChildBorderSize": 1,
+        "ChildRounding": 3,
+        "WindowPadding": {
+          "x": 10,
+          "y": 8
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#ff3b3b8c",
+        "Button": "#ff3b3b29",
+        "ButtonActive": "#ff3b3b6b",
+        "ButtonHovered": "#ff3b3b47",
+        "CheckMark": "#ff3b3bff",
+        "SliderGrab": "#ff3b3bff",
+        "SliderGrabActive": "#ff3b3bff",
+        "Text": "#fe5555ff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#ff5a3680",
+        "Button": "#ff5a3600",
+        "ButtonActive": "#ff5a3642",
+        "ButtonHovered": "#ff5a3624",
+        "Text": "#ff5a36ff"
+      },
+      "vars": {
+        "FrameBorderSize": 1
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#c1121fcc",
+        "Text": "#ff7a5cff"
+      },
+      "vars": {
+        "SeparatorTextBorderSize": 2
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#9e7b7bff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#6fbf738c",
+        "Button": "#6fbf7329",
+        "ButtonActive": "#6fbf736b",
+        "ButtonHovered": "#6fbf7347",
+        "CheckMark": "#6fbf73ff",
+        "SliderGrab": "#6fbf73ff",
+        "SliderGrabActive": "#6fbf73ff",
+        "Text": "#6fbf73ff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#e09f3e8c",
+        "Button": "#e09f3e29",
+        "ButtonActive": "#e09f3e6b",
+        "ButtonHovered": "#e09f3e47",
+        "CheckMark": "#e09f3eff",
+        "SliderGrab": "#e09f3eff",
+        "SliderGrabActive": "#e09f3eff",
+        "Text": "#e09f3eff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "red",
+    "horror"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#3d1414ff",
+      "BorderShadow": "#00000000",
+      "Button": "#451012ff",
+      "ButtonActive": "#761017ff",
+      "ButtonHovered": "#5a1014ff",
+      "CheckMark": "#ff5a36ff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#0a0404ff",
+      "DockingPreview": "#c1121f99",
+      "DragDropTarget": "#e09f3ee6",
+      "FrameBg": "#2a0f0fff",
+      "FrameBgActive": "#401418ff",
+      "FrameBgHovered": "#3a1515ff",
+      "Header": "#c1121f40",
+      "HeaderActive": "#c1121f8c",
+      "HeaderHovered": "#c1121f61",
+      "InputTextCursor": "#ff5a36ff",
+      "MenuBarBg": "#170808ff",
+      "ModalWindowDimBg": "#07020299",
+      "NavCursor": "#ff5a36ff",
+      "NavWindowingDimBg": "#07020240",
+      "NavWindowingHighlight": "#f5e6e6b2",
+      "PlotHistogram": "#d8202cff",
+      "PlotHistogramHovered": "#ff5a36ff",
+      "PlotLines": "#ff5a36ff",
+      "PlotLinesHovered": "#e09f3eff",
+      "PopupBg": "#1e0a0afa",
+      "ResizeGrip": "#c1121f2e",
+      "ResizeGripActive": "#c1121fe6",
+      "ResizeGripHovered": "#c1121f8c",
+      "ScrollbarBg": "#0b040499",
+      "ScrollbarGrab": "#422929ff",
+      "ScrollbarGrabActive": "#c1121fff",
+      "ScrollbarGrabHovered": "#573e3eff",
+      "Separator": "#3d1414ff",
+      "SeparatorActive": "#c1121fff",
+      "SeparatorHovered": "#c1121fa6",
+      "SliderGrab": "#d8202cff",
+      "SliderGrabActive": "#ff5a36ff",
+      "Tab": "#170808ff",
+      "TabDimmed": "#130707ff",
+      "TabDimmedSelected": "#350c0fff",
+      "TabDimmedSelectedOverline": "#ff5a3673",
+      "TabHovered": "#5a141aff",
+      "TabSelected": "#4a1015ff",
+      "TabSelectedOverline": "#ff5a36ff",
+      "TableBorderLight": "#2a0e0eff",
+      "TableBorderStrong": "#3d1414ff",
+      "TableHeaderBg": "#170808ff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#f5e6e608",
+      "Text": "#f5e6e6ff",
+      "TextDisabled": "#9e7b7bff",
+      "TextLink": "#ff7a5cff",
+      "TextSelectedBg": "#c1121f52",
+      "TitleBg": "#0a0303ff",
+      "TitleBgActive": "#3d0a0fff",
+      "TitleBgCollapsed": "#0a0303bf",
+      "WindowBg": "#0e0505ff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 4,
+        "y": 2
+      },
+      "ChildBorderSize": 1,
+      "ChildRounding": 2,
+      "DisabledAlpha": 0.4,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 0,
+      "FramePadding": {
+        "x": 6,
+        "y": 3
+      },
+      "FrameRounding": 2,
+      "GrabMinSize": 8,
+      "GrabRounding": 2,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 16,
+      "ItemInnerSpacing": {
+        "x": 4,
+        "y": 4
+      },
+      "ItemSpacing": {
+        "x": 6,
+        "y": 5
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 2,
+      "ScrollbarRounding": 9,
+      "ScrollbarSize": 9,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 2,
+      "SeparatorTextPadding": {
+        "x": 16,
+        "y": 3
+      },
+      "TabBarBorderSize": 1,
+      "TabBarOverlineSize": 0,
+      "TabBorderSize": 0,
+      "TabRounding": 2,
+      "WindowBorderSize": 1,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 48
+      },
+      "WindowPadding": {
+        "x": 10,
+        "y": 10
+      },
+      "WindowRounding": 4,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Blood Moon",
+  "widgetStyle": {
+    "accent": "#c1121fff",
+    "accent2": "#ff5a36ff",
+    "danger": "#ff3b3bff",
+    "success": "#6fbf73ff",
+    "warning": "#e09f3eff"
+  }
+}

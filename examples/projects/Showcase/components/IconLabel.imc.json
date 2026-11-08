@@ -1,0 +1,59 @@
+{
+  "kind": "component",
+  "name": "IconLabel",
+  "params": [
+    {
+      "default": "{icon:fa-star}",
+      "name": "icon",
+      "type": "string"
+    },
+    {
+      "default": "Label",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": "#ffffffff",
+      "name": "color",
+      "type": "color"
+    }
+  ],
+  "root": {
+    "children": [
+      {
+        "font": "Title",
+        "id": "il_icon",
+        "props": {
+          "color": {
+            "param": "color"
+          },
+          "text": {
+            "param": "icon"
+          }
+        },
+        "type": "Text"
+      },
+      {
+        "font": "Small",
+        "id": "il_label",
+        "props": {
+          "text": {
+            "param": "label"
+          }
+        },
+        "style": {
+          "classes": [
+            "muted"
+          ]
+        },
+        "type": "Text"
+      }
+    ],
+    "id": "icon_label",
+    "props": {
+      "spacing": 2
+    },
+    "type": "VStack"
+  },
+  "schemaVersion": 1
+}

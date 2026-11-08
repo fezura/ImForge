@@ -11,6 +11,32 @@ The editor is an ImGui app itself, so the canvas shows what ImGui will really dr
   <img src="docs/media/hero.gif" alt="Editing a menu in the ImForge builder while the same menu updates inside a running DX11 app" width="900">
 </p>
 
+## What's new in 0.2
+
+Widgets can move now. 0.2 adds keyframe motions that scale, rotate, skew, slide, fade, tint or
+type out any widget, with 212 presets to start from and a keyframe editor for your own. It also
+brings 36 ready-made designs you apply in one click, three new widget packs (63 widgets, 74
+counting essentials), 12 more templates, and a Library panel where you can browse all of it
+with live previews and drag things onto your panel. Exported code still only needs Dear ImGui
+and a few headers that get copied next to it. The [changelog](CHANGELOG.md) has the details.
+
+### Library
+
+Every preset card in the Library plays its motion live, so you can see what you're picking
+before you drop it on a widget. The chips filter by category.
+
+<p align="center">
+  <img src="docs/media/motions.gif" alt="The Library's Animations tab cycling through the All, Attention, Loop and Text categories with every card playing its motion" width="760">
+</p>
+
+Designs preview on the canvas before you apply them, and custom motions get their own keyframe
+editor in the Anim Timeline.
+
+<p align="center">
+  <img src="docs/media/library_designs.png" alt="The Designs tab with Synthwave Sunset selected and Preview on canvas turned on" width="49%">
+  <img src="docs/media/keyframes.png" alt="The Keyframes tab of the Anim Timeline editing a copy of the GlitchIn preset" width="49%">
+</p>
+
 ## What it does
 
 You drag widgets and containers into a tree, set their properties, and bind them to your
@@ -23,10 +49,13 @@ regions and survives re-exports. Small edits to generated lines (a label, a size
 are read back into the project, and anything the parser can't make sense of shows up as a
 conflict where you pick "keep my code" or "regenerate".
 
-Beyond the stock widgets there are layout containers (stacks, grids, `fill` and `%` sizes,
-anchors), components with parameters and slots, themes and style classes, icon fonts, DPI
-scaling, hover and press transitions, enter/exit animations, DrawList effects, and a shader
-blur behind windows that works on DX9, DX11, DX12, OpenGL 3 and Vulkan:
+Beyond the stock widgets there are 74 extra ones in four packs (switches, knobs, range
+sliders, color and gradient pickers, gauges, sparklines, toasts, crosshair and radar previews
+and more), layout containers (stacks, grids, `fill` and `%` sizes, anchors), components with
+parameters and slots, themes and style classes, 36 designs that set theme, classes, fonts and
+motions together, icon fonts and DPI scaling. For movement there are keyframe motions with
+212 presets, hover and press transitions, DrawList effects, and a shader blur behind windows
+that works on DX9, DX11, DX12, OpenGL 3 and Vulkan:
 
 <p align="center">
   <img src="docs/media/fx_montage.png" alt="ImForge fx: shader blur behind Dear ImGui windows on DX9, DX11, DX12, OpenGL 3 and Vulkan" width="900">
@@ -58,8 +87,12 @@ Then add the client to a development build of your app:
 IMFORGE_REFLECT(Player, health, ammo, pos, name);
 IMFORGE_REFLECT(Settings, esp, aimbot, fov);
 
-// once, after ImGui::CreateContext()
+// once, after ImGui::CreateContext() and the backend init
 imforge::live::Connect("tcp://127.0.0.1:7777");   // or "pipe://ImForge", "shm://ImForge"
+imforge::live::SetFontTextureRebuild(ImGui_ImplDX11_InvalidateDeviceObjects);   // per renderer
+
+// every frame, before the backend NewFrame calls
+imforge::live::PreNewFrame();
 
 // every frame, after ImGui::NewFrame()
 imforge::live::NewFrame();
@@ -116,7 +149,7 @@ Windows 10/11 and Linux; macOS isn't supported yet. Your app can use any platfor
 renderer ImGui supports. Generated code targets C++14, 17 or 20. It's built and tested with
 MSVC 2022 and GCC 13; other C++17 compilers should work but aren't in CI yet.
 
-ImForge is at 0.1.0 and not released yet. There are no prebuilt binaries so far
+ImForge is at 0.2.0 and not released yet. There are no prebuilt binaries so far
 ([docs/RELEASING.md](docs/RELEASING.md) has the plan), and what comes next is in
 [docs/ROADMAP.md](docs/ROADMAP.md).
 
@@ -124,7 +157,8 @@ ImForge is at 0.1.0 and not released yet. There are no prebuilt binaries so far
 
 - [User guide](docs/USER_GUIDE.md) and [FAQ](docs/FAQ.md)
 - [Live attach](docs/LIVE_ATTACH.md), [binding](docs/BINDING.md), [generated code and round-trip](docs/CODEGEN.md)
-- [Components](docs/COMPONENTS.md), [custom widgets](docs/WIDGET_SDK.md), [animations and effects](docs/ANIMATIONS.md)
+- [Motions](docs/MOTION.md), [designs](docs/DESIGNS.md), [widget packs](docs/WIDGETS.md), [animations and effects](docs/ANIMATIONS.md)
+- [Components](docs/COMPONENTS.md), [custom widgets](docs/WIDGET_SDK.md)
 - [Architecture](docs/ARCHITECTURE.md), [spec](docs/SPEC.md), [design decisions](docs/DECISIONS.md)
 
 ## Contributing

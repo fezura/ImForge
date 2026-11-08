@@ -1,0 +1,125 @@
+{
+  "bindings": [
+    {
+      "name": "value",
+      "required": true,
+      "types": [
+        "vec2",
+        "float[2]"
+      ]
+    }
+  ],
+  "call": "imb::ctl::Vec2Edit({label}, {value}, {speed}, {min}, {max}, {format})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-up-down-left-right",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "Vec2Edit",
+  "preview": [
+    {
+      "fill": "#262d3aff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 96,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#e25252ff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 18,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#ffffffff",
+      "shape": "text",
+      "text": "X",
+      "x": 5,
+      "y": 4
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "0.00",
+      "x": 42,
+      "y": 4
+    },
+    {
+      "fill": "#262d3aff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 96,
+      "x": 100,
+      "y": 0
+    },
+    {
+      "fill": "#76c448ff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 18,
+      "x": 100,
+      "y": 0
+    },
+    {
+      "color": "#ffffffff",
+      "shape": "text",
+      "text": "Y",
+      "x": 105,
+      "y": 4
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "0.00",
+      "x": 142,
+      "y": 4
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 204,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "Position",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": 0.1,
+      "name": "speed",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "name": "min",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "name": "max",
+      "type": "float"
+    },
+    {
+      "default": "%.2f",
+      "name": "format",
+      "type": "string"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

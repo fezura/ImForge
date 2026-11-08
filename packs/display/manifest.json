@@ -1,0 +1,43 @@
+{
+  "components": [],
+  "dependencies": [],
+  "description": "ImForge display widgets: progress rings, gauges, sparklines, frame graphs, badges, avatars, stat cards, steps, timelines, toasts and a few more.",
+  "headers": [
+    "imb_display.h",
+    "imb_disp_core.h",
+    "imb_disp_progress.h",
+    "imb_disp_charts.h",
+    "imb_disp_cards.h",
+    "imb_disp_badges.h",
+    "imb_disp_nav.h",
+    "imb_disp_toast.h"
+  ],
+  "kind": "imblib",
+  "license": "MIT",
+  "minImGuiVersion": 18500,
+  "name": "display",
+  "schemaVersion": 1,
+  "version": "0.2.0",
+  "widgets": [
+    "widgets/RingProgress.imw.json",
+    "widgets/RadialGauge.imw.json",
+    "widgets/Sparkline.imw.json",
+    "widgets/MiniBars.imw.json",
+    "widgets/FrameGraph.imw.json",
+    "widgets/LoadingBar.imw.json",
+    "widgets/SkeletonBlock.imw.json",
+    "widgets/Badge.imw.json",
+    "widgets/Avatar.imw.json",
+    "widgets/StatusDot.imw.json",
+    "widgets/StatCard.imw.json",
+    "widgets/ProgressSteps.imw.json",
+    "widgets/TimelineScrubber.imw.json",
+    "widgets/TooltipCard.imw.json",
+    "widgets/ToastStack.imw.json",
+    "widgets/Breadcrumbs.imw.json",
+    "widgets/KeyOverlay.imw.json",
+    "widgets/Divider.imw.json",
+    "widgets/Kbd.imw.json",
+    "widgets/EmptyState.imw.json"
+  ]
+}

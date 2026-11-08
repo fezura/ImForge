@@ -1,0 +1,60 @@
+{
+  "enums": {},
+  "kind": "types",
+  "schemaVersion": 1,
+  "structs": {
+    "Stats": {
+      "fields": [
+        {
+          "ctype": "Vector",
+          "elem": "float",
+          "name": "players",
+          "type": "std::vector<float>"
+        },
+        {
+          "ctype": "Vector",
+          "elem": "float",
+          "name": "matches",
+          "type": "std::vector<float>"
+        },
+        {
+          "ctype": "Vector",
+          "elem": "float",
+          "name": "latency",
+          "type": "std::vector<float>"
+        },
+        {
+          "ctype": "Vector",
+          "elem": "float",
+          "name": "errors",
+          "type": "std::vector<float>"
+        },
+        {
+          "ctype": "Vector",
+          "elem": "float",
+          "name": "frameMs",
+          "type": "std::vector<float>"
+        },
+        {
+          "ctype": "Vector",
+          "elem": "float",
+          "name": "requests",
+          "type": "std::vector<float>"
+        },
+        {
+          "ctype": "Vector",
+          "elem": "float",
+          "name": "deploys",
+          "type": "std::vector<float>"
+        },
+        {
+          "ctype": "Vector",
+          "elem": "float",
+          "name": "throughput",
+          "type": "std::vector<float>"
+        }
+      ],
+      "header": "stats.h"
+    }
+  }
+}

@@ -234,7 +234,8 @@ void CanvasPanel::DrawMockParamsPopup(EditorContext& ctx, const Component& comp)
 
 StyleScope CanvasPanel::PushCanvasStyle(EditorContext& ctx, float S) {
     StyleScope scope;
-    const Theme* theme = GetThemePreviewState().apply_to_canvas ? ctx.ActiveTheme() : nullptr;
+    const ThemePreviewState& tps = GetThemePreviewState();
+    const Theme* theme = tps.override_theme ? tps.override_theme : tps.apply_to_canvas ? ctx.ActiveTheme() : nullptr;
     if (theme) {
         for (const auto& c : theme->colors) {
             int idx = ImGuiColIndexByName(c.first.c_str());

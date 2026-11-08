@@ -1,0 +1,118 @@
+{
+  "bindings": [],
+  "call": "imb::game::Watermark({text}, {extra}, imb::game::Corner_{corner}, {fps}, {clock})",
+  "category": "Gaming",
+  "container": false,
+  "events": [],
+  "icon": "fa-stamp",
+  "include": "imb_gaming.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "Watermark",
+  "preview": [
+    {
+      "fill": "#0d0f14e1",
+      "h": 24,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 210,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#4296faff",
+      "h": 2,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 105,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#29d3ffff",
+      "h": 2,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 105,
+      "x": 105,
+      "y": 0
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{text}",
+      "x": 8,
+      "y": 6
+    },
+    {
+      "fill": "#3a4150ff",
+      "h": 12,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 1,
+      "x": 70,
+      "y": 8
+    },
+    {
+      "color": "#8a93a6ff",
+      "shape": "text",
+      "text": "144 fps",
+      "x": 78,
+      "y": 6
+    },
+    {
+      "fill": "#3a4150ff",
+      "h": 12,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 1,
+      "x": 138,
+      "y": 8
+    },
+    {
+      "color": "#8a93a6ff",
+      "shape": "text",
+      "text": "21:37:05",
+      "x": 146,
+      "y": 6
+    }
+  ],
+  "props": [
+    {
+      "default": "ImForge",
+      "name": "text",
+      "type": "string"
+    },
+    {
+      "default": "",
+      "hint": "optional segment, e.g. a server name",
+      "name": "extra",
+      "type": "string"
+    },
+    {
+      "default": "None",
+      "hint": "None lays it out inline",
+      "name": "corner",
+      "type": "enum",
+      "values": [
+        "None",
+        "TopLeft",
+        "TopRight",
+        "BottomLeft",
+        "BottomRight"
+      ]
+    },
+    {
+      "default": true,
+      "name": "fps",
+      "type": "bool"
+    },
+    {
+      "default": true,
+      "name": "clock",
+      "type": "bool"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

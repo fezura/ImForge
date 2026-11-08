@@ -10,7 +10,12 @@
 
 namespace imb {
 
-enum class Ease { Linear, InQuad, OutQuad, InOutQuad, InCubic, OutCubic, InOutCubic, OutBack, InBack, OutElastic, OutBounce, OutExpo };
+// append only, name tables index by value
+enum class Ease {
+    Linear, InQuad, OutQuad, InOutQuad, InCubic, OutCubic, InOutCubic, OutBack, InBack, OutElastic, OutBounce, OutExpo,
+    InSine, OutSine, InOutSine, InQuart, OutQuart, InOutQuart, InQuint, OutQuint, InOutQuint, InExpo, InOutExpo,
+    InCirc, OutCirc, InOutCirc, InOutBack, InElastic, InOutElastic, InBounce, InOutBounce
+};
 enum class Preset { None, Fade, SlideUp, SlideDown, SlideLeft, SlideRight, FadeSlideUp, FadeSlideDown, ScalePop, Stagger };
 
 inline float EaseApply(Ease e, float t) {
@@ -58,6 +63,62 @@ inline float EaseApply(Ease e, float t) {
         return n1 * t * t + 0.984375f;
     }
     case Ease::OutExpo: return 1.0f - std::pow(2.0f, -10.0f * t);
+    case Ease::InSine: return 1.0f - std::cos(t * kPi * 0.5f);
+    case Ease::OutSine: return std::sin(t * kPi * 0.5f);
+    case Ease::InOutSine: return 0.5f - std::cos(kPi * t) * 0.5f;
+    case Ease::InQuart: return t * t * t * t;
+    case Ease::OutQuart: {
+        float u = 1.0f - t;
+        return 1.0f - u * u * u * u;
+    }
+    case Ease::InOutQuart: {
+        if (t < 0.5f) return 8.0f * t * t * t * t;
+        float u = -2.0f * t + 2.0f;
+        return 1.0f - u * u * u * u * 0.5f;
+    }
+    case Ease::InQuint: return t * t * t * t * t;
+    case Ease::OutQuint: {
+        float u = 1.0f - t;
+        return 1.0f - u * u * u * u * u;
+    }
+    case Ease::InOutQuint: {
+        if (t < 0.5f) return 16.0f * t * t * t * t * t;
+        float u = -2.0f * t + 2.0f;
+        return 1.0f - u * u * u * u * u * 0.5f;
+    }
+    case Ease::InExpo: return std::pow(2.0f, 10.0f * t - 10.0f);
+    case Ease::InOutExpo:
+        if (t < 0.5f) return std::pow(2.0f, 20.0f * t - 10.0f) * 0.5f;
+        return (2.0f - std::pow(2.0f, -20.0f * t + 10.0f)) * 0.5f;
+    case Ease::InCirc: return 1.0f - std::sqrt(1.0f - t * t);
+    case Ease::OutCirc: return std::sqrt(1.0f - (t - 1.0f) * (t - 1.0f));
+    case Ease::InOutCirc: {
+        float u = 2.0f * t;
+        if (t < 0.5f) return (1.0f - std::sqrt(1.0f - u * u)) * 0.5f;
+        u = -2.0f * t + 2.0f;
+        return (std::sqrt(1.0f - u * u) + 1.0f) * 0.5f;
+    }
+    case Ease::InOutBack: {
+        const float c2 = 1.70158f * 1.525f;
+        float u = 2.0f * t;
+        if (t < 0.5f) return u * u * ((c2 + 1.0f) * u - c2) * 0.5f;
+        u -= 2.0f;
+        return (u * u * ((c2 + 1.0f) * u + c2) + 2.0f) * 0.5f;
+    }
+    case Ease::InElastic: {
+        const float c4 = 2.0f * kPi / 3.0f;
+        return -std::pow(2.0f, 10.0f * t - 10.0f) * std::sin((t * 10.0f - 10.75f) * c4);
+    }
+    case Ease::InOutElastic: {
+        const float c5 = 2.0f * kPi / 4.5f;
+        float s = std::sin((20.0f * t - 11.125f) * c5);
+        if (t < 0.5f) return -std::pow(2.0f, 20.0f * t - 10.0f) * s * 0.5f;
+        return std::pow(2.0f, -20.0f * t + 10.0f) * s * 0.5f + 1.0f;
+    }
+    case Ease::InBounce: return 1.0f - EaseApply(Ease::OutBounce, 1.0f - t);
+    case Ease::InOutBounce:
+        if (t < 0.5f) return (1.0f - EaseApply(Ease::OutBounce, 1.0f - 2.0f * t)) * 0.5f;
+        return (1.0f + EaseApply(Ease::OutBounce, 2.0f * t - 1.0f)) * 0.5f;
     }
     return t;
 }

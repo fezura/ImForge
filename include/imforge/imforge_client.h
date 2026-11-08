@@ -12,6 +12,10 @@
 // every message is MAC'd and sequenced; a bad frame drops the link ("security: ..." in Status()) and
 // the app pairs again with the next code. If the app can't read the builder's file (VM, remote box,
 // sandbox, other user) use SetPairingCode() or the IMFORGE_PAIRING_CODE env var.
+//
+// Project fonts: the builder sends the font files with the project. PreNewFrame() (before the backend
+// NewFrame) adds them to the atlas; below 1.92, or when the renderer lacks RendererHasTextures, the atlas
+// texture is then recreated through the function given to SetFontTextureRebuild().
 
 #include "imforge_client_config.h"
 
@@ -45,6 +49,8 @@ inline bool IsPaired() { return false; }
 inline bool SetPairingCode(const char*) { return false; }
 inline const char* Status() { return "disabled"; }
 inline void NewFrame() {}
+inline void PreNewFrame() {}
+inline void SetFontTextureRebuild(void (*)()) {}
 template <class T> inline BindingRoot Bind(const char* name, T& obj) {
     BindingRoot r;
     r.name = name;
@@ -63,6 +69,7 @@ inline void SetAppName(const char*) {}
 inline void SetApplyTheme(bool) {}
 inline void SetDpiScale(float) {}
 inline void ShowMissingPanels(bool) {}
+inline void RegisterBundledPacks() {}
 template <class T> inline T& Root(DrawCtx&, const char*) {
     static T fallback{};
     return fallback;
@@ -79,6 +86,25 @@ template <class S> inline S& State(DrawCtx&) {
 
 #include "imgui.h"
 #include "imforge_client_detail.h"
+
+// pack adapters are picked up when packs/<pack>/ is on the include path (angle brackets so the
+// amalgamated header keeps them optional too)
+#if __has_include(<imforge_adapters_essentials.h>)
+#include <imforge_adapters_essentials.h>
+#define IMFORGE_LIVE_HAS_PACK_ESSENTIALS 1
+#endif
+#if __has_include(<imforge_adapters_controls.h>)
+#include <imforge_adapters_controls.h>
+#define IMFORGE_LIVE_HAS_PACK_CONTROLS 1
+#endif
+#if __has_include(<imforge_adapters_display.h>)
+#include <imforge_adapters_display.h>
+#define IMFORGE_LIVE_HAS_PACK_DISPLAY 1
+#endif
+#if __has_include(<imforge_adapters_gaming.h>)
+#include <imforge_adapters_gaming.h>
+#define IMFORGE_LIVE_HAS_PACK_GAMING 1
+#endif
 
 #include <initializer_list>
 #include <map>
@@ -173,6 +199,11 @@ inline void NewFrame() {
     c.missing_rows = 0;
     if (c.link == Link::Off) return;
     uint64_t now = detail::NowMs();
+    if (c.link == Link::Ready) {
+        FontLogs logs;
+        CheckFontIntegration(c.font_state, now, logs);
+        FlushFontLogs(c, logs);
+    }
     if (c.link == Link::WaitingForCode) {
         if (now < c.next_code_check_ms) return;
         if (!TryStartLink(c, now) || c.link != Link::Connecting) return;
@@ -228,6 +259,19 @@ inline void NewFrame() {
     if (c.link == Link::Ready) MaybeSendStats(c);
 }
 
+// call every frame before the backend NewFrame (ImGui_ImplXXX_NewFrame), outside NewFrame/Render
+inline void PreNewFrame() {
+    client_detail::Client& c = client_detail::Get();
+    client_detail::FontLogs logs;
+    client_detail::LoadPendingFonts(c.font_state, logs);
+    client_detail::FlushFontLogs(c, logs);
+}
+
+// fn recreates the renderer's font texture after PreNewFrame rebuilt the atlas, e.g.
+// ImGui_ImplDX11_InvalidateDeviceObjects (recreated by the next ImGui_ImplDX11_NewFrame). Not needed
+// with 1.92+ backends that set RendererHasTextures.
+inline void SetFontTextureRebuild(void (*fn)()) { client_detail::Get().font_state.rebuild_texture = fn; }
+
 template <class T> inline BindingRoot Bind(const char* name, T& obj) {
     static_assert(!std::is_const<T>::value, "imforge::live::Bind: bind a non-const object");
     static_assert(TypeName<T>::value != nullptr, "imforge::live::Bind: T needs IMFORGE_REFLECT(T, ...)");
@@ -251,6 +295,16 @@ inline void Draw(const char* panel, const std::vector<BindingRoot>& roots) {
     char key[320];
     std::snprintf(key, sizeof(key), "%s#%u", panel, (unsigned)ImGui::GetID(panel));
     PanelInstance& inst = c.instances[key];
+    // like generated code with io.FontDefault, panels start in the first project font
+    ImFont* base_font = nullptr;
+    if (const std::string* def = DefaultLiveFontName(c.font_state)) base_font = c.interp.hooks.font(*def);
+    else if (c.have_project && !c.project.fonts.empty()) base_font = c.interp.hooks.font(c.project.fonts[0].name);
+    if (base_font == ImGui::GetFont()) base_font = nullptr;
+#if IMGUI_VERSION_NUM >= 19200
+    if (base_font) ImGui::PushFont(base_font, base_font->LegacySize);
+#else
+    if (base_font) ImGui::PushFont(base_font);
+#endif
     bool panel_match = c.mode.panel.empty() || c.mode.panel == panel;
     bool picker = c.mode.picker && panel_match;
     InterpOptions opts;
@@ -274,6 +328,7 @@ inline void Draw(const char* panel, const std::vector<BindingRoot>& roots) {
     if (picker) ImGui::EndDisabled();
 #endif
     c.cur_picker = false;
+    if (base_font) ImGui::PopFont();
     if (!HasString(c.drawn_panels, panel)) c.drawn_panels.push_back(panel);
     if (picker) PickerFeedback(c, panel, first_item);
     ForwardDiagnostics(c);
@@ -342,6 +397,26 @@ inline void SetApplyTheme(bool enable) {
 }
 inline void SetDpiScale(float scale) { client_detail::Get().dpi_override = scale; }
 inline void ShowMissingPanels(bool enable) { client_detail::Get().show_missing = enable; }
+
+// draw functions for every bundled pack whose adapter header is reachable; call before Connect()
+// so client_info lists the widget types
+inline void RegisterBundledPacks() {
+    client_detail::Client& c = client_detail::Get();
+#ifdef IMFORGE_LIVE_HAS_PACK_ESSENTIALS
+    RegisterPackWidgets_essentials(c.interp);
+#endif
+#ifdef IMFORGE_LIVE_HAS_PACK_CONTROLS
+    RegisterPackWidgets_controls(c.interp);
+#endif
+#ifdef IMFORGE_LIVE_HAS_PACK_DISPLAY
+    RegisterPackWidgets_display(c.interp);
+#endif
+#ifdef IMFORGE_LIVE_HAS_PACK_GAMING
+    RegisterPackWidgets_gaming(c.interp);
+#endif
+    for (const auto& kv : c.interp.widgets)
+        if (!client_detail::HasString(c.widget_names, kv.first)) c.widget_names.push_back(kv.first);
+}
 
 template <class T> inline T& Root(DrawCtx& ctx, const char* name) {
     const char* tn = TypeName<T>::value;

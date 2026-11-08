@@ -1,0 +1,90 @@
+{
+  "bindings": [
+    {
+      "name": "chord",
+      "required": true,
+      "types": [
+        "int"
+      ]
+    }
+  ],
+  "call": "imb::ctl::KeyChordPicker({label}, {chord})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-keyboard",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "KeyChordPicker",
+  "preview": [
+    {
+      "fill": "#262d3aff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 96,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#3a4252ff",
+      "h": 16,
+      "rounding": 3,
+      "shape": "rect",
+      "stroke": "#3c4456ff",
+      "w": 34,
+      "x": 8,
+      "y": 3
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Ctrl",
+      "x": 12,
+      "y": 4
+    },
+    {
+      "color": "#8a8f9cff",
+      "shape": "text",
+      "text": "+",
+      "x": 46,
+      "y": 4
+    },
+    {
+      "fill": "#3a4252ff",
+      "h": 16,
+      "rounding": 3,
+      "shape": "rect",
+      "stroke": "#3c4456ff",
+      "w": 20,
+      "x": 56,
+      "y": 3
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "S",
+      "x": 62,
+      "y": 4
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 104,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "Shortcut",
+      "name": "label",
+      "type": "string"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

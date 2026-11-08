@@ -87,8 +87,8 @@ advances), Finish creates the project, Escape cancels. All of it can be changed 
 Project Settings.
 
 - Project: the name (a C++ identifier, also used for the folder and the default namespace),
-  the location, and a template card: Blank, Cheat / mod menu, Tool / editor, Settings dialog
-  or Overlay HUD. Cards show feature badges (`anim`, `fx`, `blur`, `icons`, `dpi`, `dock`).
+  the location, and a template card (see [Templates](#templates) for the list). Cards show
+  feature badges (`anim`, `fx`, `blur`, `icons`, `dpi`, `dock`).
 - ImGui target: version (1.85 to 1.93, or Custom) and branch (`master` or `docking`).
   Detect reads `IMGUI_VERSION_NUM` and `IMGUI_HAS_DOCK` from an `imgui.h` you point it at,
   and a table shows what the target supports and what falls back.
@@ -120,6 +120,36 @@ Builder preferences (recent projects, window size, editor theme, UI scale, the l
 host, wizard or last project on startup) are stored in your per-user config directory. The
 Log prints the path at startup.
 
+### Templates
+
+The templates live in `templates/` and are listed in `templates/templates.json`. The wizard
+and the Templates tab of the [Library](#the-library) both read that list. The first five are
+the plain ones from 0.1; the others are built with the 0.2 widget packs, a design and motions,
+so they're also a good place to see how those fit together.
+
+| Template | Design | What you get |
+|---|---|---|
+| Blank | | an empty window with a text node, SDL3 + OpenGL 3 |
+| Cheat / mod menu | | tabbed menu with blur, shadow and an enter animation, Win32 + DX11 |
+| Tool / editor | | dockable inspector with a properties grid, docking branch |
+| Settings dialog | | tabbed option pages with OK / Apply / Cancel, GLFW + OpenGL 3 |
+| Overlay HUD | | click-through fullscreen window with anchored texts and a health bar |
+| HUD overlay (gaming) | MilitaryOliveHUD | watermark, radar, FPS/ping, kill feed, crosshair and health/armor on a Canvas |
+| Radial quick menu | GlassDark | eight icon buttons around a hub with pop-in, hover and press motions |
+| Icon rail menu | SleekPurpleGamer | left icon rail, top bar with search, pages of cards |
+| Dashboard grid | TokyoNight | bento dashboard: stat cards, frame-time graph, gauge, bars, timeline |
+| Pill tabs, two columns | EsportsRed | pill tab strip over two-column pages of cards |
+| Compact overlay | MinimalMono | small auto-sized overlay of collapsible switch and hotkey rows |
+| Fullscreen launcher | SynthwaveSunset | launcher screen with a featured hero, news and a library grid |
+| Settings dialog (modern) | SoftDesktop | light settings dialog with searchable category tabs |
+| Inspector dock | MidnightTool | dockable property inspector with vector editors, knobs and a keyframe timeline |
+| Terminal menu | RetroTerminal | console-style menu with a typed banner, boot log and a command prompt |
+| Mobile list | PastelCute | phone-sized settings list with an app bar and a bottom tab bar |
+| Onboarding wizard | CatppuccinLatte | first-run wizard with a step indicator and Back / Skip / Next |
+
+`examples/projects/Showcase` isn't a template but is worth opening too: three panels that
+put every pack widget on screen and run more than a hundred of the motion presets.
+
 ## The editor
 
 ![The builder with the CheatMenu sample open](media/builder_first_run.png)
@@ -129,19 +159,20 @@ Log prints the path at startup.
 Most menu entries are what you'd expect. A few worth knowing: Edit > History jumps to any
 undo step, and Copy puts the selected nodes on the clipboard as JSON
 (`"kind": "imforge-nodes"`), so you can paste them into another project or a text editor.
-View has Reset Layout, UI Scale (75 % to 200 %) and a Dark or Light editor theme. Project >
+View has Reset Layout, UI Scale (75 % to 200 %), a Dark or Light editor theme and every
+panel, including the Library (Ctrl+L). Project >
 Panels switches the active panel and has New Panel..., Manage Panels... and Panel
 Settings.... The Live menu starts and stops the server, pushes (F5, Shift+F5) and toggles
 picker mode (Ctrl+Shift+P). Help > Keyboard Shortcuts prints the list into the Log.
 
 The status bar shows the project (with `*` when there are unsaved changes), the active
-document and the selection count. On the right are a diagnostics counter and the live state,
-both clickable, and the builder's frame rate.
+document and the selection count. On the right are a Library button, a diagnostics counter
+and the live state, all clickable, and the builder's frame rate.
 
 ### Window layout
 
 By default Hierarchy and Panels sit top left with Palette and Components below them; Canvas,
-CodeView, Project Settings, Panel Settings and Fonts share the center; Properties, Theme
+Library, CodeView, Project Settings, Panel Settings and Fonts share the center; Properties, Theme
 Editor and Style Classes are on the right; Anim Timeline, Live, Log, Diagnostics and
 Conflicts are along the bottom. They're normal docking windows, so move them around, close
 them, bring them back from View, and use View > Reset Layout when you want the defaults back.
@@ -156,8 +187,9 @@ badge and nodes hidden in the editor an eye. The right-click menu has Add child,
 Wrap in, Unwrap, Duplicate, Delete, Rename id, Lock, Hide in editor, Convert to
 component..., Expand all and Collapse all.
 
-Palette lists every widget your ImGui target supports, by category, with Essentials and
-Components at the end when you have them. Click an item to insert it next to the selection,
+Palette lists every widget your ImGui target supports, by category, followed by the pack
+widgets (Essentials, Controls, Display, Gaming) and Components when you have them. Click an
+item to insert it next to the selection,
 or drag it onto the Canvas or Hierarchy. The tooltip mentions the fallback when a widget
 needs a newer ImGui than you target.
 
@@ -179,12 +211,13 @@ move. Blur shows as a placeholder because there's no scene behind the window her
 
 Properties edits the selected node in sections: Identity, Properties (the catalog props
 such as `label`, `min`, `max`, `format`, `flags`, `size`), Bindings, Conditions, Events,
-Style, Animation, Effects and Layout (anchor and offset inside a `Canvas`). The `fx` button
+Style, Animation, Motions (see [Motions](#motions)), Effects and Layout (anchor and offset
+inside a `Canvas`). The `fx` button
 next to a value turns it into an expression and `default` resets it. Path and expression
 fields are type checked while you type, with completion for `state.` and parameter paths.
 Component instances get a Component instance section with parameter values and Unpack
-instead. With several nodes selected, Style, Animation and Effects edits apply to all of
-them.
+instead. With several nodes selected, Style, Animation, Motions and Effects edits apply to
+all of them.
 
 CodeView shows the generated files, one tab per file, regenerated 250 ms after each edit
 (untick Auto and use Regenerate if you'd rather not). Selecting a node highlights its
@@ -206,7 +239,7 @@ that uses it.
 Fonts lists the project's fonts with Add font, Reload fonts, glyph ranges, Merge icons
 (merges Font Awesome 6 so `{icon:fa-xxx}` tokens render) and a preview. A font a node uses
 (`font: "Bold"`) has to exist here, and the generated `imforge_fonts.h` loads the same list
-in your app.
+in your app. `Font_Bold()` hands you the loaded `ImFont*` if you want to push it yourself.
 
 Components holds your definitions and imported libraries. New... makes an empty one,
 From selection... turns the selected nodes into a component and leaves an instance behind,
@@ -214,10 +247,13 @@ and Import... / Export... handle `.imblib` files. Selecting a component shows it
 slots (with Insert Slot node) and instances; Edit opens its tree in the Canvas until you
 press Done editing.
 
-Anim Timeline works on the selected node. Play, Stop, Replay, Loop and a scrub slider drive
-the preview, Force buttons pin a trigger (hover, active, open, ...) on or off, and quick-add
-buttons create common setups: Hover color fade, Press scale, Enter FadeSlideUp, Rainbow
-border, Soft shadow. Drag the right edge of a row to change its duration.
+Anim Timeline has three tabs. Node works on the selected node: Play, Stop, Replay, Loop and a
+scrub slider drive the preview, Force buttons pin a trigger (hover, active, open, ...) on or
+off, and quick-add buttons create common setups: Hover color fade, Press scale, Enter
+FadeSlideUp, Rainbow border, Soft shadow. Drag the right edge of a row to change its duration.
+Panel lists every animated node of the active panel and has the switch that turns canvas
+animation off, and Keyframes is the editor for custom motions, described in
+[Keyframes](#keyframes).
 
 Conflicts shows the round-trip results of the last export or of Import hand-edited
 file...: your code next to the generated code, with Keep my code (lock node) and Regenerate
@@ -230,6 +266,33 @@ Log shows builder and client messages with level and text filters.
 
 Project Settings has the wizard's pages as tabs, plus Client snippet with Copy client code
 and Copy CMake. Live is covered in [Connecting your app](#connecting-your-app).
+
+### The Library
+
+The Library is where the bundled material lives: animations, designs, widgets and templates,
+each on its own tab with a search box, category chips and, where the items have tags, a tag
+filter. Open it with Ctrl+L,
+View > Library or the Library button in the status bar; by default it's a tab next to the
+Canvas. Every tab has a bar at the bottom with what's selected and the actions for it.
+
+Animations shows all 212 motion presets plus the project's own animations, each card playing
+its animation on a sample (hover and press cards play while you hover or hold them). Click a
+card to pick it, then choose a trigger and press Add to selection, or double-click to add it
+with its default trigger, or drag it onto a node in the Canvas or Hierarchy. Duplicate (Edit
+for a custom one) copies a preset into the project and opens it in the Keyframes tab, and New
+animation starts a fresh one. The right-click menu has the same entries plus Copy name.
+
+Designs shows the 36 designs as small windows drawn in their colors. Pick one, choose Theme
+only, Theme + style classes or Everything, and press Apply (or double-click the card). Preview
+on canvas shows the design's theme on the Canvas without changing the project. More in
+[Designs](#designs).
+
+Widgets has every pack widget with a live preview. Click a card to add it to the open
+document, next to the selection, or drag it onto the Canvas or Hierarchy.
+
+Templates draws each template's panel scaled into its card. New project from template...
+asks for a name and a location and creates the project (offering to save the current one
+first), and Open wizard goes to the full wizard instead.
 
 ## Building a panel
 
@@ -343,6 +406,57 @@ another. Effects are listed per node: DrawList effects (`gradient`, `radialGradi
 `cursorHighlight`) and the shader `blur`. The Anim Timeline lets you scrub and force
 triggers. All of it is implemented in `imb_runtime.h`; see [ANIMATIONS.md](ANIMATIONS.md).
 
+### Motions
+
+Motions are keyframe animations that can also scale, rotate and skew a widget. The Motions
+section in Properties lists the node's motions; Add motion opens a picker with a search box,
+category tabs (All, Entrance, Exit, Attention, Hover, Press, Loop, Text, Change, Stagger,
+Custom) and a moving preview per row. Each motion row then has:
+
+- the animation (click to pick another) and its trigger: `enter`, `exit`, `hover`, `press`,
+  `focus`, `loop`, `change` or `attention`
+- a play button that runs it on the Canvas, plus duplicate and remove
+- duration scale, extra delay and iterations (default keeps the animation's own count)
+- stagger, for containers only: the motion plays on each child instead, that much later per
+  child
+- `on`, an event of the widget (`onChange`, `onClick`, ...) that restarts the motion, which is
+  what `change` and `attention` motions are for
+
+Replay all restarts every motion on the Canvas, and you can also drag an animation from the
+Library onto a node. The trigger and timing rules, the list of presets and how to use motions
+in your own code are in [MOTION.md](MOTION.md).
+
+### Keyframes
+
+The Keyframes tab of the Anim Timeline edits the project's own animations, which are saved
+as `animations/<Name>.imanim.json`. The toolbar picks the animation to edit and has New, From
+preset (copies a built-in one), Duplicate and Delete, which tells you how many widgets use it.
+Below that are three columns:
+
+- Settings: name, category, description, duration, delay, iterations, direction, fill, origin
+  (the pivot for scale, rotate and skew), Reveal from, the default trigger, the default ease
+  and tags.
+- The timeline: Add track picks a property (Opacity, Translate X/Y, Scale, Scale X/Y, Rotate,
+  Skew X/Y, Tint, Reveal, Text reveal, Glow, Shadow). Double-click a row to add a keyframe,
+  drag keys to retime them and press Del to remove the selected one. The first and last keys
+  stay at 0 and 1. With a key selected you edit its value and the easing of the segment after
+  it: Default, Named, Bezier, Steps or Spring.
+- A preview of the animation on a sample, with Play/Pause, Loop, Full timing (also plays the
+  delay, iterations and direction) and a scrub slider.
+
+Every edit is undoable. Widgets using the animation pick it up on the Canvas right away and in
+a connected app on the next push. If the animation breaks one of the rules widgets need (an entrance
+that doesn't end at rest, for example), the preview column says so.
+
+### Designs
+
+A design bundles a theme, style classes, fonts, window effects and default motions. Apply one
+from the Designs tab of the Library: Theme only adds and activates its theme, Theme + style
+classes also merges its classes (`accent-button`, `card`, `muted`, ...), and Everything also
+sets fonts, window shadow and blur, accent glow and the motions on windows, buttons and lists.
+An apply is one undo step. What each part does and how to write your own `.imdesign.json` is
+in [DESIGNS.md](DESIGNS.md).
+
 ### Components
 
 Select some nodes and use Convert to component... (Hierarchy) or From selection...
@@ -357,12 +471,16 @@ generated code a component is a function and an instance is a call wrapped in
 
 An `.imblib` is a zip of components, widget manifests and headers. File > Import .imblib...
 (or the wizard's Features step, or Import... in Components) copies it into `libs/` and adds
-its widgets to the Palette; Export... in Components writes one from your components. The
-essentials pack (`packs/essentials`) is kept as source plus manifests, and
-`python tools/pack_imblib.py packs/essentials dist/essentials.imblib` packages it so the
-wizard can offer it. Custom widgets are described by `.imw.json` manifests
-([WIDGET_SDK.md](WIDGET_SDK.md)); the Canvas draws their `preview` shapes until a live app
-renders the real thing.
+its widgets to the Palette; Export... in Components writes one from your components.
+
+The four bundled packs (essentials, controls, display and gaming, 74 widgets in all) are kept
+as source plus manifests under `packs/`, and the builder loads them at startup, so their
+widgets are in the Palette and the Library without importing anything. The Canvas draws them
+for real through each pack's adapter. `python tools/pack_imblib.py packs/controls
+dist/controls.imblib` packages one as an `.imblib` if you want to hand it around. The widget
+list is in [WIDGETS.md](WIDGETS.md). Your own widgets are described by `.imw.json` manifests
+([WIDGET_SDK.md](WIDGET_SDK.md)); without an adapter the Canvas draws their `preview` shapes
+until a live app renders the real thing.
 
 ## Connecting your app
 
@@ -377,6 +495,10 @@ IMFORGE_REFLECT(Settings, esp, aimbot, fov);
 
 // once, after ImGui::CreateContext() and the backend init
 imforge::live::Connect("tcp://127.0.0.1:7777");   // or "pipe://ImForge", "shm://ImForge"
+imforge::live::SetFontTextureRebuild(ImGui_ImplDX11_InvalidateDeviceObjects);   // per renderer
+
+// every frame, before ImGui_ImplDX11_NewFrame() and the other backend NewFrame calls
+imforge::live::PreNewFrame();
 
 // every frame, after ImGui::NewFrame()
 imforge::live::NewFrame();
@@ -386,7 +508,10 @@ imforge::live::Draw("MainMenu", { imforge::live::Bind("player", player),
 
 `Connect` never blocks and keeps retrying every second until the builder is listening.
 `Draw` renders the latest version of the named panel; call it once per panel per frame.
-`Bind` only compiles for reflected types. Without `IMFORGE_LIVE` every call is an empty
+`Bind` only compiles for reflected types. `PreNewFrame` adds the project fonts the builder
+sends to your atlas (Dear ImGui locks it once `NewFrame` runs), and the function given to
+`SetFontTextureRebuild` uploads the new texture; [LIVE_ATTACH.md](LIVE_ATTACH.md#fonts) lists
+it for each renderer. Without `IMFORGE_LIVE` every call is an empty
 inline function, so the lines can stay in release builds. You don't have to type this:
 Copy client snippet in the Live panel and Project Settings > Client snippet both generate it
 with your panel name, parameter roots and URL, plus a CMake fragment.
@@ -436,7 +561,7 @@ last edit), Pick in app (Ctrl+Shift+P) and traffic counters. Then there are tabs
 ### What updates live
 
 Layout, properties, sizes, bindings, expressions, interpolation, state, no-code actions,
-themes, style classes, fonts (when the app loads the project fonts), animations, effects and
+themes, style classes, fonts (including the Font Awesome merge), animations, effects and
 blur parameters all update without recompiling. With Auto-push on they're sent 150 ms after
 your last edit; otherwise press F5 for the active panel or Shift+F5 for everything. Handler
 bodies, locked `Code` blocks and custom widget implementations are C++, so those need a
@@ -486,8 +611,11 @@ The Troubleshooting tab checks most of these for you.
   `IMFORGE_REFLECT` field lists and the root names passed to `Draw`.
 - `stale: recompile` badges: rebuild the app, or re-export if you changed the block in the
   builder.
-- Fonts or icons look different from the canvas: the app draws with its own atlas, so load
-  the project fonts with the generated `imforge_fonts.h`.
+- Fonts or icons are missing in the app (`?` boxes): the app doesn't call
+  `imforge::live::PreNewFrame()` before the backend NewFrame, or (below ImGui 1.92) never set
+  `SetFontTextureRebuild()`. The app sends a hint about either to the Log. A font the builder
+  couldn't send shows up as a `fonts` warning there: file not found, outside the project and
+  fonts folders, not a plain `.ttf`, or bigger than 8 MB.
 - No blur in the app: no `imb_fx_<backend>.h` is included or `PrepareFrame` isn't called; see
   [Shader blur](#shader-blur).
 
@@ -503,7 +631,8 @@ a choice between header + source and single header, the markers switch, and the 
 files that will be written, each tagged new, update, same or "no marker". Export writes
 `<Panel>.h/.cpp` per panel (or one header each with `splitHeader: false`),
 `imforge_components.h/.cpp`, `imforge_theme_<Name>.h`, `imforge_styles.h`,
-`imforge_fonts.h`, `imforge_reflect.h` and `imforge_dev.h`. The same project always gives
+`imforge_fonts.h`, `imforge_animations.h` (custom animations), `imforge_reflect.h` and
+`imforge_dev.h`. The same project always gives
 byte-identical files. The status bar then reports `Exported N file(s)` and the conflict
 count, and the Conflicts panel opens if there are any.
 
@@ -568,8 +697,10 @@ target_compile_definitions(app PRIVATE $<$<CONFIG:Debug>:IMFORGE_LIVE> IMGUI_DEF
 
 Panels with transitions, presets or DrawList effects include `imb_runtime.h`, a single
 header that needs nothing but Dear ImGui (the name can be changed with
-`codegen.runtimeHeader`). Panels without them stay plain ImGui. Animation state is keyed by
-`ImGuiID` and dropped after two seconds of inactivity.
+`codegen.runtimeHeader`). Panels with motions also include `imb_motion.h` and
+`imb_motion_presets.h`, and export copies those next to the generated code as well. Panels
+without any of it stay plain ImGui. Animation state is keyed by `ImGuiID` and dropped after
+two seconds of inactivity. Pack widgets need their pack folder on the include path.
 
 ### Shader blur
 
@@ -622,6 +753,7 @@ Global (ignored while you're typing in a text field):
 | Ctrl+N / Ctrl+O | New project (wizard) / Open project |
 | Ctrl+S / Ctrl+Shift+S | Save / Save As |
 | Ctrl+E | Export code |
+| Ctrl+L | Open the Library |
 | F5 / Shift+F5 | Push active panel / push everything to the live app |
 | Ctrl+Shift+P | Toggle picker mode |
 | Ctrl+Z / Ctrl+Y (Ctrl+Shift+Z) | Undo / Redo |
@@ -662,10 +794,13 @@ and you can click or drag the Anim Timeline ruler to scrub.
   identified by a hash of its body.
 - Code node: a node whose content is raw C++. Exported as a locked block, drawn as a
   placeholder in the Canvas, run through `RegisterBlock` in live mode.
+- Design: a `.imdesign.json` bundle of theme, style classes, fonts, effects and default
+  motions, applied from the Library.
 - Design mode: how the Canvas renders. The interpreter draws the window inline, reports item
   rectangles, turns clicks into selection and uses mock values for bindings.
 - DPI mode: how generated sizes scale: `none`, `fontSize` (`GetFontSize()/baseFontSize`) or
   `variable` (an `imb_scale` parameter).
+- Motion: a keyframe animation (a preset or a custom one) attached to a node with a trigger.
 - Mock value: storage the interpreter uses for an unbound slot or a path it can't resolve,
   so widgets stay interactive in the builder.
 - SizeSpec: `auto`, a pixel number, `fill`, `N%` or `fill-N`.

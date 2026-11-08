@@ -268,6 +268,9 @@ Json EditorContext::Snapshot(DocKind kind, const std::string& name) const {
             panels_j.Push(std::move(pj));
         }
         o.Set("panels", std::move(panels_j));
+        Json anims = Json::Array();
+        for (const Json& a : project.animations) anims.Push(a);
+        o.Set("animations", std::move(anims));
         o.Set("activePanel", Json(active_panel));
         return o;
     }
@@ -353,6 +356,7 @@ bool EditorContext::Restore(DocKind kind, const std::string& name, const Json& s
             t.file = tj["file"].AsString("");
             if (ThemeFromJson(tj, t, &err)) tmp.themes.push_back(std::move(t));
         }
+        for (const Json& aj : snap["animations"].arr) tmp.animations.push_back(aj);
         project = std::move(tmp);
         if (active_kind == DocKind::Panel && !FindPanelDoc(active_panel)) {
             std::string fallback = snap["activePanel"].AsString("");

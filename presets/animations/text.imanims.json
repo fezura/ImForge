@@ -1,0 +1,812 @@
+{
+  "animations": [
+    {
+      "category": "text",
+      "credit": "",
+      "delay": 0,
+      "description": "Types the text out in twenty even steps.",
+      "direction": "normal",
+      "duration": 1.2,
+      "ease": "Linear",
+      "fill": "both",
+      "iterations": 1,
+      "name": "Typewriter",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "typewriter",
+        "text"
+      ],
+      "tracks": {
+        "textReveal": [
+          {
+            "ease": "steps(20)",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "text",
+      "credit": "",
+      "delay": 0,
+      "description": "Reveals characters at a steady rate with no stepping.",
+      "direction": "normal",
+      "duration": 1,
+      "ease": "Linear",
+      "fill": "both",
+      "iterations": 1,
+      "name": "TypewriterSmooth",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "typewriter",
+        "text",
+        "smooth"
+      ],
+      "tracks": {
+        "textReveal": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "text",
+      "credit": "",
+      "delay": 0,
+      "description": "Plain fade in for labels and paragraphs.",
+      "direction": "normal",
+      "duration": 0.5,
+      "ease": "OutQuad",
+      "fill": "both",
+      "iterations": 1,
+      "name": "FadeInText",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "text"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "text",
+      "credit": "",
+      "delay": 0,
+      "description": "Rises into place from a few pixels below while fading in.",
+      "direction": "normal",
+      "duration": 0.55,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "SlideUpText",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "slide",
+        "fade",
+        "text"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "ease": "OutQuad",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.7,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 8
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "text",
+      "credit": "",
+      "delay": 0,
+      "description": "Wipes the text in from the left edge.",
+      "direction": "normal",
+      "duration": 0.7,
+      "ease": "InOutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "RevealLeft",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "reveal",
+        "wipe",
+        "text"
+      ],
+      "tracks": {
+        "reveal": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "text",
+      "credit": "",
+      "delay": 0,
+      "description": "Opens from the middle outward.",
+      "direction": "normal",
+      "duration": 0.6,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "RevealCenter",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "center",
+      "tags": [
+        "reveal",
+        "wipe",
+        "title"
+      ],
+      "tracks": {
+        "reveal": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "text",
+      "credit": "",
+      "delay": 0,
+      "description": "Jumps in with a few glitchy offsets and color flashes, then sits clean.",
+      "direction": "normal",
+      "duration": 0.6,
+      "ease": "Linear",
+      "fill": "both",
+      "iterations": 1,
+      "name": "GlitchIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "glitch",
+        "tint",
+        "tech"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "ease": "steps(1)",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.08,
+            "v": 1
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.18,
+            "v": 0.35
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.26,
+            "v": 1
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.4,
+            "v": 0.7
+          },
+          {
+            "t": 0.48,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "skewX": [
+          {
+            "ease": "steps(1)",
+            "t": 0,
+            "v": 10
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.12,
+            "v": -6
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.25,
+            "v": 3
+          },
+          {
+            "t": 0.4,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "tint": [
+          {
+            "ease": "steps(1)",
+            "t": 0,
+            "v": "#ff4d79ff"
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.12,
+            "v": "#4de1ffff"
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.24,
+            "v": "#ff4d79ff"
+          },
+          {
+            "t": 0.36,
+            "v": "#ffffffff"
+          },
+          {
+            "t": 1,
+            "v": "#ffffffff"
+          }
+        ],
+        "translateX": [
+          {
+            "ease": "steps(1)",
+            "t": 0,
+            "v": -6
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.1,
+            "v": 4
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.2,
+            "v": -3
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.32,
+            "v": 2
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.45,
+            "v": -1
+          },
+          {
+            "t": 0.55,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateY": [
+          {
+            "ease": "steps(1)",
+            "t": 0,
+            "v": 2
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.15,
+            "v": -1
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.3,
+            "v": 1
+          },
+          {
+            "t": 0.45,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "text",
+      "credit": "",
+      "delay": 0,
+      "description": "Rises in with a lean that rocks back and straightens as it lands.",
+      "direction": "normal",
+      "duration": 0.8,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "WaveIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "skew",
+        "slide",
+        "text"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "ease": "OutQuad",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.4,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "skewX": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": -12
+          },
+          {
+            "ease": "InOutSine",
+            "t": 0.6,
+            "v": 4
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "translateY": [
+          {
+            "ease": "OutCubic",
+            "t": 0,
+            "v": 12
+          },
+          {
+            "ease": "InOutSine",
+            "t": 0.6,
+            "v": -2
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "text",
+      "credit": "",
+      "delay": 0,
+      "description": "Comes into focus out of a soft glowing haze.",
+      "direction": "normal",
+      "duration": 0.7,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "BlurInText",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "fade",
+        "glow",
+        "focus"
+      ],
+      "tracks": {
+        "glow": [
+          {
+            "ease": "OutQuad",
+            "t": 0,
+            "v": 0.6
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "opacity": [
+          {
+            "ease": "OutQuad",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 1.08
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "text",
+      "credit": "",
+      "delay": 0,
+      "description": "Decodes like a terminal, green blocks flickering before the text turns white.",
+      "direction": "normal",
+      "duration": 1,
+      "ease": "Linear",
+      "fill": "both",
+      "iterations": 1,
+      "name": "DecodeIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "typewriter",
+        "tint",
+        "tech"
+      ],
+      "tracks": {
+        "textReveal": [
+          {
+            "ease": "steps(12)",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "tint": [
+          {
+            "ease": "steps(1)",
+            "t": 0,
+            "v": "#6dffa8ff"
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.25,
+            "v": "#c8ffdcff"
+          },
+          {
+            "ease": "steps(1)",
+            "t": 0.4,
+            "v": "#6dffa8ff"
+          },
+          {
+            "t": 0.7,
+            "v": "#ffffffff"
+          },
+          {
+            "t": 1,
+            "v": "#ffffffff"
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "text",
+      "credit": "",
+      "delay": 0,
+      "description": "Starts big and settles to size as it fades in, for titles.",
+      "direction": "normal",
+      "duration": 0.8,
+      "ease": "OutQuint",
+      "fill": "both",
+      "iterations": 1,
+      "name": "Headline",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "fade",
+        "title"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "ease": "OutQuad",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.5,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 1.2
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "text",
+      "credit": "",
+      "delay": 0,
+      "description": "Expands sideways as it fades in, like letter spacing opening up.",
+      "direction": "normal",
+      "duration": 0.7,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "TrackingIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "fade",
+        "title"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "ease": "OutQuad",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.6,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "scaleX": [
+          {
+            "t": 0,
+            "v": 0.8
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "text",
+      "credit": "",
+      "delay": 0,
+      "description": "Types on while it rises and fades in.",
+      "direction": "normal",
+      "duration": 0.6,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "TextRiseIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "typewriter",
+        "slide",
+        "text"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "ease": "OutQuad",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.3,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "textReveal": [
+          {
+            "ease": "Linear",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 8
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ]
+      },
+      "trigger": "enter"
+    },
+    {
+      "category": "text",
+      "credit": "",
+      "delay": 0,
+      "description": "Types on behind a glow halo that fades once the line is done.",
+      "direction": "normal",
+      "duration": 0.7,
+      "ease": "OutCubic",
+      "fill": "both",
+      "iterations": 1,
+      "name": "TextGlowIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "typewriter",
+        "glow",
+        "text"
+      ],
+      "tracks": {
+        "glow": [
+          {
+            "ease": "Linear",
+            "t": 0,
+            "v": 0.8
+          },
+          {
+            "ease": "OutQuad",
+            "t": 0.7,
+            "v": 0.8
+          },
+          {
+            "t": 1,
+            "v": 0
+          }
+        ],
+        "textReveal": [
+          {
+            "ease": "Linear",
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 0.7,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "enter"
+    }
+  ],
+  "category": "text",
+  "kind": "animationSet",
+  "schemaVersion": 1
+}

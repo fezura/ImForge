@@ -99,6 +99,14 @@ struct BindInfo {
 };
 using BindExpr = BindInfo;
 
+enum class MotionMode { None, Outer, Content };
+struct MotionPending {
+    const Node* node = nullptr;
+    int count = 0;
+    bool text_reveal = false;
+    std::string opts;
+};
+
 struct EmitCtx {
     const Project& project;
     const Panel* panel;
@@ -119,6 +127,10 @@ struct EmitCtx {
     bool needs_stdlib = false;
     bool uses_runtime = false;
     bool uses_fx = false;
+    bool uses_custom_anims = false;
+    bool uses_text_reveal = false;
+    std::vector<std::string> motion_ids;   // nodes whose imb_mid_<id> local is in scope
+    std::vector<MotionPending> motion_pending;
     std::vector<const Node*> split_chain;
     bool tab_targets_ready = false;
     std::vector<std::string> tab_targets;

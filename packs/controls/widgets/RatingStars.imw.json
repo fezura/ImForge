@@ -1,0 +1,83 @@
+{
+  "bindings": [
+    {
+      "name": "value",
+      "required": true,
+      "types": [
+        "float",
+        "int"
+      ]
+    }
+  ],
+  "call": "imb::ctl::RatingStars({label}, {value}, {max})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-star",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "RatingStars",
+  "preview": [
+    {
+      "fill": "#ffbd2eff",
+      "r": 8,
+      "shape": "circle",
+      "x": 11,
+      "y": 11
+    },
+    {
+      "fill": "#ffbd2eff",
+      "r": 8,
+      "shape": "circle",
+      "x": 35,
+      "y": 11
+    },
+    {
+      "fill": "#ffbd2eff",
+      "r": 8,
+      "shape": "circle",
+      "x": 59,
+      "y": 11
+    },
+    {
+      "fill": "#2a3140ff",
+      "r": 8,
+      "shape": "circle",
+      "x": 83,
+      "y": 11
+    },
+    {
+      "fill": "#2a3140ff",
+      "r": 8,
+      "shape": "circle",
+      "x": 107,
+      "y": 11
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 124,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "Rating",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": 5,
+      "max": 20,
+      "min": 1,
+      "name": "max",
+      "type": "int"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

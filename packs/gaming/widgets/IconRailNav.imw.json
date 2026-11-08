@@ -1,0 +1,112 @@
+{
+  "bindings": [
+    {
+      "name": "index",
+      "required": false,
+      "types": [
+        "int",
+        "enum"
+      ]
+    }
+  ],
+  "call": "imb::game::IconRailNav({label}, {icons}, {tooltips}, {index})",
+  "category": "Gaming",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-bars",
+  "include": "imb_gaming.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "IconRailNav",
+  "preview": [
+    {
+      "fill": "#1e2129ff",
+      "h": 196,
+      "rounding": 8,
+      "shape": "rect",
+      "w": 44,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#4296fa33",
+      "h": 44,
+      "rounding": 8,
+      "shape": "rect",
+      "stroke": "#4296fa73",
+      "w": 32,
+      "x": 6,
+      "y": 4
+    },
+    {
+      "fill": "#4296faff",
+      "h": 22,
+      "rounding": 1,
+      "shape": "rect",
+      "w": 3,
+      "x": 0,
+      "y": 15
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "H",
+      "x": 18,
+      "y": 18
+    },
+    {
+      "color": "#8a93a6ff",
+      "shape": "text",
+      "text": "V",
+      "x": 18,
+      "y": 66
+    },
+    {
+      "color": "#8a93a6ff",
+      "shape": "text",
+      "text": "M",
+      "x": 18,
+      "y": 114
+    },
+    {
+      "color": "#8a93a6ff",
+      "shape": "text",
+      "text": "S",
+      "x": 18,
+      "y": 162
+    }
+  ],
+  "props": [
+    {
+      "default": "Rail",
+      "hint": "ImGui id, not shown",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": [
+        "H",
+        "V",
+        "M",
+        "S"
+      ],
+      "hint": "icon font glyphs, fa-* names or letters",
+      "name": "icons",
+      "type": "stringList"
+    },
+    {
+      "default": [
+        "Home",
+        "Visuals",
+        "Misc",
+        "Settings"
+      ],
+      "name": "tooltips",
+      "type": "stringList"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

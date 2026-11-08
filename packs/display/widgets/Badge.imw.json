@@ -1,0 +1,68 @@
+{
+  "bindings": [],
+  "call": "imb::disp::Badge({text}, imb::disp::BadgeKind::{kind}, (int)({count}), {color:u32}, {attach})",
+  "category": "Display",
+  "container": false,
+  "events": [],
+  "icon": "fa-certificate",
+  "include": "imb_display.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "Badge",
+  "preview": [
+    {
+      "fill": "#4f8cffff",
+      "h": 18,
+      "rounding": 9,
+      "shape": "rect",
+      "w": 36,
+      "x": 0,
+      "y": 3
+    },
+    {
+      "color": "#ffffffff",
+      "shape": "text",
+      "text": "{text}",
+      "x": 7,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "NEW",
+      "hint": "pill text; the id for counts and dots",
+      "name": "text",
+      "type": "string"
+    },
+    {
+      "default": "Pill",
+      "name": "kind",
+      "type": "enum",
+      "values": [
+        "Pill",
+        "Count",
+        "Dot"
+      ]
+    },
+    {
+      "default": "3",
+      "hint": "Count kind: number or expression, hidden at 0",
+      "name": "count",
+      "type": "expr"
+    },
+    {
+      "default": "#00000000",
+      "hint": "#00000000 = accent for pills, red for counts",
+      "name": "color",
+      "type": "color"
+    },
+    {
+      "default": false,
+      "hint": "sit on the previous item's top-right corner",
+      "name": "attach",
+      "type": "bool"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

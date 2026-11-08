@@ -1,6 +1,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 
+#include <algorithm>
 #include <filesystem>
 #include <fstream>
 #include <string>
@@ -154,7 +155,28 @@ std::string DiagText(const std::vector<Diagnostic>& d) {
     return s;
 }
 
-void ValidateLoadedProject(const Project& p) {
+// the bundled packs' widget manifests, so templates using pack widgets don't read as unknown types
+WidgetCatalog& PackCatalog() {
+    static WidgetCatalog cat;
+    static bool loaded = false;
+    if (loaded) return cat;
+    loaded = true;
+    std::error_code ec;
+    for (fs::directory_iterator it(fs::path(SourceDir()) / "packs", ec), end; !ec && it != end; it.increment(ec)) {
+        Json m;
+        if (!ReadJsonFile((it->path() / "manifest.json").generic_string(), m)) continue;
+        for (const Json& w : m["widgets"].arr) {
+            Json wj;
+            Error we;
+            if (w.IsString() && ReadJsonFile((it->path() / w.AsString()).generic_string(), wj)) cat.AddManifest(wj, &we);
+        }
+    }
+    return cat;
+}
+
+void ValidateLoadedProject(const Project& loaded) {
+    Project p = loaded;
+    p.widget_catalog = &PackCatalog();
     for (const Panel& pn : p.panels) {
         std::vector<Diagnostic> d;
         ValidatePanel(p, pn, d);
@@ -492,7 +514,9 @@ TEST_CASE("ApplyProjectSettings only overrides what the settings provide") {
 TEST_CASE("ListTemplates lists the template directories sorted") {
     std::string dir = JoinPath(SourceDir(), "templates");
     std::vector<std::string> names = ListTemplates(dir);
-    CHECK(names == std::vector<std::string>{"blank", "cheat-menu", "overlay-hud", "settings-dialog", "tool-dock"});
+    CHECK(std::is_sorted(names.begin(), names.end()));
+    for (const char* want : {"blank", "cheat-menu", "overlay-hud", "settings-dialog", "tool-dock"})
+        CHECK(std::find(names.begin(), names.end(), want) != names.end());
     CHECK(ListTemplates(JoinPath(dir, "missing")).empty());
     TempDir tmp("templates");
     fs::create_directories(tmp.Sub(".hidden"));
@@ -691,4 +715,13 @@ TEST_CASE("ExportCode without codegen linked reports the limitation") {
     Project none;
     CHECK_FALSE(ExportCode(none, &e));
     CHECK(e.message == "project has no directory");
+}
+
+TEST_CASE("examples/projects/Showcase validates with the bundled packs") {
+    std::string src = JoinPath(SourceDir(), "examples/projects/Showcase");
+    if (!IsProjectDir(src)) return;
+    Project p;
+    Error e;
+    REQUIRE_MESSAGE(LoadProject(src, p, &e), e.message);
+    ValidateLoadedProject(p);
 }

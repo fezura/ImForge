@@ -1,0 +1,87 @@
+{
+  "bindings": [
+    {
+      "name": "value",
+      "required": true,
+      "types": [
+        "float"
+      ]
+    }
+  ],
+  "call": "imb::ctl::Knob({label}, {value}, {min}, {max}, {format})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-circle-notch",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "Knob",
+  "preview": [
+    {
+      "r": 22,
+      "shape": "circle",
+      "stroke": "#2a3140ff",
+      "thickness": 3,
+      "x": 25,
+      "y": 25
+    },
+    {
+      "fill": "#323a4aff",
+      "r": 16,
+      "shape": "circle",
+      "stroke": "#3c4456ff",
+      "x": 25,
+      "y": 25
+    },
+    {
+      "shape": "line",
+      "stroke": "#4296faff",
+      "thickness": 3,
+      "x": 25,
+      "x2": 36,
+      "y": 25,
+      "y2": 14
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "0.60",
+      "x": 12,
+      "y": 52
+    },
+    {
+      "color": "#8a8f9cff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 13,
+      "y": 68
+    }
+  ],
+  "props": [
+    {
+      "default": "Gain",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": 0,
+      "name": "min",
+      "type": "float"
+    },
+    {
+      "default": 1,
+      "name": "max",
+      "type": "float"
+    },
+    {
+      "default": "%.2f",
+      "name": "format",
+      "type": "string"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

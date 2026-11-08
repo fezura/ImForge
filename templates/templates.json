@@ -71,6 +71,174 @@
       },
       "id": "overlay-hud",
       "name": "Overlay HUD"
+    },
+    {
+      "description": "Borderless menu with a left icon rail, search and status in a top bar, and pages of cards with switches, tick sliders, keybinds and an ESP preview bound to a Settings struct. SleekPurpleGamer design, Win32 + DX11.",
+      "dir": "icon-rail-menu",
+      "features": {
+        "animations": true,
+        "docking": false,
+        "dpiScaling": true,
+        "drawlistFx": true,
+        "iconFonts": true,
+        "shaderFx": false
+      },
+      "id": "icon-rail-menu",
+      "name": "Icon rail menu"
+    },
+    {
+      "description": "Pill tab strip in the top bar switching two-column pages of cards: aim, trigger, rage, colors, crosshair and hotkeys, bound to a Config struct. EsportsRed design, Win32 + DX11.",
+      "dir": "pill-tabs-two-column",
+      "features": {
+        "animations": true,
+        "docking": false,
+        "dpiScaling": true,
+        "drawlistFx": true,
+        "iconFonts": true,
+        "shaderFx": false
+      },
+      "id": "pill-tabs-two-column",
+      "name": "Pill tabs, two columns"
+    },
+    {
+      "description": "Small auto-sized overlay: collapsible sections of switch + hotkey rows, a slider or stepper per section and an FPS/ping footer, bound to an OverlayConfig struct. MinimalMono design, Win32 + DX11.",
+      "dir": "compact-overlay-menu",
+      "features": {
+        "animations": true,
+        "docking": false,
+        "dpiScaling": true,
+        "drawlistFx": true,
+        "iconFonts": true,
+        "shaderFx": false
+      },
+      "id": "compact-overlay-menu",
+      "name": "Compact overlay"
+    },
+    {
+      "description": "Game launcher screen: top bar with pill tabs, search and notifications, a featured hero with a big play button, news, a library grid and a status bar. SynthwaveSunset design, SDL3 + OpenGL 3.",
+      "dir": "launcher-fullscreen",
+      "features": {
+        "animations": true,
+        "docking": false,
+        "dpiScaling": true,
+        "drawlistFx": true,
+        "iconFonts": true,
+        "shaderFx": false
+      },
+      "id": "launcher-fullscreen",
+      "name": "Fullscreen launcher"
+    },
+    {
+      "description": "Light settings dialog: searchable category tabs on the left, label and control rows on the right, Cancel / Apply and a reset confirmation modal, bound to an AppSettings struct. SoftDesktop design, GLFW + OpenGL 3.",
+      "dir": "settings-dialog-modern",
+      "features": {
+        "animations": true,
+        "docking": false,
+        "dpiScaling": true,
+        "drawlistFx": false,
+        "iconFonts": true,
+        "shaderFx": false
+      },
+      "id": "settings-dialog-modern",
+      "name": "Settings dialog (modern)"
+    },
+    {
+      "description": "Dockable property inspector: visibility and lock toggles, breadcrumbs, vector editors, knobs, color ramp, unit-aware drags and a keyframe timeline, bound to a SceneObject struct. MidnightTool design, SDL3 + OpenGL 3, docking branch.",
+      "dir": "inspector-dock",
+      "features": {
+        "animations": true,
+        "docking": true,
+        "dpiScaling": true,
+        "drawlistFx": false,
+        "iconFonts": true,
+        "shaderFx": false
+      },
+      "id": "inspector-dock",
+      "name": "Inspector dock"
+    },
+    {
+      "description": "Click-through HUD on a Canvas: watermark, radar, FPS/ping, kill feed, zone banner, crosshair, health/armor bar and ammo with an ability ring. MilitaryOliveHUD design, Win32 + DX11.",
+      "dir": "hud-overlay",
+      "features": {
+        "animations": true,
+        "docking": false,
+        "dpiScaling": true,
+        "drawlistFx": true,
+        "iconFonts": true,
+        "shaderFx": false
+      },
+      "id": "hud-overlay",
+      "name": "HUD overlay (gaming)"
+    },
+    {
+      "description": "Round quick-action menu: eight icon buttons around a hub on a Canvas, with pop-in, hover and press motions. GlassDark design, Win32 + DX11.",
+      "dir": "quick-radial-menu",
+      "features": {
+        "animations": true,
+        "docking": false,
+        "dpiScaling": true,
+        "drawlistFx": true,
+        "iconFonts": true,
+        "shaderFx": true
+      },
+      "id": "quick-radial-menu",
+      "name": "Radial quick menu"
+    },
+    {
+      "description": "Console-style menu in a monospace font: a typed banner, boot log lines, module switches with hotkeys, a command prompt with a blinking cursor. RetroTerminal design, Win32 + DX11.",
+      "dir": "terminal-menu",
+      "features": {
+        "animations": true,
+        "docking": false,
+        "dpiScaling": true,
+        "drawlistFx": true,
+        "iconFonts": true,
+        "shaderFx": false
+      },
+      "id": "terminal-menu",
+      "name": "Terminal menu"
+    },
+    {
+      "description": "Phone-sized settings list: app bar with a notification badge, search, a segmented filter, grouped rows with icon tiles, switches and a stepper, and a bottom tab bar. PastelCute design, SDL3 + OpenGL 3.",
+      "dir": "vertical-list-mobile",
+      "features": {
+        "animations": true,
+        "docking": false,
+        "dpiScaling": true,
+        "drawlistFx": true,
+        "iconFonts": true,
+        "shaderFx": false
+      },
+      "id": "vertical-list-mobile",
+      "name": "Mobile list"
+    },
+    {
+      "description": "Bento dashboard: KPI stat cards with sparklines, frame-time graph, gauge and ring, bar chart, node list and a deploy timeline. Series come from a Stats struct. TokyoNight design, SDL3 + OpenGL 3.",
+      "dir": "dashboard-grid",
+      "features": {
+        "animations": true,
+        "docking": false,
+        "dpiScaling": true,
+        "drawlistFx": true,
+        "iconFonts": true,
+        "shaderFx": false
+      },
+      "id": "dashboard-grid",
+      "name": "Dashboard grid"
+    },
+    {
+      "description": "First-run wizard with a step indicator, theme and accent pickers, shortcut recording, a profile page and a finish screen, with Back / Skip / Next buttons. CatppuccinLatte design, GLFW + OpenGL 3.",
+      "dir": "onboarding-wizard",
+      "features": {
+        "animations": true,
+        "docking": false,
+        "dpiScaling": true,
+        "drawlistFx": true,
+        "iconFonts": true,
+        "shaderFx": false
+      },
+      "id": "onboarding-wizard",
+      "name": "Onboarding wizard"
     }
   ]
 }

@@ -1,0 +1,148 @@
+{
+  "bindings": [
+    {
+      "name": "keys",
+      "required": false,
+      "types": [
+        "int[N]",
+        "vector<int>"
+      ]
+    },
+    {
+      "name": "changedIndex",
+      "required": false,
+      "types": [
+        "int"
+      ]
+    }
+  ],
+  "call": "imb::game::HotkeyList({label}, {actions}, {keys}, imb::game::CountOf({keys:count}), {changedIndex})",
+  "category": "Gaming",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-keyboard",
+  "include": "imb_gaming.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "HotkeyList",
+  "preview": [
+    {
+      "fill": "#2a2f3aff",
+      "h": 28,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 260,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Toggle menu",
+      "x": 8,
+      "y": 7
+    },
+    {
+      "fill": "#3a4150ff",
+      "h": 20,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 88,
+      "x": 168,
+      "y": 4
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Insert",
+      "x": 196,
+      "y": 7
+    },
+    {
+      "fill": "#252a34ff",
+      "h": 28,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 260,
+      "x": 0,
+      "y": 30
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Panic key",
+      "x": 8,
+      "y": 37
+    },
+    {
+      "fill": "#3a4150ff",
+      "h": 20,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 88,
+      "x": 168,
+      "y": 34
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "End",
+      "x": 196,
+      "y": 37
+    },
+    {
+      "fill": "#2a2f3aff",
+      "h": 28,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 260,
+      "x": 0,
+      "y": 60
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Screenshot",
+      "x": 8,
+      "y": 67
+    },
+    {
+      "fill": "#3a4150ff",
+      "h": 20,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 88,
+      "x": 168,
+      "y": 64
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "F12",
+      "x": 196,
+      "y": 67
+    }
+  ],
+  "props": [
+    {
+      "default": "Hotkeys",
+      "hint": "ImGui id, not shown",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": [
+        "Toggle menu",
+        "Panic key",
+        "Screenshot",
+        "Zoom"
+      ],
+      "name": "actions",
+      "type": "stringList"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

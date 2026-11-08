@@ -15,6 +15,7 @@
 #include "../ui/tree_ops.h"
 #include "../ui/ui_helpers.h"
 #include "editor_panel.h"
+#include "library_actions.h"
 
 namespace imforge::builder {
 
@@ -372,6 +373,7 @@ private:
     void HandleDrop(EditorContext& ctx, Node& root, Node& node, const ImVec2& rmin, const ImVec2& rmax, float text_x,
                     bool is_root) {
         if (!ImGui::BeginDragDropTarget()) return;
+        AcceptMotionDrop(ctx, node.id);
         const ImGuiDragDropFlags f = ImGuiDragDropFlags_AcceptBeforeDelivery | ImGuiDragDropFlags_AcceptNoDrawDefaultRect;
         bool is_new = false;
         const ImGuiPayload* p = ImGui::AcceptDragDropPayload(tree_actions::kPayloadNode, f);

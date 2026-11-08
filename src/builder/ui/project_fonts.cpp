@@ -111,7 +111,11 @@ bool LooksLikeFontFile(const std::string& path) {
 
 std::string ResolveFontFile(const std::string& file, const std::string& project_dir) {
     if (file.empty()) return std::string();
+    // network paths would make Windows send credentials to whoever named them, and .. walks out of the project
+    if (file.compare(0, 2, "\\\\") == 0 || file.compare(0, 2, "//") == 0) return std::string();
     fs::path p = fs::u8path(file);
+    for (const fs::path& seg : p)
+        if (seg == "..") return std::string();
     if (p.is_absolute()) return IsFile(p) ? file : std::string();
     std::string fname = p.filename().u8string();
     std::vector<std::string> dirs = {project_dir, FontsDir()};

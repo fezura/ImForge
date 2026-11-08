@@ -19,9 +19,20 @@
 #include "imforge_core.h"
 #include "imforge_expr.h"
 #include "imb_runtime.h"
+#include "imb_motion.h"
+#include "imb_motion_presets.h"
+#include "imforge_motion_json.h"
 #include "imforge_interp_detail.h"
 
 namespace imforge {
+
+namespace interp_detail {
+struct MotionScope {
+    imb::MotionBinding bindings[imb::detail::kMaxMotionBindings];
+    int count = 0;
+    imb::MotionOptions options;
+};
+}  // namespace interp_detail
 
 struct BindingRoot {
     std::string name;
@@ -66,6 +77,7 @@ struct Hooks {
     std::function<ImFont*(const std::string& name)> font;
     std::function<const char*(const std::string& name)> icon;
     std::function<bool(const Node&, const char* trigger, bool& forced_value)> force_trigger;
+    std::function<void(const Node&, imb::MotionOptions&)> motion_options;
 };
 
 struct InterpOptions {
@@ -105,9 +117,15 @@ struct Interpreter {
     int tab_bar_depth = 0;
     int diag_frame = -1;
     bool click_consumed = false;
+    const Project* anim_project = nullptr;
+    unsigned long long anim_hash = 0;
+    std::vector<std::string> anim_errors;
+    std::map<std::string, int> anim_names;
 
     void DrawPanel(const Panel& panel, PanelInstance& inst, const std::vector<BindingRoot>& roots,
                    const InterpOptions& opts);
+    // registers project->animations in the imb registry when they changed; DrawPanel calls it once per frame
+    void SyncAnimations();
     void DrawNode(const Node& node, DrawCtx& parent_ctx);
     void ApplyTheme(const Theme& theme);
 
@@ -179,6 +197,8 @@ struct DrawCtx {
     int selected_child = -1;
     float child_fill_width = -1.0f;
     float child_stagger = 0.0f;
+    ImGuiID motion_id = 0;
+    interp_detail::MotionScope* content_motion = nullptr;
     mutable interp_detail::Shadow shadows[4];
     mutable int shadow_count = 0;
 
@@ -240,10 +260,17 @@ struct DrawCtx {
     void* ShadowFor(void* dst, const CType& t, bool as_int, int count) const;
 };
 
+namespace interp_motion {
+inline std::string RevealText(const std::string& text, float reveal);
+inline void TriggerFor(const DrawCtx& ctx, const char* event);
+inline bool Listens(const Node& n, const char* event);
+}  // namespace interp_motion
+
 }  // namespace imforge
 
 #define IMFORGE_INTERP_PARTS 1
 #include "imforge_interp_ctx.h"
 #include "imforge_interp_layout.h"
+#include "imforge_interp_motion.h"
 #include "imforge_interp_engine.h"
 #include "imforge_interp_widgets.h"

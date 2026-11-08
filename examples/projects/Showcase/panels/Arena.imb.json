@@ -1,0 +1,857 @@
+{
+  "kind": "panel",
+  "name": "Arena",
+  "params": [
+    {
+      "name": "arena",
+      "type": "ArenaConfig"
+    }
+  ],
+  "root": {
+    "anim": {
+      "motions": [
+        {
+          "preset": "BlurIn"
+        },
+        {
+          "preset": "PopOut",
+          "trigger": "exit"
+        }
+      ]
+    },
+    "bind": {
+      "open": "state.open"
+    },
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "SpinSlow",
+                          "trigger": "loop"
+                        }
+                      ]
+                    },
+                    "font": "Title",
+                    "id": "rail_logo",
+                    "props": {
+                      "color": "#7fd7ffff",
+                      "text": " {icon:fa-snowflake}"
+                    },
+                    "type": "Text"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "SlideInLeft"
+                        }
+                      ]
+                    },
+                    "bind": {
+                      "index": "state.page"
+                    },
+                    "id": "rail_nav",
+                    "props": {
+                      "icons": [
+                        "fa-crosshairs",
+                        "fa-eye",
+                        "fa-users",
+                        "fa-gear"
+                      ],
+                      "label": "##rail",
+                      "tooltips": [
+                        "Combat",
+                        "Visuals",
+                        "Players",
+                        "Config"
+                      ]
+                    },
+                    "type": "IconRailNav"
+                  }
+                ],
+                "id": "rail_stack",
+                "props": {
+                  "spacing": 10
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "rail",
+            "props": {
+              "childFlags": [
+                "AlwaysUseWindowPadding"
+              ],
+              "size": {
+                "h": "fill",
+                "w": 64
+              }
+            },
+            "style": {
+              "classes": [
+                "card"
+              ],
+              "vars": {
+                "WindowPadding": {
+                  "x": 8,
+                  "y": 12
+                }
+              }
+            },
+            "type": "Child"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "FadeInTopLeft"
+                            }
+                          ]
+                        },
+                        "id": "watermark",
+                        "props": {
+                          "extra": "IceFrost",
+                          "text": "Arena"
+                        },
+                        "type": "Watermark"
+                      },
+                      {
+                        "id": "top_fill",
+                        "props": {
+                          "size": {
+                            "h": 1,
+                            "w": "fill"
+                          }
+                        },
+                        "type": "Dummy"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "FadeInTopRight"
+                            }
+                          ]
+                        },
+                        "id": "perf",
+                        "props": {
+                          "fps": "state.fps",
+                          "label": "perf",
+                          "ping": "state.ping"
+                        },
+                        "type": "FpsPingCounter"
+                      }
+                    ],
+                    "id": "top",
+                    "props": {
+                      "spacing": 10
+                    },
+                    "type": "HStack"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "BackInDown"
+                        },
+                        {
+                          "preset": "BackOutUp",
+                          "trigger": "exit"
+                        }
+                      ]
+                    },
+                    "bind": {
+                      "open": "state.bannerOpen"
+                    },
+                    "id": "banner",
+                    "props": {
+                      "action": "Undo",
+                      "kind": "Success",
+                      "label": "banner",
+                      "text": "Config 'Ranked' loaded"
+                    },
+                    "type": "NotificationBanner",
+                    "visibleIf": "state.bannerOpen"
+                  },
+                  {
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "RotateInDownLeft"
+                            },
+                            {
+                              "preset": "Raise",
+                              "trigger": "hover"
+                            },
+                            {
+                              "on": "onChange",
+                              "preset": "HeadShake",
+                              "trigger": "attention"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "enabled": "arena.aim"
+                        },
+                        "id": "cat_aim",
+                        "props": {
+                          "description": "Assist and trigger",
+                          "icon": "fa-crosshairs",
+                          "size": {
+                            "h": "auto",
+                            "w": "fill"
+                          },
+                          "title": "Aim"
+                        },
+                        "type": "CategoryCard"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "RollIn"
+                            },
+                            {
+                              "preset": "Raise",
+                              "trigger": "hover"
+                            },
+                            {
+                              "on": "onChange",
+                              "preset": "ShakeY",
+                              "trigger": "attention"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "enabled": "arena.esp"
+                        },
+                        "id": "cat_esp",
+                        "props": {
+                          "description": "Boxes and names",
+                          "icon": "fa-eye",
+                          "size": {
+                            "h": "auto",
+                            "w": "fill"
+                          },
+                          "title": "ESP"
+                        },
+                        "type": "CategoryCard"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "SwingIn"
+                            },
+                            {
+                              "preset": "Raise",
+                              "trigger": "hover"
+                            },
+                            {
+                              "on": "onChange",
+                              "preset": "Shimmy",
+                              "trigger": "attention"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "enabled": "arena.radar"
+                        },
+                        "id": "cat_radar",
+                        "props": {
+                          "description": "Everyone on the map",
+                          "icon": "fa-satellite-dish",
+                          "size": {
+                            "h": "auto",
+                            "w": "fill"
+                          },
+                          "title": "Radar"
+                        },
+                        "type": "CategoryCard"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "TiltIn"
+                            },
+                            {
+                              "preset": "Raise",
+                              "trigger": "hover"
+                            },
+                            {
+                              "on": "onChange",
+                              "preset": "Vibrate",
+                              "trigger": "attention"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "enabled": "arena.misc"
+                        },
+                        "id": "cat_misc",
+                        "props": {
+                          "description": "Movement helpers",
+                          "icon": "fa-person-running",
+                          "size": {
+                            "h": "auto",
+                            "w": "fill"
+                          },
+                          "title": "Misc"
+                        },
+                        "type": "CategoryCard"
+                      }
+                    ],
+                    "id": "cats",
+                    "props": {
+                      "columns": 4,
+                      "flags": [
+                        "SizingStretchSame"
+                      ]
+                    },
+                    "type": "Grid"
+                  },
+                  {
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "DropIn"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "font": "Bold",
+                            "id": "esp_title",
+                            "props": {
+                              "text": "ESP preview"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "bind": {
+                              "box": "arena.box",
+                              "boxColor": "arena.enemyColor",
+                              "boxStyle": "arena.boxStyle",
+                              "health": "arena.health",
+                              "healthBar": "arena.healthBar",
+                              "name": "arena.names"
+                            },
+                            "id": "esp",
+                            "props": {
+                              "label": "##esp",
+                              "size": {
+                                "h": 190,
+                                "w": "fill"
+                              }
+                            },
+                            "type": "EspBoxPreview"
+                          }
+                        ],
+                        "id": "esp_col",
+                        "props": {
+                          "spacing": 6
+                        },
+                        "type": "VStack"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "Unfold"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "font": "Bold",
+                            "id": "xhair_title",
+                            "props": {
+                              "text": "Crosshair"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "bind": {
+                              "color": "arena.xhairColor",
+                              "dot": "arena.dot",
+                              "gap": "arena.gap",
+                              "length": "arena.length",
+                              "outline": "arena.outline",
+                              "thickness": "arena.thickness"
+                            },
+                            "id": "xhair_preview",
+                            "props": {
+                              "label": "##xp",
+                              "size": {
+                                "h": 90,
+                                "w": "fill"
+                              }
+                            },
+                            "type": "CrosshairPreview"
+                          },
+                          {
+                            "bind": {
+                              "radius": "arena.fov"
+                            },
+                            "id": "fov",
+                            "props": {
+                              "label": "##fov",
+                              "size": {
+                                "h": 90,
+                                "w": "fill"
+                              }
+                            },
+                            "type": "FovCirclePreview"
+                          }
+                        ],
+                        "id": "xhair_col",
+                        "props": {
+                          "spacing": 6
+                        },
+                        "type": "VStack"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "GlowIn"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "font": "Bold",
+                            "id": "radar_title",
+                            "props": {
+                              "text": "Radar"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "bind": {
+                              "points": "arena.blips",
+                              "rotation": "arena.yaw"
+                            },
+                            "id": "radar",
+                            "props": {
+                              "label": "##radar",
+                              "rings": 3,
+                              "size": {
+                                "h": 190,
+                                "w": 190
+                              }
+                            },
+                            "type": "RadarMiniMap"
+                          }
+                        ],
+                        "id": "radar_col",
+                        "props": {
+                          "spacing": 6
+                        },
+                        "type": "VStack"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "FadeInBottomLeft"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "font": "Bold",
+                            "id": "vitals_title",
+                            "props": {
+                              "text": "Vitals"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "id": "vitals",
+                            "props": {
+                              "armor": "state.armor",
+                              "health": "state.health",
+                              "label": "hp"
+                            },
+                            "type": "HealthArmorBar"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "LightSpeedInRight"
+                                }
+                              ]
+                            },
+                            "id": "kf_1",
+                            "props": {
+                              "killer": "You",
+                              "label": "kf1",
+                              "victim": "Rook",
+                              "weapon": "AR-7"
+                            },
+                            "type": "KillFeedEntry"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "PuffIn"
+                                },
+                                {
+                                  "preset": "FadeOutRight",
+                                  "trigger": "exit"
+                                }
+                              ]
+                            },
+                            "id": "kf_2",
+                            "props": {
+                              "killer": "Mako",
+                              "killerTeam": "1",
+                              "label": "kf2",
+                              "victim": "Juno",
+                              "victimTeam": "0",
+                              "weapon": "DMR"
+                            },
+                            "type": "KillFeedEntry",
+                            "visibleIf": "state.showSecondKill"
+                          }
+                        ],
+                        "id": "vitals_col",
+                        "props": {
+                          "spacing": 6
+                        },
+                        "type": "VStack"
+                      }
+                    ],
+                    "id": "previews",
+                    "props": {
+                      "columns": 4,
+                      "flags": [
+                        "SizingStretchSame"
+                      ]
+                    },
+                    "type": "Grid"
+                  },
+                  {
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "FadeInLeftBig"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "font": "Bold",
+                            "id": "players_title",
+                            "props": {
+                              "text": "Players"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "StaggerFadeDown",
+                                  "stagger": 0.06
+                                }
+                              ]
+                            },
+                            "children": [
+                              {
+                                "id": "p1",
+                                "props": {
+                                  "health": "0.9",
+                                  "label": "p1",
+                                  "name": "Viper",
+                                  "ping": "24",
+                                  "team": "0"
+                                },
+                                "type": "PlayerListRow"
+                              },
+                              {
+                                "id": "p2",
+                                "props": {
+                                  "health": "0.35",
+                                  "label": "p2",
+                                  "name": "Rook",
+                                  "ping": "61",
+                                  "team": "1"
+                                },
+                                "type": "PlayerListRow"
+                              },
+                              {
+                                "id": "p3",
+                                "props": {
+                                  "health": "0.7",
+                                  "label": "p3",
+                                  "name": "Halo",
+                                  "ping": "40",
+                                  "selected": "true",
+                                  "team": "1"
+                                },
+                                "type": "PlayerListRow"
+                              }
+                            ],
+                            "id": "players",
+                            "props": {
+                              "spacing": 4
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "bind": {
+                              "teamA": "arena.allyColor",
+                              "teamB": "arena.enemyColor"
+                            },
+                            "id": "teams",
+                            "props": {
+                              "label": "Team colors"
+                            },
+                            "type": "TeamColorPicker"
+                          }
+                        ],
+                        "id": "players_col",
+                        "props": {
+                          "spacing": 8
+                        },
+                        "type": "VStack"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "ZoomInRight"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "font": "Bold",
+                            "id": "profiles_title",
+                            "props": {
+                              "text": "Profiles"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "on": "onDelete",
+                                  "preset": "ErrorShake",
+                                  "trigger": "change"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "selected": "arena.profile"
+                            },
+                            "id": "profiles",
+                            "props": {
+                              "label": "##profiles"
+                            },
+                            "type": "ProfileSlots"
+                          }
+                        ],
+                        "id": "profiles_col",
+                        "props": {
+                          "spacing": 8
+                        },
+                        "type": "VStack"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "FadeInRightBig"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "font": "Bold",
+                            "id": "hotkeys_title",
+                            "props": {
+                              "text": "Hotkeys"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "on": "onChange",
+                                  "preset": "Refresh",
+                                  "trigger": "change"
+                                }
+                              ]
+                            },
+                            "id": "hotkeys",
+                            "props": {
+                              "label": "##hk"
+                            },
+                            "type": "HotkeyList"
+                          },
+                          {
+                            "bind": {
+                              "color": "arena.xhairColor",
+                              "dot": "arena.dot",
+                              "gap": "arena.gap",
+                              "length": "arena.length",
+                              "outline": "arena.outline",
+                              "thickness": "arena.thickness"
+                            },
+                            "id": "xhair_editor",
+                            "props": {
+                              "label": "Crosshair"
+                            },
+                            "type": "CrosshairEditor"
+                          }
+                        ],
+                        "id": "hotkeys_col",
+                        "props": {
+                          "spacing": 8
+                        },
+                        "type": "VStack"
+                      }
+                    ],
+                    "id": "lower",
+                    "props": {
+                      "columns": 3,
+                      "flags": [
+                        "SizingStretchSame"
+                      ]
+                    },
+                    "type": "Grid"
+                  }
+                ],
+                "id": "main_stack",
+                "props": {
+                  "spacing": 12
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "main",
+            "props": {
+              "childFlags": [
+                "AlwaysUseWindowPadding"
+              ],
+              "size": {
+                "h": "fill",
+                "w": "fill"
+              }
+            },
+            "style": {
+              "colors": {
+                "ChildBg": "#00000000"
+              },
+              "vars": {
+                "WindowPadding": {
+                  "x": 14,
+                  "y": 10
+                }
+              }
+            },
+            "type": "Child"
+          }
+        ],
+        "id": "shell",
+        "props": {
+          "spacing": 0
+        },
+        "type": "HStack"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoCollapse"
+      ],
+      "initialSize": {
+        "x": 1100,
+        "y": 820
+      },
+      "sizeCond": "FirstUseEver",
+      "title": "Arena  |  IceFrost"
+    },
+    "style": {
+      "classes": [
+        "design_icefrost"
+      ],
+      "vars": {
+        "WindowPadding": {
+          "x": 8,
+          "y": 8
+        }
+      }
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": true,
+      "name": "open",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "name": "page",
+      "type": "int"
+    },
+    {
+      "default": 165,
+      "name": "fps",
+      "type": "float"
+    },
+    {
+      "default": 19,
+      "name": "ping",
+      "type": "float"
+    },
+    {
+      "default": true,
+      "name": "bannerOpen",
+      "type": "bool"
+    },
+    {
+      "default": 64,
+      "name": "health",
+      "type": "float"
+    },
+    {
+      "default": 80,
+      "name": "armor",
+      "type": "float"
+    },
+    {
+      "default": true,
+      "name": "showSecondKill",
+      "type": "bool"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "bindings": [],
+  "call": "imb::disp::TooltipCard({title}, {text}, {header:u32}, {footer})",
+  "category": "Display",
+  "container": false,
+  "events": [],
+  "icon": "fa-message",
+  "include": "imb_display.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "TooltipCard",
+  "preview": [
+    {
+      "fill": "#24272fff",
+      "h": 70,
+      "rounding": 8,
+      "shape": "rect",
+      "stroke": "#3a4150ff",
+      "w": 220,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{title}",
+      "x": 10,
+      "y": 8
+    },
+    {
+      "shape": "line",
+      "stroke": "#3a4150ff",
+      "thickness": 1,
+      "x": 10,
+      "x2": 210,
+      "y": 28,
+      "y2": 28
+    },
+    {
+      "color": "#8a91a0ff",
+      "shape": "text",
+      "text": "Locks onto the closest target",
+      "x": 10,
+      "y": 36
+    }
+  ],
+  "props": [
+    {
+      "default": "Aimbot",
+      "name": "title",
+      "type": "string"
+    },
+    {
+      "default": "Locks onto the closest target inside the FOV circle.",
+      "name": "text",
+      "type": "string"
+    },
+    {
+      "default": "#00000000",
+      "hint": "header band color, #00000000 = plain title",
+      "name": "header",
+      "type": "color"
+    },
+    {
+      "default": "",
+      "hint": "small line at the bottom, a key hint for example",
+      "name": "footer",
+      "type": "string"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

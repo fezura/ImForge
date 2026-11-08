@@ -1,0 +1,266 @@
+{
+  "credit": "Kanagawa palette (MIT)",
+  "description": "Kanagawa Wave: indigo ink, parchment text and muted woodblock print colors. A mincho heading font and wipe in motion give it a printed feel.",
+  "fonts": [
+    {
+      "family": "Zen Kaku Gothic New",
+      "role": "ui",
+      "size": 15
+    },
+    {
+      "family": "Shippori Mincho",
+      "role": "heading",
+      "size": 20,
+      "weight": "Bold"
+    }
+  ],
+  "fx": {
+    "accentGlow": 0,
+    "windowBlur": 0,
+    "windowShadow": 0.2
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "NudgeRight",
+    "button.press": "Sink",
+    "list": {
+      "preset": "StaggerReveal",
+      "stagger": 0.05
+    },
+    "window": "ClipRevealRight",
+    "window.exit": "ClipHideRight"
+  },
+  "name": "KanagawaWave",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Button": "#7e9cd8ff",
+        "ButtonActive": "#6c86baff",
+        "ButtonHovered": "#7fb4caff",
+        "Text": "#131318ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#363646ff",
+        "ChildBg": "#181820ff"
+      },
+      "vars": {
+        "ChildBorderSize": 1,
+        "ChildRounding": 6,
+        "WindowPadding": {
+          "x": 12,
+          "y": 10
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#e468768c",
+        "Button": "#e4687629",
+        "ButtonActive": "#e468765c",
+        "ButtonHovered": "#e4687642",
+        "CheckMark": "#e46876ff",
+        "SliderGrab": "#e46876ff",
+        "SliderGrabActive": "#e46876ff",
+        "Text": "#eea1aaff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#7e9cd880",
+        "Button": "#00000000",
+        "ButtonActive": "#7e9cd83d",
+        "ButtonHovered": "#7e9cd824",
+        "Text": "#90aaddff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#e46876ff",
+        "Text": "#e6c384ff"
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#938aa9ff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#98bb6c8c",
+        "Button": "#98bb6c29",
+        "ButtonActive": "#98bb6c5c",
+        "ButtonHovered": "#98bb6c42",
+        "CheckMark": "#98bb6cff",
+        "SliderGrab": "#98bb6cff",
+        "SliderGrabActive": "#98bb6cff",
+        "Text": "#b9d19bff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#e6c3848c",
+        "Button": "#e6c38429",
+        "ButtonActive": "#e6c3845c",
+        "ButtonHovered": "#e6c38442",
+        "CheckMark": "#e6c384ff",
+        "SliderGrab": "#e6c384ff",
+        "SliderGrabActive": "#e6c384ff",
+        "Text": "#edd4a6ff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "ink",
+    "muted",
+    "japanese"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#54546d99",
+      "BorderShadow": "#00000000",
+      "Button": "#2a2a37ff",
+      "ButtonActive": "#2d4f67ff",
+      "ButtonHovered": "#363646ff",
+      "CheckMark": "#7e9cd8ff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#16161dff",
+      "DockingPreview": "#7e9cd8b2",
+      "DragDropTarget": "#ff9e3be6",
+      "FrameBg": "#2a2a37ff",
+      "FrameBgActive": "#223249ff",
+      "FrameBgHovered": "#363646ff",
+      "Header": "#223249ff",
+      "HeaderActive": "#3d5e7eff",
+      "HeaderHovered": "#2d4f67ff",
+      "InputTextCursor": "#c8c093ff",
+      "MenuBarBg": "#16161dff",
+      "ModalWindowDimBg": "#16161db2",
+      "NavCursor": "#7e9cd8ff",
+      "NavWindowingDimBg": "#16161c33",
+      "NavWindowingHighlight": "#dcd7bab2",
+      "PlotHistogram": "#7aa89fff",
+      "PlotHistogramHovered": "#e6c384ff",
+      "PlotLines": "#7fb4caff",
+      "PlotLinesHovered": "#ffa066ff",
+      "PopupBg": "#16161dfa",
+      "ResizeGrip": "#7e9cd82e",
+      "ResizeGripActive": "#7e9cd8e6",
+      "ResizeGripHovered": "#7e9cd88c",
+      "ScrollbarBg": "#00000000",
+      "ScrollbarGrab": "#363646ff",
+      "ScrollbarGrabActive": "#727169ff",
+      "ScrollbarGrabHovered": "#54546dff",
+      "Separator": "#54546dff",
+      "SeparatorActive": "#7e9cd8ff",
+      "SeparatorHovered": "#7e9cd8b2",
+      "SliderGrab": "#7e9cd8ff",
+      "SliderGrabActive": "#7fb4caff",
+      "Tab": "#1a1a22ff",
+      "TabDimmed": "#181820ff",
+      "TabDimmedSelected": "#1f1f28ff",
+      "TabDimmedSelectedOverline": "#7e9cd873",
+      "TabHovered": "#363646ff",
+      "TabSelected": "#2a2a37ff",
+      "TabSelectedOverline": "#7e9cd8ff",
+      "TableBorderLight": "#363646ff",
+      "TableBorderStrong": "#54546dff",
+      "TableHeaderBg": "#2a2a37ff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#dcd7ba08",
+      "Text": "#dcd7baff",
+      "TextDisabled": "#76756cff",
+      "TextLink": "#7fb4caff",
+      "TextSelectedBg": "#2d4f67ff",
+      "TitleBg": "#16161dff",
+      "TitleBgActive": "#2a2a37ff",
+      "TitleBgCollapsed": "#16161dcc",
+      "WindowBg": "#1f1f28ff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 6,
+        "y": 3
+      },
+      "ChildBorderSize": 1,
+      "ChildRounding": 6,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 1,
+      "FramePadding": {
+        "x": 8,
+        "y": 5
+      },
+      "FrameRounding": 3,
+      "GrabMinSize": 10,
+      "GrabRounding": 3,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 20,
+      "ItemInnerSpacing": {
+        "x": 6,
+        "y": 4
+      },
+      "ItemSpacing": {
+        "x": 8,
+        "y": 6
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 6,
+      "ScrollbarRounding": 3,
+      "ScrollbarSize": 13,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 1,
+      "SeparatorTextPadding": {
+        "x": 16,
+        "y": 3
+      },
+      "TabBarBorderSize": 1,
+      "TabBarOverlineSize": 2,
+      "TabBorderSize": 0,
+      "TabRounding": 3,
+      "WindowBorderSize": 1,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 64
+      },
+      "WindowPadding": {
+        "x": 10,
+        "y": 10
+      },
+      "WindowRounding": 6,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Kanagawa Wave",
+  "widgetStyle": {
+    "accent": "#7e9cd8ff",
+    "accent2": "#957fb8ff",
+    "danger": "#e46876ff",
+    "success": "#98bb6cff",
+    "warning": "#e6c384ff"
+  }
+}

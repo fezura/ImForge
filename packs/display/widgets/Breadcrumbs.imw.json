@@ -1,0 +1,99 @@
+{
+  "bindings": [
+    {
+      "name": "clicked",
+      "required": false,
+      "types": [
+        "int"
+      ]
+    }
+  ],
+  "call": "imb::disp::Breadcrumbs({label}, {items}, {clicked})",
+  "category": "Display",
+  "container": false,
+  "events": [
+    "onClick"
+  ],
+  "icon": "fa-angles-right",
+  "include": "imb_display.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "Breadcrumbs",
+  "preview": [
+    {
+      "color": "#8a91a0ff",
+      "shape": "text",
+      "text": "Home",
+      "x": 0,
+      "y": 4
+    },
+    {
+      "shape": "line",
+      "stroke": "#8a91a0ff",
+      "thickness": 1.5,
+      "x": 44,
+      "x2": 48,
+      "y": 8,
+      "y2": 12
+    },
+    {
+      "shape": "line",
+      "stroke": "#8a91a0ff",
+      "thickness": 1.5,
+      "x": 48,
+      "x2": 44,
+      "y": 12,
+      "y2": 16
+    },
+    {
+      "color": "#8a91a0ff",
+      "shape": "text",
+      "text": "Configs",
+      "x": 58,
+      "y": 4
+    },
+    {
+      "shape": "line",
+      "stroke": "#8a91a0ff",
+      "thickness": 1.5,
+      "x": 118,
+      "x2": 122,
+      "y": 8,
+      "y2": 12
+    },
+    {
+      "shape": "line",
+      "stroke": "#8a91a0ff",
+      "thickness": 1.5,
+      "x": 122,
+      "x2": 118,
+      "y": 12,
+      "y2": 16
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Legit",
+      "x": 132,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "##crumbs",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": [
+        "Home",
+        "Configs",
+        "Legit"
+      ],
+      "name": "items",
+      "type": "stringList"
+    }
+  ],
+  "returns": "clicked",
+  "schemaVersion": 1
+}

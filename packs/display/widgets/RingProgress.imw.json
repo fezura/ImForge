@@ -1,0 +1,110 @@
+{
+  "bindings": [],
+  "call": "imb::disp::RingProgress({label}, {spin} ? -1.0f : (float)({fraction}), {radius}, {thickness}, {color:u32}, {color2:u32}, {showValue})",
+  "category": "Display",
+  "container": false,
+  "events": [],
+  "icon": "fa-circle-notch",
+  "include": "imb_display.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "RingProgress",
+  "preview": [
+    {
+      "fill": "#00000000",
+      "r": 24,
+      "shape": "circle",
+      "stroke": "#2a2f3aff",
+      "thickness": 6,
+      "x": 28,
+      "y": 28
+    },
+    {
+      "shape": "line",
+      "stroke": "#4f8cffff",
+      "thickness": 6,
+      "x": 28,
+      "x2": 50,
+      "y": 4,
+      "y2": 18
+    },
+    {
+      "shape": "line",
+      "stroke": "#4f8cffff",
+      "thickness": 6,
+      "x": 50,
+      "x2": 46,
+      "y": 18,
+      "y2": 46
+    },
+    {
+      "fill": "#4f8cffff",
+      "r": 3,
+      "shape": "circle",
+      "x": 28,
+      "y": 4
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "65%",
+      "x": 15,
+      "y": 20
+    }
+  ],
+  "props": [
+    {
+      "default": "##ring",
+      "hint": "text under the percentage, ## hides it",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": "0.65",
+      "hint": "0..1, a number or an expression like stats.load",
+      "name": "fraction",
+      "type": "expr"
+    },
+    {
+      "default": false,
+      "hint": "indeterminate spinner",
+      "name": "spin",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "hint": "0 scales with the font",
+      "max": 256,
+      "min": 0,
+      "name": "radius",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "hint": "0 = a fifth of the radius",
+      "max": 64,
+      "min": 0,
+      "name": "thickness",
+      "type": "float"
+    },
+    {
+      "default": "#00000000",
+      "hint": "#00000000 = accent",
+      "name": "color",
+      "type": "color"
+    },
+    {
+      "default": "#00000000",
+      "hint": "gradient end, #00000000 = solid",
+      "name": "color2",
+      "type": "color"
+    },
+    {
+      "default": true,
+      "name": "showValue",
+      "type": "bool"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

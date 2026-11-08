@@ -1,0 +1,1331 @@
+{
+  "kind": "panel",
+  "name": "Settings",
+  "root": {
+    "anim": {
+      "motions": [
+        {
+          "preset": "SlideInUp"
+        }
+      ]
+    },
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "NudgeRight",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "id": "back",
+                "props": {
+                  "dir": "Left"
+                },
+                "type": "ArrowButton"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "FadeInText"
+                    }
+                  ]
+                },
+                "font": "Title",
+                "id": "title",
+                "props": {
+                  "text": "Settings"
+                },
+                "type": "Text"
+              },
+              {
+                "id": "bar_fill",
+                "props": {
+                  "size": {
+                    "h": 1,
+                    "w": "fill"
+                  }
+                },
+                "type": "Dummy"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "on": "onClick",
+                      "preset": "Wobble",
+                      "trigger": "attention"
+                    }
+                  ]
+                },
+                "events": {
+                  "onClick": {
+                    "actions": [
+                      {
+                        "target": "state.unread",
+                        "type": "set",
+                        "value": 0
+                      }
+                    ]
+                  }
+                },
+                "id": "bell",
+                "props": {
+                  "label": "{icon:fa-bell}",
+                  "size": {
+                    "h": 34,
+                    "w": 34
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "ghost_button"
+                  ]
+                },
+                "type": "Button"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "BounceIn"
+                    }
+                  ]
+                },
+                "id": "bell_badge",
+                "props": {
+                  "count": "state.unread",
+                  "kind": "Count"
+                },
+                "type": "Badge",
+                "visibleIf": "state.unread > 0"
+              }
+            ],
+            "id": "appbar",
+            "props": {
+              "spacing": 10
+            },
+            "type": "HStack"
+          },
+          {
+            "bind": {
+              "text": "state.query"
+            },
+            "id": "search",
+            "props": {
+              "hint": "Search settings",
+              "label": "##search"
+            },
+            "type": "SearchField"
+          },
+          {
+            "bind": {
+              "index": "state.filter"
+            },
+            "id": "filter",
+            "props": {
+              "items": [
+                "All",
+                "Account",
+                "Device"
+              ],
+              "label": "##filter",
+              "width": -1
+            },
+            "type": "SegmentedControl"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "PressDown",
+                          "trigger": "press"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "Hovering",
+                              "trigger": "loop"
+                            }
+                          ]
+                        },
+                        "id": "avatar",
+                        "props": {
+                          "name": "Mia Chen",
+                          "size": 48,
+                          "status": "Online"
+                        },
+                        "type": "Avatar"
+                      },
+                      {
+                        "children": [
+                          {
+                            "font": "Bold",
+                            "id": "profile_name",
+                            "props": {
+                              "text": "Mia Chen"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "font": "Small",
+                            "id": "profile_mail",
+                            "props": {
+                              "text": "mia@example.com"
+                            },
+                            "style": {
+                              "classes": [
+                                "muted"
+                              ]
+                            },
+                            "type": "Text"
+                          }
+                        ],
+                        "id": "profile_text",
+                        "props": {
+                          "spacing": 0
+                        },
+                        "type": "VStack"
+                      },
+                      {
+                        "id": "profile_fill",
+                        "props": {
+                          "size": {
+                            "h": 1,
+                            "w": "fill"
+                          }
+                        },
+                        "type": "Dummy"
+                      },
+                      {
+                        "id": "profile_chev",
+                        "props": {
+                          "text": "{icon:fa-chevron-right}"
+                        },
+                        "style": {
+                          "classes": [
+                            "muted"
+                          ]
+                        },
+                        "type": "Text"
+                      }
+                    ],
+                    "id": "profile",
+                    "props": {
+                      "spacing": 12
+                    },
+                    "type": "HStack"
+                  },
+                  {
+                    "id": "div_general",
+                    "props": {
+                      "align": "Left",
+                      "label": "GENERAL",
+                      "look": "Fade"
+                    },
+                    "type": "Divider"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "delay": 0.1,
+                          "preset": "StaggerFadeLeft",
+                          "stagger": 0.05
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "PressDown",
+                              "trigger": "press"
+                            },
+                            {
+                              "preset": "HoverFloat",
+                              "trigger": "hover"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "id": "row_notify_tile",
+                            "props": {
+                              "label": "{icon:fa-bell}",
+                              "size": {
+                                "h": 34,
+                                "w": 34
+                              }
+                            },
+                            "style": {
+                              "colors": {
+                                "Button": "#ff8fbf33",
+                                "ButtonActive": "#ff8fbf66",
+                                "ButtonHovered": "#ff8fbf4d",
+                                "Text": "#ff8fbfff"
+                              },
+                              "vars": {
+                                "FrameBorderSize": 0,
+                                "FrameRounding": 10
+                              }
+                            },
+                            "type": "Button"
+                          },
+                          {
+                            "children": [
+                              {
+                                "font": "Bold",
+                                "id": "row_notify_title",
+                                "props": {
+                                  "text": "Notifications"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "row_notify_sub",
+                                "props": {
+                                  "text": "Sounds and badges"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "row_notify_text",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "id": "row_notify_fill",
+                            "props": {
+                              "size": {
+                                "h": 1,
+                                "w": "fill"
+                              }
+                            },
+                            "type": "Dummy"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "on": "onChange",
+                                  "preset": "Bounce",
+                                  "trigger": "attention"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "value": "state.notify"
+                            },
+                            "id": "notify",
+                            "props": {
+                              "label": "##notify"
+                            },
+                            "type": "SwitchToggle"
+                          }
+                        ],
+                        "id": "row_notify",
+                        "props": {
+                          "spacing": 12
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "PressDown",
+                              "trigger": "press"
+                            },
+                            {
+                              "preset": "HoverFloat",
+                              "trigger": "hover"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "id": "row_dark_tile",
+                            "props": {
+                              "label": "{icon:fa-moon}",
+                              "size": {
+                                "h": 34,
+                                "w": 34
+                              }
+                            },
+                            "style": {
+                              "colors": {
+                                "Button": "#c9b6ff33",
+                                "ButtonActive": "#c9b6ff66",
+                                "ButtonHovered": "#c9b6ff4d",
+                                "Text": "#c9b6ffff"
+                              },
+                              "vars": {
+                                "FrameBorderSize": 0,
+                                "FrameRounding": 10
+                              }
+                            },
+                            "type": "Button"
+                          },
+                          {
+                            "children": [
+                              {
+                                "font": "Bold",
+                                "id": "row_dark_title",
+                                "props": {
+                                  "text": "Dark mode"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "row_dark_sub",
+                                "props": {
+                                  "text": "Easier on the eyes at night"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "row_dark_text",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "id": "row_dark_fill",
+                            "props": {
+                              "size": {
+                                "h": 1,
+                                "w": "fill"
+                              }
+                            },
+                            "type": "Dummy"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "on": "onChange",
+                                  "preset": "Bounce",
+                                  "trigger": "attention"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "value": "state.dark"
+                            },
+                            "id": "dark",
+                            "props": {
+                              "label": "##dark"
+                            },
+                            "type": "SwitchToggle"
+                          }
+                        ],
+                        "id": "row_dark",
+                        "props": {
+                          "spacing": 12
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "PressDown",
+                              "trigger": "press"
+                            },
+                            {
+                              "preset": "HoverFloat",
+                              "trigger": "hover"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "id": "row_dnd_tile",
+                            "props": {
+                              "label": "{icon:fa-hand}",
+                              "size": {
+                                "h": 34,
+                                "w": 34
+                              }
+                            },
+                            "style": {
+                              "colors": {
+                                "Button": "#f2b84b33",
+                                "ButtonActive": "#f2b84b66",
+                                "ButtonHovered": "#f2b84b4d",
+                                "Text": "#f2b84bff"
+                              },
+                              "vars": {
+                                "FrameBorderSize": 0,
+                                "FrameRounding": 10
+                              }
+                            },
+                            "type": "Button"
+                          },
+                          {
+                            "children": [
+                              {
+                                "font": "Bold",
+                                "id": "row_dnd_title",
+                                "props": {
+                                  "text": "Do not disturb"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "row_dnd_sub",
+                                "props": {
+                                  "text": "Until 7:00 tomorrow"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "row_dnd_text",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "id": "row_dnd_fill",
+                            "props": {
+                              "size": {
+                                "h": 1,
+                                "w": "fill"
+                              }
+                            },
+                            "type": "Dummy"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "on": "onChange",
+                                  "preset": "Bounce",
+                                  "trigger": "attention"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "value": "state.dnd"
+                            },
+                            "id": "dnd",
+                            "props": {
+                              "label": "##dnd"
+                            },
+                            "type": "SwitchToggle"
+                          }
+                        ],
+                        "id": "row_dnd",
+                        "props": {
+                          "spacing": 12
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "PressDown",
+                              "trigger": "press"
+                            },
+                            {
+                              "preset": "HoverFloat",
+                              "trigger": "hover"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "id": "row_text_tile",
+                            "props": {
+                              "label": "{icon:fa-font}",
+                              "size": {
+                                "h": 34,
+                                "w": 34
+                              }
+                            },
+                            "style": {
+                              "colors": {
+                                "Button": "#9fd8ff33",
+                                "ButtonActive": "#9fd8ff66",
+                                "ButtonHovered": "#9fd8ff4d",
+                                "Text": "#9fd8ffff"
+                              },
+                              "vars": {
+                                "FrameBorderSize": 0,
+                                "FrameRounding": 10
+                              }
+                            },
+                            "type": "Button"
+                          },
+                          {
+                            "children": [
+                              {
+                                "font": "Bold",
+                                "id": "row_text_title",
+                                "props": {
+                                  "text": "Text size"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "row_text_sub",
+                                "props": {
+                                  "text": "Applies to every screen"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "row_text_text",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "id": "row_text_fill",
+                            "props": {
+                              "size": {
+                                "h": 1,
+                                "w": "fill"
+                              }
+                            },
+                            "type": "Dummy"
+                          },
+                          {
+                            "bind": {
+                              "value": "state.textSize"
+                            },
+                            "id": "text_size",
+                            "props": {
+                              "label": "##text",
+                              "max": 24,
+                              "min": 12,
+                              "step": 1
+                            },
+                            "type": "Stepper"
+                          }
+                        ],
+                        "id": "row_text",
+                        "props": {
+                          "spacing": 12
+                        },
+                        "type": "HStack"
+                      }
+                    ],
+                    "id": "group_general",
+                    "props": {
+                      "spacing": 12
+                    },
+                    "type": "VStack"
+                  },
+                  {
+                    "id": "div_more",
+                    "props": {
+                      "align": "Left",
+                      "label": "MORE",
+                      "look": "Fade"
+                    },
+                    "type": "Divider"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "delay": 0.3,
+                          "preset": "StaggerFadeLeft",
+                          "stagger": 0.05
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "PressDown",
+                              "trigger": "press"
+                            },
+                            {
+                              "preset": "HoverFloat",
+                              "trigger": "hover"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "id": "row_storage_tile",
+                            "props": {
+                              "label": "{icon:fa-hard-drive}",
+                              "size": {
+                                "h": 34,
+                                "w": 34
+                              }
+                            },
+                            "style": {
+                              "colors": {
+                                "Button": "#6fcf9733",
+                                "ButtonActive": "#6fcf9766",
+                                "ButtonHovered": "#6fcf974d",
+                                "Text": "#6fcf97ff"
+                              },
+                              "vars": {
+                                "FrameBorderSize": 0,
+                                "FrameRounding": 10
+                              }
+                            },
+                            "type": "Button"
+                          },
+                          {
+                            "children": [
+                              {
+                                "font": "Bold",
+                                "id": "row_storage_title",
+                                "props": {
+                                  "text": "Storage"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "row_storage_sub",
+                                "props": {
+                                  "text": "3.1 GB of 8 GB used"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "row_storage_text",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "id": "row_storage_fill",
+                            "props": {
+                              "size": {
+                                "h": 1,
+                                "w": "fill"
+                              }
+                            },
+                            "type": "Dummy"
+                          },
+                          {
+                            "id": "storage_bar",
+                            "props": {
+                              "fraction": "0.39",
+                              "label": "##storage",
+                              "size": {
+                                "h": 6,
+                                "w": 70
+                              }
+                            },
+                            "type": "LoadingBar"
+                          }
+                        ],
+                        "id": "row_storage",
+                        "props": {
+                          "spacing": 12
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "PressDown",
+                              "trigger": "press"
+                            },
+                            {
+                              "preset": "HoverFloat",
+                              "trigger": "hover"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "id": "row_privacy_tile",
+                            "props": {
+                              "label": "{icon:fa-shield-heart}",
+                              "size": {
+                                "h": 34,
+                                "w": 34
+                              }
+                            },
+                            "style": {
+                              "colors": {
+                                "Button": "#ff8fbf33",
+                                "ButtonActive": "#ff8fbf66",
+                                "ButtonHovered": "#ff8fbf4d",
+                                "Text": "#ff8fbfff"
+                              },
+                              "vars": {
+                                "FrameBorderSize": 0,
+                                "FrameRounding": 10
+                              }
+                            },
+                            "type": "Button"
+                          },
+                          {
+                            "children": [
+                              {
+                                "font": "Bold",
+                                "id": "row_privacy_title",
+                                "props": {
+                                  "text": "Privacy"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "row_privacy_sub",
+                                "props": {
+                                  "text": "Permissions and data"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "row_privacy_text",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "id": "row_privacy_fill",
+                            "props": {
+                              "size": {
+                                "h": 1,
+                                "w": "fill"
+                              }
+                            },
+                            "type": "Dummy"
+                          },
+                          {
+                            "id": "privacy_chev",
+                            "props": {
+                              "text": "{icon:fa-chevron-right}"
+                            },
+                            "style": {
+                              "classes": [
+                                "muted"
+                              ]
+                            },
+                            "type": "Text"
+                          }
+                        ],
+                        "id": "row_privacy",
+                        "props": {
+                          "spacing": 12
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "PressDown",
+                              "trigger": "press"
+                            },
+                            {
+                              "preset": "HoverFloat",
+                              "trigger": "hover"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "id": "row_rate_tile",
+                            "props": {
+                              "label": "{icon:fa-star}",
+                              "size": {
+                                "h": 34,
+                                "w": 34
+                              }
+                            },
+                            "style": {
+                              "colors": {
+                                "Button": "#f2b84b33",
+                                "ButtonActive": "#f2b84b66",
+                                "ButtonHovered": "#f2b84b4d",
+                                "Text": "#f2b84bff"
+                              },
+                              "vars": {
+                                "FrameBorderSize": 0,
+                                "FrameRounding": 10
+                              }
+                            },
+                            "type": "Button"
+                          },
+                          {
+                            "children": [
+                              {
+                                "font": "Bold",
+                                "id": "row_rate_title",
+                                "props": {
+                                  "text": "Rate the app"
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "font": "Small",
+                                "id": "row_rate_sub",
+                                "props": {
+                                  "text": "It really helps"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "muted"
+                                  ]
+                                },
+                                "type": "Text"
+                              }
+                            ],
+                            "id": "row_rate_text",
+                            "props": {
+                              "spacing": 0
+                            },
+                            "type": "VStack"
+                          },
+                          {
+                            "id": "row_rate_fill",
+                            "props": {
+                              "size": {
+                                "h": 1,
+                                "w": "fill"
+                              }
+                            },
+                            "type": "Dummy"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "on": "onChange",
+                                  "preset": "Tada",
+                                  "trigger": "attention"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "value": "state.rating"
+                            },
+                            "id": "rate",
+                            "props": {
+                              "label": "##rate",
+                              "max": 5
+                            },
+                            "type": "RatingStars"
+                          }
+                        ],
+                        "id": "row_rate",
+                        "props": {
+                          "spacing": 12
+                        },
+                        "type": "HStack"
+                      }
+                    ],
+                    "id": "group_more",
+                    "props": {
+                      "spacing": 12
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "scroll_stack",
+                "props": {
+                  "spacing": 12
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "scroll",
+            "props": {
+              "childFlags": [
+                "AlwaysUseWindowPadding"
+              ],
+              "size": {
+                "h": "fill-62",
+                "w": "fill"
+              }
+            },
+            "style": {
+              "classes": [
+                "card"
+              ],
+              "vars": {
+                "WindowPadding": {
+                  "x": 16,
+                  "y": 14
+                }
+              }
+            },
+            "type": "Child"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "delay": 0.2,
+                  "preset": "SlideInUp"
+                }
+              ]
+            },
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "PopHover",
+                      "trigger": "hover"
+                    },
+                    {
+                      "preset": "ClickBounce",
+                      "trigger": "press"
+                    }
+                  ]
+                },
+                "events": {
+                  "onClick": {
+                    "actions": [
+                      {
+                        "target": "state.tab",
+                        "type": "set",
+                        "value": 0
+                      }
+                    ]
+                  }
+                },
+                "id": "tab_0",
+                "props": {
+                  "label": "{icon:fa-house}",
+                  "size": {
+                    "h": 40,
+                    "w": "fill"
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "ghost_button"
+                  ]
+                },
+                "tooltip": "Home",
+                "type": "Button"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "PopHover",
+                      "trigger": "hover"
+                    },
+                    {
+                      "preset": "ClickBounce",
+                      "trigger": "press"
+                    }
+                  ]
+                },
+                "events": {
+                  "onClick": {
+                    "actions": [
+                      {
+                        "target": "state.tab",
+                        "type": "set",
+                        "value": 1
+                      }
+                    ]
+                  }
+                },
+                "id": "tab_1",
+                "props": {
+                  "label": "{icon:fa-magnifying-glass}",
+                  "size": {
+                    "h": 40,
+                    "w": "fill"
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "ghost_button"
+                  ]
+                },
+                "tooltip": "Search",
+                "type": "Button"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "PopHover",
+                      "trigger": "hover"
+                    },
+                    {
+                      "preset": "ClickBounce",
+                      "trigger": "press"
+                    }
+                  ]
+                },
+                "events": {
+                  "onClick": {
+                    "actions": [
+                      {
+                        "target": "state.tab",
+                        "type": "set",
+                        "value": 2
+                      }
+                    ]
+                  }
+                },
+                "id": "tab_2",
+                "props": {
+                  "label": "{icon:fa-heart}",
+                  "size": {
+                    "h": 40,
+                    "w": "fill"
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "ghost_button"
+                  ]
+                },
+                "tooltip": "Saved",
+                "type": "Button"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "PopHover",
+                      "trigger": "hover"
+                    },
+                    {
+                      "preset": "ClickBounce",
+                      "trigger": "press"
+                    }
+                  ]
+                },
+                "events": {
+                  "onClick": {
+                    "actions": [
+                      {
+                        "target": "state.tab",
+                        "type": "set",
+                        "value": 3
+                      }
+                    ]
+                  }
+                },
+                "id": "tab_3",
+                "props": {
+                  "label": "{icon:fa-user}",
+                  "size": {
+                    "h": 40,
+                    "w": "fill"
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "ghost_button"
+                  ]
+                },
+                "tooltip": "Profile",
+                "type": "Button"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "PopHover",
+                      "trigger": "hover"
+                    },
+                    {
+                      "preset": "ClickBounce",
+                      "trigger": "press"
+                    }
+                  ]
+                },
+                "events": {
+                  "onClick": {
+                    "actions": [
+                      {
+                        "target": "state.tab",
+                        "type": "set",
+                        "value": 4
+                      }
+                    ]
+                  }
+                },
+                "id": "tab_4",
+                "props": {
+                  "label": "{icon:fa-gear}",
+                  "size": {
+                    "h": 40,
+                    "w": "fill"
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "ghost_button"
+                  ]
+                },
+                "tooltip": "Settings",
+                "type": "Button"
+              }
+            ],
+            "id": "tabbar",
+            "props": {
+              "spacing": 6
+            },
+            "type": "HStack"
+          }
+        ],
+        "id": "stack",
+        "props": {
+          "spacing": 12
+        },
+        "type": "VStack"
+      }
+    ],
+    "fx": [
+      {
+        "color": "#ff8fbf40",
+        "offset": {
+          "x": 0,
+          "y": 10
+        },
+        "rounding": 22,
+        "size": 26,
+        "type": "shadow"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoTitleBar",
+        "NoResize",
+        "NoCollapse",
+        "NoScrollbar"
+      ],
+      "initialSize": {
+        "x": 390,
+        "y": 720
+      },
+      "sizeCond": "Always",
+      "title": "{{PROJECT_NAME}}"
+    },
+    "style": {
+      "vars": {
+        "WindowPadding": {
+          "x": 16,
+          "y": 16
+        },
+        "WindowRounding": 22
+      }
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": 2,
+      "name": "unread",
+      "type": "int"
+    },
+    {
+      "default": "",
+      "name": "query",
+      "type": "string"
+    },
+    {
+      "default": 0,
+      "name": "filter",
+      "type": "int"
+    },
+    {
+      "default": true,
+      "name": "notify",
+      "type": "bool"
+    },
+    {
+      "default": false,
+      "name": "dark",
+      "type": "bool"
+    },
+    {
+      "default": true,
+      "name": "dnd",
+      "type": "bool"
+    },
+    {
+      "default": 16,
+      "name": "textSize",
+      "type": "int"
+    },
+    {
+      "default": 4,
+      "name": "rating",
+      "type": "int"
+    },
+    {
+      "default": 4,
+      "name": "tab",
+      "type": "int"
+    }
+  ]
+}

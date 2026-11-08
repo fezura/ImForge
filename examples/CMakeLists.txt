@@ -51,6 +51,13 @@ foreach(_main IN LISTS _example_mains)
     file(GLOB _srcs CONFIGURE_DEPENDS "${_dir}/*.cpp")
     add_executable(${_target} ${_srcs})
     target_include_directories(${_target} PRIVATE "${_dir}" "${CMAKE_CURRENT_SOURCE_DIR}")
+    # pack folders, so imforge::live::RegisterBundledPacks() finds every imforge_adapters_<pack>.h
+    file(GLOB _pack_dirs LIST_DIRECTORIES true CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/packs/*")
+    foreach(_pd IN LISTS _pack_dirs)
+        if(IS_DIRECTORY "${_pd}")
+            target_include_directories(${_target} PRIVATE "${_pd}")
+        endif()
+    endforeach()
     target_link_libraries(${_target} PRIVATE
         imforge::headers
         imgui

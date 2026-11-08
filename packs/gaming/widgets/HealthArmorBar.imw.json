@@ -1,0 +1,98 @@
+{
+  "bindings": [],
+  "call": "imb::game::HealthArmorBar({label}, {health}, {armor}, {maxHealth}, {maxArmor}, {text}, {ticks}, 0.0f)",
+  "category": "Gaming",
+  "container": false,
+  "events": [],
+  "icon": "fa-heart-pulse",
+  "include": "imb_gaming.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "HealthArmorBar",
+  "preview": [
+    {
+      "fill": "#0000008c",
+      "h": 22,
+      "rounding": 3,
+      "shape": "rect",
+      "w": 220,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#48d678ff",
+      "h": 14,
+      "rounding": 3,
+      "shape": "rect",
+      "w": 165,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#5ca2ffff",
+      "h": 7,
+      "rounding": 3,
+      "shape": "rect",
+      "w": 110,
+      "x": 0,
+      "y": 15
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "75",
+      "x": 5,
+      "y": 0
+    },
+    {
+      "color": "#dcebffff",
+      "shape": "text",
+      "text": "50",
+      "x": 200,
+      "y": 0
+    }
+  ],
+  "props": [
+    {
+      "default": "hp",
+      "hint": "ImGui id, not shown",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": "75",
+      "name": "health",
+      "type": "expr"
+    },
+    {
+      "default": "50",
+      "name": "armor",
+      "type": "expr"
+    },
+    {
+      "default": 100,
+      "min": 1,
+      "name": "maxHealth",
+      "type": "float"
+    },
+    {
+      "default": 100,
+      "hint": "0 hides the armor layer",
+      "min": 0,
+      "name": "maxArmor",
+      "type": "float"
+    },
+    {
+      "default": true,
+      "name": "text",
+      "type": "bool"
+    },
+    {
+      "default": true,
+      "name": "ticks",
+      "type": "bool"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

@@ -70,6 +70,9 @@ void LiveServer::Stop() {
     block_hashes_.clear();
     hover_panel_.clear();
     hover_id_.clear();
+    fonts_held_.clear();
+    fonts_announced_ = false;
+    icons_sent_ = false;
 }
 
 bool LiveServer::TransportConnected() const {
@@ -198,7 +201,10 @@ bool LiveServer::PushProject(const Project& project) {
         for (const CustomWidgetDef& w : project.widget_catalog->custom) manifests.Push(w.manifest);
         m.Set("widgets", std::move(manifests));
     }
-    return Send(m);
+    if (!Send(m)) return false;
+    // older clients log unknown messages, so only send this when the project has custom animations
+    if (project.animations.empty()) return true;
+    return Send(MsgAnimations(project.animations));
 }
 
 bool LiveServer::PushComponents(const Project& project) {
@@ -217,6 +223,27 @@ bool LiveServer::PushWidgets(const Project& project) {
 
 bool LiveServer::PushTheme(const Theme& theme) { return Send(MsgTheme(ThemeToJson(theme))); }
 
+// only the project folder and the builder's fonts folder are read; the app checks the bytes again
+bool LiveServer::PushFonts(const Project& project) {
+    if (!font_planner_ || (project.fonts.empty() && !fonts_announced_)) return true;
+    if (!IsConnected()) return false;
+    LiveFontPlan plan = font_planner_(project);
+    font_warnings_ = plan.warnings;
+    for (const LiveFontFile* f : plan.files) {
+        if (fonts_held_.count(f->hash)) continue;
+        for (const Json& m : FontDataMessages(*f))
+            if (!Send(m)) return false;
+        fonts_held_.insert(f->hash);
+    }
+    if (!plan.icons.empty() && !icons_sent_) {
+        if (!Send(MsgIcons(plan.icons))) return false;
+        icons_sent_ = true;
+    }
+    if (plan.specs.empty() && !fonts_announced_) return true;
+    fonts_announced_ = !plan.specs.empty();
+    return Send(MsgFonts(plan.specs));
+}
+
 bool LiveServer::RemovePanel(const std::string& name) { return Send(MsgRemovePanel(name.c_str())); }
 
 bool LiveServer::SetPickerMode(bool picker, const std::string& selected, const std::string& panel) {
@@ -233,6 +260,7 @@ bool LiveServer::PushProject(const Project&) { return false; }
 bool LiveServer::PushComponents(const Project&) { return false; }
 bool LiveServer::PushWidgets(const Project&) { return false; }
 bool LiveServer::PushTheme(const Theme&) { return false; }
+bool LiveServer::PushFonts(const Project&) { return false; }
 bool LiveServer::RemovePanel(const std::string&) { return false; }
 bool LiveServer::SetPickerMode(bool picker, const std::string&, const std::string&) {
     picker_ = picker;
@@ -243,7 +271,8 @@ bool LiveServer::Ping() { return false; }
 #endif
 
 bool LiveServer::PushAll(const Project& project) {
-    bool ok = PushProject(project);
+    bool ok = PushFonts(project);
+    ok = PushProject(project) && ok;
     for (const Theme& t : project.themes)
         if (t.name == project.active_theme) ok = PushTheme(t) && ok;
     return ok;
@@ -262,6 +291,9 @@ void LiveServer::OnDisconnected(EditorContext& ctx) {
     block_hashes_.clear();
     hover_panel_.clear();
     hover_id_.clear();
+    fonts_held_.clear();
+    fonts_announced_ = false;
+    icons_sent_ = false;
 }
 
 void LiveServer::DrainPairingLog(EditorContext& ctx) {
@@ -368,6 +400,10 @@ void LiveServer::Poll(EditorContext& ctx) {
     if (pair_.Tick(now) && drop_at_ == 0) drop_at_ = now;
     if (drop_at_ != 0 && now >= drop_at_) DropConnection(ctx, now);
     DrainPairingLog(ctx);
+    if (font_warnings_ != logged_font_warnings_) {
+        for (const std::string& w : font_warnings_) ctx.LogSource(LogLevel::Warning, "fonts", "%s", w.c_str());
+        logged_font_warnings_ = font_warnings_;
+    }
     if (IsConnected() && ctx.time - last_ping_ > 5.0) {
         last_ping_ = ctx.time;
         Ping();
@@ -382,6 +418,11 @@ void LiveServer::Dispatch(EditorContext& ctx, const Json& msg) {
     const std::string& t = msg["t"].AsString();
     // client_info comes sealed right after pair_ok; hello is the old unauthenticated client (pairing off)
     if (t == msg::kClientInfo || t == msg::kHello) {
+        // once per connection: every one makes the builder send the whole project and all fonts again
+        if (client_.connected) {
+            ctx.LogSource(LogLevel::Debug, "live", "ignored a repeated client_info");
+            return;
+        }
         ClientInfoMsg h;
         if (t == msg::kClientInfo) {
             if (!ParseClientInfo(msg, h)) return;
@@ -407,6 +448,9 @@ void LiveServer::Dispatch(EditorContext& ctx, const Json& msg) {
         for (const std::string& w : h.widgets) client_.widgets.push_back(SanitizeText(w, kProtocolMaxName));
         client_.textures.clear();
         for (const std::string& w : h.textures) client_.textures.push_back(SanitizeText(w, kProtocolMaxName));
+        fonts_held_ = std::set<std::string>(h.font_hashes.begin(), h.font_hashes.end());
+        fonts_announced_ = false;
+        icons_sent_ = false;
         ctx.LogSource(client_.paired ? LogLevel::Info : LogLevel::Warning, "live",
                       "%s %s (pid %d, ImGui %d, %s/%s, %d widgets, %d textures)",
                       client_.paired ? "paired automatically with" : "UNAUTHENTICATED client", client_.app.c_str(),

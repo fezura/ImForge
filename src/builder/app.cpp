@@ -6,14 +6,17 @@
 
 #include "builder_fonts.h"
 #include "builder_style.h"
+#include "bundled_packs.h"
 #include "export.h"
 #include "imforge/imforge_version.h"
 #include "live_bridge.h"
+#include "live_fonts.h"
 #include "panels/dialogs.h"
 #include "panels/wizard.h"
 #include "project_io.h"
 #include "ui/anim_preview_driver.h"
 #include "ui/fonts_state.h"
+#include "ui/icon_table.h"
 #include "ui/project_fonts.h"
 
 namespace imforge::builder {
@@ -74,6 +77,7 @@ bool App::Init(const char* project_dir) {
     ctx_.Log(LogLevel::Info, "ImForge %s, %s, Dear ImGui %s, config %s", IMFORGE_VERSION, platform_.Name(), IMGUI_VERSION,
              ConfigDir().c_str());
     ctx_.project.widget_catalog = &ctx_.catalog;
+    InitBundledPacks(ctx_);
     ctx_.CreateRegisteredPanels();
     GlobalLiveBridge().Attach(ctx_);
 #if IMFORGE_HAS_INTERP
@@ -86,6 +90,22 @@ bool App::Init(const char* project_dir) {
 #endif
     if (!ctx_.live.TransportAvailable())
         ctx_.Log(LogLevel::Warning, "live attach transport not compiled in (imforge_transport.h missing at build time)");
+    // the app only ever gets fonts from the project folder and the builder's fonts folder
+    ctx_.live.SetFontPlanner([](const Project& p) {
+        static LiveFontCache cache;
+        const std::string dir = p.dir;
+        LiveFontPlan plan = cache.Plan(
+            p, {dir, FontsDir()}, [&dir](const std::string& file) { return ResolveFontFile(file, dir); },
+            [&dir](const std::string& merge) { return ResolveIconFontFile(merge, dir); });
+        bool fa = false;
+        for (const FontSpecMsg& f : plan.specs)
+            fa = fa || (!f.icons.empty() && (f.merge_icons == "fontawesome6" || f.merge_icons == "fontawesome"));
+        size_t count = 0;
+        const IconEntry* table = fa ? IconTable(count) : nullptr;
+        for (size_t i = 0; table && i < count && plan.icons.size() < kProtocolMaxIcons; ++i)
+            if (table[i].name.size() <= kProtocolMaxIconName) plan.icons.emplace_back(table[i].name, table[i].codepoint);
+        return plan;
+    });
     std::error_code ec;
     layout_dirty_ = !fs::exists(ini_path_, ec);
 
@@ -144,6 +164,7 @@ void App::RebuildFontsIfDirty() {
     RebuildProjectFonts(ctx_);
     platform_.RebuildFontAtlas();
     FontsDirtyFlag() = false;
+    if (ctx_.has_project) ctx_.live.PushFonts(ctx_.project);
 }
 
 void App::UpdateWindowTitle() {

@@ -1,0 +1,494 @@
+{
+  "animations": [
+    {
+      "category": "press",
+      "credit": "",
+      "delay": 0,
+      "description": "Dips past the pressed size, then eases back a little.",
+      "direction": "normal",
+      "duration": 0.15,
+      "ease": "OutQuad",
+      "fill": "both",
+      "iterations": 1,
+      "name": "ClickBounce",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "bounce"
+      ],
+      "tracks": {
+        "scale": [
+          {
+            "ease": "OutQuad",
+            "t": 0,
+            "v": 1
+          },
+          {
+            "ease": "InOutSine",
+            "t": 0.6,
+            "v": 0.92
+          },
+          {
+            "t": 1,
+            "v": 0.95
+          }
+        ]
+      },
+      "trigger": "press"
+    },
+    {
+      "category": "press",
+      "credit": "",
+      "delay": 0,
+      "description": "Fades to 80 percent while held.",
+      "direction": "normal",
+      "duration": 0.1,
+      "ease": "OutQuad",
+      "fill": "both",
+      "iterations": 1,
+      "name": "Dim",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "opacity",
+        "subtle"
+      ],
+      "tracks": {
+        "opacity": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0.8
+          }
+        ]
+      },
+      "trigger": "press"
+    },
+    {
+      "category": "press",
+      "credit": "",
+      "delay": 0,
+      "description": "Squashes down toward the bottom edge.",
+      "direction": "normal",
+      "duration": 0.1,
+      "ease": "OutQuad",
+      "fill": "both",
+      "iterations": 1,
+      "name": "Flatten",
+      "origin": {
+        "x": 0.5,
+        "y": 1
+      },
+      "revealDir": "left",
+      "tags": [
+        "squash",
+        "subtle"
+      ],
+      "tracks": {
+        "scaleY": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0.92
+          }
+        ]
+      },
+      "trigger": "press"
+    },
+    {
+      "category": "press",
+      "credit": "",
+      "delay": 0,
+      "description": "Lights up with a glow while held.",
+      "direction": "normal",
+      "duration": 0.12,
+      "ease": "OutQuad",
+      "fill": "both",
+      "iterations": 1,
+      "name": "GlowPress",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "glow",
+        "scale"
+      ],
+      "tracks": {
+        "glow": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 0.7
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0.97
+          }
+        ]
+      },
+      "trigger": "press"
+    },
+    {
+      "category": "press",
+      "credit": "",
+      "delay": 0,
+      "description": "Moves down a pixel and shrinks slightly.",
+      "direction": "normal",
+      "duration": 0.1,
+      "ease": "OutQuad",
+      "fill": "both",
+      "iterations": 1,
+      "name": "PressDown",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "translate",
+        "subtle"
+      ],
+      "tracks": {
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0.98
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1.5
+          }
+        ]
+      },
+      "trigger": "press"
+    },
+    {
+      "category": "press",
+      "credit": "",
+      "delay": 0,
+      "description": "Shrinks and darkens a touch, as if pushed into the surface.",
+      "direction": "normal",
+      "duration": 0.12,
+      "ease": "OutQuad",
+      "fill": "both",
+      "iterations": 1,
+      "name": "PushIn",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "tint",
+        "depth"
+      ],
+      "tracks": {
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0.95
+          }
+        ],
+        "tint": [
+          {
+            "t": 0,
+            "v": "#ffffffff"
+          },
+          {
+            "t": 1,
+            "v": "#ebebebff"
+          }
+        ]
+      },
+      "trigger": "press"
+    },
+    {
+      "category": "press",
+      "credit": "",
+      "delay": 0,
+      "description": "Darkens and sinks a little, like a pressed key.",
+      "direction": "normal",
+      "duration": 0.12,
+      "ease": "OutQuad",
+      "fill": "both",
+      "iterations": 1,
+      "name": "Recess",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "tint",
+        "translate",
+        "depth"
+      ],
+      "tracks": {
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0.99
+          }
+        ],
+        "tint": [
+          {
+            "t": 0,
+            "v": "#ffffffff"
+          },
+          {
+            "t": 1,
+            "v": "#d9d9d9ff"
+          }
+        ],
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 1
+          }
+        ]
+      },
+      "trigger": "press"
+    },
+    {
+      "category": "press",
+      "credit": "",
+      "delay": 0,
+      "description": "Shrinks to 90 percent.",
+      "direction": "normal",
+      "duration": 0.1,
+      "ease": "OutQuad",
+      "fill": "both",
+      "iterations": 1,
+      "name": "Shrink",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "simple"
+      ],
+      "tracks": {
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0.9
+          }
+        ]
+      },
+      "trigger": "press"
+    },
+    {
+      "category": "press",
+      "credit": "",
+      "delay": 0,
+      "description": "Drops two pixels with no shadow, like a flat key.",
+      "direction": "normal",
+      "duration": 0.1,
+      "ease": "OutQuad",
+      "fill": "both",
+      "iterations": 1,
+      "name": "Sink",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "translate",
+        "flat"
+      ],
+      "tracks": {
+        "translateY": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": 2
+          }
+        ]
+      },
+      "trigger": "press"
+    },
+    {
+      "category": "press",
+      "credit": "",
+      "delay": 0,
+      "description": "A slow, gentle shrink for large cards.",
+      "direction": "normal",
+      "duration": 0.15,
+      "ease": "InOutSine",
+      "fill": "both",
+      "iterations": 1,
+      "name": "SoftPress",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "scale",
+        "subtle",
+        "card"
+      ],
+      "tracks": {
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0.97
+          }
+        ]
+      },
+      "trigger": "press"
+    },
+    {
+      "category": "press",
+      "credit": "",
+      "delay": 0,
+      "description": "Squashes flat and a bit wider while held.",
+      "direction": "normal",
+      "duration": 0.12,
+      "ease": "OutQuad",
+      "fill": "both",
+      "iterations": 1,
+      "name": "Squish",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "squash",
+        "playful"
+      ],
+      "tracks": {
+        "scaleX": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 1.03
+          }
+        ],
+        "scaleY": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0.92
+          }
+        ]
+      },
+      "trigger": "press"
+    },
+    {
+      "category": "press",
+      "credit": "",
+      "delay": 0,
+      "description": "Tips a couple of degrees and shrinks a bit.",
+      "direction": "normal",
+      "duration": 0.12,
+      "ease": "OutQuad",
+      "fill": "both",
+      "iterations": 1,
+      "name": "Tilt",
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "revealDir": "left",
+      "tags": [
+        "rotate",
+        "playful"
+      ],
+      "tracks": {
+        "rotate": [
+          {
+            "t": 0,
+            "v": 0
+          },
+          {
+            "t": 1,
+            "v": -2
+          }
+        ],
+        "scale": [
+          {
+            "t": 0,
+            "v": 1
+          },
+          {
+            "t": 1,
+            "v": 0.98
+          }
+        ]
+      },
+      "trigger": "press"
+    }
+  ],
+  "category": "press",
+  "kind": "animationSet",
+  "schemaVersion": 1
+}

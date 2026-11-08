@@ -1,0 +1,95 @@
+{
+  "bindings": [
+    {
+      "name": "selected",
+      "required": false,
+      "types": [
+        "int"
+      ]
+    }
+  ],
+  "call": "imb::ctl::SplitButton({label}, {selected}, {items:array}, {items:count})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onClick"
+  ],
+  "icon": "fa-caret-down",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "SplitButton",
+  "preview": [
+    {
+      "fill": "#4296faff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 70,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#4296faff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 22,
+      "x": 70,
+      "y": 0
+    },
+    {
+      "shape": "line",
+      "stroke": "#ffffff60",
+      "thickness": 1,
+      "x": 70,
+      "x2": 70,
+      "y": 4,
+      "y2": 18
+    },
+    {
+      "color": "#ffffffff",
+      "shape": "text",
+      "text": "Save",
+      "x": 19,
+      "y": 4
+    },
+    {
+      "shape": "line",
+      "stroke": "#ffffffff",
+      "thickness": 1.4,
+      "x": 77,
+      "x2": 81,
+      "y": 9,
+      "y2": 13
+    },
+    {
+      "shape": "line",
+      "stroke": "#ffffffff",
+      "thickness": 1.4,
+      "x": 81,
+      "x2": 85,
+      "y": 13,
+      "y2": 9
+    }
+  ],
+  "props": [
+    {
+      "default": "##split",
+      "hint": "visible text, empty shows the current item",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": [
+        "Save",
+        "Save As",
+        "Save All"
+      ],
+      "name": "items",
+      "type": "stringList"
+    }
+  ],
+  "returns": "clicked",
+  "schemaVersion": 1
+}

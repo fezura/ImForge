@@ -9,6 +9,7 @@
 #include <map>
 
 #include "builder_fonts.h"
+#include "bundled_packs.h"
 #include "editor_context.h"
 #include "panels/conflicts_state.h"
 #include "project_io.h"
@@ -111,7 +112,7 @@ struct OutFile {
 };
 
 void AddRuntimeCopies(const Project& project, const std::string& out_dir, std::vector<OutFile>& outs,
-                      std::vector<Diagnostic>& diags) {
+                      std::vector<Diagnostic>& diags, const std::vector<std::string>& used_headers) {
     std::vector<std::pair<std::string, std::string>> wanted;
     bool anim = project.Feature("animations", true), dfx = project.Feature("drawlistFx", true),
          sfx = project.Feature("shaderFx", false);
@@ -122,6 +123,11 @@ void AddRuntimeCopies(const Project& project, const std::string& out_dir, std::v
             wanted.push_back({"imb_runtime.h", rh});
             wanted.push_back({"imb_anim.h", "imb_anim.h"});
             wanted.push_back({"imb_effects.h", "imb_effects.h"});
+            for (const std::string& h : used_headers) {
+                bool have = false;
+                for (const auto& w : wanted) have = have || w.second == h;
+                if (!have) wanted.push_back({h, h});
+            }
             if (sfx) {
                 wanted.push_back({"fx/imb_fx.h", "fx/imb_fx.h"});
                 static const char* renderers[] = {"dx9", "dx11", "dx12", "gl3", "vulkan"};
@@ -138,16 +144,60 @@ void AddRuntimeCopies(const Project& project, const std::string& out_dir, std::v
             diags.push_back(d);
         }
     }
+    // pack headers: every bundled pack whose widgets the project uses, or that it lists as a library
+    std::set<std::string> used = UsedWidgetTypes(project);
+    bool ess_done = false;
+    for (const BundledPack& p : BundledPacks()) {
+        bool want = false;
+        for (const std::string& lib : project.libraries) want = want || fs::path(lib).stem().generic_string() == p.name;
+        for (const std::string& t : p.widgets) want = want || used.count(t) > 0;
+        if (!want) continue;
+        ess_done = ess_done || p.name == "essentials";
+        for (const std::string& h : p.headers) {
+            std::string full = (fs::path(p.dir) / h).generic_string();
+            if (!IsSafeIncludeName(h) || !PathIsInside(p.dir, full)) {
+                Diagnostic d;
+                d.level = Diagnostic::Level::Warning;
+                d.message = "pack " + p.name + ": header \"" + h + "\" is not a plain header name inside the pack, skipped";
+                diags.push_back(d);
+                continue;
+            }
+            wanted.push_back({full, h});
+        }
+    }
     bool ess = false;
     for (const std::string& lib : project.libraries) ess = ess || lib.find("essentials") != std::string::npos;
-    if (ess) {
+    if (ess && !ess_done) {
         for (const char* n : {"imb_essentials.h", "imb_ess_core.h", "imb_ess_controls.h", "imb_ess_layout.h", "imb_ess_toast.h"})
             wanted.push_back({n, n});
     }
-    for (const auto& w : wanted) {
-        std::string src = LocateShippedFile(w.first);
+    const std::string& rh = project.codegen.runtime_header;
+    bool flat = !rh.empty() && rh.find('/') == std::string::npos && rh.find('\\') == std::string::npos;
+    for (size_t wi = 0; wi < wanted.size(); ++wi) {
+        const std::pair<std::string, std::string> w = wanted[wi];
+        std::string src = fs::path(w.first).is_absolute() ? w.first : LocateShippedFile(w.first);
         std::string text;
-        if (src.empty() || !ReadTextFile(src, text)) {
+        bool read = !src.empty() && ReadTextFile(src, text);
+        // pack headers include "imforge/imb_runtime.h" and friends; the export is flat, so point them at
+        // the copies next to them (a second copy from include/ would redefine everything)
+        static const char kPrefix[] = "#include \"imforge/";
+        for (size_t at = read && flat ? text.find(kPrefix) : std::string::npos; at != std::string::npos;
+             at = text.find(kPrefix, at + 1)) {
+            size_t name_at = at + sizeof(kPrefix) - 1, end = text.find('"', name_at);
+            if (end == std::string::npos) break;
+            std::string name = text.substr(name_at, end - name_at);
+            std::string dest = name == "imb_runtime.h" ? rh : name;
+            std::vector<std::pair<std::string, std::string>> need = {{name, dest}};
+            if (name == "imb_runtime.h" || name == "imb_motion.h")
+                need.insert(need.end(), {{"imb_runtime.h", rh}, {"imb_anim.h", "imb_anim.h"}, {"imb_effects.h", "imb_effects.h"}});
+            for (const auto& n : need) {
+                bool have = false;
+                for (const auto& x : wanted) have = have || x.second == n.second;
+                if (!have) wanted.push_back(n);
+            }
+            text.replace(at + 10, end - (at + 10), dest);
+        }
+        if (!read) {
             Diagnostic d;
             d.level = Diagnostic::Level::Warning;
             d.message = "shipped header " + w.first + " not found (set IMFORGE_SOURCE_DIR or install share/imforge)";
@@ -419,7 +469,7 @@ std::vector<ExportPreviewEntry> PreviewExport(EditorContext& ctx, std::vector<Di
     codegen::Result all = codegen::GenerateAll(ctx.project, MakeCodegenOptions(ctx.project));
     std::vector<Diagnostic> diags = all.diagnostics;
     std::vector<OutFile> outs = CollectOutputs(all, out_dir, diags);
-    AddRuntimeCopies(ctx.project, out_dir, outs, diags);
+    AddRuntimeCopies(ctx.project, out_dir, outs, diags, codegen::RuntimeHeadersFor(all));
     for (const OutFile& o : outs) {
         ExportPreviewEntry e;
         e.rel = o.rel;
@@ -478,7 +528,7 @@ bool ExportProject(EditorContext& ctx, std::string* err, bool overwrite_unmarked
         }
     }
 #endif
-    AddRuntimeCopies(ctx.project, out_dir, outs, diags);
+    AddRuntimeCopies(ctx.project, out_dir, outs, diags, codegen::RuntimeHeadersFor(all));
     std::vector<std::string> written;
     int unchanged = 0;
     std::map<std::string, std::string> manifest_files;
@@ -620,6 +670,7 @@ bool ExportSelfCheck(const std::string& project_dir, const std::string& out_dir,
     return fail("codegen/roundtrip are not linked into this build");
 #else
     EditorContext ctx;
+    InitBundledPacks(ctx);
     std::string err;
     if (!ctx.LoadProjectDir(project_dir, &err)) return fail("load " + project_dir + ": " + err);
     ctx.live.Stop();

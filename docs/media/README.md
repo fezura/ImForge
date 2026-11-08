@@ -14,11 +14,22 @@ repository, nothing is mocked up.
 | `hero.gif` | 1280 x 693 | The builder (left) running `tools/demo/live_demo.txt` against `examples/client/dx11_win32` (right): title, theme color and slider range edits show up in the running app. 57 frames at 5 fps. |
 | `builder_first_run.png` | 1602 x 932 | The builder (SDL3 + OpenGL 3) with `examples/projects/CheatMenu` open and a bound checkbox selected. |
 | `builder_wizard.png` | 1602 x 932 | The New Project wizard, template step. |
+| `library_animations.png` | 1602 x 932 | `examples/projects/Showcase` open on the Library's Animations tab, `BounceInDown` picked and the entrance cards mid-play. |
+| `library_designs.png` | 1602 x 932 | The Designs tab with Synthwave Sunset selected and "Preview on canvas" on. Shown in the README. |
+| `library_widgets.png` | 1602 x 932 | The Widgets tab filtered to the display pack, each widget drawn live in its card. |
+| `keyframes.png` | 1602 x 932 | The Anim Timeline's Keyframes tab editing `GlitchInCustom`, a project copy of the `GlitchIn` preset. Shown in the README. |
+| `showcase.png` | 1602 x 932 | The canvas showing the Showcase `Arena` panel (IceFrost), zoomed to fit. |
+| `motions.gif` | 908 x 622 | The Library panel cut from the builder window while the Animations tab goes through All, Attention, Loop and Text. 72 frames at about 12 fps. Shown in the README. |
 
 The `fx_*.png` files were captured on 2026-11-07 on Windows 10 (10.0.19045) from the Release
 examples built with MSVC 2022 (`build/win-examples`) against Dear ImGui `v1.91.9b-docking`,
 at 100 % DPI. Each one is the demo window's client area at 1:1, cropped from a 1920 x 1080
 screenshot, with no scaling or retouching.
+
+The 0.2 Library shots (`library_*.png`, `keyframes.png`, `showcase.png`, `motions.gif`) were
+taken on 2026-11-08 from a Release builder at its default 1600 x 900 size and 100 % DPI, with an
+empty `%APPDATA%\ImForge`. For `keyframes.png` the bottom dock was dragged taller, and for
+`showcase.png` shorter.
 
 ## Recording hero.gif
 

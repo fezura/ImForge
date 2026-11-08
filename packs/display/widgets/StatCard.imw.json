@@ -1,0 +1,121 @@
+{
+  "bindings": [
+    {
+      "name": "spark",
+      "required": false,
+      "types": [
+        "float[N]",
+        "vector<float>"
+      ]
+    }
+  ],
+  "call": "imb::disp::StatCard({title}, (float)({value}), {format}, {showDelta}, (float)({delta}), {spark}, {spark:count})",
+  "category": "Display",
+  "container": false,
+  "events": [],
+  "icon": "fa-square-poll-vertical",
+  "include": "imb_display.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "StatCard",
+  "preview": [
+    {
+      "fill": "#1e2129ff",
+      "h": 104,
+      "rounding": 8,
+      "shape": "rect",
+      "stroke": "#3a4150ff",
+      "w": 200,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#8a91a0ff",
+      "shape": "text",
+      "text": "{title}",
+      "x": 12,
+      "y": 10
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "12840",
+      "x": 12,
+      "y": 30
+    },
+    {
+      "fill": "#2ecc7126",
+      "h": 16,
+      "rounding": 8,
+      "shape": "rect",
+      "w": 56,
+      "x": 70,
+      "y": 31
+    },
+    {
+      "color": "#2ecc71ff",
+      "shape": "text",
+      "text": "12.5%",
+      "x": 84,
+      "y": 31
+    },
+    {
+      "shape": "line",
+      "stroke": "#4f8cffff",
+      "thickness": 2,
+      "x": 12,
+      "x2": 60,
+      "y": 92,
+      "y2": 82
+    },
+    {
+      "shape": "line",
+      "stroke": "#4f8cffff",
+      "thickness": 2,
+      "x": 60,
+      "x2": 110,
+      "y": 82,
+      "y2": 86
+    },
+    {
+      "shape": "line",
+      "stroke": "#4f8cffff",
+      "thickness": 2,
+      "x": 110,
+      "x2": 188,
+      "y": 86,
+      "y2": 70
+    }
+  ],
+  "props": [
+    {
+      "default": "Revenue",
+      "name": "title",
+      "type": "string"
+    },
+    {
+      "default": "12840",
+      "hint": "number or expression",
+      "name": "value",
+      "type": "expr"
+    },
+    {
+      "default": "%.0f",
+      "name": "format",
+      "type": "string"
+    },
+    {
+      "default": true,
+      "name": "showDelta",
+      "type": "bool"
+    },
+    {
+      "default": "12.5",
+      "hint": "percent change, green when up",
+      "name": "delta",
+      "type": "expr"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

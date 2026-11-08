@@ -1,0 +1,180 @@
+{
+  "activeTheme": "CatppuccinLatte",
+  "binding": {
+    "compileCommands": "",
+    "includePaths": [],
+    "types": [],
+    "typesJson": ""
+  },
+  "codegen": {
+    "baseFontSize": 16,
+    "cppStandard": 17,
+    "dpiMode": "fontSize",
+    "functionCase": "pascal",
+    "indent": 4,
+    "markers": true,
+    "namespace": "onboarding",
+    "outputDir": "generated",
+    "runtimeHeader": "imb_runtime.h",
+    "splitHeader": true,
+    "stdString": true,
+    "useTabs": false,
+    "variableCase": "snake"
+  },
+  "components": [],
+  "features": {
+    "animations": true,
+    "docking": false,
+    "dpiScaling": true,
+    "drawlistFx": true,
+    "iconFonts": true,
+    "shaderFx": false
+  },
+  "fonts": [
+    {
+      "file": "fonts/Inter-Regular.ttf",
+      "mergeIcons": "fontawesome6",
+      "name": "Default",
+      "ranges": "default",
+      "size": 16
+    },
+    {
+      "file": "fonts/Inter-Bold.ttf",
+      "mergeIcons": "fontawesome6",
+      "name": "Bold",
+      "ranges": "default",
+      "size": 16
+    },
+    {
+      "file": "fonts/Inter-Bold.ttf",
+      "mergeIcons": "fontawesome6",
+      "name": "Title",
+      "ranges": "default",
+      "size": 24
+    },
+    {
+      "file": "fonts/Inter-Bold.ttf",
+      "mergeIcons": "fontawesome6",
+      "name": "Display",
+      "ranges": "default",
+      "size": 34
+    },
+    {
+      "file": "fonts/Inter-Regular.ttf",
+      "mergeIcons": "fontawesome6",
+      "name": "Small",
+      "ranges": "default",
+      "size": 13
+    }
+  ],
+  "imgui": {
+    "branch": "master",
+    "version": "1.91.9"
+  },
+  "kind": "project",
+  "libraries": [],
+  "live": {
+    "enabled": true,
+    "pipeName": "ImForge",
+    "shmName": "ImForge",
+    "tcpPort": 7777,
+    "transport": "tcp"
+  },
+  "name": "{{PROJECT_NAME}}",
+  "panels": [
+    "panels/Wizard.imb.json"
+  ],
+  "platform": {
+    "renderer": "gl3",
+    "window": "glfw"
+  },
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent_button": {
+      "colors": {
+        "Button": "#8839efff",
+        "ButtonActive": "#6d2ebfff",
+        "ButtonHovered": "#7a33d7ff",
+        "Text": "#eff1f5ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#ccd0daff",
+        "ChildBg": "#e6e9efff"
+      },
+      "vars": {
+        "ChildBorderSize": 1,
+        "ChildRounding": 12,
+        "WindowPadding": {
+          "x": 14,
+          "y": 12
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#d20f398c",
+        "Button": "#d20f3938",
+        "ButtonActive": "#d20f3975",
+        "ButtonHovered": "#d20f3957",
+        "CheckMark": "#d20f39ff",
+        "SliderGrab": "#d20f39ff",
+        "SliderGrabActive": "#d20f39ff",
+        "Text": "#71081fff"
+      }
+    },
+    "ghost_button": {
+      "colors": {
+        "Border": "#8839ef80",
+        "Button": "#00000000",
+        "ButtonActive": "#8839ef3d",
+        "ButtonHovered": "#8839ef24",
+        "Text": "#6d2ebfff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "heading": {
+      "colors": {
+        "Text": "#8839efff"
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#5c5f77ff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#40a02b8c",
+        "Button": "#40a02b29",
+        "ButtonActive": "#40a02b5c",
+        "ButtonHovered": "#40a02b42",
+        "CheckMark": "#40a02bff",
+        "SliderGrab": "#40a02bff",
+        "SliderGrabActive": "#40a02bff",
+        "Text": "#26601aff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#df8e1d8c",
+        "Button": "#df8e1d29",
+        "ButtonActive": "#df8e1d5c",
+        "ButtonHovered": "#df8e1d42",
+        "CheckMark": "#df8e1dff",
+        "SliderGrab": "#df8e1dff",
+        "SliderGrabActive": "#df8e1dff",
+        "Text": "#784d10ff"
+      }
+    }
+  },
+  "themes": [
+    "themes/CatppuccinLatte.theme.json"
+  ]
+}

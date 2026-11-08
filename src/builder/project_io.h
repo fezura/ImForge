@@ -36,6 +36,7 @@ bool OutputDirAllowed(const Project& project, const std::string& out_dir);
 std::string DefaultPanelFile(const std::string& name);
 std::string DefaultComponentFile(const std::string& name);
 std::string DefaultThemeFile(const std::string& name);
+std::string DefaultAnimationFile(const std::string& name);
 
 bool LoadProject(const std::string& dir, Project& out, Error* err);
 bool SaveProject(const Project& project, Error* err, std::vector<std::string>* written = nullptr);

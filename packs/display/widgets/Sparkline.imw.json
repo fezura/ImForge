@@ -1,0 +1,103 @@
+{
+  "bindings": [
+    {
+      "name": "values",
+      "required": true,
+      "types": [
+        "float[N]",
+        "vector<float>"
+      ]
+    }
+  ],
+  "call": "imb::disp::Sparkline({label}, {values}, {values:count}, {size}, {color:u32}, {fill})",
+  "category": "Display",
+  "container": false,
+  "events": [],
+  "icon": "fa-chart-line",
+  "include": "imb_display.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "Sparkline",
+  "preview": [
+    {
+      "shape": "line",
+      "stroke": "#4f8cffff",
+      "thickness": 2,
+      "x": 0,
+      "x2": 20,
+      "y": 26,
+      "y2": 18
+    },
+    {
+      "shape": "line",
+      "stroke": "#4f8cffff",
+      "thickness": 2,
+      "x": 20,
+      "x2": 40,
+      "y": 18,
+      "y2": 22
+    },
+    {
+      "shape": "line",
+      "stroke": "#4f8cffff",
+      "thickness": 2,
+      "x": 40,
+      "x2": 60,
+      "y": 22,
+      "y2": 10
+    },
+    {
+      "shape": "line",
+      "stroke": "#4f8cffff",
+      "thickness": 2,
+      "x": 60,
+      "x2": 80,
+      "y": 10,
+      "y2": 14
+    },
+    {
+      "shape": "line",
+      "stroke": "#4f8cffff",
+      "thickness": 2,
+      "x": 80,
+      "x2": 100,
+      "y": 14,
+      "y2": 4
+    },
+    {
+      "fill": "#4f8cffff",
+      "r": 3,
+      "shape": "circle",
+      "x": 100,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "##spark",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": {
+        "h": 32,
+        "w": "fill"
+      },
+      "name": "size",
+      "type": "size"
+    },
+    {
+      "default": "#00000000",
+      "hint": "#00000000 = accent",
+      "name": "color",
+      "type": "color"
+    },
+    {
+      "default": true,
+      "name": "fill",
+      "type": "bool"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

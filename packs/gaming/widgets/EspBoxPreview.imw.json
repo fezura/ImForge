@@ -1,0 +1,300 @@
+{
+  "bindings": [
+    {
+      "name": "box",
+      "required": false,
+      "types": [
+        "bool"
+      ]
+    },
+    {
+      "name": "boxStyle",
+      "required": false,
+      "types": [
+        "int",
+        "enum"
+      ]
+    },
+    {
+      "name": "boxColor",
+      "required": false,
+      "types": [
+        "vec4"
+      ]
+    },
+    {
+      "name": "healthBar",
+      "required": false,
+      "types": [
+        "bool"
+      ]
+    },
+    {
+      "name": "healthSide",
+      "required": false,
+      "types": [
+        "int",
+        "enum"
+      ]
+    },
+    {
+      "name": "name",
+      "required": false,
+      "types": [
+        "bool"
+      ]
+    },
+    {
+      "name": "distance",
+      "required": false,
+      "types": [
+        "bool"
+      ]
+    },
+    {
+      "name": "outline",
+      "required": false,
+      "types": [
+        "bool"
+      ]
+    },
+    {
+      "name": "fill",
+      "required": false,
+      "types": [
+        "bool"
+      ]
+    },
+    {
+      "name": "headDot",
+      "required": false,
+      "types": [
+        "bool"
+      ]
+    },
+    {
+      "name": "health",
+      "required": false,
+      "types": [
+        "float"
+      ]
+    }
+  ],
+  "call": "imb::game::EspBoxPreviewFields({label}, {box}, {boxStyle}, {boxColor}, {healthBar}, {healthSide}, {name}, {distance}, {outline}, {fill}, {headDot}, {health}, {nameText}, {distanceValue}, {thickness}, {size})",
+  "category": "Gaming",
+  "container": false,
+  "events": [],
+  "icon": "fa-person",
+  "include": "imb_gaming.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "EspBoxPreview",
+  "preview": [
+    {
+      "fill": "#1a1f2bff",
+      "h": 200,
+      "rounding": 6,
+      "shape": "rect",
+      "stroke": "#3a4150ff",
+      "w": 160,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#2c3648ff",
+      "h": 112,
+      "rounding": 6,
+      "shape": "rect",
+      "w": 160,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#ffffff22",
+      "h": 1,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 160,
+      "x": 0,
+      "y": 112
+    },
+    {
+      "fill": "#96a0b678",
+      "r": 8,
+      "shape": "circle",
+      "x": 80,
+      "y": 52
+    },
+    {
+      "fill": "#96a0b678",
+      "h": 46,
+      "rounding": 6,
+      "shape": "rect",
+      "w": 24,
+      "x": 68,
+      "y": 62
+    },
+    {
+      "fill": "#96a0b678",
+      "h": 52,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 8,
+      "x": 70,
+      "y": 106
+    },
+    {
+      "fill": "#96a0b678",
+      "h": 52,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 8,
+      "x": 82,
+      "y": 106
+    },
+    {
+      "fill": "#ff5656ff",
+      "h": 2,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 14,
+      "x": 52,
+      "y": 38
+    },
+    {
+      "fill": "#ff5656ff",
+      "h": 14,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 2,
+      "x": 52,
+      "y": 38
+    },
+    {
+      "fill": "#ff5656ff",
+      "h": 2,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 14,
+      "x": 94,
+      "y": 38
+    },
+    {
+      "fill": "#ff5656ff",
+      "h": 14,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 2,
+      "x": 106,
+      "y": 38
+    },
+    {
+      "fill": "#ff5656ff",
+      "h": 2,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 14,
+      "x": 52,
+      "y": 160
+    },
+    {
+      "fill": "#ff5656ff",
+      "h": 14,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 2,
+      "x": 52,
+      "y": 148
+    },
+    {
+      "fill": "#ff5656ff",
+      "h": 2,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 14,
+      "x": 94,
+      "y": 160
+    },
+    {
+      "fill": "#ff5656ff",
+      "h": 14,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 2,
+      "x": 106,
+      "y": 148
+    },
+    {
+      "fill": "#000000c0",
+      "h": 124,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 3,
+      "x": 46,
+      "y": 38
+    },
+    {
+      "fill": "#48d678ff",
+      "h": 89,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 3,
+      "x": 46,
+      "y": 73
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{nameText}",
+      "x": 60,
+      "y": 20
+    },
+    {
+      "color": "#bfc7d9ff",
+      "shape": "text",
+      "text": "38m",
+      "x": 70,
+      "y": 166
+    }
+  ],
+  "props": [
+    {
+      "default": "ESP preview",
+      "hint": "ImGui id, not shown",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": "Player",
+      "hint": "sample name above the box",
+      "name": "nameText",
+      "type": "string"
+    },
+    {
+      "default": 38,
+      "hint": "sample distance in meters",
+      "max": 999,
+      "min": 0,
+      "name": "distanceValue",
+      "type": "float"
+    },
+    {
+      "default": 1.5,
+      "hint": "box line thickness in px",
+      "max": 6,
+      "min": 0.5,
+      "name": "thickness",
+      "type": "float"
+    },
+    {
+      "default": {
+        "h": "auto",
+        "w": "auto"
+      },
+      "name": "size",
+      "type": "size"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

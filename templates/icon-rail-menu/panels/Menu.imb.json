@@ -1,0 +1,1525 @@
+{
+  "kind": "panel",
+  "name": "Menu",
+  "params": [
+    {
+      "name": "cfg",
+      "type": "Settings"
+    }
+  ],
+  "root": {
+    "anim": {
+      "motions": [
+        {
+          "preset": "PopIn"
+        },
+        {
+          "preset": "PopOut",
+          "trigger": "exit"
+        }
+      ]
+    },
+    "bind": {
+      "open": "state.open"
+    },
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "id": "rail_top",
+                    "props": {
+                      "size": {
+                        "h": 4,
+                        "w": 1
+                      }
+                    },
+                    "type": "Dummy"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "PulseGlow",
+                          "trigger": "loop"
+                        }
+                      ]
+                    },
+                    "font": "Title",
+                    "id": "logo",
+                    "props": {
+                      "color": "#c38bffff",
+                      "text": "  {icon:fa-bolt}"
+                    },
+                    "type": "Text"
+                  },
+                  {
+                    "id": "rail_gap",
+                    "props": {
+                      "size": {
+                        "h": 8,
+                        "w": 1
+                      }
+                    },
+                    "type": "Dummy"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "delay": 0.1,
+                          "preset": "FadeInLeft"
+                        },
+                        {
+                          "preset": "NudgeRight",
+                          "trigger": "hover"
+                        }
+                      ]
+                    },
+                    "bind": {
+                      "index": "state.page"
+                    },
+                    "id": "nav",
+                    "props": {
+                      "icons": [
+                        "fa-crosshairs",
+                        "fa-eye",
+                        "fa-sliders",
+                        "fa-floppy-disk"
+                      ],
+                      "label": "##rail",
+                      "tooltips": [
+                        "Combat",
+                        "Visuals",
+                        "Misc",
+                        "Configs"
+                      ]
+                    },
+                    "type": "IconRailNav"
+                  },
+                  {
+                    "id": "rail_push",
+                    "props": {
+                      "size": {
+                        "h": "fill-48",
+                        "w": 1
+                      }
+                    },
+                    "type": "Dummy"
+                  },
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "Grow",
+                          "trigger": "hover"
+                        }
+                      ]
+                    },
+                    "id": "avatar",
+                    "props": {
+                      "name": "Player One",
+                      "size": 34,
+                      "status": "Online"
+                    },
+                    "tooltip": "Signed in",
+                    "type": "Avatar"
+                  }
+                ],
+                "id": "rail_stack",
+                "props": {
+                  "spacing": 6
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "rail",
+            "props": {
+              "childFlags": [
+                "AlwaysUseWindowPadding"
+              ],
+              "size": {
+                "h": "fill",
+                "w": 72
+              }
+            },
+            "style": {
+              "classes": [
+                "rail"
+              ],
+              "vars": {
+                "WindowPadding": {
+                  "x": 10,
+                  "y": 12
+                }
+              }
+            },
+            "type": "Child"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "FadeInDown"
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "font": "Bold",
+                        "id": "brand",
+                        "props": {
+                          "text": "{{PROJECT_NAME}}"
+                        },
+                        "type": "Text"
+                      },
+                      {
+                        "id": "build_badge",
+                        "props": {
+                          "color": "#8a5cf5ff",
+                          "kind": "Pill",
+                          "text": "BETA"
+                        },
+                        "type": "Badge"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "Breathe",
+                              "trigger": "loop"
+                            }
+                          ]
+                        },
+                        "id": "status",
+                        "props": {
+                          "label": "Undetected",
+                          "status": "Online"
+                        },
+                        "type": "StatusDot"
+                      },
+                      {
+                        "id": "top_gap",
+                        "props": {
+                          "size": {
+                            "h": 1,
+                            "w": "fill"
+                          }
+                        },
+                        "type": "Dummy"
+                      },
+                      {
+                        "children": [
+                          {
+                            "bind": {
+                              "text": "state.search"
+                            },
+                            "id": "search",
+                            "props": {
+                              "hint": "Search features",
+                              "label": "##search"
+                            },
+                            "type": "SearchField"
+                          }
+                        ],
+                        "id": "search_box",
+                        "props": {
+                          "flags": [
+                            "NoScrollbar",
+                            "NoBackground"
+                          ],
+                          "size": {
+                            "h": 32,
+                            "w": 260
+                          }
+                        },
+                        "style": {
+                          "vars": {
+                            "WindowPadding": {
+                              "x": 0,
+                              "y": 0
+                            }
+                          }
+                        },
+                        "type": "Child"
+                      }
+                    ],
+                    "id": "topbar",
+                    "props": {
+                      "spacing": 10
+                    },
+                    "type": "HStack"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "Typewriter"
+                                }
+                              ]
+                            },
+                            "font": "Title",
+                            "id": "combat_head_title",
+                            "props": {
+                              "text": "Combat"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "delay": 0.25,
+                                  "preset": "FadeIn"
+                                }
+                              ]
+                            },
+                            "id": "combat_head_sub",
+                            "props": {
+                              "text": "Aim assist, trigger and recoil. Changes apply instantly."
+                            },
+                            "style": {
+                              "classes": [
+                                "muted"
+                              ]
+                            },
+                            "type": "Text"
+                          }
+                        ],
+                        "id": "combat_head",
+                        "props": {
+                          "spacing": 2
+                        },
+                        "type": "VStack"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "StaggerFadeUp",
+                              "stagger": 0.06
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "Raise",
+                                  "trigger": "hover"
+                                },
+                                {
+                                  "on": "onChange",
+                                  "preset": "Pulse",
+                                  "trigger": "attention"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "enabled": "cfg.aim.silent"
+                            },
+                            "id": "cat_silent",
+                            "props": {
+                              "description": "Corrects shots without moving the view",
+                              "icon": "fa-ghost",
+                              "size": {
+                                "h": "auto",
+                                "w": "fill"
+                              },
+                              "title": "Silent aim"
+                            },
+                            "type": "CategoryCard"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "Raise",
+                                  "trigger": "hover"
+                                },
+                                {
+                                  "on": "onChange",
+                                  "preset": "Pulse",
+                                  "trigger": "attention"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "enabled": "cfg.aim.autowall"
+                            },
+                            "id": "cat_wall",
+                            "props": {
+                              "description": "Fires through thin cover when it can",
+                              "icon": "fa-shield-halved",
+                              "size": {
+                                "h": "auto",
+                                "w": "fill"
+                              },
+                              "title": "Auto wall"
+                            },
+                            "type": "CategoryCard"
+                          }
+                        ],
+                        "id": "combat_quick",
+                        "props": {
+                          "columns": 2,
+                          "flags": [
+                            "SizingStretchSame"
+                          ]
+                        },
+                        "type": "Grid"
+                      },
+                      {
+                        "children": [
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "SpotlightHover",
+                                  "trigger": "hover"
+                                }
+                              ]
+                            },
+                            "children": [
+                              {
+                                "anim": {
+                                  "motions": [
+                                    {
+                                      "delay": 0.1,
+                                      "preset": "FadeInUp"
+                                    }
+                                  ]
+                                },
+                                "children": [
+                                  {
+                                    "font": "Bold",
+                                    "id": "aim_card_title",
+                                    "props": {
+                                      "text": "Aim assist"
+                                    },
+                                    "style": {
+                                      "classes": [
+                                        "heading"
+                                      ]
+                                    },
+                                    "type": "Text"
+                                  },
+                                  {
+                                    "anim": {
+                                      "motions": [
+                                        {
+                                          "on": "onChange",
+                                          "preset": "ValuePop",
+                                          "trigger": "change"
+                                        }
+                                      ]
+                                    },
+                                    "bind": {
+                                      "value": "cfg.aim.enabled"
+                                    },
+                                    "id": "aim_enabled",
+                                    "props": {
+                                      "label": "Enabled"
+                                    },
+                                    "type": "SwitchToggle"
+                                  },
+                                  {
+                                    "bind": {
+                                      "value": "cfg.aim.fov"
+                                    },
+                                    "id": "aim_fov",
+                                    "props": {
+                                      "format": "%.0f deg",
+                                      "label": "FOV",
+                                      "max": 30,
+                                      "min": 1,
+                                      "ticks": 6
+                                    },
+                                    "type": "TickSlider"
+                                  },
+                                  {
+                                    "bind": {
+                                      "value": "cfg.aim.smooth"
+                                    },
+                                    "id": "aim_smooth",
+                                    "props": {
+                                      "format": "%.1f",
+                                      "label": "Smoothing",
+                                      "max": 20,
+                                      "min": 1,
+                                      "ticks": 5
+                                    },
+                                    "type": "TickSlider"
+                                  },
+                                  {
+                                    "bind": {
+                                      "index": "cfg.aim.bone"
+                                    },
+                                    "id": "aim_bone",
+                                    "props": {
+                                      "items": [
+                                        "Head",
+                                        "Neck",
+                                        "Chest"
+                                      ],
+                                      "label": "Target"
+                                    },
+                                    "type": "SegmentedControl"
+                                  },
+                                  {
+                                    "id": "aim_div",
+                                    "props": {
+                                      "align": "Left",
+                                      "label": "weapons",
+                                      "look": "Fade"
+                                    },
+                                    "type": "Divider"
+                                  },
+                                  {
+                                    "anim": {
+                                      "motions": [
+                                        {
+                                          "on": "onChange",
+                                          "preset": "Wiggle",
+                                          "trigger": "attention"
+                                        }
+                                      ]
+                                    },
+                                    "bind": {
+                                      "mask": "cfg.aim.weapons"
+                                    },
+                                    "id": "aim_weapons",
+                                    "props": {
+                                      "items": [
+                                        "Rifles",
+                                        "SMGs",
+                                        "Pistols",
+                                        "Snipers",
+                                        "Shotguns"
+                                      ],
+                                      "label": "##weapons"
+                                    },
+                                    "type": "Chips"
+                                  }
+                                ],
+                                "id": "aim_card_body",
+                                "props": {
+                                  "spacing": 10
+                                },
+                                "type": "VStack"
+                              }
+                            ],
+                            "id": "aim_card",
+                            "props": {
+                              "childFlags": [
+                                "AlwaysUseWindowPadding"
+                              ],
+                              "size": {
+                                "h": "fill",
+                                "w": "fill"
+                              }
+                            },
+                            "style": {
+                              "classes": [
+                                "card"
+                              ]
+                            },
+                            "type": "Child"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "SpotlightHover",
+                                  "trigger": "hover"
+                                }
+                              ]
+                            },
+                            "children": [
+                              {
+                                "anim": {
+                                  "motions": [
+                                    {
+                                      "delay": 0.16,
+                                      "preset": "FadeInUp"
+                                    }
+                                  ]
+                                },
+                                "children": [
+                                  {
+                                    "font": "Bold",
+                                    "id": "trigger_card_title",
+                                    "props": {
+                                      "text": "Trigger"
+                                    },
+                                    "style": {
+                                      "classes": [
+                                        "heading"
+                                      ]
+                                    },
+                                    "type": "Text"
+                                  },
+                                  {
+                                    "anim": {
+                                      "motions": [
+                                        {
+                                          "on": "onChange",
+                                          "preset": "ValuePop",
+                                          "trigger": "change"
+                                        }
+                                      ]
+                                    },
+                                    "bind": {
+                                      "value": "cfg.trigger.enabled"
+                                    },
+                                    "id": "trig_enabled",
+                                    "props": {
+                                      "label": "Triggerbot"
+                                    },
+                                    "type": "SwitchToggle"
+                                  },
+                                  {
+                                    "bind": {
+                                      "chord": "cfg.trigger.key"
+                                    },
+                                    "id": "trig_key",
+                                    "props": {
+                                      "label": "Hold key"
+                                    },
+                                    "type": "KeyChordPicker"
+                                  },
+                                  {
+                                    "bind": {
+                                      "value": "cfg.trigger.delay"
+                                    },
+                                    "id": "trig_delay",
+                                    "props": {
+                                      "label": "Delay (ms)",
+                                      "max": 250,
+                                      "min": 0,
+                                      "step": 5
+                                    },
+                                    "type": "Stepper"
+                                  },
+                                  {
+                                    "bind": {
+                                      "value": "cfg.trigger.spread"
+                                    },
+                                    "id": "trig_spread",
+                                    "props": {
+                                      "format": "%.1f",
+                                      "label": "Spread",
+                                      "max": 10,
+                                      "min": 0
+                                    },
+                                    "type": "RangeSlider"
+                                  },
+                                  {
+                                    "id": "trig_div",
+                                    "props": {
+                                      "align": "Left",
+                                      "label": "hit chance",
+                                      "look": "Fade"
+                                    },
+                                    "type": "Divider"
+                                  },
+                                  {
+                                    "children": [
+                                      {
+                                        "anim": {
+                                          "motions": [
+                                            {
+                                              "preset": "WobbleReady",
+                                              "trigger": "hover"
+                                            }
+                                          ]
+                                        },
+                                        "bind": {
+                                          "value": "cfg.trigger.chance"
+                                        },
+                                        "id": "trig_chance",
+                                        "props": {
+                                          "format": "%.0f%%",
+                                          "label": "Chance",
+                                          "max": 100,
+                                          "min": 0
+                                        },
+                                        "type": "Knob"
+                                      },
+                                      {
+                                        "anim": {
+                                          "motions": [
+                                            {
+                                              "preset": "WobbleReady",
+                                              "trigger": "hover"
+                                            }
+                                          ]
+                                        },
+                                        "bind": {
+                                          "value": "cfg.trigger.burst"
+                                        },
+                                        "id": "trig_burst",
+                                        "props": {
+                                          "format": "%.0f",
+                                          "label": "Burst",
+                                          "max": 5,
+                                          "min": 1
+                                        },
+                                        "type": "Knob"
+                                      }
+                                    ],
+                                    "id": "trig_knobs",
+                                    "props": {
+                                      "spacing": 18
+                                    },
+                                    "type": "HStack"
+                                  }
+                                ],
+                                "id": "trigger_card_body",
+                                "props": {
+                                  "spacing": 10
+                                },
+                                "type": "VStack"
+                              }
+                            ],
+                            "id": "trigger_card",
+                            "props": {
+                              "childFlags": [
+                                "AlwaysUseWindowPadding"
+                              ],
+                              "size": {
+                                "h": "fill",
+                                "w": "fill"
+                              }
+                            },
+                            "style": {
+                              "classes": [
+                                "card"
+                              ]
+                            },
+                            "type": "Child"
+                          }
+                        ],
+                        "id": "combat_cards",
+                        "props": {
+                          "columns": 2,
+                          "flags": [
+                            "SizingStretchSame"
+                          ]
+                        },
+                        "type": "Grid"
+                      }
+                    ],
+                    "id": "page_combat",
+                    "props": {
+                      "spacing": 12
+                    },
+                    "type": "VStack",
+                    "visibleIf": "state.page == 0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "Typewriter"
+                                }
+                              ]
+                            },
+                            "font": "Title",
+                            "id": "visuals_head_title",
+                            "props": {
+                              "text": "Visuals"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "delay": 0.25,
+                                  "preset": "FadeIn"
+                                }
+                              ]
+                            },
+                            "id": "visuals_head_sub",
+                            "props": {
+                              "text": "Boxes, names and health bars. The preview updates live."
+                            },
+                            "style": {
+                              "classes": [
+                                "muted"
+                              ]
+                            },
+                            "type": "Text"
+                          }
+                        ],
+                        "id": "visuals_head",
+                        "props": {
+                          "spacing": 2
+                        },
+                        "type": "VStack"
+                      },
+                      {
+                        "children": [
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "SpotlightHover",
+                                  "trigger": "hover"
+                                }
+                              ]
+                            },
+                            "children": [
+                              {
+                                "anim": {
+                                  "motions": [
+                                    {
+                                      "delay": 0.1,
+                                      "preset": "FadeInUp"
+                                    }
+                                  ]
+                                },
+                                "children": [
+                                  {
+                                    "font": "Bold",
+                                    "id": "esp_card_title",
+                                    "props": {
+                                      "text": "Player ESP"
+                                    },
+                                    "style": {
+                                      "classes": [
+                                        "heading"
+                                      ]
+                                    },
+                                    "type": "Text"
+                                  },
+                                  {
+                                    "anim": {
+                                      "motions": [
+                                        {
+                                          "on": "onChange",
+                                          "preset": "ValuePop",
+                                          "trigger": "change"
+                                        }
+                                      ]
+                                    },
+                                    "bind": {
+                                      "value": "cfg.esp.box"
+                                    },
+                                    "id": "esp_box",
+                                    "props": {
+                                      "label": "Boxes"
+                                    },
+                                    "type": "SwitchToggle"
+                                  },
+                                  {
+                                    "bind": {
+                                      "index": "cfg.esp.boxStyle"
+                                    },
+                                    "id": "esp_style",
+                                    "props": {
+                                      "items": [
+                                        "Full",
+                                        "Corners",
+                                        "3D"
+                                      ],
+                                      "label": "Style"
+                                    },
+                                    "type": "SegmentedControl"
+                                  },
+                                  {
+                                    "anim": {
+                                      "motions": [
+                                        {
+                                          "on": "onChange",
+                                          "preset": "ValuePop",
+                                          "trigger": "change"
+                                        }
+                                      ]
+                                    },
+                                    "bind": {
+                                      "value": "cfg.esp.healthBar"
+                                    },
+                                    "id": "esp_health",
+                                    "props": {
+                                      "label": "Health bar"
+                                    },
+                                    "type": "SwitchToggle"
+                                  },
+                                  {
+                                    "anim": {
+                                      "motions": [
+                                        {
+                                          "on": "onChange",
+                                          "preset": "ValuePop",
+                                          "trigger": "change"
+                                        }
+                                      ]
+                                    },
+                                    "bind": {
+                                      "value": "cfg.esp.names"
+                                    },
+                                    "id": "esp_names",
+                                    "props": {
+                                      "label": "Names"
+                                    },
+                                    "type": "SwitchToggle"
+                                  },
+                                  {
+                                    "bind": {
+                                      "mask": "cfg.esp.flags"
+                                    },
+                                    "id": "esp_flags",
+                                    "props": {
+                                      "items": [
+                                        "Weapon",
+                                        "Distance",
+                                        "Armor",
+                                        "Flash"
+                                      ],
+                                      "label": "##flags"
+                                    },
+                                    "type": "Chips"
+                                  },
+                                  {
+                                    "bind": {
+                                      "color": "cfg.esp.color"
+                                    },
+                                    "id": "esp_color",
+                                    "props": {
+                                      "label": "Box color"
+                                    },
+                                    "type": "ColorPalette"
+                                  }
+                                ],
+                                "id": "esp_card_body",
+                                "props": {
+                                  "spacing": 10
+                                },
+                                "type": "VStack"
+                              }
+                            ],
+                            "id": "esp_card",
+                            "props": {
+                              "childFlags": [
+                                "AlwaysUseWindowPadding"
+                              ],
+                              "size": {
+                                "h": "fill",
+                                "w": "fill"
+                              }
+                            },
+                            "style": {
+                              "classes": [
+                                "card"
+                              ]
+                            },
+                            "type": "Child"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "SpotlightHover",
+                                  "trigger": "hover"
+                                }
+                              ]
+                            },
+                            "children": [
+                              {
+                                "anim": {
+                                  "motions": [
+                                    {
+                                      "delay": 0.16,
+                                      "preset": "FadeInUp"
+                                    }
+                                  ]
+                                },
+                                "children": [
+                                  {
+                                    "font": "Bold",
+                                    "id": "preview_card_title",
+                                    "props": {
+                                      "text": "Preview"
+                                    },
+                                    "style": {
+                                      "classes": [
+                                        "heading"
+                                      ]
+                                    },
+                                    "type": "Text"
+                                  },
+                                  {
+                                    "bind": {
+                                      "box": "cfg.esp.box",
+                                      "boxColor": "cfg.esp.color",
+                                      "boxStyle": "cfg.esp.boxStyle",
+                                      "healthBar": "cfg.esp.healthBar",
+                                      "name": "cfg.esp.names"
+                                    },
+                                    "id": "esp_preview",
+                                    "props": {
+                                      "label": "##esp",
+                                      "nameText": "Enemy",
+                                      "size": {
+                                        "h": 250,
+                                        "w": "fill"
+                                      }
+                                    },
+                                    "type": "EspBoxPreview"
+                                  }
+                                ],
+                                "id": "preview_card_body",
+                                "props": {
+                                  "spacing": 10
+                                },
+                                "type": "VStack"
+                              }
+                            ],
+                            "id": "preview_card",
+                            "props": {
+                              "childFlags": [
+                                "AlwaysUseWindowPadding"
+                              ],
+                              "size": {
+                                "h": "fill",
+                                "w": "fill"
+                              }
+                            },
+                            "style": {
+                              "classes": [
+                                "card"
+                              ]
+                            },
+                            "type": "Child"
+                          }
+                        ],
+                        "id": "visual_cards",
+                        "props": {
+                          "columns": 2,
+                          "flags": [
+                            "SizingStretchSame"
+                          ]
+                        },
+                        "type": "Grid"
+                      }
+                    ],
+                    "id": "page_visuals",
+                    "props": {
+                      "spacing": 12
+                    },
+                    "type": "VStack",
+                    "visibleIf": "state.page == 1"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "Typewriter"
+                                }
+                              ]
+                            },
+                            "font": "Title",
+                            "id": "misc_head_title",
+                            "props": {
+                              "text": "Misc"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "delay": 0.25,
+                                  "preset": "FadeIn"
+                                }
+                              ]
+                            },
+                            "id": "misc_head_sub",
+                            "props": {
+                              "text": "Movement helpers, overlays and the menu hotkeys."
+                            },
+                            "style": {
+                              "classes": [
+                                "muted"
+                              ]
+                            },
+                            "type": "Text"
+                          }
+                        ],
+                        "id": "misc_head",
+                        "props": {
+                          "spacing": 2
+                        },
+                        "type": "VStack"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "StaggerScaleIn",
+                              "stagger": 0.05
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "Raise",
+                                  "trigger": "hover"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "enabled": "cfg.misc.bhop"
+                            },
+                            "id": "cat_bhop",
+                            "props": {
+                              "description": "Times jumps on landing",
+                              "icon": "fa-person-running",
+                              "size": {
+                                "h": "auto",
+                                "w": "fill"
+                              },
+                              "title": "Bunny hop"
+                            },
+                            "type": "CategoryCard"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "Raise",
+                                  "trigger": "hover"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "enabled": "cfg.misc.radar"
+                            },
+                            "id": "cat_radar",
+                            "props": {
+                              "description": "Shows everyone on the minimap",
+                              "icon": "fa-satellite-dish",
+                              "size": {
+                                "h": "auto",
+                                "w": "fill"
+                              },
+                              "title": "Radar"
+                            },
+                            "type": "CategoryCard"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "Raise",
+                                  "trigger": "hover"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "enabled": "cfg.misc.spectators"
+                            },
+                            "id": "cat_spec",
+                            "props": {
+                              "description": "Who is watching you",
+                              "icon": "fa-users",
+                              "size": {
+                                "h": "auto",
+                                "w": "fill"
+                              },
+                              "title": "Spectator list"
+                            },
+                            "type": "CategoryCard"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "Raise",
+                                  "trigger": "hover"
+                                }
+                              ]
+                            },
+                            "bind": {
+                              "enabled": "cfg.misc.watermark"
+                            },
+                            "id": "cat_mark",
+                            "props": {
+                              "description": "Name, FPS and time in a corner",
+                              "icon": "fa-stamp",
+                              "size": {
+                                "h": "auto",
+                                "w": "fill"
+                              },
+                              "title": "Watermark"
+                            },
+                            "type": "CategoryCard"
+                          }
+                        ],
+                        "id": "misc_cards",
+                        "props": {
+                          "columns": 2,
+                          "flags": [
+                            "SizingStretchSame"
+                          ]
+                        },
+                        "type": "Grid"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "SpotlightHover",
+                              "trigger": "hover"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "delay": 0.2,
+                                  "preset": "FadeInUp"
+                                }
+                              ]
+                            },
+                            "children": [
+                              {
+                                "font": "Bold",
+                                "id": "hotkey_card_title",
+                                "props": {
+                                  "text": "Hotkeys"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "heading"
+                                  ]
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "id": "hotkeys",
+                                "props": {
+                                  "actions": [
+                                    "Toggle menu",
+                                    "Panic key",
+                                    "Aim assist",
+                                    "Triggerbot"
+                                  ],
+                                  "label": "##hotkeys"
+                                },
+                                "type": "HotkeyList"
+                              }
+                            ],
+                            "id": "hotkey_card_body",
+                            "props": {
+                              "spacing": 10
+                            },
+                            "type": "VStack"
+                          }
+                        ],
+                        "id": "hotkey_card",
+                        "props": {
+                          "childFlags": [
+                            "AlwaysUseWindowPadding"
+                          ],
+                          "size": {
+                            "h": 170,
+                            "w": "fill"
+                          }
+                        },
+                        "style": {
+                          "classes": [
+                            "card"
+                          ]
+                        },
+                        "type": "Child"
+                      }
+                    ],
+                    "id": "page_misc",
+                    "props": {
+                      "spacing": 12
+                    },
+                    "type": "VStack",
+                    "visibleIf": "state.page == 2"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "preset": "Typewriter"
+                                }
+                              ]
+                            },
+                            "font": "Title",
+                            "id": "configs_head_title",
+                            "props": {
+                              "text": "Configs"
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "delay": 0.25,
+                                  "preset": "FadeIn"
+                                }
+                              ]
+                            },
+                            "id": "configs_head_sub",
+                            "props": {
+                              "text": "Save, load and share profiles."
+                            },
+                            "style": {
+                              "classes": [
+                                "muted"
+                              ]
+                            },
+                            "type": "Text"
+                          }
+                        ],
+                        "id": "configs_head",
+                        "props": {
+                          "spacing": 2
+                        },
+                        "type": "VStack"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "SpotlightHover",
+                              "trigger": "hover"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "anim": {
+                              "motions": [
+                                {
+                                  "delay": 0.1,
+                                  "preset": "FadeInUp"
+                                }
+                              ]
+                            },
+                            "children": [
+                              {
+                                "font": "Bold",
+                                "id": "profiles_card_title",
+                                "props": {
+                                  "text": "Profiles"
+                                },
+                                "style": {
+                                  "classes": [
+                                    "heading"
+                                  ]
+                                },
+                                "type": "Text"
+                              },
+                              {
+                                "bind": {
+                                  "selected": "state.slot"
+                                },
+                                "id": "profiles",
+                                "props": {
+                                  "active": "cfg.profile",
+                                  "label": "##profiles",
+                                  "slots": [
+                                    "Default",
+                                    "Ranked",
+                                    "Casual",
+                                    ""
+                                  ]
+                                },
+                                "type": "ProfileSlots"
+                              }
+                            ],
+                            "id": "profiles_card_body",
+                            "props": {
+                              "spacing": 10
+                            },
+                            "type": "VStack"
+                          }
+                        ],
+                        "id": "profiles_card",
+                        "props": {
+                          "childFlags": [
+                            "AlwaysUseWindowPadding"
+                          ],
+                          "size": {
+                            "h": 220,
+                            "w": "fill"
+                          }
+                        },
+                        "style": {
+                          "classes": [
+                            "card"
+                          ]
+                        },
+                        "type": "Child"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "delay": 0.2,
+                              "preset": "SlideInUp"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "open": "state.bannerOpen"
+                        },
+                        "id": "saved_banner",
+                        "props": {
+                          "action": "",
+                          "kind": "Info",
+                          "label": "saved",
+                          "text": "Profiles are stored next to the game"
+                        },
+                        "type": "NotificationBanner"
+                      }
+                    ],
+                    "id": "page_configs",
+                    "props": {
+                      "spacing": 12
+                    },
+                    "type": "VStack",
+                    "visibleIf": "state.page == 3"
+                  }
+                ],
+                "id": "content_stack",
+                "props": {
+                  "spacing": 16
+                },
+                "type": "VStack"
+              }
+            ],
+            "id": "content",
+            "props": {
+              "childFlags": [
+                "AlwaysUseWindowPadding"
+              ],
+              "size": {
+                "h": "fill",
+                "w": "fill"
+              }
+            },
+            "style": {
+              "colors": {
+                "ChildBg": "#00000000"
+              },
+              "vars": {
+                "WindowPadding": {
+                  "x": 20,
+                  "y": 16
+                }
+              }
+            },
+            "type": "Child"
+          }
+        ],
+        "id": "shell",
+        "props": {
+          "spacing": 0
+        },
+        "type": "HStack"
+      }
+    ],
+    "fx": [
+      {
+        "color": "#00000099",
+        "offset": {
+          "x": 0,
+          "y": 6
+        },
+        "rounding": 10,
+        "size": 22,
+        "type": "shadow"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoTitleBar",
+        "NoCollapse",
+        "NoScrollbar"
+      ],
+      "initialSize": {
+        "x": 980,
+        "y": 610
+      },
+      "sizeCond": "FirstUseEver",
+      "title": "{{PROJECT_NAME}}"
+    },
+    "style": {
+      "vars": {
+        "WindowPadding": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": true,
+      "name": "open",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "name": "page",
+      "type": "int"
+    },
+    {
+      "default": "",
+      "name": "search",
+      "type": "string"
+    },
+    {
+      "default": 0,
+      "name": "slot",
+      "type": "int"
+    },
+    {
+      "default": true,
+      "name": "bannerOpen",
+      "type": "bool"
+    }
+  ]
+}

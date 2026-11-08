@@ -1,0 +1,62 @@
+{
+  "enums": {},
+  "kind": "types",
+  "schemaVersion": 1,
+  "structs": {
+    "OverlayConfig": {
+      "fields": [
+        {
+          "ctype": "Bool",
+          "name": "aim",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "trigger",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "rcs",
+          "type": "bool"
+        },
+        {
+          "ctype": "Float",
+          "name": "fov",
+          "type": "float"
+        },
+        {
+          "ctype": "Bool",
+          "name": "esp",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "glow",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "radar",
+          "type": "bool"
+        },
+        {
+          "ctype": "I32",
+          "name": "glowStrength",
+          "type": "int"
+        },
+        {
+          "ctype": "Bool",
+          "name": "bhop",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "strafe",
+          "type": "bool"
+        }
+      ],
+      "header": "overlay_config.h"
+    }
+  }
+}

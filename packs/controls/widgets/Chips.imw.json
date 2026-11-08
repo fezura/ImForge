@@ -1,0 +1,94 @@
+{
+  "bindings": [
+    {
+      "name": "mask",
+      "required": true,
+      "types": [
+        "int"
+      ]
+    }
+  ],
+  "call": "imb::ctl::Chips({label}, {mask}, {items:array}, {items:count})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-tags",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "Chips",
+  "preview": [
+    {
+      "fill": "#4296fa48",
+      "h": 22,
+      "rounding": 11,
+      "shape": "rect",
+      "stroke": "#4296faff",
+      "w": 52,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Aim",
+      "x": 20,
+      "y": 4
+    },
+    {
+      "fill": "#262d3aff",
+      "h": 22,
+      "rounding": 11,
+      "shape": "rect",
+      "stroke": "#3c4456ff",
+      "w": 44,
+      "x": 58,
+      "y": 0
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "ESP",
+      "x": 68,
+      "y": 4
+    },
+    {
+      "fill": "#262d3aff",
+      "h": 22,
+      "rounding": 11,
+      "shape": "rect",
+      "stroke": "#3c4456ff",
+      "w": 56,
+      "x": 108,
+      "y": 0
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Radar",
+      "x": 118,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "##chips",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": [
+        "Aim",
+        "ESP",
+        "Radar",
+        "Misc"
+      ],
+      "name": "items",
+      "type": "stringList"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

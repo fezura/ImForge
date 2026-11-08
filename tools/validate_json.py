@@ -11,11 +11,13 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCHEMA_DIR = os.path.join(ROOT, "schemas")
 SCHEMA_ID_BASE = "https://raw.githubusercontent.com/fezura/ImForge/main/schemas/"
-DEFAULT_DIRS = ["examples", "templates", "packs"]
+DEFAULT_DIRS = ["examples", "templates", "packs", "presets"]
 KIND_SCHEMA = {
     "project": "project.schema.json", "panel": "panel.schema.json", "component": "component.schema.json",
     "widget": "widget.schema.json", "theme": "theme.schema.json", "imblib": "imblib-manifest.schema.json",
     "types": "types.schema.json", "templates": "templates.schema.json",
+    "animation": "animation.schema.json", "animationSet": "animation-set.schema.json",
+    "design": "design.schema.json",
 }
 PLACEHOLDERS = {"{{PROJECT_NAME}}": "SampleProject", "{{NAMESPACE}}": "ui"}
 IDENT_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
@@ -179,6 +181,8 @@ class Catalog:
         self.cols = set(schema_enum(schemas, "node.schema.json", "$defs", "ColorMap", "properties")) | set(COL_ALIASES)
         vars_props = schemas.get("node.schema.json", {}).get("$defs", {}).get("StyleVarMap", {}).get("properties", {})
         self.vars = {k: ("$ref" in v) for k, v in vars_props.items()}
+        self.widgets = set()
+        self.motion_presets = set()
         if not self.stock:
             self.stock = {"Window", "VStack", "HStack", "Group", "Child", "Grid", "TabBar", "Tab", "CollapsingHeader", "TreeNode", "Popup", "Modal", "MenuBar", "Menu", "Canvas", "Component", "Slot", "Code",
                           "Text", "SeparatorText", "Separator", "Spacing", "NewLine", "Dummy", "Button", "SmallButton", "ArrowButton", "Checkbox", "RadioButton", "Combo", "ListBox", "SliderFloat", "SliderInt",
@@ -194,6 +198,7 @@ class TreeCtx:
         self.fonts, self.classes, self.types, self.slots = fonts, classes, types, slots
         self.ids = {}
         self.seen_slots = set()
+        self.animations = set()
 
     def error(self, node, msg):
         self.rep.error(self.rel, "node %r: %s" % (node.get("id", "?"), msg))
@@ -490,6 +495,12 @@ def check_anim(ctx, node):
                 ctx.error(node, "anim: transition %r has a \"to\" value of the wrong kind" % prop)
         if t.get("ease") == "Spring" and not (t.get("stiffness") or t.get("damping")):
             ctx.warn(node, "anim: Spring transition %r without stiffness/damping uses the defaults" % prop)
+    for m in anim.get("motions") or []:
+        preset, custom = m.get("preset"), m.get("custom")
+        if preset and ctx.catalog.motion_presets and preset not in ctx.catalog.motion_presets:
+            ctx.warn(node, "anim: unknown motion preset %r" % preset)
+        if custom and custom not in ctx.animations:
+            ctx.error(node, "anim: custom animation %r is not in the project's animations files" % custom)
 
 
 def check_component_instance(ctx, node):
@@ -538,8 +549,8 @@ def check_component_instance(ctx, node):
 def check_structure(ctx, node, parent):
     t, pt = node.get("type"), parent.get("type") if parent else None
     cat = ctx.catalog
-    if t not in cat.stock:
-        ctx.warn(node, "type %r is not a stock widget (custom widget manifests are not checked here)" % t)
+    if t not in cat.stock and t not in cat.widgets:
+        ctx.warn(node, "type %r is neither a stock widget nor a widget from the checked packs" % t)
     if t == "Window" and parent is not None:
         ctx.error(node, "Window is only allowed as the panel root")
     if t == "Tab" and pt != "TabBar":
@@ -687,6 +698,15 @@ def check_project(rel, proj, files, rep, catalog):
     for path in proj.get("libraries", []):
         if project_file(files, base, path)[1] is None and not os.path.isfile(os.path.join(ROOT, base, path)):
             rep.warn(rel, "library %r not found" % path)
+    animations = set()
+    for path in proj.get("animations", []):
+        obj = project_file(files, base, path)[1]
+        if obj is None:
+            rep.error(rel, "animations entry %r does not exist or is not a JSON file" % path)
+        elif obj.get("kind") != "animation":
+            rep.error(rel, "animations entry %r has kind %r, expected 'animation'" % (path, obj.get("kind")))
+        else:
+            animations.add(obj.get("name"))
     fonts = {f.get("name") for f in proj.get("fonts", [])}
     classes = set((proj.get("styleClasses") or {}).keys())
     for cname, cls in (proj.get("styleClasses") or {}).items():
@@ -700,6 +720,7 @@ def check_project(rel, proj, files, rep, catalog):
             if types is not None and ptype not in types.get("structs", {}):
                 rep.warn(frel, "param %r has type %r not described in types.json; its paths are not checked" % (pname, ptype))
         ctx = TreeCtx(frel, rep, catalog, "panel", params, state, components, fonts, classes, types, set())
+        ctx.animations = animations
         if isinstance(panel.get("root"), dict):
             check_tree(ctx, panel["root"])
     for cname, comp in components.items():
@@ -707,6 +728,7 @@ def check_project(rel, proj, files, rep, catalog):
         check_declarations(crel, rep, comp)
         params = {p["name"]: p["type"] for p in comp.get("params", []) if "name" in p}
         ctx = TreeCtx(crel, rep, catalog, "component", params, {}, components, fonts, classes, None, set(comp.get("slots", [])))
+        ctx.animations = animations
         if isinstance(comp.get("root"), dict):
             check_tree(ctx, comp["root"], cname)
 
@@ -731,6 +753,11 @@ def main(argv):
     catalog = Catalog(schemas)
     validators = make_validators(schemas, rep) if use_schema else None
     files = load_files(collect_files(targets), rep)
+    for obj in files.values():
+        if isinstance(obj, dict) and obj.get("kind") == "widget":
+            catalog.widgets.add(obj.get("name"))
+        elif isinstance(obj, dict) and obj.get("kind") == "animationSet":
+            catalog.motion_presets.update(a.get("name") for a in obj.get("animations", []) if isinstance(a, dict))
     referenced = set()
     for rel, obj in files.items():
         if not isinstance(obj, dict):
@@ -746,10 +773,16 @@ def main(argv):
             validate_against_schema(validators, kind, obj, rel, rep)
         if kind == "theme":
             check_theme(rel, rep, obj, catalog)
+        elif kind == "design":
+            check_theme(rel, rep, obj.get("theme", {}), catalog)
         elif kind == "types":
             check_types_file(rel, rep, obj)
         elif kind == "templates":
             check_templates_index(rel, obj, files, rep)
+        elif kind in ("animation", "animationSet"):
+            import gen_motion_presets
+            for msg in gen_motion_presets.check_file(obj):
+                rep.error(rel, msg)
     for rel, obj in files.items():
         if isinstance(obj, dict) and obj.get("kind") == "project":
             check_project(rel, obj, files, rep, catalog)

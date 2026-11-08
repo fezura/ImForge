@@ -118,6 +118,55 @@ On the app side, a builder can push at most 256 panels, 1024 components and 128 
 20000 nodes and 64 levels per document; `NewFrame` handles at most 256 messages. The
 interpreter stops recursing at 64 levels with an error instead of overflowing the game's stack.
 
+### Fonts over the link
+
+The builder sends the project's font files so the app can draw with them. It only reads files
+that, after resolving symlinks, are inside the project folder or the builder's own fonts folder;
+an absolute path or a link pointing anywhere else is skipped with a warning, so a downloaded
+project can't make the builder read and ship an arbitrary file. Each file goes out in 192 KB
+`font_data` chunks named by its SHA-256.
+
+The app treats the bytes as hostile. A file may be at most 8 MB, the app keeps at most 16 files
+and 32 MB, a `fonts` list holds at most 32 entries with sizes between 4 and 256 px, and chunks
+must arrive in order and add up to the declared size. The joined file must match its hash and
+then pass a structural check before Dear ImGui's stb_truetype sees it, because stb_truetype does
+no bounds checking of its own. The check accepts plain TrueType only (no `.ttc` collections, no
+CFF outlines, which stb parses against a fixed 512 MB window). It verifies the table directory
+and every table stb reads against the file size, runs stb's own cmap lookup for every BMP code
+point with bounded reads and requires each result to be a real glyph, walks every glyph outline
+and composite record, refuses composites that point at themselves or nest deeper than 8, and
+rejects inverted or absurd glyph boxes and line heights that would turn into negative or huge
+rectangles in the atlas packer. stb expands a composite into one vertex array, so the check also
+adds up what every glyph expands to: at most 32768 vertices for one glyph and 32M for the whole
+font, which stops a handful of nested composites from becoming billions of points. A format 6
+cmap has to stay inside the BMP, because the lookup loop only visits code points up to 0xFFFF
+while stb reads whatever a 32-bit `ImWchar` asks for. One quirk is repaired instead of refused: a last contour made of a
+single off-curve point makes stb read one point past its buffer, and real fonts like Consolas and
+Calibri have such glyphs, so the app marks that point on-curve (a one point contour has no area
+either way). A font with no glyph in its ranges is skipped too, since Dear
+ImGui before 1.92 asserts on that. On top of the check, each font is first built in a throwaway
+atlas, and only added to the app's atlas if that worked. Before 1.92 the atlas rasterizes every
+glyph in a font's ranges up front, so a 256 px font with big glyph boxes could ask for a
+multi-gigabyte texture. The app adds up the pixels each new font would need from the real glyph
+boxes and refuses fonts once all live fonts together pass 32M pixels (about an 8192 by 4096
+texture). From 1.92 on glyphs are built on demand and this budget doesn't apply. Fonts are added
+outside the frame in `PreNewFrame()` and never removed, so `ImFont*` pointers the app holds stay
+valid; at most 64 get added over the life of the app. Font data handed to the atlas is a copy it
+owns, and the glyph range arrays it keeps pointers to live as long as the client. Call
+`PreNewFrame()` right before the backend's `NewFrame()`, never between `ImGui::Render()` and the
+renderer drawing that frame: a rebuild recreates the font texture, and draw data from before it
+still points at the old one. The `icons` message that maps icon names to code points holds at
+most 8192 entries; names are lowercase letters, digits and `-` up to 64 characters, and code
+points must be printable (no control characters, 0x7F to 0x9F included) and outside the
+surrogate range, otherwise the whole message is dropped. Font names are stripped of control
+characters before they can reach the app's log callback.
+
+On the builder side the project's `fonts` list is untrusted too. At most 32 entries are looked
+at per push, reading stops once the files add up to more than 32 MB, and files the current plan
+doesn't use are dropped from the cache. A client's `client_info` is only taken once per
+connection, because each one makes the builder send the project and every font again; a client
+that repeats it is ignored.
+
 ### What builder data can and can't do
 
 Text from the builder is never used as a printf format: text widgets use `TextUnformatted` or
@@ -143,6 +192,57 @@ The files written into the project don't take their names from the archive paths
 and widget names from the manifests are reduced to safe file names, widget files must end in
 `.json` and headers in `.h`, `.hpp` or `.inl`. Every write goes through a check that the target
 is inside the project directory, and refuses symlinks and symlinked parent directories.
+
+## Animations, designs and widget manifests
+
+Version 0.2 added keyframe animations, designs and widget packs that insert text into generated
+code, so these got their own checks.
+
+The live `animations` message is capped at 2048 entries, 32 tracks per animation, 64 keyframes
+per track, 256 characters for names and tags, 4096 for descriptions and credits and 32 tags. The
+same limits apply to animations inside a `project` message. Numbers are checked when an
+animation is parsed: durations must be finite and within (0, 60] seconds, iterations an integer up
+to 1000, `steps()` at most 100, spring and cubic-bezier values inside fixed ranges. Panels get
+the same treatment for motion specs (`durationScale`, `delay`, `stagger`, `iterations`), and the
+playback engine still clamps whatever reaches it, so a 1e-30 second duration or a NaN delay ends
+up as "instant" instead of a NaN pose. Replacing a registered animation keeps the old one alive for
+a while because playing scopes may still point at it; the pile of replaced animations is capped
+at 64, and since a playing scope only compares the pointer, never dereferences it, dropping
+one is safe.
+
+Project files and designs are untrusted. A design's font file has to be a relative path with no
+`..`, drive letter or backslash, otherwise the default font file is used and a warning is added.
+When the builder resolves a project font it refuses network (UNC) paths and `..`; an absolute
+local path still works, but the file only loads if it starts like a TrueType or OpenType font.
+Design style class names are limited to letters, digits, `-` and `_`, and motion numbers go
+through the same ranges as above. The `.imblib` format doesn't carry animations or designs;
+only components, widget manifests and headers.
+
+Anything that ends up in generated C++ is checked. Style class names that map to the same C++
+identifier (`accent-button` and `accent_button`) are an error in the validator and in codegen
+instead of producing two functions with one name. Animation names must be PascalCase to load,
+their descriptions are never written out, and a motion naming a preset the builder doesn't ship
+is skipped with a warning. The `codegen.namespace` and `codegen.runtimeHeader` settings from a
+project fall back to `ui` and `imb_runtime.h` when they aren't a namespace name or a plain
+header name. Panel and theme names in the `@imb:file` comment lose newlines, backslashes and
+`?` so they can't end the comment.
+
+Widget manifests (bundled packs, `.imblib` archives, the live `widgets` message) must pass the
+same check when they load. `include` is a plain header name: letters, digits, `_`, `.`, `/`
+and `-`, ending in `.h` or `.hpp`, with no `..` and no leading slash. `call` and `callEnd` are a
+single call, `ns::Function(...)`, whose arguments hold `{placeholders}` and literals; `;`,
+braces outside placeholders, `#`, comments, backslashes, backticks and newlines are refused.
+Export only copies pack headers whose names pass that check and whose resolved path stays inside
+the pack folder.
+
+Bundled packs come from the folders next to the executable, the install `share` folder and the
+source tree (or `IMFORGE_PACKS_DIR` if you set it). A project folder never adds packs on its
+own; custom libraries go through the `.imblib` import above. A broken pack manifest is skipped
+with a warning.
+
+Custom animations are saved by `SaveProject` under `animations/`, with the file name taken from
+the animation name run through the same sanitizer as panels and themes, and the same
+inside-the-project checks. A name like `../x` can't leave the folder.
 
 ## Writing files
 
@@ -201,8 +301,26 @@ Linux (`xdg-open` or `open`, `zenity`), always with quoted arguments.
   interacts with them. That's what they're for.
 - Windows reserved device names (`CON`, `NUL`, ...) aren't special-cased when sanitizing file
   names.
-- Generated code embeds `Code` node bodies verbatim, by design, and string-literal escaping in
-  codegen hasn't been audited. Treat code exported from someone else's project as untrusted
-  source and read it before compiling.
+- Generated code embeds `Code` node bodies verbatim, by design. A widget manifest can still
+  name any function in its `call`, and an imported library ships headers that get compiled into
+  your project, so the call grammar limits what a manifest can write but not what its header
+  does. Treat code exported from someone else's project, and libraries from people you don't
+  know, as untrusted source and read them before compiling.
+- Absolute local font paths in a project file are still honored for the builder's own canvas.
+  Only network paths and `..` are refused there. The live link never sends such a font to the
+  app.
+- stb_truetype is not safe against hostile fonts and we don't claim to make it so. The font check
+  covers the tables and structures Dear ImGui makes stb read: the table directory, cmap (formats
+  0, 4, 6, 12, 13), head, maxp, hhea, hmtx, loca, glyf and composites. It does not cover `kern`
+  and `GPOS` (Dear ImGui never asks stb for kerning), `GDEF`, hinting instructions (stb skips
+  them) or the rasterizer's own clipping. A font that passes can still render badly; it can't make
+  stb read outside the buffer in the cases we know of, and the bytes only come from the paired
+  builder anyway. If that matters to you, don't attach to a builder you don't trust, or leave
+  `PreNewFrame()` out and the app never loads builder fonts.
+- Font files are never evicted on the app side. After 16 files or 32 MB have been received, new
+  fonts are refused until the app restarts. A hostile paired builder can use that up on purpose,
+  and so can a long session of swapping font files.
+- A paired builder can still make the app hash and check up to 256 chunks of font data per frame,
+  which is a hitch, not a memory problem.
 - The automation `export <dir>` command and the export self-check count as explicit user intent
   and skip the external output directory confirmation.

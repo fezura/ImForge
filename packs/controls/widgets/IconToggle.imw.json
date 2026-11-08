@@ -1,0 +1,62 @@
+{
+  "bindings": [
+    {
+      "name": "value",
+      "required": true,
+      "types": [
+        "bool"
+      ]
+    }
+  ],
+  "call": "imb::ctl::IconToggle({label}, {value}, {iconOn}, {iconOff})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-eye",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "IconToggle",
+  "preview": [
+    {
+      "fill": "#4296fa40",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "stroke": "#4296faff",
+      "w": 22,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#4296faff",
+      "shape": "text",
+      "text": "B",
+      "x": 7,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "Bold",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": "B",
+      "hint": "glyph or text shown while on",
+      "name": "iconOn",
+      "type": "string"
+    },
+    {
+      "default": "",
+      "hint": "shown while off, empty uses iconOn",
+      "name": "iconOff",
+      "type": "string"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

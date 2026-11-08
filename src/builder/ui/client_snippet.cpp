@@ -70,6 +70,17 @@ std::string ShaderFxHeader(const std::string& renderer) {
     return std::string();
 }
 
+// what recreates the renderer's font texture after PreNewFrame() added the project fonts (< 1.92)
+static std::string FontTextureRebuild(const std::string& renderer) {
+    if (renderer == "dx9") return "ImGui_ImplDX9_InvalidateDeviceObjects";
+    if (renderer == "dx11") return "ImGui_ImplDX11_InvalidateDeviceObjects";
+    if (renderer == "dx12") return "[] { WaitForLastSubmittedFrame(); ImGui_ImplDX12_InvalidateDeviceObjects(); }";
+    if (renderer == "gl3") return "[] { ImGui_ImplOpenGL3_DestroyFontsTexture(); ImGui_ImplOpenGL3_CreateFontsTexture(); }";
+    if (renderer == "vulkan")
+        return "[] { vkDeviceWaitIdle(g_Device); ImGui_ImplVulkan_DestroyFontsTexture(); ImGui_ImplVulkan_CreateFontsTexture(); }";
+    return std::string();
+}
+
 std::string MakeClientSnippet(const Project& p) {
     std::string panel_name;
     std::vector<Root> roots = BindingRoots(p, panel_name);
@@ -94,7 +105,14 @@ std::string MakeClientSnippet(const Project& p) {
     s += "void InitUi() {\n";
     s += "    // once, after ImGui::CreateContext() and your ImGui_Impl*_Init()\n";
     s += "    imforge::live::Connect(\"" + LiveUrl(p) + "\");\n";
+    std::string rebuild = FontTextureRebuild(p.renderer);
+    s += "    // recreates the font texture once the project fonts from the builder are in the atlas\n";
+    s += "    imforge::live::SetFontTextureRebuild(" + (rebuild.empty() ? std::string("nullptr /* your renderer's font texture rebuild */") : rebuild) + ");\n";
     s += "    #include \"" + out_dir + "/imforge_dev.h\"   // optional: registers event handlers and locked blocks\n";
+    s += "}\n\n";
+    s += "void BeforeNewFrame() {\n";
+    s += "    // every frame, before ImGui_Impl*_NewFrame(): loads the project fonts the builder sends\n";
+    s += "    imforge::live::PreNewFrame();\n";
     s += "}\n\n";
     s += "void DrawUi() {\n";
     s += "    // every frame, after ImGui::NewFrame()\n";

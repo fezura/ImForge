@@ -1,0 +1,134 @@
+{
+  "bindings": [
+    {
+      "name": "selected",
+      "required": false,
+      "types": [
+        "int"
+      ]
+    },
+    {
+      "name": "color",
+      "required": false,
+      "types": [
+        "vec4"
+      ]
+    }
+  ],
+  "call": "imb::ctl::ColorPalette({label}, {selected}, {color}, {colors:array}, {colors:count}, {columns})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-palette",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "ColorPalette",
+  "preview": [
+    {
+      "fill": "#e74c3cff",
+      "h": 22,
+      "rounding": 5,
+      "shape": "rect",
+      "stroke": "#ffffffff",
+      "w": 22,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#e67e22ff",
+      "h": 22,
+      "rounding": 5,
+      "shape": "rect",
+      "w": 22,
+      "x": 26,
+      "y": 0
+    },
+    {
+      "fill": "#f1c40fff",
+      "h": 22,
+      "rounding": 5,
+      "shape": "rect",
+      "w": 22,
+      "x": 52,
+      "y": 0
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 22,
+      "rounding": 5,
+      "shape": "rect",
+      "w": 22,
+      "x": 78,
+      "y": 0
+    },
+    {
+      "fill": "#1abc9cff",
+      "h": 22,
+      "rounding": 5,
+      "shape": "rect",
+      "w": 22,
+      "x": 104,
+      "y": 0
+    },
+    {
+      "fill": "#3498dbff",
+      "h": 22,
+      "rounding": 5,
+      "shape": "rect",
+      "w": 22,
+      "x": 130,
+      "y": 0
+    },
+    {
+      "fill": "#9b59b6ff",
+      "h": 22,
+      "rounding": 5,
+      "shape": "rect",
+      "w": 22,
+      "x": 156,
+      "y": 0
+    },
+    {
+      "fill": "#ecf0f1ff",
+      "h": 22,
+      "rounding": 5,
+      "shape": "rect",
+      "w": 22,
+      "x": 182,
+      "y": 0
+    }
+  ],
+  "props": [
+    {
+      "default": "##palette",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": [
+        "#e74c3cff",
+        "#e67e22ff",
+        "#f1c40fff",
+        "#2ecc71ff",
+        "#1abc9cff",
+        "#3498dbff",
+        "#9b59b6ff",
+        "#ecf0f1ff"
+      ],
+      "hint": "#rrggbb or #rrggbbaa",
+      "name": "colors",
+      "type": "stringList"
+    },
+    {
+      "default": 0,
+      "hint": "0 fits the width",
+      "name": "columns",
+      "type": "int"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

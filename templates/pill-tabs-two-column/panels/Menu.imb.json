@@ -1,0 +1,1382 @@
+{
+  "kind": "panel",
+  "name": "Menu",
+  "params": [
+    {
+      "name": "cfg",
+      "type": "Config"
+    }
+  ],
+  "root": {
+    "anim": {
+      "motions": [
+        {
+          "preset": "FadeInUp"
+        },
+        {
+          "preset": "FadeOutDown",
+          "trigger": "exit"
+        }
+      ]
+    },
+    "bind": {
+      "open": "state.open"
+    },
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "LoopThrob",
+                      "trigger": "loop"
+                    }
+                  ]
+                },
+                "font": "Title",
+                "id": "logo",
+                "props": {
+                  "color": "#e8202fff",
+                  "text": "{icon:fa-fire}"
+                },
+                "type": "Text"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "LightSpeedInLeft"
+                    }
+                  ]
+                },
+                "font": "Title",
+                "id": "brand",
+                "props": {
+                  "text": "{{PROJECT_NAME}}"
+                },
+                "type": "Text"
+              },
+              {
+                "id": "top_fill_l",
+                "props": {
+                  "size": {
+                    "h": 1,
+                    "w": "fill"
+                  }
+                },
+                "type": "Dummy"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "delay": 0.1,
+                      "preset": "FadeInDown"
+                    }
+                  ]
+                },
+                "bind": {
+                  "index": "state.tab"
+                },
+                "id": "tabs",
+                "props": {
+                  "items": [
+                    "Legit",
+                    "Rage",
+                    "Visuals",
+                    "Settings"
+                  ],
+                  "label": "##tabs"
+                },
+                "type": "PillTabs"
+              },
+              {
+                "id": "top_fill_r",
+                "props": {
+                  "size": {
+                    "h": 1,
+                    "w": "fill"
+                  }
+                },
+                "type": "Dummy"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "Lift",
+                      "trigger": "hover"
+                    },
+                    {
+                      "preset": "Squish",
+                      "trigger": "press"
+                    }
+                  ]
+                },
+                "bind": {
+                  "selected": "state.saveMode"
+                },
+                "id": "save",
+                "props": {
+                  "items": [
+                    "Save",
+                    "Save as",
+                    "Export code"
+                  ],
+                  "label": "Save##split"
+                },
+                "style": {
+                  "classes": [
+                    "accent_button"
+                  ]
+                },
+                "type": "SplitButton"
+              }
+            ],
+            "id": "topbar",
+            "props": {
+              "spacing": 10
+            },
+            "type": "HStack"
+          },
+          {
+            "id": "top_div",
+            "props": {
+              "look": "Line"
+            },
+            "type": "Divider"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "ClipRevealRight"
+                }
+              ]
+            },
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "GlowUp",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "StaggerFadeLeft",
+                          "stagger": 0.04
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "id": "aim_card_icon",
+                            "props": {
+                              "text": "{icon:fa-crosshairs}"
+                            },
+                            "style": {
+                              "classes": [
+                                "heading"
+                              ]
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "font": "Bold",
+                            "id": "aim_card_title",
+                            "props": {
+                              "text": "AIM"
+                            },
+                            "type": "Text"
+                          }
+                        ],
+                        "id": "aim_card_head",
+                        "props": {
+                          "spacing": 8
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "id": "aim_card_div",
+                        "props": {
+                          "look": "Fade"
+                        },
+                        "type": "Divider"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "FlashHighlight",
+                              "trigger": "change"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "cfg.aim"
+                        },
+                        "id": "aim_on",
+                        "props": {
+                          "kind": "Square",
+                          "label": "Aim assist"
+                        },
+                        "type": "SwitchToggle"
+                      },
+                      {
+                        "bind": {
+                          "current": "cfg.weapon"
+                        },
+                        "id": "weapon",
+                        "props": {
+                          "icons": [
+                            "fa-gun",
+                            "fa-hand",
+                            "fa-bullseye",
+                            "fa-wind"
+                          ],
+                          "items": [
+                            "Rifles",
+                            "Pistols",
+                            "Snipers",
+                            "SMGs"
+                          ],
+                          "label": "Weapon group"
+                        },
+                        "type": "IconDropdown"
+                      },
+                      {
+                        "bind": {
+                          "value": "cfg.fov"
+                        },
+                        "id": "fov",
+                        "props": {
+                          "format": "%.1f",
+                          "label": "FOV",
+                          "max": 20,
+                          "min": 0,
+                          "ticks": 5
+                        },
+                        "type": "TickSlider"
+                      },
+                      {
+                        "bind": {
+                          "value": "cfg.reaction"
+                        },
+                        "id": "reaction",
+                        "props": {
+                          "format": "%.0f",
+                          "label": "Reaction (ms)",
+                          "max": 400,
+                          "min": 0
+                        },
+                        "type": "RangeSlider"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "preset": "WobbleReady",
+                              "trigger": "hover"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "cfg.smooth"
+                        },
+                        "id": "smooth",
+                        "props": {
+                          "format": "%.1f",
+                          "label": "Smooth",
+                          "max": 20,
+                          "min": 1
+                        },
+                        "type": "Knob"
+                      }
+                    ],
+                    "id": "aim_card_body",
+                    "props": {
+                      "spacing": 10
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "aim_card",
+                "props": {
+                  "childFlags": [
+                    "AlwaysUseWindowPadding"
+                  ],
+                  "size": {
+                    "h": "fill-50",
+                    "w": "fill"
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "card"
+                  ]
+                },
+                "type": "Child"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "GlowUp",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "delay": 0.08,
+                          "preset": "StaggerFadeLeft",
+                          "stagger": 0.04
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "id": "rcs_card_icon",
+                            "props": {
+                              "text": "{icon:fa-bolt}"
+                            },
+                            "style": {
+                              "classes": [
+                                "heading"
+                              ]
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "font": "Bold",
+                            "id": "rcs_card_title",
+                            "props": {
+                              "text": "TRIGGER AND RECOIL"
+                            },
+                            "type": "Text"
+                          }
+                        ],
+                        "id": "rcs_card_head",
+                        "props": {
+                          "spacing": 8
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "id": "rcs_card_div",
+                        "props": {
+                          "look": "Fade"
+                        },
+                        "type": "Divider"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "FlashHighlight",
+                              "trigger": "change"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "cfg.trigger"
+                        },
+                        "id": "trigger_on",
+                        "props": {
+                          "kind": "Square",
+                          "label": "Triggerbot"
+                        },
+                        "type": "SwitchToggle"
+                      },
+                      {
+                        "bind": {
+                          "chord": "cfg.triggerKey"
+                        },
+                        "id": "trigger_key",
+                        "props": {
+                          "label": "Key"
+                        },
+                        "type": "KeyChordPicker"
+                      },
+                      {
+                        "bind": {
+                          "value": "cfg.triggerDelay"
+                        },
+                        "id": "trigger_delay",
+                        "props": {
+                          "label": "Delay (ms)",
+                          "max": 200,
+                          "min": 0,
+                          "step": 10
+                        },
+                        "type": "Stepper"
+                      },
+                      {
+                        "bind": {
+                          "mask": "cfg.hitboxes"
+                        },
+                        "id": "hitboxes",
+                        "props": {
+                          "items": [
+                            "Head",
+                            "Chest",
+                            "Arms",
+                            "Legs"
+                          ],
+                          "label": "Hitboxes"
+                        },
+                        "type": "ToggleButtonGroup"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "FlashHighlight",
+                              "trigger": "change"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "cfg.rcs"
+                        },
+                        "id": "rcs_on",
+                        "props": {
+                          "kind": "Square",
+                          "label": "Recoil control"
+                        },
+                        "type": "SwitchToggle"
+                      }
+                    ],
+                    "id": "rcs_card_body",
+                    "props": {
+                      "spacing": 10
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "rcs_card",
+                "props": {
+                  "childFlags": [
+                    "AlwaysUseWindowPadding"
+                  ],
+                  "size": {
+                    "h": "fill-50",
+                    "w": "fill"
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "card"
+                  ]
+                },
+                "type": "Child"
+              }
+            ],
+            "id": "page_legit",
+            "props": {
+              "columns": 2,
+              "flags": [
+                "SizingStretchSame"
+              ]
+            },
+            "type": "Grid",
+            "visibleIf": "state.tab == 0"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "ClipRevealRight"
+                }
+              ]
+            },
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "GlowUp",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "StaggerFadeLeft",
+                          "stagger": 0.04
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "id": "rage_card_icon",
+                            "props": {
+                              "text": "{icon:fa-skull}"
+                            },
+                            "style": {
+                              "classes": [
+                                "heading"
+                              ]
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "font": "Bold",
+                            "id": "rage_card_title",
+                            "props": {
+                              "text": "RAGE"
+                            },
+                            "type": "Text"
+                          }
+                        ],
+                        "id": "rage_card_head",
+                        "props": {
+                          "spacing": 8
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "id": "rage_card_div",
+                        "props": {
+                          "look": "Fade"
+                        },
+                        "type": "Divider"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "FlashHighlight",
+                              "trigger": "change"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "cfg.rage"
+                        },
+                        "id": "rage_on",
+                        "props": {
+                          "kind": "Square",
+                          "label": "Enabled"
+                        },
+                        "type": "SwitchToggle"
+                      },
+                      {
+                        "bind": {
+                          "value": "cfg.minDamage"
+                        },
+                        "id": "min_damage",
+                        "props": {
+                          "label": "Min damage",
+                          "max": 120,
+                          "min": 1,
+                          "step": 1
+                        },
+                        "type": "Stepper"
+                      },
+                      {
+                        "bind": {
+                          "state": "cfg.hitscan"
+                        },
+                        "id": "hitscan",
+                        "props": {
+                          "label": "Hitscan all bones"
+                        },
+                        "type": "TriCheckbox"
+                      },
+                      {
+                        "bind": {
+                          "mask": "cfg.multipoint"
+                        },
+                        "id": "multipoint",
+                        "props": {
+                          "items": [
+                            "Head",
+                            "Neck",
+                            "Chest",
+                            "Stomach",
+                            "Feet"
+                          ],
+                          "label": "##multi"
+                        },
+                        "type": "Chips"
+                      }
+                    ],
+                    "id": "rage_card_body",
+                    "props": {
+                      "spacing": 10
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "rage_card",
+                "props": {
+                  "childFlags": [
+                    "AlwaysUseWindowPadding"
+                  ],
+                  "size": {
+                    "h": "fill-50",
+                    "w": "fill"
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "card"
+                  ]
+                },
+                "type": "Child"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "GlowUp",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "delay": 0.08,
+                          "preset": "StaggerFadeLeft",
+                          "stagger": 0.04
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "id": "aa_card_icon",
+                            "props": {
+                              "text": "{icon:fa-rotate}"
+                            },
+                            "style": {
+                              "classes": [
+                                "heading"
+                              ]
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "font": "Bold",
+                            "id": "aa_card_title",
+                            "props": {
+                              "text": "ANTI-AIM"
+                            },
+                            "type": "Text"
+                          }
+                        ],
+                        "id": "aa_card_head",
+                        "props": {
+                          "spacing": 8
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "id": "aa_card_div",
+                        "props": {
+                          "look": "Fade"
+                        },
+                        "type": "Divider"
+                      },
+                      {
+                        "bind": {
+                          "index": "cfg.pitch"
+                        },
+                        "id": "pitch",
+                        "props": {
+                          "items": [
+                            "Off",
+                            "Down",
+                            "Up",
+                            "Zero"
+                          ],
+                          "label": "Pitch"
+                        },
+                        "type": "SegmentedControl"
+                      },
+                      {
+                        "bind": {
+                          "value": "cfg.yaw"
+                        },
+                        "id": "yaw",
+                        "props": {
+                          "format": "%.0f",
+                          "label": "Yaw offset",
+                          "max": 180,
+                          "min": -180,
+                          "speed": 0.5,
+                          "units": [
+                            "deg",
+                            "rad:57.2958"
+                          ]
+                        },
+                        "type": "DragNumber"
+                      },
+                      {
+                        "bind": {
+                          "value": "cfg.aggression"
+                        },
+                        "id": "aggression",
+                        "props": {
+                          "label": "Aggression",
+                          "max": 5
+                        },
+                        "type": "RatingStars"
+                      }
+                    ],
+                    "id": "aa_card_body",
+                    "props": {
+                      "spacing": 10
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "aa_card",
+                "props": {
+                  "childFlags": [
+                    "AlwaysUseWindowPadding"
+                  ],
+                  "size": {
+                    "h": "fill-50",
+                    "w": "fill"
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "card"
+                  ]
+                },
+                "type": "Child"
+              }
+            ],
+            "id": "page_rage",
+            "props": {
+              "columns": 2,
+              "flags": [
+                "SizingStretchSame"
+              ]
+            },
+            "type": "Grid",
+            "visibleIf": "state.tab == 1"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "ClipRevealRight"
+                }
+              ]
+            },
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "GlowUp",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "StaggerFadeLeft",
+                          "stagger": 0.04
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "id": "color_card_icon",
+                            "props": {
+                              "text": "{icon:fa-palette}"
+                            },
+                            "style": {
+                              "classes": [
+                                "heading"
+                              ]
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "font": "Bold",
+                            "id": "color_card_title",
+                            "props": {
+                              "text": "COLORS"
+                            },
+                            "type": "Text"
+                          }
+                        ],
+                        "id": "color_card_head",
+                        "props": {
+                          "spacing": 8
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "id": "color_card_div",
+                        "props": {
+                          "look": "Fade"
+                        },
+                        "type": "Divider"
+                      },
+                      {
+                        "bind": {
+                          "teamA": "cfg.allyColor",
+                          "teamB": "cfg.enemyColor"
+                        },
+                        "id": "teams",
+                        "props": {
+                          "label": "Team colors",
+                          "nameA": "Allies",
+                          "nameB": "Enemies"
+                        },
+                        "type": "TeamColorPicker"
+                      },
+                      {
+                        "bind": {
+                          "color": "cfg.accent"
+                        },
+                        "id": "accent",
+                        "props": {
+                          "columns": 8,
+                          "label": "Menu accent"
+                        },
+                        "type": "ColorPalette"
+                      }
+                    ],
+                    "id": "color_card_body",
+                    "props": {
+                      "spacing": 10
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "color_card",
+                "props": {
+                  "childFlags": [
+                    "AlwaysUseWindowPadding"
+                  ],
+                  "size": {
+                    "h": "fill-50",
+                    "w": "fill"
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "card"
+                  ]
+                },
+                "type": "Child"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "GlowUp",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "delay": 0.08,
+                          "preset": "StaggerFadeLeft",
+                          "stagger": 0.04
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "id": "xhair_card_icon",
+                            "props": {
+                              "text": "{icon:fa-plus}"
+                            },
+                            "style": {
+                              "classes": [
+                                "heading"
+                              ]
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "font": "Bold",
+                            "id": "xhair_card_title",
+                            "props": {
+                              "text": "CROSSHAIR"
+                            },
+                            "type": "Text"
+                          }
+                        ],
+                        "id": "xhair_card_head",
+                        "props": {
+                          "spacing": 8
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "id": "xhair_card_div",
+                        "props": {
+                          "look": "Fade"
+                        },
+                        "type": "Divider"
+                      },
+                      {
+                        "bind": {
+                          "color": "cfg.xhairColor",
+                          "dot": "cfg.xhairDot",
+                          "gap": "cfg.xhairGap",
+                          "length": "cfg.xhairLength",
+                          "outline": "cfg.xhairOutline",
+                          "thickness": "cfg.xhairThickness"
+                        },
+                        "id": "xhair",
+                        "props": {
+                          "label": "Crosshair"
+                        },
+                        "type": "CrosshairEditor"
+                      }
+                    ],
+                    "id": "xhair_card_body",
+                    "props": {
+                      "spacing": 10
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "xhair_card",
+                "props": {
+                  "childFlags": [
+                    "AlwaysUseWindowPadding"
+                  ],
+                  "size": {
+                    "h": "fill-50",
+                    "w": "fill"
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "card"
+                  ]
+                },
+                "type": "Child"
+              }
+            ],
+            "id": "page_visuals",
+            "props": {
+              "columns": 2,
+              "flags": [
+                "SizingStretchSame"
+              ]
+            },
+            "type": "Grid",
+            "visibleIf": "state.tab == 2"
+          },
+          {
+            "anim": {
+              "motions": [
+                {
+                  "preset": "ClipRevealRight"
+                }
+              ]
+            },
+            "children": [
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "GlowUp",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "preset": "StaggerFadeLeft",
+                          "stagger": 0.04
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "id": "keys_card_icon",
+                            "props": {
+                              "text": "{icon:fa-keyboard}"
+                            },
+                            "style": {
+                              "classes": [
+                                "heading"
+                              ]
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "font": "Bold",
+                            "id": "keys_card_title",
+                            "props": {
+                              "text": "HOTKEYS"
+                            },
+                            "type": "Text"
+                          }
+                        ],
+                        "id": "keys_card_head",
+                        "props": {
+                          "spacing": 8
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "id": "keys_card_div",
+                        "props": {
+                          "look": "Fade"
+                        },
+                        "type": "Divider"
+                      },
+                      {
+                        "id": "hotkeys",
+                        "props": {
+                          "actions": [
+                            "Toggle menu",
+                            "Panic",
+                            "Next profile",
+                            "Screenshot"
+                          ],
+                          "label": "##keys"
+                        },
+                        "type": "HotkeyList"
+                      }
+                    ],
+                    "id": "keys_card_body",
+                    "props": {
+                      "spacing": 10
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "keys_card",
+                "props": {
+                  "childFlags": [
+                    "AlwaysUseWindowPadding"
+                  ],
+                  "size": {
+                    "h": "fill-50",
+                    "w": "fill"
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "card"
+                  ]
+                },
+                "type": "Child"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "preset": "GlowUp",
+                      "trigger": "hover"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "anim": {
+                      "motions": [
+                        {
+                          "delay": 0.08,
+                          "preset": "StaggerFadeLeft",
+                          "stagger": 0.04
+                        }
+                      ]
+                    },
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "id": "friends_card_icon",
+                            "props": {
+                              "text": "{icon:fa-user-group}"
+                            },
+                            "style": {
+                              "classes": [
+                                "heading"
+                              ]
+                            },
+                            "type": "Text"
+                          },
+                          {
+                            "font": "Bold",
+                            "id": "friends_card_title",
+                            "props": {
+                              "text": "FRIENDS"
+                            },
+                            "type": "Text"
+                          }
+                        ],
+                        "id": "friends_card_head",
+                        "props": {
+                          "spacing": 8
+                        },
+                        "type": "HStack"
+                      },
+                      {
+                        "id": "friends_card_div",
+                        "props": {
+                          "look": "Fade"
+                        },
+                        "type": "Divider"
+                      },
+                      {
+                        "bind": {
+                          "tags": "cfg.friends"
+                        },
+                        "id": "friends",
+                        "props": {
+                          "label": "Never target"
+                        },
+                        "type": "TagInput"
+                      },
+                      {
+                        "anim": {
+                          "motions": [
+                            {
+                              "on": "onChange",
+                              "preset": "FlashHighlight",
+                              "trigger": "change"
+                            }
+                          ]
+                        },
+                        "bind": {
+                          "value": "cfg.streamProof"
+                        },
+                        "id": "stream_proof",
+                        "props": {
+                          "kind": "Square",
+                          "label": "Hide from capture"
+                        },
+                        "type": "SwitchToggle"
+                      }
+                    ],
+                    "id": "friends_card_body",
+                    "props": {
+                      "spacing": 10
+                    },
+                    "type": "VStack"
+                  }
+                ],
+                "id": "friends_card",
+                "props": {
+                  "childFlags": [
+                    "AlwaysUseWindowPadding"
+                  ],
+                  "size": {
+                    "h": "fill-50",
+                    "w": "fill"
+                  }
+                },
+                "style": {
+                  "classes": [
+                    "card"
+                  ]
+                },
+                "type": "Child"
+              }
+            ],
+            "id": "page_settings",
+            "props": {
+              "columns": 2,
+              "flags": [
+                "SizingStretchSame"
+              ]
+            },
+            "type": "Grid",
+            "visibleIf": "state.tab == 3"
+          },
+          {
+            "children": [
+              {
+                "font": "Small",
+                "id": "version",
+                "props": {
+                  "text": "v3.2.0  build 1184"
+                },
+                "style": {
+                  "classes": [
+                    "muted"
+                  ]
+                },
+                "type": "Text"
+              },
+              {
+                "id": "footer_fill",
+                "props": {
+                  "size": {
+                    "h": 1,
+                    "w": "fill"
+                  }
+                },
+                "type": "Dummy"
+              },
+              {
+                "anim": {
+                  "motions": [
+                    {
+                      "on": "onChange",
+                      "preset": "Tick",
+                      "trigger": "change"
+                    }
+                  ]
+                },
+                "bind": {
+                  "value": "cfg.streamProof"
+                },
+                "id": "visible_toggle",
+                "props": {
+                  "iconOff": "fa-eye",
+                  "iconOn": "fa-eye-slash",
+                  "label": "Stream proof"
+                },
+                "type": "IconToggle"
+              },
+              {
+                "id": "hide_key",
+                "props": {
+                  "keys": "Insert"
+                },
+                "type": "Kbd"
+              },
+              {
+                "font": "Small",
+                "id": "hide_hint",
+                "props": {
+                  "text": "hides the menu"
+                },
+                "style": {
+                  "classes": [
+                    "muted"
+                  ]
+                },
+                "type": "Text"
+              }
+            ],
+            "id": "footer",
+            "props": {
+              "spacing": 10
+            },
+            "type": "HStack"
+          }
+        ],
+        "id": "page",
+        "props": {
+          "spacing": 12
+        },
+        "type": "VStack"
+      }
+    ],
+    "fx": [
+      {
+        "c0": "#e8202f1f",
+        "c1": "#00000000",
+        "rounding": 2,
+        "type": "gradient",
+        "vertical": true
+      },
+      {
+        "color": "#000000b3",
+        "offset": {
+          "x": 0,
+          "y": 4
+        },
+        "rounding": 2,
+        "size": 18,
+        "type": "shadow"
+      }
+    ],
+    "id": "window",
+    "props": {
+      "flags": [
+        "NoTitleBar",
+        "NoCollapse",
+        "NoScrollbar"
+      ],
+      "initialSize": {
+        "x": 880,
+        "y": 560
+      },
+      "sizeCond": "FirstUseEver",
+      "title": "{{PROJECT_NAME}}"
+    },
+    "style": {
+      "vars": {
+        "WindowPadding": {
+          "x": 18,
+          "y": 14
+        }
+      }
+    },
+    "type": "Window"
+  },
+  "schemaVersion": 1,
+  "state": [
+    {
+      "default": true,
+      "name": "open",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "name": "tab",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "name": "saveMode",
+      "type": "int"
+    }
+  ]
+}

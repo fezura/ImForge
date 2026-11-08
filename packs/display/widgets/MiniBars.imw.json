@@ -1,0 +1,132 @@
+{
+  "bindings": [
+    {
+      "name": "values",
+      "required": true,
+      "types": [
+        "float[N]",
+        "vector<float>"
+      ]
+    }
+  ],
+  "call": "imb::disp::MiniBars({label}, {values}, {values:count}, {labels:array}, {labels:count}, {size}, {color:u32})",
+  "category": "Display",
+  "container": false,
+  "events": [],
+  "icon": "fa-chart-column",
+  "include": "imb_display.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "MiniBars",
+  "preview": [
+    {
+      "fill": "#4f8cffff",
+      "h": 14,
+      "rounding": 2,
+      "shape": "rect",
+      "w": 11,
+      "x": 0,
+      "y": 22
+    },
+    {
+      "fill": "#4f8cffff",
+      "h": 24,
+      "rounding": 2,
+      "shape": "rect",
+      "w": 11,
+      "x": 16,
+      "y": 12
+    },
+    {
+      "fill": "#4f8cffff",
+      "h": 18,
+      "rounding": 2,
+      "shape": "rect",
+      "w": 11,
+      "x": 32,
+      "y": 18
+    },
+    {
+      "fill": "#7aa7ffff",
+      "h": 32,
+      "rounding": 2,
+      "shape": "rect",
+      "w": 11,
+      "x": 48,
+      "y": 4
+    },
+    {
+      "fill": "#4f8cffff",
+      "h": 20,
+      "rounding": 2,
+      "shape": "rect",
+      "w": 11,
+      "x": 64,
+      "y": 16
+    },
+    {
+      "fill": "#4f8cffff",
+      "h": 28,
+      "rounding": 2,
+      "shape": "rect",
+      "w": 11,
+      "x": 80,
+      "y": 8
+    },
+    {
+      "fill": "#4f8cffff",
+      "h": 10,
+      "rounding": 2,
+      "shape": "rect",
+      "w": 11,
+      "x": 96,
+      "y": 26
+    },
+    {
+      "shape": "line",
+      "stroke": "#3a4150ff",
+      "thickness": 1,
+      "x": 0,
+      "x2": 110,
+      "y": 36,
+      "y2": 36
+    }
+  ],
+  "props": [
+    {
+      "default": "##bars",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "hint": "tooltip names",
+      "name": "labels",
+      "type": "stringList"
+    },
+    {
+      "default": {
+        "h": "auto",
+        "w": "fill"
+      },
+      "name": "size",
+      "type": "size"
+    },
+    {
+      "default": "#00000000",
+      "hint": "#00000000 = accent",
+      "name": "color",
+      "type": "color"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

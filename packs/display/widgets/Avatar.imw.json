@@ -1,0 +1,80 @@
+{
+  "bindings": [
+    {
+      "name": "texture",
+      "required": false,
+      "types": [
+        "texture"
+      ]
+    }
+  ],
+  "call": "imb::disp::Avatar({name}, {size}, imb::disp::Status::{status}, {texture})",
+  "category": "Display",
+  "container": false,
+  "events": [],
+  "icon": "fa-circle-user",
+  "include": "imb_display.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "Avatar",
+  "preview": [
+    {
+      "fill": "#8e6cd8ff",
+      "r": 17,
+      "shape": "circle",
+      "x": 17,
+      "y": 17
+    },
+    {
+      "color": "#ffffffff",
+      "shape": "text",
+      "text": "AL",
+      "x": 9,
+      "y": 9
+    },
+    {
+      "fill": "#1b1d23ff",
+      "r": 6,
+      "shape": "circle",
+      "x": 29,
+      "y": 29
+    },
+    {
+      "fill": "#2ecc71ff",
+      "r": 4,
+      "shape": "circle",
+      "x": 29,
+      "y": 29
+    }
+  ],
+  "props": [
+    {
+      "default": "Ada Lovelace",
+      "hint": "initials and color come from it",
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "default": 0,
+      "hint": "diameter, 0 scales with the font",
+      "max": 512,
+      "min": 0,
+      "name": "size",
+      "type": "float"
+    },
+    {
+      "default": "Online",
+      "name": "status",
+      "type": "enum",
+      "values": [
+        "None",
+        "Online",
+        "Away",
+        "Busy",
+        "Offline"
+      ]
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

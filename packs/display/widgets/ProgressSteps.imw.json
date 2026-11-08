@@ -1,0 +1,134 @@
+{
+  "bindings": [
+    {
+      "name": "current",
+      "required": true,
+      "types": [
+        "int"
+      ]
+    }
+  ],
+  "call": "imb::disp::ProgressSteps({label}, {steps}, {current})",
+  "category": "Display",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-list-ol",
+  "include": "imb_display.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "ProgressSteps",
+  "preview": [
+    {
+      "shape": "line",
+      "stroke": "#4f8cffff",
+      "thickness": 3,
+      "x": 26,
+      "x2": 60,
+      "y": 14,
+      "y2": 14
+    },
+    {
+      "fill": "#4f8cffff",
+      "r": 12,
+      "shape": "circle",
+      "stroke": "#4f8cffff",
+      "thickness": 2,
+      "x": 12,
+      "y": 14
+    },
+    {
+      "shape": "line",
+      "stroke": "#2a2f3aff",
+      "thickness": 3,
+      "x": 88,
+      "x2": 122,
+      "y": 14,
+      "y2": 14
+    },
+    {
+      "fill": "#4f8cffff",
+      "r": 12,
+      "shape": "circle",
+      "stroke": "#4f8cffff",
+      "thickness": 2,
+      "x": 74,
+      "y": 14
+    },
+    {
+      "shape": "line",
+      "stroke": "#2a2f3aff",
+      "thickness": 3,
+      "x": 150,
+      "x2": 184,
+      "y": 14,
+      "y2": 14
+    },
+    {
+      "fill": "#1e2129ff",
+      "r": 12,
+      "shape": "circle",
+      "stroke": "#2a2f3aff",
+      "thickness": 2,
+      "x": 136,
+      "y": 14
+    },
+    {
+      "fill": "#1e2129ff",
+      "r": 12,
+      "shape": "circle",
+      "stroke": "#2a2f3aff",
+      "thickness": 2,
+      "x": 198,
+      "y": 14
+    },
+    {
+      "color": "#8a91a0ff",
+      "shape": "text",
+      "text": "Account",
+      "x": 0,
+      "y": 32
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "Profile",
+      "x": 56,
+      "y": 32
+    },
+    {
+      "color": "#8a91a0ff",
+      "shape": "text",
+      "text": "Review",
+      "x": 122,
+      "y": 32
+    },
+    {
+      "color": "#8a91a0ff",
+      "shape": "text",
+      "text": "Done",
+      "x": 186,
+      "y": 32
+    }
+  ],
+  "props": [
+    {
+      "default": "##steps",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": [
+        "Account",
+        "Profile",
+        "Review",
+        "Done"
+      ],
+      "name": "steps",
+      "type": "stringList"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

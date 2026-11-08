@@ -59,8 +59,13 @@ int main(int argc, char** argv)
     // ImForge: connect to the builder (non-blocking, reconnects automatically).
     const char* url = argc > 1 ? argv[1] : "tcp://127.0.0.1:7777";
     imforge::live::SetAppName("ImForge demo (win32+dx9)");
+    imforge::live::RegisterBundledPacks();
     imforge::live::Connect(url);
     DemoSetUrl(url);
+
+    // ImForge: project fonts from the builder land in the atlas in PreNewFrame(), this recreates the
+    // font texture afterwards (the next ImGui_ImplDX9_NewFrame builds it again).
+    imforge::live::SetFontTextureRebuild(ImGui_ImplDX9_InvalidateDeviceObjects);
 
 #ifdef DEMO_HAS_FX
     // ImForge: shader fx (blur behind windows) for this backend.
@@ -108,6 +113,8 @@ int main(int argc, char** argv)
             ResetDevice();
         }
 
+        // ImForge: load project fonts the builder sent, before the backend NewFrame locks the atlas.
+        imforge::live::PreNewFrame();
         ImGui_ImplDX9_NewFrame();
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();

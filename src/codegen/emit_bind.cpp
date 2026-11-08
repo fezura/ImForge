@@ -308,7 +308,7 @@ BindInfo EmitCtx::Bind(const Node& n, const char* slot) {
 bool EmitCtx::HasEvent(const Node& n, const char* event) const {
     for (const auto& e : n.events)
         if (e.first == event && (e.second.handler || !e.second.actions.empty())) return true;
-    return false;
+    return MotionListens(*this, n, event);
 }
 
 std::string EmitCtx::HandlerName(const Node& n, const char* event) const {
@@ -342,7 +342,10 @@ void EmitCtx::FireEvent(const Node& n, const char* event) {
     const EventSpec* spec = nullptr;
     for (const auto& e : n.events)
         if (e.first == event) spec = &e.second;
-    if (!spec) return;
+    if (!spec) {
+        EmitMotionTriggers(*this, n, event);
+        return;
+    }
     bool call_handler = spec->handler;
     for (const Action& a : spec->actions) {
         if (a.type == "handler") {
@@ -414,6 +417,7 @@ void EmitCtx::FireEvent(const Node& n, const char* event) {
         }
     }
     if (call_handler) w.Line(HandlerName(n, event) + "(" + HandlerArgs() + ");");
+    EmitMotionTriggers(*this, n, event);
 }
 
 }  // namespace codegen

@@ -14,7 +14,9 @@
 #include "../ui/ease_curves.h"
 #include "../ui/icon_table.h"
 #include "../ui/ui_helpers.h"
+#include "anim_keyframe_editor.h"
 #include "anim_timeline_editors.h"
+#include "animations_project.h"
 #include "editor_panel.h"
 
 namespace imforge::builder {
@@ -130,6 +132,10 @@ public:
             }
             if (ImGui::BeginTabItem("Panel")) {
                 DrawPanelTab(ctx);
+                ImGui::EndTabItem();
+            }
+            if (ImGui::BeginTabItem("Keyframes", nullptr, anims::TakeTabRequest() ? ImGuiTabItemFlags_SetSelected : 0)) {
+                kfui::DrawKeyframesTab(ctx);
                 ImGui::EndTabItem();
             }
             ImGui::EndTabBar();

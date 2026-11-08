@@ -177,6 +177,13 @@
           "$ref": "#/$defs/ExitSpec",
           "description": "Exit animation."
         },
+        "motions": {
+          "description": "Motions played on the node, from the bundled presets or the project's own animations.",
+          "items": {
+            "$ref": "#/$defs/MotionSpec"
+          },
+          "type": "array"
+        },
         "transitions": {
           "description": "State-driven transitions.",
           "items": {
@@ -976,6 +983,83 @@
       },
       "type": "object"
     },
+    "MotionSpec": {
+      "additionalProperties": false,
+      "description": "One motion from the imb motion engine. Set preset or custom, not both.",
+      "oneOf": [
+        {
+          "required": [
+            "preset"
+          ]
+        },
+        {
+          "required": [
+            "custom"
+          ]
+        }
+      ],
+      "properties": {
+        "custom": {
+          "description": "Name of a custom animation from one of the project's animations files.",
+          "minLength": 1,
+          "type": "string"
+        },
+        "delay": {
+          "description": "Extra seconds before it starts, on top of the animation's own delay. Default 0.",
+          "maximum": 10,
+          "minimum": 0,
+          "type": "number"
+        },
+        "durationScale": {
+          "description": "Multiplies the animation's duration, so 2 plays it at half speed. Default 1.",
+          "exclusiveMinimum": 0,
+          "maximum": 10,
+          "type": "number"
+        },
+        "iterations": {
+          "description": "How many times it plays. -1 keeps the animation's own count and 0 repeats forever. Default -1.",
+          "maximum": 1000,
+          "minimum": -1,
+          "type": "integer"
+        },
+        "on": {
+          "description": "Event of this node (onClick, onChange, ...) that fires the motion. Mostly useful with change and attention.",
+          "pattern": "^on[A-Z][A-Za-z0-9]*$",
+          "type": "string"
+        },
+        "preset": {
+          "description": "Bundled animation from presets/animations, e.g. BounceIn or Pulse.",
+          "maxLength": 48,
+          "pattern": "^[A-Z][A-Za-z0-9]*$",
+          "type": "string"
+        },
+        "stagger": {
+          "description": "Containers only: seconds added per child index, so children start one after another. Default 0.",
+          "maximum": 2,
+          "minimum": 0,
+          "type": "number"
+        },
+        "trigger": {
+          "$ref": "#/$defs/MotionTrigger",
+          "description": "When it plays. Default enter."
+        }
+      },
+      "type": "object"
+    },
+    "MotionTrigger": {
+      "description": "When a motion plays. enter and exit follow the node appearing and disappearing (visibleIf), hover, press and focus play while the item is in that state, loop runs all the time, change and attention play when fired by an event (see on) or by imb::TriggerMotion.",
+      "enum": [
+        "enter",
+        "exit",
+        "hover",
+        "press",
+        "focus",
+        "loop",
+        "change",
+        "attention"
+      ],
+      "type": "string"
+    },
     "Node": {
       "additionalProperties": false,
       "allOf": [
@@ -1325,6 +1409,11 @@
       ],
       "description": "String prop; literal, expression or param reference."
     },
+    "StyleClassName": {
+      "description": "Style class name such as card or accent-button: letters, digits, _ and -, not starting with a digit or -. Generated code turns - into _, so accent-button gets Style_accent_button_Push().",
+      "pattern": "^[A-Za-z_][A-Za-z0-9_-]*$",
+      "type": "string"
+    },
     "StyleOverride": {
       "additionalProperties": false,
       "description": "Per-node style overrides pushed around the item.",
@@ -1332,7 +1421,7 @@
         "classes": {
           "description": "Names of project styleClasses applied before the local overrides.",
           "items": {
-            "$ref": "#/$defs/Identifier"
+            "$ref": "#/$defs/StyleClassName"
           },
           "type": "array",
           "uniqueItems": true
@@ -1734,6 +1823,6 @@
   },
   "$id": "https://raw.githubusercontent.com/fezura/ImForge/main/schemas/node.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "description": "Shared $defs for every ImForge file format: Node, SizeSpec, Color, Vec2, Vec4, PropValue, Action, EventSpec, StyleOverride, AnimSpec, FxSpec, Layout. Not a document schema by itself.",
+  "description": "Shared $defs for every ImForge file format: Node, SizeSpec, Color, Vec2, Vec4, PropValue, Action, EventSpec, StyleOverride, AnimSpec, MotionSpec, FxSpec, Layout. Not a document schema by itself.",
   "title": "ImForge shared definitions"
 }

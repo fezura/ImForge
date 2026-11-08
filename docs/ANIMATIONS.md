@@ -5,6 +5,11 @@ header that needs nothing but ImGui. Generated code only includes it when a pane
 or effects, otherwise the output stays plain ImGui. The interpreter uses the same header, so
 what you see in the builder and in the attached app is what ships.
 
+This page covers the property transitions, the simple enter/exit presets, the DrawList effects
+and the shader blur. Keyframe animations with scale, rotation, skew and the 212 built-in
+presets are motions, which have their own page: [MOTION.md](MOTION.md). Both kinds can sit on
+the same node.
+
 ## Transitions
 
 Any animatable property can move between two states. The state (`on`) is one of:
@@ -52,7 +57,8 @@ ImGui::PushStyleColor(ImGuiCol_Button, imb::Lerp(base, ImVec4(0.15f, 0.68f, 0.38
 Presets: `Fade`, `SlideUp`, `SlideDown`, `SlideLeft`, `SlideRight`, `FadeSlideUp`,
 `FadeSlideDown`, `ScalePop` and `Stagger` (children appear one after another, `stagger` seconds
 apart). An exit animation keeps the node drawn until it finishes; it starts when `visibleIf`
-turns false. Tab content cross-fades with `TabBar.anim.crossfade`.
+turns false. Tab content cross-fades with `TabBar.anim.crossfade`. For anything fancier than
+a fade, slide or pop, use an `enter` or `exit` motion instead.
 
 ```cpp
 if (imb::BeginEnter(id, visible, 0.25f, imb::Preset::FadeSlideUp)) {

@@ -1,0 +1,54 @@
+{
+  "bindings": [],
+  "call": "imb::disp::Divider({label}, imb::disp::DividerLook::{look}, imb::disp::DividerAlign::{align})",
+  "category": "Display",
+  "container": false,
+  "events": [],
+  "icon": "fa-minus",
+  "include": "imb_display.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "Divider",
+  "preview": [
+    {
+      "shape": "line",
+      "stroke": "#3a4150ff",
+      "thickness": 1,
+      "x": 0,
+      "x2": 220,
+      "y": 10,
+      "y2": 10
+    }
+  ],
+  "props": [
+    {
+      "default": "",
+      "hint": "empty draws a plain line",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": "Line",
+      "name": "look",
+      "type": "enum",
+      "values": [
+        "Line",
+        "Fade",
+        "Dashed",
+        "Dotted"
+      ]
+    },
+    {
+      "default": "Center",
+      "name": "align",
+      "type": "enum",
+      "values": [
+        "Left",
+        "Center",
+        "Right"
+      ]
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

@@ -246,6 +246,76 @@ inline bool WidgetCatalog::RemoveCustom(const char* type) {
     return false;
 }
 
+// header names from manifests end up in an #include line and in a path under the packs folder
+inline bool IsSafeIncludeName(const std::string& s) {
+    if (s.size() < 3 || s.size() > 200 || s[0] == '/' || s[0] == '.') return false;
+    for (char c : s) {
+        bool ok = (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == '_' || c == '.' ||
+                  c == '/' || c == '-';
+        if (!ok) return false;
+    }
+    if (s.find("..") != std::string::npos || s.find("//") != std::string::npos) return false;
+    size_t n = s.size();
+    return s.compare(n - 2, 2, ".h") == 0 || (n > 4 && s.compare(n - 4, 4, ".hpp") == 0);
+}
+
+// call and callEnd templates are pasted into generated code: one call `ns::Function(...)` whose arguments
+// hold {placeholders} and literals. No statements, braces, comments, preprocessor lines or escapes.
+inline bool IsSafeCallTemplate(const std::string& s) {
+    if (s.empty() || s.size() > 1024) return false;
+    size_t i = 0;
+    auto ident = [&]() {
+        size_t start = i;
+        while (i < s.size() && ((s[i] >= 'A' && s[i] <= 'Z') || (s[i] >= 'a' && s[i] <= 'z') || s[i] == '_' ||
+                                (i > start && s[i] >= '0' && s[i] <= '9')))
+            ++i;
+        return i > start;
+    };
+    if (!ident()) return false;
+    while (i + 1 < s.size() && s[i] == ':' && s[i + 1] == ':') {
+        i += 2;
+        if (!ident()) return false;
+    }
+    if (i >= s.size() || s[i] != '(') return false;
+    int depth = 0;
+    bool in_string = false;
+    for (; i < s.size(); ++i) {
+        unsigned char c = static_cast<unsigned char>(s[i]);
+        if (c < 0x20 || c > 0x7E || c == ';' || c == '#' || c == '`' || c == '\\' || c == '$' || c == '@' || c == '\'')
+            return false;
+        if (c == '"') {
+            in_string = !in_string;
+            continue;
+        }
+        if (in_string) continue;
+        if (c == '/' && i + 1 < s.size() && (s[i + 1] == '/' || s[i + 1] == '*')) return false;
+        if (c == '?' && i + 1 < s.size() && s[i + 1] == '?') return false;
+        if (c == '{') {
+            size_t close = s.find('}', i + 1);
+            if (close == std::string::npos) return false;
+            std::string body = s.substr(i + 1, close - i - 1);
+            size_t colon = body.find(':');
+            std::string name = body.substr(0, colon), mod = colon == std::string::npos ? std::string() : body.substr(colon + 1);
+            if (name.empty() || (colon != std::string::npos && mod.empty())) return false;
+            for (size_t k = 0; k < body.size(); ++k) {
+                char b = body[k];
+                bool ok = (b >= 'A' && b <= 'Z') || (b >= 'a' && b <= 'z') || b == '_' || (b >= '0' && b <= '9' && k > 0) || k == colon;
+                if (!ok) return false;
+            }
+            i = close;
+            continue;
+        }
+        if (c == '}') return false;
+        if (c == '(') {
+            ++depth;
+        } else if (c == ')') {
+            if (--depth < 0) return false;
+            if (depth == 0) return i + 1 == s.size();
+        }
+    }
+    return false;
+}
+
 inline bool WidgetCatalog::AddManifest(const Json& m, Error* err) {
     auto fail = [err](const std::string& msg) {
         if (err) {
@@ -260,6 +330,12 @@ inline bool WidgetCatalog::AddManifest(const Json& m, Error* err) {
     if (name.empty()) return fail("missing \"name\"");
     if (FindWidget(name.c_str())) return fail("\"" + name + "\" is a stock widget type");
     if (m["call"].AsString().empty()) return fail("\"" + name + "\": missing \"call\"");
+    if (m.Has("include") && !(m["include"].IsString() && (m["include"].AsString().empty() || IsSafeIncludeName(m["include"].AsString()))))
+        return fail("\"" + name + "\": \"include\" must be a header name like imb_widgets.h (letters, digits, _ . / - only)");
+    if (!IsSafeCallTemplate(m["call"].AsString()))
+        return fail("\"" + name + "\": \"call\" must be a single call like ns::Function({label}, {value}), without ; { } # or comments");
+    if (m.Has("callEnd") && !(m["callEnd"].IsString() && (m["callEnd"].AsString().empty() || IsSafeCallTemplate(m["callEnd"].AsString()))))
+        return fail("\"" + name + "\": \"callEnd\" must be a single call like ns::EndFunction()");
     std::string returns = m["returns"].AsString("void");
     if (!PipeListContains("changed|clicked|open|void", returns.c_str()))
         return fail("\"" + name + "\": \"returns\" must be changed|clicked|open|void");

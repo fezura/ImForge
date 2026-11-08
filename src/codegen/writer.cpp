@@ -318,7 +318,7 @@ void Writer::Prepend(const std::string& text) { InsertAt(0, text); }
 
 void Writer::Finalize(const std::string& file, std::vector<LiteralRef>& result) const {
     std::vector<Token> toks = Tokenize(out);
-    auto token_at = [&](size_t offset) -> int {
+    auto token_at = [&](size_t offset, bool inline_mark) -> int {
         size_t lo = 0, hi = toks.size();
         while (lo < hi) {
             size_t mid = (lo + hi) / 2;
@@ -327,6 +327,11 @@ void Writer::Finalize(const std::string& file, std::vector<LiteralRef>& result) 
         }
         for (size_t i = lo; i < toks.size(); ++i) {
             const Token& t = toks[i];
+            // a bare enum name from a widget manifest (Online, not ImGuiDir_Left) is the literal itself,
+            // don't run on and claim the next string or number for this prop
+            if (inline_mark && i == lo && t.offset == offset && t.kind == Token::Kind::Ident &&
+                (i + 1 >= toks.size() || (toks[i + 1].text != "(" && toks[i + 1].text != "::")))
+                return static_cast<int>(i);
             bool is_flag = t.kind == Token::Kind::Ident &&
                            (t.text.compare(0, 5, "ImGui") == 0 || t.text == "true" || t.text == "false");
             if (t.kind == Token::Kind::String || t.kind == Token::Kind::Number || is_flag) return static_cast<int>(i);
@@ -374,7 +379,7 @@ void Writer::Finalize(const std::string& file, std::vector<LiteralRef>& result) 
         if (r.file == file) seen.emplace(r.node_id, r.prop);
     for (const Mark& m : marks) {
         if (m.offset == std::string::npos) continue;
-        int tok = token_at(m.offset);
+        int tok = token_at(m.offset, !m.next_literal);
         if (tok < 0) continue;
         if (!seen.emplace(m.node_id, m.prop).second) continue;
         LiteralRef ref;

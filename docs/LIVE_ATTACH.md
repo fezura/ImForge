@@ -16,10 +16,14 @@ IMFORGE_REFLECT(Settings, esp, aimbot, fov);
 void Init() {
     // after ImGui::CreateContext() and your backend init
     imforge::live::Connect("tcp://127.0.0.1:7777");
+    imforge::live::SetFontTextureRebuild(ImGui_ImplDX11_InvalidateDeviceObjects);   // see Fonts below
     #include "generated/imforge_dev.h"       // registers handlers and locked blocks (optional)
 }
 
 void Frame() {
+    imforge::live::PreNewFrame();            // loads the project fonts, before the backend NewFrame
+    ImGui_ImplDX11_NewFrame();
+    ImGui_ImplWin32_NewFrame();
     ImGui::NewFrame();
     imforge::live::NewFrame();               // polls the transport, applies updates
     imforge::live::Draw("MainMenu", { imforge::live::Bind("player", g_player),
@@ -99,13 +103,47 @@ not code, so an update is a few kilobytes.
 
 ## What updates live
 
-Widgets, properties, sizes and layout, themes, per-widget styles and style classes, fonts (if
-your app loads them), bindings, `visibleIf`/`enabledIf`, label interpolation, panel state, the
+Widgets, properties, sizes and layout, themes, per-widget styles and style classes, fonts, bindings, `visibleIf`/`enabledIf`, label interpolation, panel state, the
 no-code actions, animations, DrawList effects and blur parameters all update live.
 
 Event handler bodies, locked `Code` blocks and custom widget implementations are compiled into
 your app, so they need a rebuild. Until the hashes match again the builder shows a "stale"
 badge on them.
+
+## Fonts
+
+The builder sends the project's font files along with the project: every file from the Fonts
+panel, plus `fa-solid-900.ttf` (or the Material/Lucide font) when a font merges icons. It only
+reads files inside the project folder and the builder's own `fonts/` folder, and sends each file
+once per connection. With Font Awesome merged it also sends the icon name table, so
+`{icon:fa-gear}` in text and icon props on pack widgets turn into the right glyph in the app. The app keeps them by hash, so after a reconnect it tells the builder what
+it already has and nothing is sent twice.
+
+Dear ImGui before 1.92 locks the font atlas between `ImGui::NewFrame()` and `Render()`, and
+`imforge::live::NewFrame()` runs inside that window. So the fonts are added in
+`imforge::live::PreNewFrame()`, which you call every frame before the backend's NewFrame. It adds
+whatever arrived with the same names, sizes, glyph ranges and Font Awesome merge settings the
+builder canvas uses, rebuilds the atlas and then calls the function you gave
+`SetFontTextureRebuild()` so the renderer uploads the new texture:
+
+| Renderer | What to pass |
+|---|---|
+| DirectX 9 | `ImGui_ImplDX9_InvalidateDeviceObjects` |
+| DirectX 11 | `ImGui_ImplDX11_InvalidateDeviceObjects` |
+| DirectX 12 | a function that waits for the GPU, then calls `ImGui_ImplDX12_InvalidateDeviceObjects` |
+| OpenGL 3 | a function calling `ImGui_ImplOpenGL3_DestroyFontsTexture` and `ImGui_ImplOpenGL3_CreateFontsTexture` |
+| Vulkan | a function calling `vkDeviceWaitIdle`, `ImGui_ImplVulkan_DestroyFontsTexture` and `ImGui_ImplVulkan_CreateFontsTexture` |
+
+The examples in `examples/client/` show each one. With 1.92 or newer and a backend that sets
+`ImGuiBackendFlags_RendererHasTextures` no callback is needed.
+
+A `font` property on a widget looks for a font you passed to `RegisterFont()` first, then the
+fonts the builder sent, then your own atlas by debug name. Panels drawn with `Draw()` start in
+the first project font, like generated code does with `io.FontDefault`, so `{icon:fa-...}` text
+renders without an explicit font too. Fonts are never removed from the atlas, so any `ImFont*`
+you hold stays valid; changing a font's size or file adds a new one. The app only accepts
+TrueType files (`.ttf`, no `.otf` or `.ttc`), at most 8 MB each, 16 files and 32 MB in all, and
+checks each file's structure before Dear ImGui sees it.
 
 ## Registering your own code
 
@@ -165,8 +203,12 @@ the app.
 **Bindings show mock values.** The path couldn't be resolved against the registered reflection
 table. Check the `IMFORGE_REFLECT` field list and the root names passed to `Draw`.
 
-**Fonts look different.** The app renders with its own atlas. Load the project's fonts in the
-app (`generated/imforge_fonts.h`) to match.
+**Fonts or icons are missing in the app (`?` boxes).** The app has to call
+`imforge::live::PreNewFrame()` before the backend NewFrame and, below 1.92, set
+`SetFontTextureRebuild()` once (see [Fonts](#fonts)). If either is missing the app sends one
+hint to the builder's Log saying which. A font the builder couldn't send shows up as a `fonts`
+warning in the Log: the file wasn't found, lives outside the project and fonts folders, isn't a
+plain TrueType file or is too big.
 
 **Anti-cheat.** In a development build ImForge opens one local socket, pipe or mapping and reads
 one pairing file, nothing else. Don't ship builds with `IMFORGE_LIVE` defined.

@@ -1,0 +1,270 @@
+{
+  "credit": "Rose Pine palette (MIT)",
+  "description": "Rose Pine's muted dusk: soft iris and rose over deep plum, with roomy spacing and no hard borders.",
+  "fonts": [
+    {
+      "family": "Quicksand",
+      "role": "ui",
+      "size": 16
+    },
+    {
+      "family": "Quicksand",
+      "role": "heading",
+      "size": 20,
+      "weight": "Bold"
+    },
+    {
+      "family": "JetBrains Mono",
+      "role": "mono",
+      "size": 14
+    }
+  ],
+  "fx": {
+    "accentGlow": 0.25,
+    "windowBlur": 0,
+    "windowShadow": 0.35
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "HoverFloat",
+    "button.press": "SoftPress",
+    "list": {
+      "preset": "StaggerFadeUp",
+      "stagger": 0.05
+    },
+    "window": "BlurIn",
+    "window.exit": "FadeOut"
+  },
+  "name": "RosePine",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Button": "#c4a7e7ff",
+        "ButtonActive": "#ebbcbaff",
+        "ButtonHovered": "#cbb2eaff",
+        "Text": "#191724ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#26233aff",
+        "ChildBg": "#1f1d2eff"
+      },
+      "vars": {
+        "ChildBorderSize": 0,
+        "ChildRounding": 14,
+        "WindowPadding": {
+          "x": 16,
+          "y": 14
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#eb6f928c",
+        "Button": "#eb6f9238",
+        "ButtonActive": "#eb6f9275",
+        "ButtonHovered": "#eb6f9257",
+        "CheckMark": "#eb6f92ff",
+        "SliderGrab": "#eb6f92ff",
+        "SliderGrabActive": "#eb6f92ff",
+        "Text": "#f5b7c9ff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#c4a7e780",
+        "Button": "#00000000",
+        "ButtonActive": "#c4a7e73d",
+        "ButtonHovered": "#c4a7e724",
+        "Text": "#c4a7e7ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "heading": {
+      "colors": {
+        "Text": "#ebbcbaff"
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#908caaff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#9ccfd88c",
+        "Button": "#9ccfd829",
+        "ButtonActive": "#9ccfd85c",
+        "ButtonHovered": "#9ccfd842",
+        "CheckMark": "#9ccfd8ff",
+        "SliderGrab": "#9ccfd8ff",
+        "SliderGrabActive": "#9ccfd8ff",
+        "Text": "#aad6ddff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#f6c1778c",
+        "Button": "#f6c17729",
+        "ButtonActive": "#f6c1775c",
+        "ButtonHovered": "#f6c17742",
+        "CheckMark": "#f6c177ff",
+        "SliderGrab": "#f6c177ff",
+        "SliderGrabActive": "#f6c177ff",
+        "Text": "#f7c887ff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "muted",
+    "soft",
+    "rounded"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#403d52ff",
+      "BorderShadow": "#00000000",
+      "Button": "#26233aff",
+      "ButtonActive": "#524f67ff",
+      "ButtonHovered": "#403d52ff",
+      "CheckMark": "#c4a7e7ff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#13111bff",
+      "DockingPreview": "#c4a7e7b2",
+      "DragDropTarget": "#f6c177e6",
+      "FrameBg": "#26233aff",
+      "FrameBgActive": "#524f67ff",
+      "FrameBgHovered": "#403d52ff",
+      "Header": "#c4a7e729",
+      "HeaderActive": "#c4a7e75c",
+      "HeaderHovered": "#c4a7e742",
+      "InputTextCursor": "#ebbcbaff",
+      "MenuBarBg": "#1f1d2eff",
+      "ModalWindowDimBg": "#0f0e16b2",
+      "NavCursor": "#c4a7e7ff",
+      "NavWindowingDimBg": "#12101933",
+      "NavWindowingHighlight": "#e0def4b2",
+      "PlotHistogram": "#c4a7e7ff",
+      "PlotHistogramHovered": "#ebbcbaff",
+      "PlotLines": "#9ccfd8ff",
+      "PlotLinesHovered": "#f6c177ff",
+      "PopupBg": "#1f1d2efa",
+      "ResizeGrip": "#c4a7e72e",
+      "ResizeGripActive": "#c4a7e7e6",
+      "ResizeGripHovered": "#c4a7e78c",
+      "ScrollbarBg": "#00000000",
+      "ScrollbarGrab": "#403d52ff",
+      "ScrollbarGrabActive": "#6e6a86ff",
+      "ScrollbarGrabHovered": "#524f67ff",
+      "Separator": "#403d52ff",
+      "SeparatorActive": "#c4a7e7ff",
+      "SeparatorHovered": "#c4a7e7b2",
+      "SliderGrab": "#c4a7e7ff",
+      "SliderGrabActive": "#ebbcbaff",
+      "Tab": "#1f1d2eff",
+      "TabDimmed": "#191724ff",
+      "TabDimmedSelected": "#1f1d2eff",
+      "TabDimmedSelectedOverline": "#c4a7e773",
+      "TabHovered": "#403d52ff",
+      "TabSelected": "#26233aff",
+      "TabSelectedOverline": "#c4a7e7ff",
+      "TableBorderLight": "#26233aff",
+      "TableBorderStrong": "#403d52ff",
+      "TableHeaderBg": "#1f1d2eff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#21202eff",
+      "Text": "#e0def4ff",
+      "TextDisabled": "#736f8aff",
+      "TextLink": "#9ccfd8ff",
+      "TextSelectedBg": "#c4a7e74c",
+      "TitleBg": "#191724ff",
+      "TitleBgActive": "#1f1d2eff",
+      "TitleBgCollapsed": "#191724cc",
+      "WindowBg": "#191724ff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 10,
+        "y": 6
+      },
+      "ChildBorderSize": 0,
+      "ChildRounding": 12,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 0,
+      "FramePadding": {
+        "x": 12,
+        "y": 7
+      },
+      "FrameRounding": 8,
+      "GrabMinSize": 12,
+      "GrabRounding": 8,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 24,
+      "ItemInnerSpacing": {
+        "x": 8,
+        "y": 6
+      },
+      "ItemSpacing": {
+        "x": 12,
+        "y": 10
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 10,
+      "ScrollbarRounding": 12,
+      "ScrollbarSize": 14,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 1,
+      "SeparatorTextPadding": {
+        "x": 16,
+        "y": 3
+      },
+      "TabBarBorderSize": 0,
+      "TabBarOverlineSize": 0,
+      "TabBorderSize": 0,
+      "TabRounding": 8,
+      "WindowBorderSize": 0,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 64
+      },
+      "WindowPadding": {
+        "x": 16,
+        "y": 16
+      },
+      "WindowRounding": 12,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Rose Pine",
+  "widgetStyle": {
+    "accent": "#c4a7e7ff",
+    "accent2": "#ebbcbaff",
+    "danger": "#eb6f92ff",
+    "success": "#9ccfd8ff",
+    "warning": "#f6c177ff"
+  }
+}

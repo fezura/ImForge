@@ -1,0 +1,79 @@
+{
+  "bindings": [
+    {
+      "name": "stops",
+      "required": true,
+      "types": [
+        "float[N]",
+        "vector<float>"
+      ]
+    }
+  ],
+  "call": "imb::ctl::GradientEditorPacked({label}, {stops}, {stops:count})",
+  "category": "Controls",
+  "container": false,
+  "events": [
+    "onChange"
+  ],
+  "icon": "fa-swatchbook",
+  "include": "imb_controls.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "GradientEditor",
+  "preview": [
+    {
+      "fill": "#1a73f2ff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 70,
+      "x": 6,
+      "y": 0
+    },
+    {
+      "fill": "#f24d8cff",
+      "h": 22,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 70,
+      "x": 76,
+      "y": 0
+    },
+    {
+      "fill": "#1a73f2ff",
+      "h": 11,
+      "rounding": 3,
+      "shape": "rect",
+      "stroke": "#4296faff",
+      "w": 11,
+      "x": 1,
+      "y": 26
+    },
+    {
+      "fill": "#f24d8cff",
+      "h": 11,
+      "rounding": 3,
+      "shape": "rect",
+      "stroke": "#3c4456ff",
+      "w": 11,
+      "x": 140,
+      "y": 26
+    },
+    {
+      "color": "#e6e6e6ff",
+      "shape": "text",
+      "text": "{label}",
+      "x": 160,
+      "y": 4
+    }
+  ],
+  "props": [
+    {
+      "default": "Gradient",
+      "name": "label",
+      "type": "string"
+    }
+  ],
+  "returns": "changed",
+  "schemaVersion": 1
+}

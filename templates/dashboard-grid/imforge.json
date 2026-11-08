@@ -1,0 +1,176 @@
+{
+  "activeTheme": "TokyoNight",
+  "binding": {
+    "compileCommands": "",
+    "includePaths": [],
+    "types": [
+      "Stats"
+    ],
+    "typesJson": "types.json"
+  },
+  "codegen": {
+    "baseFontSize": 16,
+    "cppStandard": 17,
+    "dpiMode": "fontSize",
+    "functionCase": "pascal",
+    "indent": 4,
+    "markers": true,
+    "namespace": "dash",
+    "outputDir": "generated",
+    "runtimeHeader": "imb_runtime.h",
+    "splitHeader": true,
+    "stdString": true,
+    "useTabs": false,
+    "variableCase": "snake"
+  },
+  "components": [],
+  "features": {
+    "animations": true,
+    "docking": false,
+    "dpiScaling": true,
+    "drawlistFx": true,
+    "iconFonts": true,
+    "shaderFx": false
+  },
+  "fonts": [
+    {
+      "file": "fonts/Inter-Regular.ttf",
+      "mergeIcons": "fontawesome6",
+      "name": "Default",
+      "ranges": "default",
+      "size": 16
+    },
+    {
+      "file": "fonts/Inter-Bold.ttf",
+      "mergeIcons": "fontawesome6",
+      "name": "Bold",
+      "ranges": "default",
+      "size": 16
+    },
+    {
+      "file": "fonts/Inter-Bold.ttf",
+      "mergeIcons": "fontawesome6",
+      "name": "Title",
+      "ranges": "default",
+      "size": 24
+    },
+    {
+      "file": "fonts/Inter-Regular.ttf",
+      "mergeIcons": "fontawesome6",
+      "name": "Small",
+      "ranges": "default",
+      "size": 13
+    }
+  ],
+  "imgui": {
+    "branch": "master",
+    "version": "1.91.9"
+  },
+  "kind": "project",
+  "libraries": [],
+  "live": {
+    "enabled": true,
+    "pipeName": "ImForge",
+    "shmName": "ImForge",
+    "tcpPort": 7777,
+    "transport": "tcp"
+  },
+  "name": "{{PROJECT_NAME}}",
+  "panels": [
+    "panels/Dashboard.imb.json"
+  ],
+  "platform": {
+    "renderer": "gl3",
+    "window": "sdl3"
+  },
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent_button": {
+      "colors": {
+        "Button": "#7aa2f7ff",
+        "ButtonActive": "#bb9af7ff",
+        "ButtonHovered": "#7bb4faff",
+        "Text": "#1a1b26ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#414868ff",
+        "ChildBg": "#24283bff"
+      },
+      "vars": {
+        "ChildBorderSize": 1,
+        "ChildRounding": 8,
+        "WindowPadding": {
+          "x": 12,
+          "y": 10
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#f7768e8c",
+        "Button": "#f7768e38",
+        "ButtonActive": "#f7768e75",
+        "ButtonHovered": "#f7768e57",
+        "CheckMark": "#f7768eff",
+        "SliderGrab": "#f7768eff",
+        "SliderGrabActive": "#f7768eff",
+        "Text": "#fbc0cbff"
+      }
+    },
+    "ghost_button": {
+      "colors": {
+        "Border": "#7aa2f780",
+        "Button": "#00000000",
+        "ButtonActive": "#7aa2f73d",
+        "ButtonHovered": "#7aa2f724",
+        "Text": "#82a8f7ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#bb9af7ff",
+        "Text": "#bb9af7ff"
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#9aa5ceff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#9ece6a8c",
+        "Button": "#9ece6a29",
+        "ButtonActive": "#9ece6a5c",
+        "ButtonHovered": "#9ece6a42",
+        "CheckMark": "#9ece6aff",
+        "SliderGrab": "#9ece6aff",
+        "SliderGrabActive": "#9ece6aff",
+        "Text": "#b5da8eff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#e0af688c",
+        "Button": "#e0af6829",
+        "ButtonActive": "#e0af685c",
+        "ButtonHovered": "#e0af6842",
+        "CheckMark": "#e0af68ff",
+        "SliderGrab": "#e0af68ff",
+        "SliderGrabActive": "#e0af68ff",
+        "Text": "#e8c48fff"
+      }
+    }
+  },
+  "themes": [
+    "themes/TokyoNight.theme.json"
+  ]
+}

@@ -493,34 +493,43 @@ TEST_CASE("codegen widgets: custom widgets from manifests") {
         "schemaVersion":1, "kind":"widget", "name":"Foldout", "category":"Essentials", "include":"foldout.h",
         "props":[{"name":"label","type":"string","default":"Foldout"}], "events":["onOpen","onClose"],
         "container":true, "call":"BeginFoldout({label})", "callEnd":"EndFoldout()", "returns":"open"})json"), &err), err.message);
-    REQUIRE_MESSAGE(catalog.AddManifest(ParseOrFail(R"json({
-        "schemaVersion":1, "kind":"widget", "name":"Lambda", "category":"Essentials", "include":"lambda.h",
-        "props":[{"name":"label","type":"string","default":"L"}],
-        "container":true, "call":"WithFrame({label}, [&]() {\n{children}\n})", "returns":"void"})json"), &err), err.message);
 
     SUBCASE("call template expansion, bindings and events") {
         Gen g = Generate(R"({"id":"tg","type":"Toggle","props":{"label":"ESP","onColor":"#ff0000ff"},"bind":{"value":"cfg.esp.enabled"},
                              "events":{"onChange":{"handler":true}}})", 19190, &catalog);
         INFO(g.all);
         CHECK_MESSAGE(!g.HasError(), g.Errors());
-        CHECK(g.Has("if (imb::ess::Toggle(\"ESP\", &cfg.esp.enabled, ImVec4("));
+        CHECK(g.Has("ImGui::PushID(\"tg\");\n"));
+        CHECK(g.Has("const bool tg_changed = imb::ess::Toggle(\"ESP\", &cfg.esp.enabled, ImVec4("));
+        size_t pop = g.all.find("ImGui::PopID();\n", g.all.find("tg_changed = "));
+        size_t fire = g.all.find("if (tg_changed) {");
+        REQUIRE(pop != std::string::npos);
+        REQUIRE(fire != std::string::npos);
+        CHECK(pop < fire);
         CHECK(g.Has("Main_tg_OnChange("));
         CHECK(g.Has("imb_essentials.h"));
         Gen bare = Generate(R"({"id":"tg","type":"Toggle","props":{"label":"ESP"},"bind":{"value":"cfg.esp.enabled"}})", 19190, &catalog);
+        CHECK(bare.Has("ImGui::PushID(\"tg\");\n"));
         CHECK(bare.Has("imb::ess::Toggle(\"ESP\", &cfg.esp.enabled, ImVec4("));
         CHECK_FALSE(bare.Has("if (imb::ess::Toggle"));
+        CHECK_FALSE(bare.Has("tg_changed"));
     }
     SUBCASE("container with callEnd emits children between call and end") {
         Gen g = Generate(R"({"id":"card","type":"SectionCard","props":{"title":"Aim","size":{"w":"fill","h":200}},
                              "children":[{"id":"t","type":"Text","props":{"text":"inside"}}]})", 19190, &catalog);
         INFO(g.all);
         CHECK_MESSAGE(!g.HasError(), g.Errors());
+        size_t push = g.all.find("ImGui::PushID(\"card\");");
         size_t a = g.all.find("imb::ess::SectionCard(\"Aim\", ImVec2(-FLT_MIN, 200 * imb_s));");
         size_t b = g.all.find("ImGui::TextUnformatted(\"inside\");");
         size_t c = g.all.find("imb::ess::EndSectionCard();");
+        size_t pop = g.all.find("ImGui::PopID();", c);
+        REQUIRE(push != std::string::npos);
         REQUIRE(a != std::string::npos);
         REQUIRE(b != std::string::npos);
         REQUIRE(c != std::string::npos);
+        REQUIRE(pop != std::string::npos);
+        CHECK(push < a);
         CHECK(a < b);
         CHECK(b < c);
     }
@@ -539,6 +548,8 @@ TEST_CASE("codegen widgets: custom widgets from manifests") {
         CHECK(g.Has("const bool fo_open = BeginFoldout(\"More\");"));
         CHECK(g.Has("if (fo_open) {"));
         CHECK(g.Has("EndFoldout();"));
+        CHECK(g.Has("ImGui::PushID(\"fo\");\n        static bool fo_was_open = false;"));
+        CHECK(g.Has("EndFoldout();\n        }\n        ImGui::PopID();\n        if (fo_open && !fo_was_open) {"));
         CHECK(g.Has("if (fo_open && !fo_was_open) {"));
         CHECK(g.Has("Main_fo_OnOpen("));
         CHECK(g.Has("fo_was_open = fo_open;"));
@@ -546,18 +557,13 @@ TEST_CASE("codegen widgets: custom widgets from manifests") {
         CHECK(plain.Has("if (BeginFoldout(\"More\")) {"));
         CHECK_FALSE(plain.Has("fo_was_open"));
     }
-    SUBCASE("{children} marker inside a multi-line call") {
-        Gen g = Generate(R"({"id":"lm","type":"Lambda","props":{"label":"Frame"},"children":[{"id":"t","type":"Text","props":{"text":"x"}}]})", 19190, &catalog);
-        INFO(g.all);
-        CHECK_MESSAGE(!g.HasError(), g.Errors());
-        size_t a = g.all.find("WithFrame(\"Frame\", [&]() {");
-        size_t b = g.all.find("ImGui::TextUnformatted(\"x\");");
-        size_t c = g.all.find("});");
-        REQUIRE(a != std::string::npos);
-        REQUIRE(b != std::string::npos);
-        REQUIRE(c != std::string::npos);
-        CHECK(a < b);
-        CHECK(b < c);
+    SUBCASE("a lambda body in a call template is refused") {
+        Error lerr;
+        CHECK_FALSE(catalog.AddManifest(ParseOrFail(R"json({
+            "schemaVersion":1, "kind":"widget", "name":"Lambda", "category":"Essentials", "include":"lambda.h",
+            "props":[{"name":"label","type":"string","default":"L"}],
+            "container":true, "call":"WithFrame({label}, [&]() {\n{children}\n})", "returns":"void"})json"), &lerr));
+        CHECK(lerr.message.find("call") != std::string::npos);
     }
 }
 

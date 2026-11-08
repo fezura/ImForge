@@ -24,6 +24,7 @@
 #include "editor_context.h"
 #include "export.h"
 #include "live_bridge.h"
+#include "panels/library_actions.h"
 #include "platform/platform.h"
 #include "png_write.h"
 
@@ -319,7 +320,18 @@ bool Automation::Execute(EditorContext& ctx, Platform& platform, const std::stri
         return true;
     }
     if (cmd == "screenshot") {
-        std::string path = ExpandEnv(RestOf(is));
+        std::string raw = RestOf(is);
+        // an unset ${VAR} in the path skips the shot (library_smoke.txt only captures when SHOT_DIR is set)
+        for (size_t a = raw.find("${"); a != std::string::npos; a = raw.find("${", a + 2)) {
+            size_t e = raw.find('}', a + 2);
+            if (e == std::string::npos) break;
+            std::string var = raw.substr(a + 2, e - a - 2);
+            if (!std::getenv(var.c_str())) {
+                Ok(ctx, "skipped, " + var + " is not set");
+                return true;
+            }
+        }
+        std::string path = ExpandEnv(raw);
         if (path.empty()) return Fail(ctx, "usage: screenshot <path.png>");
         if (!platform.RequestCapture()) return Fail(ctx, std::string("framebuffer capture not supported by ") + platform.Name());
         capture_path_ = path;
@@ -464,6 +476,19 @@ bool Automation::Execute(EditorContext& ctx, Platform& platform, const std::stri
         if (name.empty()) return Fail(ctx, "usage: open_panel <name>");
         if (!ctx.OpenPanel(name.c_str(), true)) return Fail(ctx, "no panel named '" + name + "'");
         Ok(ctx, "opened " + name);
+        return true;
+    }
+    if (cmd == "library_tab") {
+        std::string name = RestOf(is);
+        if (!ShowLibraryTab(ctx, name)) return Fail(ctx, "usage: library_tab animations|designs|widgets|templates");
+        Ok(ctx, "library tab " + name);
+        return true;
+    }
+    if (cmd == "library_scroll") {
+        float y = -1;
+        if (!(is >> y) || y < 0) return Fail(ctx, "usage: library_scroll <y>");
+        ScrollLibrary(y);
+        Ok(ctx, "library scroll " + std::to_string((int)y));
         return true;
     }
     return Fail(ctx, "unknown command '" + cmd + "'");

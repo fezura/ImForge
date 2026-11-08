@@ -87,7 +87,7 @@ inline MockType MockTypeOf(const char* types) {
         if (n == 0) n = (p < t.size() && t[p] == ']') ? 16 : 4;
     }
     if (base == "bool") mt.kind = MockKind::Bool;
-    else if (base == "int" || base == "enum") mt.kind = MockKind::Int;
+    else if ((base == "int" || base == "enum") && (br == std::string::npos || base == "enum")) mt.kind = MockKind::Int;
     else if (base == "string" || base == "char") mt.kind = MockKind::String;
     else if (base == "vec2") mt.kind = MockKind::Vec2;
     else if (base == "vec4") mt.kind = MockKind::Vec4;

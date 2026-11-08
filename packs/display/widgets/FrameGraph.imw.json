@@ -1,0 +1,253 @@
+{
+  "bindings": [
+    {
+      "name": "samples",
+      "required": false,
+      "types": [
+        "float[N]",
+        "vector<float>"
+      ]
+    }
+  ],
+  "call": "imb::disp::FrameGraph({label}, {samples}, {samples:count}, {budgetMs}, {size})",
+  "category": "Display",
+  "container": false,
+  "events": [],
+  "icon": "fa-chart-area",
+  "include": "imb_display.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "FrameGraph",
+  "preview": [
+    {
+      "fill": "#1e2129ff",
+      "h": 58,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 220,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 18,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 4.0,
+      "y": 36
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 20,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 14.6,
+      "y": 34
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 17,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 25.2,
+      "y": 37
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 22,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 35.8,
+      "y": 32
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 19,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 46.4,
+      "y": 35
+    },
+    {
+      "fill": "#f1b40fff",
+      "h": 34,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 57.0,
+      "y": 20
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 21,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 67.6,
+      "y": 33
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 18,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 78.2,
+      "y": 36
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 20,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 88.8,
+      "y": 34
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 19,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 99.4,
+      "y": 35
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 23,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 110.0,
+      "y": 31
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 20,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 120.6,
+      "y": 34
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 18,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 131.2,
+      "y": 36
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 19,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 141.8,
+      "y": 35
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 21,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 152.4,
+      "y": 33
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 20,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 163.0,
+      "y": 34
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 18,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 173.6,
+      "y": 36
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 26,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 184.2,
+      "y": 28
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 19,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 194.8,
+      "y": 35
+    },
+    {
+      "fill": "#2ecc71ff",
+      "h": 20,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 9,
+      "x": 205.4,
+      "y": 34
+    },
+    {
+      "shape": "line",
+      "stroke": "#8a91a0ff",
+      "thickness": 1,
+      "x": 4,
+      "x2": 216,
+      "y": 30,
+      "y2": 30
+    },
+    {
+      "color": "#8a91a0ff",
+      "shape": "text",
+      "text": "8.3 ms  120 fps",
+      "x": 8,
+      "y": 3
+    }
+  ],
+  "props": [
+    {
+      "default": "Frame time",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": 16.67,
+      "hint": "target frame time line, 0 hides it",
+      "max": 1000,
+      "min": 0,
+      "name": "budgetMs",
+      "type": "float"
+    },
+    {
+      "default": {
+        "h": "auto",
+        "w": "fill"
+      },
+      "name": "size",
+      "type": "size"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

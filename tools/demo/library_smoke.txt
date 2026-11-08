@@ -1,0 +1,82 @@
+# Library smoke test: tabs, scrolling, apply a design, add a motion, new animation, undo/redo, frame times.
+# nothing is saved. set SHOT_DIR to also get screenshots
+#   imforge_builder.exe examples/projects/CheatMenu --script tools/demo/library_smoke.txt
+
+wait 1
+library_tab animations
+wait 1
+frame_reset
+library_scroll 0
+wait 0.5
+library_scroll 1200
+wait 0.5
+library_scroll 4000
+wait 0.5
+library_scroll 0
+wait 0.5
+assert_frame_ms_lt 40
+screenshot ${SHOT_DIR}/lib_animations.png
+library_tab animations category exit
+wait 0.3
+library_tab animations search fade
+wait 0.3
+library_tab animations search
+library_tab animations category
+frame_reset
+library_tab designs
+wait 0.5
+library_scroll 600
+wait 0.5
+library_scroll 0
+wait 0.5
+assert_frame_ms_lt 40
+screenshot ${SHOT_DIR}/lib_designs.png
+frame_reset
+library_tab widgets
+wait 0.5
+library_scroll 500
+wait 0.5
+library_scroll 0
+wait 0.5
+assert_frame_ms_lt 40
+screenshot ${SHOT_DIR}/lib_widgets.png
+frame_reset
+library_tab templates
+wait 3
+library_scroll 400
+wait 1
+library_scroll 0
+wait 1
+assert_frame_ms_lt 60
+screenshot ${SHOT_DIR}/lib_templates.png
+
+library_tab designs select NeonCyber
+library_tab designs apply theme
+wait 0.5
+undo
+wait 0.3
+redo
+wait 0.3
+undo
+library_tab designs preview on
+wait 0.3
+library_tab designs preview off
+library_tab designs apply everything
+wait 0.5
+undo
+
+select title_text
+library_tab animations select FadeIn
+library_tab animations add enter
+wait 0.5
+undo
+redo
+library_tab animations new
+wait 0.5
+undo
+redo
+undo
+undo
+assert_no_errors
+screenshot ${SHOT_DIR}/lib_after.png
+quit 0

@@ -1,0 +1,270 @@
+{
+  "credit": "",
+  "description": "Acid green on swamp black with hard outlines and a thick hazard bar over the active tab. Loud on purpose.",
+  "fonts": [
+    {
+      "family": "Oxanium",
+      "role": "ui",
+      "size": 15,
+      "weight": "Medium"
+    },
+    {
+      "family": "Russo One",
+      "role": "heading",
+      "size": 19,
+      "weight": "Regular"
+    }
+  ],
+  "fx": {
+    "accentGlow": 0.65,
+    "windowBlur": 0,
+    "windowShadow": 0.3
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "Slant",
+    "button.press": "Flatten",
+    "checkbox.change": "SuccessGlow",
+    "list": "StaggerFadeLeft",
+    "window": "TiltIn",
+    "window.exit": "ShrinkAway"
+  },
+  "name": "ToxicGreen",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Border": "#7cff3acc",
+        "Button": "#7cff3aff",
+        "ButtonActive": "#d4ff3aff",
+        "ButtonHovered": "#a3ff70ff",
+        "Text": "#0a0f08ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#3a5a2cff",
+        "ChildBg": "#10180cff"
+      },
+      "vars": {
+        "ChildBorderSize": 1,
+        "ChildRounding": 2,
+        "WindowPadding": {
+          "x": 10,
+          "y": 8
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#ff4f3a8c",
+        "Button": "#ff4f3a29",
+        "ButtonActive": "#ff4f3a6b",
+        "ButtonHovered": "#ff4f3a47",
+        "CheckMark": "#ff4f3aff",
+        "SliderGrab": "#ff4f3aff",
+        "SliderGrabActive": "#ff4f3aff",
+        "Text": "#fc654fff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#d4ff3a80",
+        "Button": "#d4ff3a00",
+        "ButtonActive": "#d4ff3a42",
+        "ButtonHovered": "#d4ff3a24",
+        "Text": "#d4ff3aff"
+      },
+      "vars": {
+        "FrameBorderSize": 1
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#7cff3acc",
+        "Text": "#d4ff3aff"
+      },
+      "vars": {
+        "SeparatorTextBorderSize": 4
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#7f9c74ff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#7cff3a8c",
+        "Button": "#7cff3a29",
+        "ButtonActive": "#7cff3a6b",
+        "ButtonHovered": "#7cff3a47",
+        "CheckMark": "#7cff3aff",
+        "SliderGrab": "#7cff3aff",
+        "SliderGrabActive": "#7cff3aff",
+        "Text": "#7cff3aff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#ffe53a8c",
+        "Button": "#ffe53a29",
+        "ButtonActive": "#ffe53a6b",
+        "ButtonHovered": "#ffe53a47",
+        "CheckMark": "#ffe53aff",
+        "SliderGrab": "#ffe53aff",
+        "SliderGrabActive": "#ffe53aff",
+        "Text": "#ffe53aff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "green",
+    "neon",
+    "hazard",
+    "gaming"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#3a5a2cff",
+      "BorderShadow": "#00000000",
+      "Button": "#172312ff",
+      "ButtonActive": "#3a7020ff",
+      "ButtonHovered": "#2b4f1aff",
+      "CheckMark": "#7cff3aff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#070a06ff",
+      "DockingPreview": "#7cff3a99",
+      "DragDropTarget": "#ffe53ae6",
+      "FrameBg": "#172312ff",
+      "FrameBgActive": "#30551eff",
+      "FrameBgHovered": "#1f3018ff",
+      "Header": "#7cff3a29",
+      "HeaderActive": "#7cff3a61",
+      "HeaderHovered": "#7cff3a42",
+      "InputTextCursor": "#7cff3aff",
+      "MenuBarBg": "#10180cff",
+      "ModalWindowDimBg": "#05080499",
+      "NavCursor": "#7cff3aff",
+      "NavWindowingDimBg": "#05080440",
+      "NavWindowingHighlight": "#e9ffe0b2",
+      "PlotHistogram": "#7cff3aff",
+      "PlotHistogramHovered": "#d4ff3aff",
+      "PlotLines": "#d4ff3aff",
+      "PlotLinesHovered": "#ffe53aff",
+      "PopupBg": "#121c0efa",
+      "ResizeGrip": "#7cff3a2e",
+      "ResizeGripActive": "#7cff3ae6",
+      "ResizeGripHovered": "#7cff3a8c",
+      "ScrollbarBg": "#080c06ff",
+      "ScrollbarGrab": "#284020ff",
+      "ScrollbarGrabActive": "#59b22cff",
+      "ScrollbarGrabHovered": "#365a2aff",
+      "Separator": "#284020ff",
+      "SeparatorActive": "#7cff3aff",
+      "SeparatorHovered": "#7cff3aa6",
+      "SliderGrab": "#7cff3aff",
+      "SliderGrabActive": "#d4ff3aff",
+      "Tab": "#10180cff",
+      "TabDimmed": "#0e140aff",
+      "TabDimmedSelected": "#1b2f14ff",
+      "TabDimmedSelectedOverline": "#d4ff3a73",
+      "TabHovered": "#2c5220ff",
+      "TabSelected": "#24401aff",
+      "TabSelectedOverline": "#d4ff3aff",
+      "TableBorderLight": "#1c2c16ff",
+      "TableBorderStrong": "#284020ff",
+      "TableHeaderBg": "#10180cff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#e9ffe008",
+      "Text": "#e9ffe0ff",
+      "TextDisabled": "#7f9c74ff",
+      "TextLink": "#d4ff3aff",
+      "TextSelectedBg": "#7cff3a40",
+      "TitleBg": "#080c06ff",
+      "TitleBgActive": "#16260fff",
+      "TitleBgCollapsed": "#080c06bf",
+      "WindowBg": "#0a0f08ff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 4,
+        "y": 2
+      },
+      "ChildBorderSize": 1,
+      "ChildRounding": 2,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 1,
+      "FramePadding": {
+        "x": 7,
+        "y": 3
+      },
+      "FrameRounding": 1,
+      "GrabMinSize": 9,
+      "GrabRounding": 1,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 16,
+      "ItemInnerSpacing": {
+        "x": 4,
+        "y": 4
+      },
+      "ItemSpacing": {
+        "x": 6,
+        "y": 4
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 2,
+      "ScrollbarRounding": 0,
+      "ScrollbarSize": 9,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 4,
+      "SeparatorTextPadding": {
+        "x": 8,
+        "y": 3
+      },
+      "TabBarBorderSize": 1,
+      "TabBarOverlineSize": 3,
+      "TabBorderSize": 0,
+      "TabRounding": 1,
+      "WindowBorderSize": 1,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 48
+      },
+      "WindowPadding": {
+        "x": 8,
+        "y": 8
+      },
+      "WindowRounding": 3,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Toxic Green",
+  "widgetStyle": {
+    "accent": "#7cff3aff",
+    "accent2": "#d4ff3aff",
+    "danger": "#ff4f3aff",
+    "success": "#7cff3aff",
+    "warning": "#ffe53aff"
+  }
+}

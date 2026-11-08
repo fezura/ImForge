@@ -1,0 +1,130 @@
+{
+  "bindings": [],
+  "call": "imb::game::KillFeedEntry({label}, {killer}, {victim}, {weapon}, {age}, {killerTeam}, {victimTeam}, {flags}, {lifetime})",
+  "category": "Gaming",
+  "container": false,
+  "events": [],
+  "icon": "fa-skull",
+  "include": "imb_gaming.h",
+  "kind": "widget",
+  "minImGuiVersion": 18500,
+  "name": "KillFeedEntry",
+  "preview": [
+    {
+      "fill": "#0d0f14d9",
+      "h": 24,
+      "rounding": 4,
+      "shape": "rect",
+      "w": 230,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#4aa3ffff",
+      "shape": "text",
+      "text": "{killer}",
+      "x": 8,
+      "y": 5
+    },
+    {
+      "color": "#8a93a6ff",
+      "shape": "text",
+      "text": "{weapon}",
+      "x": 60,
+      "y": 6
+    },
+    {
+      "fill": "#00000000",
+      "r": 5,
+      "shape": "circle",
+      "stroke": "#ec4848ff",
+      "x": 124,
+      "y": 12
+    },
+    {
+      "fill": "#ec4848ff",
+      "h": 1,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 13,
+      "x": 118,
+      "y": 12
+    },
+    {
+      "fill": "#ec4848ff",
+      "h": 13,
+      "rounding": 0,
+      "shape": "rect",
+      "w": 1,
+      "x": 124,
+      "y": 6
+    },
+    {
+      "color": "#ff5656ff",
+      "shape": "text",
+      "text": "{victim}",
+      "x": 138,
+      "y": 5
+    }
+  ],
+  "props": [
+    {
+      "default": "kill",
+      "hint": "ImGui id, not shown",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "default": "Alpha",
+      "name": "killer",
+      "type": "string"
+    },
+    {
+      "default": "Bravo",
+      "name": "victim",
+      "type": "string"
+    },
+    {
+      "default": "Rifle",
+      "name": "weapon",
+      "type": "string"
+    },
+    {
+      "default": "1.0",
+      "hint": "seconds since the event",
+      "name": "age",
+      "type": "expr"
+    },
+    {
+      "default": "0",
+      "name": "killerTeam",
+      "type": "expr"
+    },
+    {
+      "default": "1",
+      "name": "victimTeam",
+      "type": "expr"
+    },
+    {
+      "default": "1",
+      "hint": "imb::game::KillFlag_* bits",
+      "name": "flags",
+      "type": "expr"
+    },
+    {
+      "default": 6,
+      "max": 60,
+      "min": 0.5,
+      "name": "lifetime",
+      "type": "float"
+    },
+    {
+      "default": true,
+      "hint": "canvas only: replays the timing",
+      "name": "previewLoop",
+      "type": "bool"
+    }
+  ],
+  "returns": "void",
+  "schemaVersion": 1
+}

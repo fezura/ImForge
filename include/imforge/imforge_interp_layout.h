@@ -461,7 +461,8 @@ inline bool WindowNode(DrawCtx& ctx) {
     bool shown = false;
     bool is_open = !open || *open;
     if (is_open) {
-        std::string label = title + "###" + ctx.node.id;
+        // top level window ids ignore the id stack, so the panel name keeps "window" roots apart
+        std::string label = title + "###" + ctx.panel.name + "/" + ctx.node.id;
         shown = ImGui::Begin(label.c_str(), open, flags);
         RectFromWindow(ctx);
         if (shown) ctx.DrawChildren();

@@ -16,7 +16,8 @@ For a project with panels `MainMenu` and `Settings`, `Ctrl+E` writes these into
 | `imforge_components.h/.cpp` | one function per component definition |
 | `imforge_theme_<Name>.h` | `ApplyTheme_<Name>(ImGuiStyle&)` per theme |
 | `imforge_styles.h` | push/pop helpers for style classes |
-| `imforge_fonts.h` | `LoadFonts(ImGuiIO&)` and `ImFont*` accessors by name |
+| `imforge_fonts.h` | `LoadFonts(ImGuiIO&)` and one `Font_<Name>()` accessor per font, returning `ImFont*&` |
+| `imforge_animations.h` | the project's custom animations as static keyframe tables, when it has any |
 | `imforge_reflect.h` | `IMFORGE_REFLECT` tables for your binding types (dev builds) |
 | `imforge_dev.h` | registers handlers and locked blocks with the live interpreter (dev builds) |
 
@@ -68,6 +69,42 @@ become matched `PushStyleColor`/`PushStyleVar` pairs and style classes become
 `Style_<class>_Push()/Pop()` helpers. Animations and effects call `imb::` functions from
 `imb_runtime.h`; shader blur calls `imb::fx::Blur` inside `#ifdef IMB_FX_AVAILABLE`.
 
+## Motions
+
+A node with motions gets a static binding table and a `BeginMotion`/`EndMotion` scope around
+its code:
+
+```cpp
+static const imb::MotionBinding imb_m_pop[] = {
+    {imb::presets::ZoomIn(), imb::Trigger::Enter, 1.0f, 0.0f, -1, 0.0f},
+    {imb::presets::Lift(), imb::Trigger::Hover, 0.5f, 0.0f, -1, 0.0f},
+};
+const ImGuiID imb_mid_pop = ImGui::GetID("pop##m");
+if (imb::BeginMotion(imb_mid_pop, imb_m_pop, 2, imb::MotionOptions())) {
+    ImGui::Button("Pop");
+    imb::EndMotion();
+}
+```
+
+On a `Window`, `Popup`, `Modal`, `Tab` or `Menu` the scope goes inside, around the content.
+If the node has a `visibleIf`, the condition goes into `MotionOptions::visible` instead of an
+`if`, so an exit motion can still play after it turns false. Children of a staggered container
+get their `stagger_index` the same way. An event with a motion's `on` set calls
+`imb::TriggerMotion(id, ...)` next to its actions and handler, and `Text`/`SeparatorText` with
+a text reveal motion format into a buffer and cut it with a small `ImbTextReveal` helper that
+the generator writes into the file.
+
+Presets come from `imb_motion_presets.h` (`imb::presets::ZoomIn()` and so on). Custom project
+animations go into `imforge_animations.h` as `imforge_anim::<Name>()` accessors over static
+keyframe tables, plus an `imforge_anim::RegisterAnimations()` that the generated panel draw
+calls once, so `imb::FindAnim` knows them by name too. Unknown preset names are skipped with a
+warning in Diagnostics.
+
+`imb_motion.h` and `imb_motion_presets.h` are only included when a panel uses motions, and
+export then copies them next to the generated code along with `imb_runtime.h`. With the
+animations feature turned off in Project Settings no motion code is written at all. The
+runtime side is described in [MOTION.md](MOTION.md).
+
 ## Markers
 
 | Marker | What it is | Can you edit it? |
@@ -99,7 +136,7 @@ Under project settings, Codegen:
 
 | Option | Values | Effect |
 |---|---|---|
-| `cppStandard` | 14, 17, 20 | which language features are used (e.g. `inline` variables) |
+| `cppStandard` | 14, 17, 20 | the standard your app builds with; generated code sticks to C++14 (an `a::b` namespace becomes nested blocks), so this only ends up in the CMake snippet. `imforge_reflect.h` and live attach need C++17 |
 | `namespace` | string | wraps everything; empty for none |
 | `splitHeader` | bool | header + source, or a single header |
 | `functionCase` / `variableCase` | `pascal`, `camel`, `snake` | naming of generated identifiers only |

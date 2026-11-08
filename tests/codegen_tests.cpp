@@ -12,6 +12,7 @@
 #include "codegen.h"
 #include "codegen_test_util.h"
 #include "imforge/imforge_core.h"
+#include "imforge/imforge_widgets.h"
 
 using namespace imforge;
 using namespace imforge::codegen;
@@ -354,7 +355,7 @@ TEST_CASE("panel generation") {
         CHECK(Contains(src, "ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 6 * imb_s);"));
         CHECK(Contains(src, "Style_danger_Push();"));
         CHECK(Contains(src, "Style_danger_Pop();"));
-        CHECK(Contains(src, "ImGui::PushFont(Font_Bold);"));
+        CHECK(Contains(src, "ImGui::PushFont(Font_Bold());"));
         CHECK(Contains(src, "ImGui::PopFont();"));
         CHECK(Contains(src, "imb::Transition(ImGui::GetID(\"styled/t0\"), ImGui::GetStateStorage()->GetBool(ImGui::GetID(\"styled/hover\")), 0.15f, imb::Ease::OutCubic)"));
         CHECK(Contains(src, "if (imb::BeginEnter(ImGui::GetID(\"styled\"), true, 0.25f, imb::Preset::FadeSlideUp)) {"));
@@ -434,6 +435,23 @@ TEST_CASE("single header mode uses inline functions") {
     CHECK(CheckHashes(r.files[0].content) > 0);
 }
 
+TEST_CASE("a::b namespace is written as nested blocks so C++14 accepts it") {
+    Fixture fx;
+    Options o = fx.opts;
+    o.settings.nmspace = "game::ui";
+    Result r = GenerateAll(fx.project, o);
+    REQUIRE(!r.files.empty());
+    for (const FileOut& f : r.files) {
+        CHECK_MESSAGE(!Contains(f.content, "namespace game::ui {"), f.path);
+        if (!Contains(f.content, "namespace game {")) continue;
+        CHECK_MESSAGE(Contains(f.content, "namespace game { namespace ui {\n"), f.path);
+        CHECK_MESSAGE(Contains(f.content, "}}  // namespace game::ui\n"), f.path);
+    }
+    const FileOut* h = r.Find("MainMenu.h");
+    REQUIRE(h);
+    CHECK(Contains(h->content, "namespace game { namespace ui {\n"));
+}
+
 TEST_CASE("naming cases") {
     Fixture fx;
     Options o = fx.opts;
@@ -499,12 +517,37 @@ TEST_CASE("theme and styles") {
     CHECK(Contains(s.files[0].content, "ImGui::PopStyleColor();"));
 }
 
+TEST_CASE("hyphenated style class names become valid identifiers") {
+    Fixture fx;
+    REQUIRE(fx.project.style_classes.size() == 1);
+    fx.project.style_classes[0].first = "accent-button";
+    struct Rename {
+        static void Run(Node& n) {
+            for (std::string& c : n.style.classes)
+                if (c == "danger") c = "accent-button";
+            for (Node& ch : n.children) Run(ch);
+        }
+    };
+    Rename::Run(fx.project.panels[0].root);
+    Result s = GenerateStyles(fx.project, fx.opts);
+    REQUIRE(s.files.size() == 1);
+    CHECK(Contains(s.files[0].content, "inline void Style_accent_button_Push() {"));
+    CHECK(Contains(s.files[0].content, "inline void Style_accent_button_Pop() {"));
+    CHECK_FALSE(Contains(s.files[0].content, "accent-button_"));
+    Result r = GeneratePanel(fx.project, fx.project.panels[0], fx.opts);
+    const FileOut* cpp = r.Find("MainMenu.cpp");
+    REQUIRE(cpp);
+    CHECK(Contains(cpp->content, "Style_accent_button_Push();"));
+    CHECK(Contains(cpp->content, "Style_accent_button_Pop();"));
+    for (const Diagnostic& d : r.diagnostics) CHECK_MESSAGE(d.message.find("accent-button") == std::string::npos, d.message);
+}
+
 TEST_CASE("fonts, reflection, dev glue") {
     Fixture fx;
     Result f = GenerateFonts(fx.project, fx.opts);
     REQUIRE(f.files.size() == 1);
-    CHECK(Contains(f.files[0].content, "inline ImFont* Font_Default = nullptr;"));
-    CHECK(Contains(f.files[0].content, "inline ImFont* Font_Bold = nullptr;"));
+    CHECK(Contains(f.files[0].content, "inline ImFont*& Font_Default() { static ImFont* f = nullptr; return f; }"));
+    CHECK(Contains(f.files[0].content, "inline ImFont*& Font_Bold() { static ImFont* f = nullptr; return f; }"));
     CHECK(Contains(f.files[0].content, "inline void LoadFonts(ImGuiIO& io, float scale = 1.0f) {"));
     CHECK(Contains(f.files[0].content, "static const ImWchar icon_ranges_fa[] = { 0xe005, 0xf8ff, 0 };"));
     CHECK(Contains(f.files[0].content, "#if IMGUI_VERSION_NUM >= 19200"));
@@ -1082,7 +1125,7 @@ std::vector<float> XsOf(const std::string& line) {
 }
 
 bool RunParity(const std::string& tag, const std::string& name, const Result& all, const std::string& driver,
-               std::vector<std::string>& gen, std::vector<std::string>& interp) {
+               std::vector<std::string>& gen, std::vector<std::string>& interp, const std::string& extra_flags = std::string()) {
     if (!HaveGxx()) {
         MESSAGE("g++ not available; skipping");
         return false;
@@ -1098,7 +1141,7 @@ bool RunParity(const std::string& tag, const std::string& name, const Result& al
     REQUIRE(WriteFile(dir + "/driver.cpp", driver));
     std::string root = RepoRoot();
     std::string gxx = "g++ -std=c++17 -O0 -w -I'" + dir + "' -I'" + root + "/include' -I'" + root + "/include/imforge' -I'" + root +
-                      "/tests' -I'" + imgui + "' ";
+                      "/tests' -I'" + imgui + "' " + extra_flags + " ";
     std::vector<std::string> units = {imgui + "/imgui.cpp", imgui + "/imgui_draw.cpp", imgui + "/imgui_tables.cpp",
                                       imgui + "/imgui_widgets.cpp", dir + "/" + name + ".cpp", dir + "/driver.cpp"};
     if (all.Find("imforge_components.cpp")) units.push_back(dir + "/imforge_components.cpp");
@@ -1407,5 +1450,83 @@ TEST_CASE("open/close event parity: generated code and interpreter fire the same
     for (int c : codes) got += std::to_string(c) + " ";
     CHECK_MESSAGE(codes == expected, "event codes: " << got);
     CHECK(close_frame_show == 0);
+}
+
+namespace {
+
+const char* kTwinsPanel = R"imbjson({ "schemaVersion": 1, "kind": "panel", "name": "Twins", "params": [],
+  "state": [ { "name": "a", "type": "int", "default": 0 }, { "name": "b", "type": "int", "default": 0 } ],
+  "root": { "id": "window", "type": "Window",
+    "props": { "title": "Twins", "initialSize": { "x": 400, "y": 200 }, "initialPos": { "x": 10, "y": 10 } }, "children": [
+    { "id": "col", "type": "VStack", "children": [
+        { "id": "tabs_a", "type": "PillTabs", "bind": { "index": "state.a" } },
+        { "id": "tabs_b", "type": "PillTabs", "bind": { "index": "state.b" } } ] } ] } })imbjson";
+
+// frame 0 finds both rows, then clicks the last pill of the second row, then of the first
+const char* kTwinsDriver = R"cpp(#include "Twins.h"
+#include "imgui_headless.h"
+#include "imgui_internal.h"
+#include <cfloat>
+#include <cstdio>
+int main() {
+    imforge::test::HeadlessImGui g;
+    ImGui::GetIO().ConfigInputTrickleEventQueue = false;
+    ui::TwinsState st;
+    ImVec2 first(-FLT_MAX, -FLT_MAX), second = first;
+    for (int f = 0; f < 7; ++f) {
+        ImVec2 p = f == 0 ? ImVec2(-FLT_MAX, -FLT_MAX) : f < 4 ? second : first;
+        ImGui::GetIO().AddMousePosEvent(p.x, p.y);
+        ImGui::GetIO().AddMouseButtonEvent(0, f == 2 || f == 5);
+        g.BeginFrame();
+        ui::DrawTwins(st);
+        g.EndFrame();
+        if (f == 0) {
+            ImGuiWindow* w = ImGui::FindWindowByName("Twins");
+            if (!w) return 4;
+            float h = ImGui::GetFrameHeight();
+            first = ImVec2(w->DC.CursorMaxPos.x - 3.0f, w->DC.CursorStartPos.y + h * 0.5f);
+            second = ImVec2(first.x, w->DC.CursorMaxPos.y - h * 0.5f);
+        }
+        std::printf("gen %d %d %d\n", f, static_cast<int>(st.a), static_cast<int>(st.b));
+    }
+    return 0;
+}
+)cpp";
+
+}  // namespace
+
+TEST_CASE("two pack widgets with the same default label get their own ids in generated code") {
+    WidgetCatalog catalog;
+    Json m;
+    Error err;
+    REQUIRE(LoadJsonFile(RepoRoot() + "/packs/controls/widgets/PillTabs.imw.json", m));
+    REQUIRE_MESSAGE(catalog.AddManifest(m, &err), err.message);
+    Fixture fx;
+    Panel panel;
+    Json j;
+    REQUIRE(ParseJson(kTwinsPanel, j));
+    REQUIRE_MESSAGE(PanelFromJson(j, panel, &err), err.message);
+    fx.project.panels = {panel};
+    fx.project.components.clear();
+    fx.project.live.enabled = false;
+    fx.project.widget_catalog = &catalog;
+    Result r = GeneratePanel(fx.project, panel, fx.opts);
+    for (const Diagnostic& d : r.diagnostics) CHECK_MESSAGE(d.level != Diagnostic::Level::Error, d.node_id << ": " << d.message);
+    const FileOut* cpp = r.Find("Twins.cpp");
+    REQUIRE(cpp);
+    const std::string& s = cpp->content;
+    INFO(s);
+    CHECK(Contains(s, "ImGui::PushID(\"tabs_a\");"));
+    CHECK(Contains(s, "ImGui::PushID(\"tabs_b\");"));
+    int push = 0, pop = 0;
+    for (size_t p = s.find("ImGui::PushID("); p != std::string::npos; p = s.find("ImGui::PushID(", p + 1)) ++push;
+    for (size_t p = s.find("ImGui::PopID();"); p != std::string::npos; p = s.find("ImGui::PopID();", p + 1)) ++pop;
+    CHECK(push == 2);
+    CHECK(pop == push);
+    std::vector<std::string> gen, interp;
+    if (!RunParity("twins", "Twins", r, kTwinsDriver, gen, interp, "-I'" + RepoRoot() + "/packs/controls'")) return;
+    REQUIRE(gen.size() == 7);
+    CHECK(gen[3] == "3 0 2");
+    CHECK(gen[6] == "6 2 2");
 }
 #endif

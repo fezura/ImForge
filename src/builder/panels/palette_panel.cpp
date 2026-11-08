@@ -8,6 +8,7 @@
 #include "imgui.h"
 
 #include "../builder_style.h"
+#include "../bundled_packs.h"
 #include "../editor_context.h"
 #include "../ui/tree_actions.h"
 #include "../ui/tree_ops.h"
@@ -67,6 +68,7 @@ std::vector<PaletteGroup> BuildGroups(EditorContext& ctx) {
             if (m["description"].IsString()) it.description = m["description"].AsString();
             else if (m["hint"].IsString()) it.description = m["hint"].AsString();
             else if (it.description.empty()) it.description = "Custom widget from " + (cw->include.empty() ? std::string("a widget manifest") : cw->include);
+            if (const BundledPack* pack = BundledPackForWidget(w->type)) it.category = pack->title;
         }
         group_for(it.category).items.push_back(std::move(it));
     }

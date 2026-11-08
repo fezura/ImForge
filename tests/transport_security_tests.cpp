@@ -322,3 +322,110 @@ TEST_CASE("protocol: peer supplied lists, names and log text are bounded and san
     std::vector<Json> back;
     CHECK_FALSE(ParseComponents(MsgComponents(comps), back));
 }
+
+TEST_CASE("protocol: font chunks must fit their file and the size caps") {
+    const std::string hash(64, 'a');
+    std::vector<unsigned char> bytes(1000, 7);
+    FontDataMsg d;
+    REQUIRE(ParseFontData(MsgFontData(hash, 5000, 1000, bytes.data(), bytes.size()), d));
+    CHECK(d.bytes == bytes);
+    CHECK(d.offset == 1000);
+    CHECK(d.total == 5000);
+
+    CHECK_FALSE(ParseFontData(MsgFontData(hash, 1500, 1000, bytes.data(), bytes.size()), d));
+    CHECK_FALSE(ParseFontData(MsgFontData(hash, 1000, 1000, bytes.data(), bytes.size()), d));
+    CHECK_FALSE(ParseFontData(MsgFontData(hash, kProtocolMaxFontBytes + 1, 0, bytes.data(), bytes.size()), d));
+    CHECK_FALSE(ParseFontData(MsgFontData(std::string(64, 'A'), 5000, 0, bytes.data(), bytes.size()), d));
+    CHECK_FALSE(ParseFontData(MsgFontData(hash.substr(1), 5000, 0, bytes.data(), bytes.size()), d));
+    std::vector<unsigned char> big(kProtocolFontChunk + 3, 1);
+    CHECK_FALSE(ParseFontData(MsgFontData(hash, kProtocolMaxFontBytes, 0, big.data(), big.size()), d));
+
+    Json m = MsgFontData(hash, 5000, 0, bytes.data(), bytes.size());
+    m.Set("data", "not base64!");
+    CHECK_FALSE(ParseFontData(m, d));
+    m.Set("data", "QUJD\nREVG");
+    CHECK_FALSE(ParseFontData(m, d));
+    m.Set("data", "QQ==QUJD");
+    CHECK_FALSE(ParseFontData(m, d));
+    m.Set("data", "QUJD");
+    REQUIRE(ParseFontData(m, d));
+    CHECK(std::string(d.bytes.begin(), d.bytes.end()) == "ABC");
+    m.Set("offset", -1);
+    CHECK_FALSE(ParseFontData(m, d));
+    m.Set("offset", 1.5);
+    CHECK_FALSE(ParseFontData(m, d));
+}
+
+TEST_CASE("protocol: font lists are bounded and every hash and range is checked") {
+    FontSpecMsg f;
+    f.name = "Body";
+    f.size = 16;
+    f.file = std::string(64, 'b');
+    f.icons = std::string(64, 'c');
+    f.icon_lo = 0xe005;
+    f.icon_hi = 0xf8ff;
+    std::vector<FontSpecMsg> back;
+    REQUIRE(ParseFonts(MsgFonts({f}), back));
+    REQUIRE(back.size() == 1);
+    CHECK(back[0].icons == f.icons);
+    CHECK(back[0].icon_hi == 0xf8ff);
+
+    CHECK_FALSE(ParseFonts(MsgFonts(std::vector<FontSpecMsg>(kProtocolMaxFonts + 1, f)), back));
+    FontSpecMsg bad = f;
+    bad.file = "../../etc/passwd";
+    CHECK_FALSE(ParseFonts(MsgFonts({bad}), back));
+    bad = f;
+    bad.size = 5000;
+    CHECK_FALSE(ParseFonts(MsgFonts({bad}), back));
+    bad = f;
+    bad.icon_lo = 0xf8ff;
+    bad.icon_hi = 0xe000;
+    CHECK_FALSE(ParseFonts(MsgFonts({bad}), back));
+    bad = f;
+    bad.name.clear();
+    CHECK_FALSE(ParseFonts(MsgFonts({bad}), back));
+
+    std::vector<std::string> hashes(100, std::string(64, 'd'));
+    hashes.push_back("zz");
+    ClientInfoMsg ci;
+    REQUIRE(ParseClientInfo(MsgClientInfo("app", 1, 19191, "b", "p", {}, {}, hashes), ci));
+    CHECK(ci.font_hashes.size() == kProtocolMaxFontFiles);
+    REQUIRE(ParseClientInfo(MsgClientInfo("app", 1, 19191, "b", "p", {}, {}, {"zz"}), ci));
+    CHECK(ci.font_hashes.empty());
+}
+
+TEST_CASE("protocol: icon tables are bounded and names are plain") {
+    std::vector<std::pair<std::string, unsigned>> icons = {{"fa-gear", 0xf013}, {"fa-heart", 0xf004}}, back;
+    REQUIRE(ParseIcons(MsgIcons(icons), back));
+    CHECK(back.size() == 2);
+    CHECK_FALSE(ParseIcons(MsgIcons({{"fa-Gear", 0xf013}}), back));
+    CHECK_FALSE(ParseIcons(MsgIcons({{"../x", 0xf013}}), back));
+    CHECK_FALSE(ParseIcons(MsgIcons({{std::string(kProtocolMaxIconName + 1, 'a'), 0xf013}}), back));
+    CHECK_FALSE(ParseIcons(MsgIcons({{"fa-x", 0xD800}}), back));
+    CHECK_FALSE(ParseIcons(MsgIcons({{"fa-x", 0x110000}}), back));
+    CHECK_FALSE(ParseIcons(MsgIcons({{"fa-x", 0x0a}}), back));
+    std::vector<std::pair<std::string, unsigned>> many;
+    for (size_t i = 0; i <= kProtocolMaxIcons; ++i) many.emplace_back("i" + std::to_string(i), 0xe000);
+    CHECK_FALSE(ParseIcons(MsgIcons(many), back));
+}
+
+TEST_CASE("protocol: icon code points may not be control characters") {
+    std::vector<std::pair<std::string, unsigned>> back;
+    CHECK_FALSE(ParseIcons(MsgIcons({{"fa-x", 0x7f}}), back));
+    CHECK_FALSE(ParseIcons(MsgIcons({{"fa-x", 0x85}}), back));
+    CHECK_FALSE(ParseIcons(MsgIcons({{"fa-x", 0x9f}}), back));
+    CHECK(ParseIcons(MsgIcons({{"fa-x", 0xa0}}), back));
+    CHECK(ParseIcons(MsgIcons({{"fa-x", 0x7e}}), back));
+}
+
+TEST_CASE("protocol: font names lose control characters before they reach a log") {
+    FontSpecMsg f;
+    f.name = "Body\x1b[2J\nfake line";
+    f.size = 16;
+    f.file = std::string(64, 'b');
+    std::vector<FontSpecMsg> back;
+    REQUIRE(ParseFonts(MsgFonts({f}), back));
+    REQUIRE(back.size() == 1);
+    for (char c : back[0].name) CHECK((unsigned char)c >= 0x20);
+    CHECK(back[0].name.find("fake line") != std::string::npos);
+}

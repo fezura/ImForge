@@ -12,6 +12,7 @@
 #include "imforge_transport.h"
 #include "imforge_protocol.h"
 #include "imforge_pairing_session.h"
+#include "imforge_client_fonts.h"
 #include "imb_runtime.h"
 
 #include <cstdint>
@@ -85,6 +86,7 @@ struct Client {
 
     std::vector<std::pair<std::string, ImTextureID>> textures;
     std::vector<std::pair<std::string, ImFont*>> fonts;
+    FontState font_state;
     std::vector<std::string> widget_names;
     std::vector<std::pair<std::string, std::string>> block_hashes;
     void (*log_cb)(int, const char*) = nullptr;
@@ -146,6 +148,11 @@ inline void Log(Client& c, int level, const std::string& full_text) {
     if (level >= 1) SendJson(c, MsgLog(level, text.c_str()));
 }
 
+inline void FlushFontLogs(Client& c, FontLogs& logs) {
+    for (const auto& l : logs) Log(c, l.first, l.second);
+    logs.clear();
+}
+
 inline bool HasString(const std::vector<std::string>& v, const std::string& s) {
     for (const std::string& e : v)
         if (e == s) return true;
@@ -174,16 +181,19 @@ inline void InstallHooks(Client& c) {
         cl.mode.selected = n.id;
         cl.mode.panel = cl.cur_panel;
     };
+    c.interp.hooks.icon = [](const std::string& name) -> const char* { return FindIconUtf8(Get().font_state, name); };
     c.interp.hooks.texture = [](const std::string& name) -> ImTextureID {
         Client& cl = Get();
         for (const auto& kv : cl.textures)
             if (kv.first == name) return kv.second;
         return ImTextureID();
     };
+    // RegisterFont() wins, then fonts the builder sent, then the app's own atlas by debug name
     c.interp.hooks.font = [](const std::string& name) -> ImFont* {
         Client& cl = Get();
         for (const auto& kv : cl.fonts)
             if (kv.first == name) return kv.second;
+        if (ImFont* f = FindLiveFont(cl.font_state, name)) return f;
         ImFontAtlas* atlas = ImGui::GetIO().Fonts;
         if (!atlas || name.empty()) return nullptr;
         for (int i = 0; i < atlas->Fonts.Size; ++i) {
@@ -401,8 +411,9 @@ inline void OnPaired(Client& c) {
     c.pair_error.clear();
     c.attempts_left = -1;
     c.status = "connected to " + c.url + " (paired)";
+    DropFontPart(c.font_state);
     SendJson(c, MsgClientInfo(c.app_name.c_str(), Pid(), IMGUI_VERSION_NUM, IMFORGE_BACKEND_NAME, PlatformName(), c.widget_names,
-                              TextureNames(c)));
+                              TextureNames(c), FontFileHashes(c.font_state)));
     SendBlocks(c);
     c.last_stats_ms = detail::NowMs();
     ClearHover(c);
@@ -577,12 +588,19 @@ inline Json StringifyInline(const Json& arr) {
     return out;
 }
 
+inline void ApplyAnimations(Client& c, const Json& m);
+inline void ApplyAnimationList(Client& c, const std::vector<Json>& list);
+
 inline void ApplyProject(Client& c, const Json& m) {
     const Json& pj = m["project"];
     if (!pj.IsObject()) {
         Log(c, 2, "imforge: project message without object");
         return;
     }
+    std::vector<Json> inline_anims;
+    if (pj["animations"].IsArray())
+        for (size_t i = 0; i < pj["animations"].Size() && inline_anims.size() < kProtocolMaxAnimations; ++i)
+            if (AnimationWithinCaps(pj["animations"][i])) inline_anims.push_back(pj["animations"][i]);
     std::vector<Theme> themes = c.project.themes;
     std::vector<Component> components = c.project.components;
     ApplyThemeList(c, pj["themes"], themes);
@@ -596,7 +614,7 @@ inline void ApplyProject(Client& c, const Json& m) {
             if ((*pl)[i].IsObject()) ApplyPanelJson(c, (*pl)[i]);
     }
     Json clean = pj;
-    const char* lists[3] = {"themes", "panels", "components"};
+    const char* lists[4] = {"themes", "panels", "components", "animations"};
     for (const char* key : lists)
         if (clean[key].IsArray()) clean.Set(key, StringifyInline(clean[key]));
     Project fresh;
@@ -609,6 +627,7 @@ inline void ApplyProject(Client& c, const Json& m) {
     }
     fresh.themes = std::move(themes);
     fresh.components = std::move(components);
+    fresh.animations = std::move(c.project.animations);
     c.project = std::move(fresh);
     c.project.widget_catalog = &c.interp.catalog;
     c.have_project = true;
@@ -616,6 +635,7 @@ inline void ApplyProject(Client& c, const Json& m) {
         const Json& w = m["widgets"];
         for (size_t i = 0; i < w.Size(); ++i) c.interp.catalog.AddManifest(w[i], &err);
     }
+    if (!inline_anims.empty()) ApplyAnimationList(c, inline_anims);
     ApplyActiveTheme(c);
     Log(c, 0, "imforge: project '" + c.project.name + "' loaded");
 }
@@ -675,6 +695,14 @@ inline void Dispatch(Client& c, const Json& m) {
         }
     } else if (t == msg::kPing) {
         SendJson(c, MsgPong());
+    } else if (t == msg::kAnimations) {
+        ApplyAnimations(c, m);
+    } else if (t == msg::kFontData || t == msg::kFonts || t == msg::kIcons) {
+        FontLogs logs;
+        if (t == msg::kFontData) OnFontData(c.font_state, m, detail::NowMs(), logs);
+        else if (t == msg::kFonts) OnFontList(c.font_state, m, detail::NowMs(), logs);
+        else OnIconList(c.font_state, m, logs);
+        FlushFontLogs(c, logs);
     } else {
         Log(c, 1, "imforge: unknown message '" + ClipForLog(t) + "'");
     }
@@ -768,3 +796,5 @@ inline void DrawMissing(Client& c, const char* panel) {
 
 }  // namespace live
 }  // namespace imforge
+
+#include "imforge_client_anims.h"

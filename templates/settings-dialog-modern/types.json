@@ -1,0 +1,92 @@
+{
+  "enums": {},
+  "kind": "types",
+  "schemaVersion": 1,
+  "structs": {
+    "AppSettings": {
+      "fields": [
+        {
+          "ctype": "I32",
+          "name": "language",
+          "type": "int"
+        },
+        {
+          "ctype": "Bool",
+          "name": "startWithSystem",
+          "type": "bool"
+        },
+        {
+          "ctype": "I32",
+          "name": "updateChannel",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "autosaveMinutes",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "themeMode",
+          "type": "int"
+        },
+        {
+          "ctype": "Vec4",
+          "name": "accent",
+          "type": "ImVec4"
+        },
+        {
+          "ctype": "Float",
+          "name": "uiScale",
+          "type": "float"
+        },
+        {
+          "ctype": "Bool",
+          "name": "reduceMotion",
+          "type": "bool"
+        },
+        {
+          "ctype": "I32",
+          "name": "keyPalette",
+          "type": "int"
+        },
+        {
+          "ctype": "I32",
+          "name": "keyHide",
+          "type": "int"
+        },
+        {
+          "ctype": "Float",
+          "name": "pointerSpeed",
+          "type": "float"
+        },
+        {
+          "ctype": "Float",
+          "name": "masterVolume",
+          "type": "float"
+        },
+        {
+          "ctype": "I32",
+          "name": "audioDevice",
+          "type": "int"
+        },
+        {
+          "ctype": "Bool",
+          "name": "notifySounds",
+          "type": "bool"
+        },
+        {
+          "ctype": "Bool",
+          "name": "reopenLast",
+          "type": "bool"
+        },
+        {
+          "ctype": "I32",
+          "name": "recentCount",
+          "type": "int"
+        }
+      ],
+      "header": "app_settings.h"
+    }
+  }
+}

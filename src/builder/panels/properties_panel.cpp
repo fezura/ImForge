@@ -169,6 +169,8 @@ std::vector<std::string> ComponentNames(const Project& project) {
     return out;
 }
 
+void DrawMotionsSection(PropsUI& ui);
+
 }  // namespace props
 
 namespace {
@@ -256,6 +258,7 @@ private:
         DrawEventsSection(ui);
         DrawStyleSection(ui);
         DrawAnimSection(ui);
+        DrawMotionsSection(ui);
         DrawFxSection(ui);
         DrawLayoutSection(ui);
     }
@@ -278,6 +281,7 @@ private:
         ImGui::Spacing();
         DrawStyleSection(ui);
         DrawAnimSection(ui);
+        DrawMotionsSection(ui);
         DrawFxSection(ui);
     }
 };

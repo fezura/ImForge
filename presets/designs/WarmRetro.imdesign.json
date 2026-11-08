@@ -1,0 +1,271 @@
+{
+  "credit": "",
+  "description": "Warm browns, cream text and burnt orange in the spirit of Gruvbox, mixed with its own colors. Square corners and tight spacing for dense tools.",
+  "fonts": [
+    {
+      "family": "IBM Plex Sans",
+      "role": "ui",
+      "size": 15
+    },
+    {
+      "family": "IBM Plex Sans",
+      "role": "heading",
+      "size": 18,
+      "weight": "Bold"
+    },
+    {
+      "family": "IBM Plex Mono",
+      "role": "mono",
+      "size": 14
+    }
+  ],
+  "fx": {
+    "accentGlow": 0,
+    "windowBlur": 0,
+    "windowShadow": 0
+  },
+  "kind": "design",
+  "motions": {
+    "button.hover": "Brighten",
+    "button.press": "Recess",
+    "list": {
+      "preset": "StaggerReveal",
+      "stagger": 0.03
+    },
+    "window": "FadeIn",
+    "window.exit": "FadeOut"
+  },
+  "name": "WarmRetro",
+  "schemaVersion": 1,
+  "styleClasses": {
+    "accent-button": {
+      "colors": {
+        "Button": "#f0862aff",
+        "ButtonActive": "#ce7324ff",
+        "ButtonHovered": "#f29748ff",
+        "Text": "#1a1716ff"
+      },
+      "vars": {
+        "FrameBorderSize": 0
+      }
+    },
+    "card": {
+      "colors": {
+        "Border": "#4a433eff",
+        "ChildBg": "#201d1bff"
+      },
+      "vars": {
+        "ChildBorderSize": 1,
+        "ChildRounding": 2,
+        "WindowPadding": {
+          "x": 10,
+          "y": 8
+        }
+      }
+    },
+    "danger": {
+      "colors": {
+        "Border": "#f05a408c",
+        "Button": "#f05a4029",
+        "ButtonActive": "#f05a405c",
+        "ButtonHovered": "#f05a4042",
+        "CheckMark": "#f05a40ff",
+        "SliderGrab": "#f05a40ff",
+        "SliderGrabActive": "#f05a40ff",
+        "Text": "#f7a698ff"
+      }
+    },
+    "ghost-button": {
+      "colors": {
+        "Border": "#f0862a99",
+        "Button": "#00000000",
+        "ButtonActive": "#f0862a3d",
+        "ButtonHovered": "#f0862a24",
+        "Text": "#f3a159ff"
+      },
+      "vars": {
+        "FrameBorderSize": 1
+      }
+    },
+    "heading": {
+      "colors": {
+        "Separator": "#f0862aff",
+        "Text": "#f3be3cff"
+      }
+    },
+    "muted": {
+      "colors": {
+        "Text": "#b0a28cff"
+      }
+    },
+    "success": {
+      "colors": {
+        "Border": "#b3b5368c",
+        "Button": "#b3b53629",
+        "ButtonActive": "#b3b5365c",
+        "ButtonHovered": "#b3b53642",
+        "CheckMark": "#b3b536ff",
+        "SliderGrab": "#b3b536ff",
+        "SliderGrabActive": "#b3b536ff",
+        "Text": "#d4d68eff"
+      }
+    },
+    "warning": {
+      "colors": {
+        "Border": "#f3be3c8c",
+        "Button": "#f3be3c29",
+        "ButtonActive": "#f3be3c5c",
+        "ButtonHovered": "#f3be3c42",
+        "CheckMark": "#f3be3cff",
+        "SliderGrab": "#f3be3cff",
+        "SliderGrabActive": "#f3be3cff",
+        "Text": "#f8db92ff"
+      }
+    }
+  },
+  "tags": [
+    "dark",
+    "retro",
+    "warm",
+    "compact"
+  ],
+  "theme": {
+    "colors": {
+      "Border": "#615851ff",
+      "BorderShadow": "#00000000",
+      "Button": "#3a3431ff",
+      "ButtonActive": "#7c5738ff",
+      "ButtonHovered": "#4a433eff",
+      "CheckMark": "#f0862aff",
+      "ChildBg": "#00000000",
+      "DockingEmptyBg": "#1e1b1aff",
+      "DockingPreview": "#f0862ab2",
+      "DragDropTarget": "#8dbd7ee6",
+      "FrameBg": "#3a3431ff",
+      "FrameBgActive": "#57504aff",
+      "FrameBgHovered": "#4a433eff",
+      "Header": "#f0862a33",
+      "HeaderActive": "#f0862a66",
+      "HeaderHovered": "#f0862a4c",
+      "InputTextCursor": "#f0862aff",
+      "MenuBarBg": "#201d1bff",
+      "ModalWindowDimBg": "#1e1b1a99",
+      "NavCursor": "#f0862aff",
+      "NavWindowingDimBg": "#1e1b1a33",
+      "NavWindowingHighlight": "#eadab4b2",
+      "PlotHistogram": "#f0862aff",
+      "PlotHistogramHovered": "#f3be3cff",
+      "PlotLines": "#86a597ff",
+      "PlotLinesHovered": "#f3be3cff",
+      "PopupBg": "#201d1bfa",
+      "ResizeGrip": "#f0862a2e",
+      "ResizeGripActive": "#f0862ae6",
+      "ResizeGripHovered": "#f0862a8c",
+      "ScrollbarBg": "#00000000",
+      "ScrollbarGrab": "#4a433eff",
+      "ScrollbarGrabActive": "#958779ff",
+      "ScrollbarGrabHovered": "#615851ff",
+      "Separator": "#615851ff",
+      "SeparatorActive": "#f0862aff",
+      "SeparatorHovered": "#f0862ab2",
+      "SliderGrab": "#f0862aff",
+      "SliderGrabActive": "#f6a352ff",
+      "Tab": "#201d1bff",
+      "TabDimmed": "#262220ff",
+      "TabDimmedSelected": "#332e2cff",
+      "TabDimmedSelectedOverline": "#f0862a73",
+      "TabHovered": "#4a433eff",
+      "TabSelected": "#3a3431ff",
+      "TabSelectedOverline": "#f0862aff",
+      "TableBorderLight": "#49423dff",
+      "TableBorderStrong": "#615851ff",
+      "TableHeaderBg": "#201d1bff",
+      "TableRowBg": "#00000000",
+      "TableRowBgAlt": "#ffffff08",
+      "Text": "#eadab4ff",
+      "TextDisabled": "#958779ff",
+      "TextLink": "#86a597ff",
+      "TextSelectedBg": "#86a59759",
+      "TitleBg": "#201d1bff",
+      "TitleBgActive": "#3a3431ff",
+      "TitleBgCollapsed": "#201d1bcc",
+      "WindowBg": "#2b2725ff"
+    },
+    "vars": {
+      "Alpha": 1,
+      "ButtonTextAlign": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "CellPadding": {
+        "x": 4,
+        "y": 2
+      },
+      "ChildBorderSize": 1,
+      "ChildRounding": 2,
+      "DisabledAlpha": 0.5,
+      "DockingSeparatorSize": 2,
+      "FrameBorderSize": 1,
+      "FramePadding": {
+        "x": 6,
+        "y": 3
+      },
+      "FrameRounding": 2,
+      "GrabMinSize": 8,
+      "GrabRounding": 2,
+      "ImageBorderSize": 0,
+      "IndentSpacing": 16,
+      "ItemInnerSpacing": {
+        "x": 4,
+        "y": 4
+      },
+      "ItemSpacing": {
+        "x": 6,
+        "y": 4
+      },
+      "PopupBorderSize": 1,
+      "PopupRounding": 2,
+      "ScrollbarRounding": 2,
+      "ScrollbarSize": 10,
+      "SelectableTextAlign": {
+        "x": 0,
+        "y": 0
+      },
+      "SeparatorTextAlign": {
+        "x": 0,
+        "y": 0.5
+      },
+      "SeparatorTextBorderSize": 2,
+      "SeparatorTextPadding": {
+        "x": 16,
+        "y": 3
+      },
+      "TabBarBorderSize": 1,
+      "TabBarOverlineSize": 2,
+      "TabBorderSize": 1,
+      "TabRounding": 2,
+      "WindowBorderSize": 1,
+      "WindowMinSize": {
+        "x": 64,
+        "y": 64
+      },
+      "WindowPadding": {
+        "x": 8,
+        "y": 8
+      },
+      "WindowRounding": 2,
+      "WindowTitleAlign": {
+        "x": 0,
+        "y": 0.5
+      }
+    }
+  },
+  "title": "Warm Retro",
+  "widgetStyle": {
+    "accent": "#f0862aff",
+    "accent2": "#86a597ff",
+    "danger": "#f05a40ff",
+    "success": "#b3b536ff",
+    "warning": "#f3be3cff"
+  }
+}
