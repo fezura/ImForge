@@ -1,6 +1,6 @@
 # ImForge
 
-ImForge is a visual UI builder for Dear ImGui. You lay out a panel in the editor and, while
+ImForge is a visual UI builder for (Dear ImGui)[https://github.com/ocornut/imgui]. You lay out a panel in the editor and, while
 you do, the same panel is drawn inside your running application, with your renderer, your
 fonts and your actual data. When you're happy with it you export plain `ImGui::` code, which
 you can keep editing by hand and still reopen in the builder later.
